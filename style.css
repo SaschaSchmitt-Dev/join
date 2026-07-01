@@ -11,7 +11,7 @@ a {
 
 html,
 body {
-    height: 100vh;
+    height: 100dvh;
     background-color: var(--body-bg-color);
     color: var(--text-primary);
 }
