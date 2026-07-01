@@ -1,23 +1,18 @@
 * {
     margin: 0;
-
     box-sizing: border-box;
-
     scroll-behavior: smooth;
 }
 
 a {
     cursor: pointer;
-
     text-decoration: none;
 }
 
 html,
 body {
     height: 100vh;
-
     background-color: var(--main-bg-color);
-
     color: var(--text-primary);
 }
 
@@ -26,11 +21,9 @@ body > main:not(.main-content) {
     flex-direction: column;
     align-items: center;
     gap: 30px;
-
     width: 100%;
     max-width: 1440px;
     min-height: calc(100dvh - 200px);
-
     margin: auto;
     padding-top: 30px;
 }
