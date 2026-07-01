@@ -1,0 +1,41 @@
+:root {
+    /** backgrounds */
+    --main-bg-color: rgb(246, 247, 248);
+    --sidebar-bg-color: rgb(42, 54, 71);
+    --header-bg-color: rgb(255, 255, 255);
+    --assets-bg-color: rgb(255, 255, 255);
+
+    /** text */
+    --text-primary: rgb(42, 54, 71);
+    --text-secondary: rgb(168, 168, 168);
+    --text-white: rgb(255, 255, 255);
+    --text-link: rgb(168, 168, 168);
+    --text-link-hover: rgb(41, 171, 226);
+
+    /** avatar */
+    --avatar-bg: rgb(255, 255, 255);
+    --avatar-bg-hover: rgb(225, 230, 236);
+    --avatar-border: rgb(42, 54, 71);
+
+    /** ui */
+    --ui-dark: rgb(42, 54, 71);
+    --ui-primary: rgb(41, 171, 226);
+    --ui-dark-active: rgb(9, 25, 49);
+
+    /** profile-colors */
+    --profile-orange: rgb(255, 122, 0);
+    --profile-pink: rgb(255, 94, 179);
+    --profile-violet: rgb(110, 82, 255);
+    --profile-purple: rgb(147, 39, 255);
+    --profile-cyan: rgb(0, 190, 232);
+    --profile-turquoise: rgb(31, 215, 193);
+    --profile-salmon: rgb(255, 116, 94);
+    --profile-peach: rgb(255, 163, 94);
+    --profile-magenta: rgb(252, 113, 255);
+    --profile-gold: rgb(255, 199, 1);
+    --profile-blue: rgb(0, 56, 255);
+    --profile-lime: rgb(195, 255, 43);
+    --profile-yellow: rgb(255, 230, 43);
+    --profile-red: rgb(255, 70, 70);
+    --profile-amber: rgb(255, 187, 43);
+}
