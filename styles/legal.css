@@ -75,9 +75,13 @@ body {
     font-size: 14px;
 }
 
-.legal-links a.active {
+.legal-links a:hover {
     background: var(--sidebar-bg-color);
     color: white;
+}
+
+.legal-links a.active {
+    background: var(--sidebar-bg-color);
 }
 
 .icons_sidebar {
