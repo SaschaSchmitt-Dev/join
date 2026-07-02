@@ -49,7 +49,7 @@
     color: var(--text-white);
 }
 
-.legal-links {
+.legal_links {
     display: flex;
     flex-direction: column;
     margin-top: auto;
@@ -58,19 +58,19 @@
     font-weight: 400;
 }
 
-.legal-links a {
+.legal_links a {
     padding: 12px 40px;
     color: var(--text-link);
     font-size: 14px;
     text-decoration: none;
 }
 
-.legal-links a:hover {
+.legal_links a:hover {
     background: var(--sidebar-bg-color);
     color: var(--text-white);
 }
 
-.legal-links a.active {
+.legal_links a.active {
     background: var(--sidebar-bg-color);
 }
 

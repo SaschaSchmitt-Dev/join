@@ -9,14 +9,20 @@ a {
     text-decoration: none;
 }
 
-html,
 body {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1440px;
     height: 100dvh;
+    margin: 0 auto;
     background-color: var(--body-bg-color);
     color: var(--text-primary);
+    overflow: hidden;
 }
 
-body>main:not(.main-content) {
+body>main:not(.main_content) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,3 +37,20 @@ body>main:not(.main-content) {
 main {
     background: var(--main-bg-color);
 }
+<<<<<<< HEAD
+=======
+
+.desktop_hide {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .desktop_hide {
+        display: flex;
+    }
+
+    .mobile_hide {
+        display: none;
+    }
+}
+>>>>>>> 9384d1fc9abf1418ad03b863fdcf0eba4278feb9
