@@ -1,0 +1,15 @@
+.back_arrow_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: none;
+    border: none;
+}
+
+.back_arrow_button:hover {
+    transform: scale(1.01);
+    background-color: var(--ui-primary-hover);
+}

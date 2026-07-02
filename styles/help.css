@@ -1,0 +1,36 @@
+.help_section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1024px;
+    padding-top: 72px;
+    margin: 0 auto;
+    gap: 24px;
+}
+
+.help_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.help_description,
+.help_step,
+.help_note {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.help_step_content {
+    display: flex;
+    gap: 36px;
+}
+
+.help_note {
+    padding-top: 24px;
+}
+
+.help_section span {
+    color: var(--text-quaternary)
+}

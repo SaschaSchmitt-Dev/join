@@ -10,6 +10,7 @@
     --text-primary: rgb(0, 0, 0);
     --text-secondary: rgb(42, 54, 71);
     --text-tertiary: rgb(168, 168, 168);
+    --text-quaternary: rgb(41, 171, 226);
     --text-white: rgb(255, 255, 255);
     --text-link: rgb(168, 168, 168);
     --text-link-hover: rgb(41, 171, 226);
@@ -22,6 +23,7 @@
     /** ui */
     --ui-dark: rgb(42, 54, 71);
     --ui-primary: rgb(41, 171, 226);
+    --ui-primary-hover: rgb(225, 230, 236);
     --ui-dark-active: rgb(9, 25, 49);
 
     /** profile-colors */
