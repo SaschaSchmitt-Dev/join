@@ -7,8 +7,9 @@
     --assets-bg-color: rgb(255, 255, 255);
 
     /** text */
-    --text-primary: rgb(42, 54, 71);
-    --text-secondary: rgb(168, 168, 168);
+    --text-primary: rgb(0, 0, 0);
+    --text-secondary: rgb(42, 54, 71);
+    --text-tertiary: rgb(168, 168, 168);
     --text-white: rgb(255, 255, 255);
     --text-link: rgb(168, 168, 168);
     --text-link-hover: rgb(41, 171, 226);
