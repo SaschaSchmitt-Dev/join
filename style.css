@@ -17,7 +17,7 @@ body {
     overflow: hidden;
 }
 
-body>main:not(.main_content) {
+body>main:not(.main-content) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,16 +70,16 @@ a {
     text-decoration: none;
 }
 
-.desktop_hide {
+.desktop-hide {
     display: none;
 }
 
 @media (max-width: 1024px) {
-    .desktop_hide {
+    .desktop-hide {
         display: flex;
     }
 
-    .mobile_hide {
+    .mobile-hide {
         display: none;
     }
 }

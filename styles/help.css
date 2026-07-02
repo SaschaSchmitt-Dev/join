@@ -1,36 +1,36 @@
-.help_section {
+.help-section {
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 1024px;
-    padding-top: 72px;
+    padding: 72px 10px;
     margin: 0 auto;
     gap: 24px;
 }
 
-.help_title {
+.help-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.help_description,
-.help_step,
-.help_note {
+.help-description,
+.help-step,
+.help-note {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
-.help_step_content {
+.help-step-content {
     display: flex;
     gap: 36px;
 }
 
-.help_note {
+.help-note {
     padding-top: 24px;
 }
 
-.help_section span {
+.help-section span {
     color: var(--text-quaternary)
 }

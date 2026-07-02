@@ -22,9 +22,20 @@
 
     /** ui */
     --ui-dark: rgb(42, 54, 71);
-    --ui-primary: rgb(41, 171, 226);
-    --ui-primary-hover: rgb(225, 230, 236);
+    --ui-dark-hover: rgb(42, 61, 89);
+    --ui-light: rgb(41, 171, 226);
+    --ui-light-hover: rgb(225, 230, 236);
     --ui-dark-active: rgb(9, 25, 49);
+
+    /** Scrollbar */
+    --scrollbar-track-bg-color: #ECECEC;
+    --scrollbar-track-shadow-color: transparent;
+    --scrollbar-primary-thumb-color: #A8A8A8;
+    --scrollbar-secondary-thumb-color: #8A8A8A;
+    --scrollbar-tertiary-thumb-color: #6B6B6B;
+    --scrollbar-thumb-border-color: transparent;
+    --scrollbar-primary-thumb-shadow-color: transparent;
+    --scrollbar-secondary-thumb-shadow-color: transparent;
 
     /** profile-colors */
     --profile-orange: rgb(255, 122, 0);

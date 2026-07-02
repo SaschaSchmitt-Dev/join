@@ -1,4 +1,4 @@
-.back_arrow_button {
+.back-arrow-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +9,26 @@
     border: none;
 }
 
-.back_arrow_button:hover {
+.back-arrow-button:hover {
     transform: scale(1.01);
-    background-color: var(--ui-primary-hover);
+    background-color: var(--ui-light-hover);
+}
+
+.main-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-bg-color);
+    border-radius: 999px;
+    box-shadow: inset 0 0 8px var(--scrollbar-track-shadow-color);
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--scrollbar-primary-thumb-color), var(--scrollbar-secondary-thumb-color), var(--scrollbar-tertiary-thumb-color));
+    border-radius: 999px;
+    border: 1px solid var(--scrollbar-thumb-border-color);
+    box-shadow:
+        0 0 10px var(--scrollbar-primary-thumb-shadow-color),
+        0 0 18px var(--scrollbar-secondary-thumb-shadow-color);
 }

@@ -1,4 +1,4 @@
-.page_content {
+.page-content {
     display: flex;
     flex: 1 1 calc(100% - 232px);
     flex-direction: column;
@@ -12,7 +12,7 @@
     padding: 0;
 }
 
-.main_content {
+.main-content {
     flex: 1;
     width: 100%;
     min-height: 0;
@@ -39,22 +39,26 @@
     font-size: 20px;
 }
 
-.topbar_left {
+.topbar-left {
     display: flex;
     align-items: center;
 }
 
-.topbar_left img {
+.topbar-left img {
     width: 32px;
 }
 
-.topbar_right {
+.topbar-right {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-.user_circle {
+.help-link:hover {
+    transform: scale(1.2);
+}
+
+.user-circle {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,6 +66,10 @@
     height: 48px;
     border: 2px solid var(--avatar-border);
     border-radius: 50%;
-    color: var(--ui-primary);
+    color: var(--ui-light);
     font-weight: bold;
+}
+
+.user-circle:hover {
+    background-color: var(--ui-light-hover);
 }

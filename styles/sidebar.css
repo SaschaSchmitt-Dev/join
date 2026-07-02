@@ -30,7 +30,6 @@
     flex-direction: column;
     gap: 28px;
     font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
 }
 
@@ -41,40 +40,37 @@
     padding: 8px 40px;
     color: var(--text-tertiary);
     font-size: 20px;
-    text-decoration: none;
 }
 
 .menu a:hover {
-    background: var(--sidebar-bg-color);
-    color: var(--text-white);
+    background: var(--ui-dark-hover);
 }
 
-.legal_links {
+.active {
+    background-color: var(--ui-dark-active);
+}
+
+.legal-links {
     display: flex;
     flex-direction: column;
     margin-top: auto;
     font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
 }
 
-.legal_links a {
+.legal-links a {
     padding: 12px 40px;
     color: var(--text-link);
-    font-size: 14px;
-    text-decoration: none;
+    font-size: 1rem;
 }
 
-.legal_links a:hover {
-    background: var(--sidebar-bg-color);
-    color: var(--text-white);
+.legal-links a:hover {
+    color: var(--text-link-hover);
+    font-weight: 700;
+    font-size: 1.05rem;
 }
 
-.legal_links a.active {
-    background: var(--sidebar-bg-color);
-}
-
-.icons_sidebar {
+.icons-sidebar {
     width: 30px;
     height: 30px;
     font-size: 20px;
