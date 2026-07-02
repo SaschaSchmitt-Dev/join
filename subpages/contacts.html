@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="../styles/sidebar.css">
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../styles/contacts.css">
+
+    <script src="/scripts/contacts.js" defer></script>
 </head>
 
 <body>
@@ -53,7 +56,121 @@
         </header>
 
         <main class="main-content"></main>
+
+        <section class="contacts-page">
+
+            <aside class="contacts-sidebar">
+
+                <button id="add-contact-btn" class="add-contact-btn">
+                    <span class="btn-contact">Add new contact</span>
+
+                    <img src="../assets/icons/person_add.png" alt="Add Contact">
+                </button>
+
+
+                <div id="contacts-list">
+
+                    <div class="contact-group">
+
+                        <h3>A</h3>
+
+                        <div class="contact-card" onclick="showContact(0)">
+
+                            <div class="contact-avatar">
+                                AM
+                            </div>
+
+                            <div class="contact-info">
+                                <h4>Anton Mayer</h4>
+                                <a href="mailto:antonm@gmail.com">
+                                    antonm@gmail.com
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+            <section class="contact-details">
+
+                <div id="contact-details">
+
+                    <div class="contacts-header">
+                        <h1>Contacts</h1>
+
+                        <div class="header-divider"></div>
+
+                        <span>Better with a team</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
     </section>
+
+    <div id="add-contact-overlay" class="add-contact-overlay">
+
+        <div class="add-contact-modal">
+
+            <div class="modal-left">
+                <img src="..//assets/icons/join-logo-light.png" alt="Join Logo">
+
+                <h2>Add contact</h2>
+                <p>Tasks are better with a team!</p>
+
+                <div class="blue-line"></div>
+            </div>
+
+            <div class="modal-right">
+
+                <button type="button" id="close-contact-modal" class="close-modal">
+                    ×
+                </button>
+
+                <div class="contact-placeholder">
+                    <img src="../assets/icons/contacts-logo.png" alt="Prfil Photo Placeholder">
+                </div>
+
+                <form id="add-contact-form">
+
+                    <div class="input-field">
+                        <input id="contact-name" type="text" placeholder="Name" required>
+                        <img src="../assets/icons/person.png" alt="Person">
+                    </div>
+
+                    <div class="input-field">
+                        <input id="contact-email" type="email" placeholder="Email" required>
+                        <img src="../assets/icons/mail.png" alt="Mail">
+                    </div>
+
+                    <div class="input-field">
+                        <input id="contact-phone" type="tel" placeholder="Phone">
+                        <img src="../assets/icons/call.png" alt="Phone">
+                    </div>
+
+                    <div class="modal-buttons">
+                        <button type="button" id="cancel-contact-btn" class="cancel-btn">
+                            Cancel ×
+                        </button>
+
+                        <button type="submit" class="create-btn">
+                            Create contact ✓
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
 </body>
 
 </html>
