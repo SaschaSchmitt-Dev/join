@@ -1,0 +1,24 @@
+.add-task-content {
+    height: 100%;
+    background: --main-bg-color;
+}
+
+.site-header {
+    padding: 48px 96px;
+    font-size: 73px;
+    font-weight: bold;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    width: 440px;
+    margin-left: 96px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.title input{
+    height: 48px;
+    font-size: 18px;
+}
