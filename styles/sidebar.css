@@ -39,7 +39,7 @@
     align-items: center;
     gap: 16px;
     padding: 8px 40px;
-    color: var(--text-secondary);
+    color: var(--text-tertiary);
     font-size: 20px;
     text-decoration: none;
 }
