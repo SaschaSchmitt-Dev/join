@@ -1,0 +1,42 @@
+.addressbar {
+    width: 400px;
+    border-right: 4px solid rgb(228, 229, 230);
+    box-shadow: 0px 6px 10px -4px rgba(0, 0, 0, 0.2);
+}
+
+.addressContent {
+    width: calc(100vw - 632px);
+    height: 100%;
+}
+
+.contacts {
+    display: flex;
+    border-top: 4px solid rgb(228, 229, 230);
+    box-shadow: 6px 0px 15px -4px rgba(0, 0, 0, 0.2);
+    height: 100%;
+}
+
+.addPerson {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sidebar-bg-color);
+    color: white;
+    margin: 12px 16px;
+    width: 352px;
+    height: 56px;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.addPerson:hover {
+    background: var(--ui-primary);
+}
+
+.addPerson img {
+    width: 32px;
+    height: 32px;
+    margin-left: 16px;
+}
