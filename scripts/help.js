@@ -1,0 +1,36 @@
+const allowedPreviousPages = [
+    "summary.html",
+    "add-task.html",
+    "board.html",
+    "contacts.html"
+];
+
+function getPreviousPage() {
+    const previousPage = document.referrer.split("/").pop();
+
+    if (allowedPreviousPages.includes(previousPage)) {
+        return previousPage;
+    }
+
+    return "login.html";
+}
+
+function setPreviousPageActive() {
+    const previousPage = getPreviousPage();
+    const sidebarLinks = document.querySelectorAll(".menu a");
+
+    sidebarLinks.forEach(link => {
+        if (link.getAttribute("href").includes(previousPage)) {
+            link.classList.add("active");
+        }
+    });
+}
+
+function goBackToPreviousPage() {
+    const previousPage = getPreviousPage();
+
+    window.location.href = `./${previousPage}`;
+}
+
+document.getElementById("backToPreviousPage").addEventListener("click", goBackToPreviousPage);
+setPreviousPageActive();
