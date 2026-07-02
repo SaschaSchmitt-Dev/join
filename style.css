@@ -32,8 +32,6 @@ body>main:not(.main_content) {
 main {
     background: var(--main-bg-color);
 }
-<<<<<<< HEAD
-=======
 
 h1 {
     font-family: 'Inter', sans-serif;
@@ -85,4 +83,3 @@ a {
         display: none;
     }
 }
->>>>>>> 9384d1fc9abf1418ad03b863fdcf0eba4278feb9
