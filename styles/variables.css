@@ -27,11 +27,11 @@
     --ui-dark-active: rgb(9, 25, 49);
 
     /** Scrollbar */
-    --scrollbar-track-bg-color: #ECECEC;
+    --scrollbar-track-bg-color: rgb(236, 236, 236);
     --scrollbar-track-shadow-color: transparent;
-    --scrollbar-primary-thumb-color: #A8A8A8;
-    --scrollbar-secondary-thumb-color: #8A8A8A;
-    --scrollbar-tertiary-thumb-color: #6B6B6B;
+    --scrollbar-primary-thumb-color: rgb(168, 168, 168);
+    --scrollbar-secondary-thumb-color: rgb(138, 138, 138);
+    --scrollbar-tertiary-thumb-color: rgb(107, 107, 107);
     --scrollbar-thumb-border-color: transparent;
     --scrollbar-primary-thumb-shadow-color: transparent;
     --scrollbar-secondary-thumb-shadow-color: transparent;
@@ -54,7 +54,7 @@
     --profile-amber: rgb(255, 187, 43);
 
     /** priority-colors */
-    --priority-urgent: rgb(255,61,0);
-    --priority-medium: rgb(255,168,0);
-    --priority-low: rgb(122,226,41);
+    --priority-urgent: rgb(255, 61, 0);
+    --priority-medium: rgb(255, 168, 0);
+    --priority-low: rgb(122, 226, 41);
 }

@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="../styles/fonts.css">
     <link rel="stylesheet" href="../styles/sidebar.css">
     <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/summary.css">
     <link rel="stylesheet" href="../style.css">
+
 
     <script src="../templates/bars-templates.js" defer></script>
     <script src="../scripts/bars.js" defer></script>
@@ -24,7 +26,61 @@
     <section class="page-content" aria-label="Seiteninhalt">
         <header id="topbar" class="topbar"></header>
 
-        <main class="main-content"></main>
+        <main class="main-content">
+            <section class="title">
+                <h1>Join 360</h1>
+                <div class="title-divider"></div>
+                <span>Key Metrics at a Glance</span>
+            </section>
+            <section class="summary">
+                <section class="summary-content">
+                    <article class="summary-content top">
+                        <a id="cardToDo" class="card-top" href="./board.html">
+                            <img src="../assets/icons/to-do-icon.png" alt="To Do Icon">
+                            <h4>1</h4>
+                            <p>To-do</p>
+                        </a>
+                        <a id="cardDone" class="card-top" href="./board.html">
+                            <img src="../assets/icons/done-icon.png" alt="Done Icon">
+                            <h4>1</h4>
+                            <p>Done</p>
+                        </a>
+                    </article>
+                    <article class="summary-content middle">
+                        <a id="cardUrgent" href="./board.html">
+                            <img src="../assets/icons/urgent-icon.png" alt="Urgent Icon">
+                            <div class="card-middle">
+                                <h4>1</h4>
+                                <p>Urgent</p>
+                            </div>
+                            <div class="card-divider"></div>
+                            <div class="card-middle">
+                                <h5>August 05, 2026</h5>
+                                <p>Upcoming Deadline</p>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="summary-content bottom">
+                        <a id="cardTasksInBoard" class="card-bottom" href="./board.html">
+                            <h4>5</h4>
+                            <p>Tasks in Board</p>
+                        </a>
+                        <a id="cardTasksInProgress" class="card-bottom" href="./board.html">
+                            <h4>2</h4>
+                            <p>Tasks in Progress</p>
+                        </a>
+                        <a id="cardAwaitingFeedback" class="card-bottom" href="./board.html">
+                            <h4>2</h4>
+                            <p>Awaiting Feedback</p>
+                        </a>
+                    </article>
+                </section>
+                <section class="summary-user">
+                    <h2>Good Morning</h2>
+                    <h3 id="activeUser"></h3>
+                </section>
+            </section>
+        </main>
     </section>
 </body>
 

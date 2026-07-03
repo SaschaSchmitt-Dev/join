@@ -1,0 +1,9 @@
+.title {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.title-divider {
+    border: 1px solid var();
+}
