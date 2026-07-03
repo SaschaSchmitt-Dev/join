@@ -1,9 +1,354 @@
+.summary-section {
+    gap: 56px;
+}
+
 .title {
     display: flex;
     align-items: center;
     gap: 30px;
 }
 
+.title h1 {
+    font-size: 61px;
+}
+
+.title span {
+    color: var(--text-secondary);
+    font-family: "Inter", sans-serif;
+    font-size: 27px;
+    font-weight: 400;
+}
+
 .title-divider {
-    border: 1px solid var(--divider-color-blue);
+    width: 0;
+    height: 59px;
+    border: 2px solid var(--divider-color-blue);
+    border-radius: 2px;
+}
+
+.summary {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.summary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.summary-content.top,
+.summary-content.bottom {
+    flex-direction: row;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--assets-bg-color);
+    color: var(--text-primary);
+    border-radius: 30px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 125ms ease-in-out,
+        color 125ms ease-in-out,
+        transform 125ms ease-in-out,
+        box-shadow 125ms ease-in-out;
+}
+
+.card:hover {
+    background: var(--ui-dark);
+    color: var(--text-white);
+    transform: scale(1.04);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.card img {
+    width: 69px;
+    height: 69px;
+    object-fit: contain;
+}
+
+.card h4 {
+    font-family: "Inter", sans-serif;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+}
+
+.card h5 {
+    color: var(--text-secondary);
+    font-family: "Inter", sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.card:hover h5 {
+    color: var(--text-white);
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-size: 20px;
+    text-align: center;
+}
+
+.card:hover p {
+    color: var(--text-white);
+}
+
+.card.top {
+    flex-direction: row;
+    width: 264px;
+    height: 168px;
+    gap: 18px;
+}
+
+.card.top div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#cardToDo:hover img {
+    content: url("../assets/icons/to-do-icon-light.png");
+}
+
+#cardDone:hover img {
+    content: url("../assets/icons/done-icon-light.png");
+}
+
+.summary-content.center {
+    width: 100%;
+}
+
+.card.center {
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 560px;
+    height: 168px;
+    gap: 61px;
+    padding: 28px 48px;
+}
+
+.urgent-overview {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.urgent-count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.center-divider {
+    width: 2px;
+    height: 102px;
+    background: var(--divider-color-grey);
+}
+
+.center-right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.center-right p {
+    font-size: 16px;
+    text-align: left;
+}
+
+.card.bottom {
+    flex-direction: column;
+    width: 168px;
+    height: 168px;
+    gap: 8px;
+    padding: 20px;
+}
+
+.card.bottom p {
+    max-width: 116px;
+}
+
+.summary-user {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-user h2 {
+    color: var(--text-secondary);
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.summary-user h3 {
+    color: var(--text-quaternary);
+    font-size: 64px;
+    font-weight: 700;
+}
+
+@media (max-width: 1200px) {
+    .summary {
+        gap: 48px;
+    }
+
+    .summary-user h2 {
+        font-size: 40px;
+    }
+
+    .summary-user h3 {
+        font-size: 52px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .summary-section {
+        align-items: center;
+        padding: 48px 20px 120px;
+    }
+
+    .summary {
+        justify-content: center;
+    }
+
+    .summary-user {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .summary-section {
+        gap: 32px;
+        padding-top: 32px;
+    }
+
+    .title {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        max-width: 396px;
+    }
+
+    .title h1 {
+        font-size: 47px;
+    }
+
+    .title span {
+        font-size: 20px;
+    }
+
+    .title-divider {
+        order: 3;
+        width: 90px;
+        height: 0;
+        border-width: 2px 0 0;
+    }
+
+    .summary-content {
+        gap: 24px;
+    }
+
+    .summary-content.top,
+    .summary-content.bottom {
+        gap: 24px;
+    }
+
+    .card {
+        border-radius: 20px;
+    }
+
+    .card img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .card h4 {
+        font-size: 47px;
+    }
+
+    .card p {
+        font-size: 14px;
+    }
+
+    .card.top {
+        width: 186px;
+        height: 110px;
+        gap: 10px;
+    }
+
+    .card.center {
+        width: 396px;
+        height: 110px;
+        gap: 20px;
+        padding: 20px 28px;
+    }
+
+    .center-divider {
+        height: 68px;
+    }
+
+    .card h5 {
+        font-size: 16px;
+    }
+
+    .center-right {
+        gap: 8px;
+    }
+
+    .center-right p {
+        font-size: 14px;
+    }
+
+    .card.bottom {
+        width: 116px;
+        height: 116px;
+        gap: 4px;
+        padding: 12px;
+    }
+
+    .card.bottom p {
+        max-width: 92px;
+    }
+}
+
+@media (max-width: 440px) {
+    .summary-section {
+        padding-inline: 16px;
+    }
+
+    .title,
+    .summary,
+    .summary-content.center,
+    .card.center {
+        width: 100%;
+        max-width: 396px;
+    }
+
+    .summary-content {
+        width: 100%;
+    }
+
+    .summary-content.top,
+    .summary-content.bottom {
+        gap: 16px;
+    }
+
+    .card.top {
+        width: calc((100% - 16px) / 2);
+    }
+
+    .card.center {
+        gap: 16px;
+        padding: 18px 20px;
+    }
+
+    .card.bottom {
+        width: calc((100% - 32px) / 3);
+    }
 }
