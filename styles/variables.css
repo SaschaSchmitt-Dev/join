@@ -57,4 +57,5 @@
     --priority-urgent: rgb(255, 61, 0);
     --priority-medium: rgb(255, 168, 0);
     --priority-low: rgb(122, 226, 41);
+    --accent-color: rgb(41, 171, 226);
 }
