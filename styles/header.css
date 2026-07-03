@@ -1,36 +1,13 @@
-.page-content {
-    display: flex;
-    flex: 1 1 calc(100% - 232px);
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    width: 100%;
-    min-width: 0;
-    max-width: calc(1440px - 232px);
-    height: 100dvh;
-    margin: 0;
-    padding: 0;
-}
-
-.main-content {
-    flex: 1;
-    width: 100%;
-    min-height: 0;
-    overflow-y: auto;
-}
-
 .topbar {
+    position: sticky;
     display: flex;
-    flex: 0 0 96px;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    min-width: 0;
-    max-width: calc(1440px - 232px);
     height: 96px;
     padding: 20px 40px 20px 96px;
     background: var(--header-bg-color);
-    box-shadow: 0 4px 64px rgba(0, 0, 0, .1);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     font-family: 'Inter', sans-serif;
     font-weight: 400;
 }

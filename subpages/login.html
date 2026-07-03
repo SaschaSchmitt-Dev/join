@@ -12,41 +12,61 @@
     <link rel="stylesheet" href="../styles/variables.css">
     <link rel="stylesheet" href="../styles/fonts.css">
     <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../style.css">
 
     <script src="../scripts/login.js" defer></script>
     <script src="../script.js" defer></script>
 </head>
 
 <body>
-    <header>
-        <img src="../assets/icons/join-logo-dark.png" alt="Join Logo">
-        <div>
-            <span>Not a Join user </span>
-            <button class="signup-btn">Sign up</button>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../assets/icons/join-logo-light.png" alt="Join Logo">
         </div>
-    </header>
 
-    <div class="card-wrapper">
-  <div class="card">
-    <h1>Log in</h1>
-    <div class="input-wrap">
-      <input type="email" placeholder="Email">
-      <img src="../assets/icons/mail.png" class="icon" alt="mail">
-    </div>
-    <div class="input-wrap">
-      <input type="password" placeholder="Password">
-      <span class="icon">&#128274;</span>
-    </div>
-    <div class="btn-row">
-      <button class="login-btn">Log in</button>
-      <button class="guest-btn">Guest Log in</button>
-    </div>
-  </div>
-</div>
+        <nav class="menu">
+            <a href="./summary.html">
+                <img class="icons-sidebar" src="../assets/icons/summary.png" alt="Logo Summary">
+                <span>Summary</span>
+            </a>
+            <a href="./add-task.html">
+                <img class="icons-sidebar" src="../assets/icons/add-task.png" alt="Logo Add Task">
+                <span>Add Task</span>
+            </a>
+            <a href="./board.html">
+                <img class="icons-sidebar" src="../assets/icons/board.png" alt="Logo Board">
+                <span>Board</span>
+            </a>
+            <a href="./contacts.html">
+                <img class="icons-sidebar" src="../assets/icons/contacts.png" alt="Logo Contacts">
+                <span>Contacts</span>
+            </a>
+        </nav>
 
-<footer>
-  <a href="#">Privacy Policy</a> · <a href="#">Legal notice</a>
-</footer>
+        <div class="legal-links">
+            <a href="./privacy-policy.html">Privacy Policy</a>
+            <a href="./legal-notice.html">Legal notice</a>
+        </div>
+    </aside>
+
+    <section class="page-content" aria-label="Seiteninhalt">
+        <header class="topbar">
+            <div class="topbar-left">
+                <p class="mobile-hide">Kanban Project Management Tool</p>
+                <img class="desktop-hide" src="../assets/icons/join-logo-dark.png" alt="Join Logo">
+            </div>
+            <div class="topbar-right">
+                <div class="user-circle">SM</div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <h1>test</h1>
+        </main>
+    </section>
 
 </body>
 

@@ -83,3 +83,18 @@
     height: 30px;
     object-fit: contain;
 }
+
+.not-logged-in-menu {
+    gap: 0;
+}
+
+.not-logged-in-menu .login-link {
+    gap: 12px;
+}
+
+.login-icon {
+    width: 30px;
+    color: var(--text-tertiary);
+    font-size: 20px;
+    text-align: center;
+}
