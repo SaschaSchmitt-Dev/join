@@ -63,11 +63,32 @@
         </header>
 
         <main class="main-content add-task-content">
-            <p class="site-header">Add Task</p>
-            <div class="title">
-                <label class="label" for="title">Title<span style="color: #FF8190">*</span></label>
-                <input class="input-field" type="text" required placeholder="Enter a title">
-            </div>
+            <h1 class="site-header">Add Task</h1>
+            <form class="add-task-form">
+                <div class="add-task-fields-left">
+                    <label class="label" for="title">Title<span style="color: #FF8190">*</span></label>
+                    <input class="input-field" type="text" required placeholder="Enter a title">
+                    <label class="label-textarea" for="description">Description</label>
+                    <textarea class="textarea" type="text" placeholder="Enter a Description"></textarea>
+                    <label class="label" for="due-date">Due date<span style="color: #FF8190">*</span></label>
+                    <input class="input-field" type="text" required placeholder="dd/mm/yyy">
+                </div>
+                <div class="horizontal-divider"></div>
+                <div class="add-task-fields-right">
+                    <label for="priority">Priority</label>
+                    <div class="priority-group">
+                            <input type="radio" name="priority" id="urgent" value="urgent">
+                            <label id="urgent" for="urgent">Urgent <img src="../assets/icons/urgent-priority.png" alt=""></label>
+                        
+                            <input type="radio" name="priority" id="medium" value="medium">
+                            <label id="medium" for="medium">Medium <img src="../assets/icons/medium-priority.png" alt=""></label>
+                        
+                            <input type="radio" name="priority" id="low" value="low">
+                            <label id="low" for="low">Low <img src="../assets/icons/low-priority.png" alt=""></label>
+                    </div>
+                </div>
+
+            </form>
         </main>
 
     </section>
