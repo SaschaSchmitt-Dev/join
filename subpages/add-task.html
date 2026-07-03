@@ -15,70 +15,61 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../styles/add-task.css">
     <link rel="stylesheet" href="../styles/contacts.css">
-
-    <script src="../templates/bars-templates.js" defer></script>
-    <script src="../scripts/bars.js" defer></script>
 </head>
 
-<body data-page="add-task">
-    <aside id="sidebar" class="sidebar"></aside>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../assets/icons/join-logo-light.png" alt="Join Logo">
+        </div>
+
+        <nav class="menu">
+            <a href="./summary.html">
+                <img class="icons-sidebar" src="../assets/icons/summary.png" alt="Logo Summary">
+                <span>Summary</span>
+            </a>
+            <a class="active" href="./add-task.html">
+                <img class="icons-sidebar" src="../assets/icons/add-task.png" alt="Logo Add Task">
+                <span>Add Task</span>
+            </a>
+            <a href="./board.html">
+                <img class="icons-sidebar" src="../assets/icons/board.png" alt="Logo Board">
+                <span>Board</span>
+            </a>
+            <a href="./contacts.html">
+                <img class="icons-sidebar" src="../assets/icons/contacts.png" alt="Logo Contacts">
+                <span>Contacts</span>
+            </a>
+        </nav>
+
+        <div class="legal-links">
+            <a href="./privacy-policy.html">Privacy Policy</a>
+            <a href="./legal-notice.html">Legal notice</a>
+        </div>
+    </aside>
 
     <section class="page-content" aria-label="Seiteninhalt">
-        <header id="topbar" class="topbar"></header>
+        <header class="topbar">
+            <div class="topbar-left">
+                <p class="mobile-hide">Kanban Project Management Tool</p>
+                <img class="desktop-hide" src="../assets/icons/join-logo-dark.png" alt="Join Logo">
+            </div>
+            <div class="topbar-right">
+                <a class="help-link mobile-hide" href="./help.html">
+                    <img src="../assets/icons/help.png" alt="Logo Help">
+                </a>
+                <div class="user-circle">SM</div>
+            </div>
+        </header>
 
         <main class="main-content add-task-content">
-            <h1 class="site-header">Add Task</h1>
-            <form class="add-task-form">
-                <div class="add-task-fields-left">
-                    <label class="label" for="title">Title<span style="color: #FF8190">*</span></label>
-                    <input class="input-field" type="text" required placeholder="Enter a title">
-                    <label class="label-textarea" for="description">Description</label>
-                    <textarea class="textarea" type="text" placeholder="Enter a Description"></textarea>
-                    <label class="label" for="due-date">Due date<span style="color: #FF8190">*</span></label>
-                    <input class="input-field" type="text" required placeholder="dd/mm/yyy">
-                </div>
-                <div class="horizontal-divider"></div>
-                <div class="add-task-fields-right">
-                    <label for="priority">Priority</label>
-                    <div class="priority-group">
-                        <input type="radio" name="priority" id="urgent" value="urgent">
-                        <label id="urgent" for="urgent">Urgent <img src="../assets/icons/urgent-priority.png"
-                                alt=""></label>
-
-                        <input type="radio" name="priority" id="medium" value="medium">
-                        <label id="medium" for="medium">Medium <img src="../assets/icons/medium-priority.png"
-                                alt=""></label>
-
-                        <input type="radio" name="priority" id="low" value="low">
-                        <label id="low" for="low">Low <img src="../assets/icons/low-priority.png" alt=""></label>
-                    </div>
-                    <div class="dropdown-list"></div>
-                    <label for="assignet-to" class="assignet-to">Assignet to</label>
-                    <div class="input-wrapper">
-                        <input type="text" class="assignet-to" id="assignet-to" placeholder="Select contacts to assign">
-                        <img class="input-icon" src="../assets/icons/arrow_dropdown.png" alt="">
-                    </div>
-                    <label for="assignet-to">Category<span style="color: #FF8190">*</span></label>
-                    <div class="input-wrapper">
-                        <input type="text" class="assignet-to" id="assignet-to" placeholder="Select contacts to assign">
-                        <img class="input-icon" src="../assets/icons/arrow_dropdown.png" alt="">
-                    </div>
-                    <label class="label" for="title">Subtasks</label>
-                    <input class="input-field" type="text" required placeholder="Add new subtasks">
-                </div>
-            </form>
-            <footer>
-                <p><span style="color: #FF8190;">*</span>This field is required</p>
-                <div class="footer-buttons">
-                    <button class="clear">
-                        Clear <img src="../assets/icons/cancel.png" alt="">
-                    </button>
-                     <button class="create-task">
-                        Create Task <img src="../assets/icons/check.png" alt="">
-                    </button>
-                </div>
-            </footer>
+            <p class="site-header">Add Task</p>
+            <div class="title">
+                <label class="label" for="title">Title<span style="color: #FF8190">*</span></label>
+                <input class="input-field" type="text" required placeholder="Enter a title">
+            </div>
         </main>
+
     </section>
 </body>
 

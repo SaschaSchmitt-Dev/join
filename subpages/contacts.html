@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
+
     <link rel="shortcut icon" href="../assets/icons/favicon.png" type="image/x-icon">
+
     <link rel="stylesheet" href="../styles/variables.css">
     <link rel="stylesheet" href="../styles/fonts.css">
     <link rel="stylesheet" href="../styles/sidebar.css">
@@ -13,18 +15,57 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../styles/contacts.css">
 
-    <script src="../templates/bars-templates.js" defer></script>
-    <script src="../scripts/bars.js" defer></script>
-    <script src="..//scripts/contacts.js" defer></script>
+    <script src="/scripts/contacts.js" defer></script>
 </head>
 
-<body data-page="contacts">
-    <aside id="sidebar" class="sidebar"></aside>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../assets/icons/join-logo-light.png" alt="Join Logo">
+        </div>
+
+        <nav class="menu">
+            <a href="./summary.html">
+                <img class="icons-sidebar" src="../assets/icons/summary.png" alt="Logo Summary">
+                <span>Summary</span>
+            </a>
+            <a href="./add-task.html">
+                <img class="icons-sidebar" src="../assets/icons/add-task.png" alt="Logo Add Task">
+                <span>Add Task</span>
+            </a>
+            <a href="./board.html">
+                <img class="icons-sidebar" src="../assets/icons/board.png" alt="Logo Board">
+                <span>Board</span>
+            </a>
+            <a class="active" href="./contacts.html">
+                <img class="icons-sidebar" src="../assets/icons/contacts.png" alt="Logo Contacts">
+                <span>Contacts</span>
+            </a>
+        </nav>
+
+        <div class="legal-links">
+            <a href="./privacy-policy.html">Privacy Policy</a>
+            <a href="./legal-notice.html">Legal notice</a>
+        </div>
+    </aside>
 
     <section class="page-content" aria-label="Seiteninhalt">
-        <header id="topbar" class="topbar"></header>
+        <header class="topbar">
+            <div class="topbar-left">
+                <p class="mobile-hide">Kanban Project Management Tool</p>
+                <img class="desktop-hide" src="../assets/icons/join-logo-dark.png" alt="Join Logo">
+            </div>
+            <div class="topbar-right">
+                <a class="help-link mobile-hide" href="./help.html">
+                    <img src="../assets/icons/help.png" alt="Logo Help">
+                </a>
+                <div class="user-circle">SM</div>
+            </div>
+        </header>
 
-        <main class="main-content contacts-page">
+        <main class="main-content"></main>
+
+        <section class="contacts-page">
 
             <aside class="contacts-sidebar">
 
@@ -77,7 +118,8 @@
                 </div>
 
             </section>
-        </main>
+
+        </section>
     </section>
 
     <div id="add-contact-overlay" class="add-contact-overlay">
@@ -131,10 +173,10 @@
                     </div>
 
                 </form>
-            </div>
-        </div>
 
-    </div>
+            </div>
+
+        </div>
 
     </div>
 </body>
