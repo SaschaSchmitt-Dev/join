@@ -319,12 +319,7 @@
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.contact-mobile-detail,
-.mobile-back-btn,
-.mobile-navbar,
-.mobile-more-btn {
-    display: none;
-}
+/*responsive design*/
 
 @media (max-width: 768px) {
 
