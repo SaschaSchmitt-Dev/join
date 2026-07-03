@@ -5,5 +5,5 @@
 }
 
 .title-divider {
-    border: 1px solid var();
+    border: 1px solid var(--divider-color-blue);
 }
