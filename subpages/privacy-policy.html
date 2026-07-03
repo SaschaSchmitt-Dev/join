@@ -15,51 +15,16 @@
     <link rel="stylesheet" href="../styles/header.css" />
     <link rel="stylesheet" href="../style.css">
 
+    <script src="../templates/bars-templates.js" defer></script>
+    <script src="../scripts/bars.js" defer></script>
 </head>
 
-<body>
+<body data-page="privacy-policy">
 
-    <aside class="sidebar">
-
-        <div class="logo">
-            <img src="../assets/icons/join-logo-light.png" alt="Join Logo">
-        </div>
-
-        <nav class="menu">
-            <a href="./summary.html">
-                <img class="icons-sidebar" src="../assets/icons/summary.png" alt="Logo Summary">
-                <span>Summary</span>
-            </a>
-            <a href="./add-task.html">
-                <img class="icons-sidebar" src="../assets/icons/add-task.png" alt="Logo Add Task">
-                <span>Add Task</span>
-            </a>
-            <a href="./board.html">
-                <img class="icons-sidebar" src="../assets/icons/board.png" alt="Logo Board">
-                <span>Board</span>
-            </a>
-            <a href="./contacts.html">
-                <img class="icons-sidebar" src="../assets/icons/contacts.png" alt="Logo Contacts">
-                <span>Contacts</span>
-            </a>
-        </nav>
-
-        <div class="legal-links">
-            <a class="active" href="./privacy-policy.html">Privacy Policy</a>
-            <a href="./legal-notice.html">Legal notice</a>
-        </div>
-
-    </aside>
+    <aside id="sidebar" class="sidebar"></aside>
 
     <section class="page-content" aria-label="Seiteninhalt">
-        <header class="topbar">
-            <div class="topbar-left">
-                <p class="mobile-hide">Kanban Project Management Tool</p>
-            </div>
-            <div class="topbar-right">
-                <div class="user-circle">SM</div>
-            </div>
-        </header>
+        <header id="topbar" class="topbar"></header>
 
         <main class="main-content">
             <section class="privacy">
