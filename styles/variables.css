@@ -53,4 +53,9 @@
     --profile-yellow: rgb(255, 230, 43);
     --profile-red: rgb(255, 70, 70);
     --profile-amber: rgb(255, 187, 43);
+
+    /** priority-colors */
+    --priority-urgent: rgb(255,61,0);
+    --priority-medium: rgb(255,168,0);
+    --priority-low: rgb(122,226,41);
 }
