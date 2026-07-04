@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
+
     <link rel="shortcut icon" href="../assets/icons/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../styles/variables.css">
     <link rel="stylesheet" href="../styles/fonts.css">
@@ -15,10 +16,11 @@
 
     <script src="../templates/bars-templates.js" defer></script>
     <script src="../scripts/bars.js" defer></script>
-    <script src="..//scripts/contacts.js" defer></script>
+    <script src="../scripts/contacts.js" defer></script>
 </head>
 
 <body data-page="contacts">
+
     <aside id="sidebar" class="sidebar"></aside>
 
     <section class="page-content" aria-label="Seiteninhalt">
@@ -30,53 +32,65 @@
 
                 <button id="add-contact-btn" class="add-contact-btn">
                     <span class="btn-contact">Add new contact</span>
-
-                    <img src="..//assets/icons/person-add.png" alt="Add Contact">
+                    <img src="../assets/icons/person-add.png" alt="Add Contact">
                 </button>
 
-
                 <div id="contacts-list">
-
                     <div class="contact-group">
-
                         <h3>A</h3>
 
                         <div class="contact-card" onclick="showContact(0)">
-
-                            <div class="contact-avatar">
-                                AM
-                            </div>
+                            <div class="contact-avatar">AM</div>
 
                             <div class="contact-info">
                                 <h4>Anton Mayer</h4>
-                                <a href="mailto:antonm@gmail.com">
-                                    antonm@gmail.com
-                                </a>
+                                <a href="mailto:antonm@gmail.com">antonm@gmail.com</a>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
 
             </aside>
 
             <section class="contact-details">
 
+                <button class="mobile-back-btn" type="button">
+                    <img src="../assets/icons/back-arrow.png" alt="Back">
+                </button>
+
                 <div id="contact-details">
 
                     <div class="contacts-header">
                         <h1>Contacts</h1>
-
                         <div class="header-divider"></div>
-
                         <span>Better with a team</span>
+                    </div>
+
+                    <div class="contact-mobile-detail">
+                        <div class="selected-contact">
+                            <div class="contact-avatar">AM</div>
+                            <h2>Anton Mayer</h2>
+                        </div>
+
+                        <div class="contact-information">
+                            <h3>Contact Information</h3>
+
+                            <h4>Email</h4>
+                            <a href="mailto:antonm@gmail.com">antonm@gmail.com</a>
+
+                            <h4>Phone</h4>
+                            <p>+49 111 111 11 11</p>
+                        </div>
                     </div>
 
                 </div>
 
+                <button class="mobile-more-btn" type="button">
+                    <img src="../assets/icons/Menu Contact options.png" alt="More options">
+                </button>
+
             </section>
+
         </main>
     </section>
 
@@ -85,7 +99,7 @@
         <div class="add-contact-modal">
 
             <div class="modal-left">
-                <img src="..//assets/icons/join-logo-light.png" alt="Join Logo">
+                <img src="../assets/icons/join-logo-light.png" alt="Join Logo">
 
                 <h2>Add contact</h2>
                 <p>Tasks are better with a team!</p>
@@ -100,7 +114,7 @@
                 </button>
 
                 <div class="contact-placeholder">
-                    <img src="../assets/icons/contacts-logo.png" alt="Prfil Photo Placeholder">
+                    <img src="../assets/icons/contacts-logo.png" alt="Profile Photo Placeholder">
                 </div>
 
                 <form id="add-contact-form">
@@ -131,12 +145,13 @@
                     </div>
 
                 </form>
+
             </div>
+
         </div>
 
     </div>
 
-    </div>
 </body>
 
 </html>
