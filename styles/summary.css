@@ -8,14 +8,10 @@
     gap: 30px;
 }
 
-.title h1 {
-    font-size: 61px;
-}
-
 .title span {
     color: var(--text-secondary);
     font-family: "Inter", sans-serif;
-    font-size: 27px;
+    font-size: 1.7rem;
     font-weight: 400;
 }
 
@@ -72,16 +68,16 @@
 
 .card h4 {
     font-family: "Inter", sans-serif;
-    font-size: 64px;
+    font-size: 4rem;
     font-weight: 600;
-    line-height: 1;
+    line-height: 120%;
     text-align: center;
 }
 
 .card h5 {
     color: var(--text-secondary);
     font-family: "Inter", sans-serif;
-    font-size: 21px;
+    font-size: 1.3rem;
     font-weight: 700;
     line-height: 120%;
 }
@@ -92,7 +88,7 @@
 
 .card p {
     color: var(--text-secondary);
-    font-size: 20px;
+    font-size: 1.25rem;
     text-align: center;
 }
 
@@ -159,7 +155,7 @@
 }
 
 .center-right p {
-    font-size: 16px;
+    font-size: 1rem;
     text-align: left;
 }
 
@@ -182,32 +178,32 @@
 
 .summary-user h2 {
     color: var(--text-secondary);
-    font-size: 47px;
+    font-size: 3rem;
     font-weight: 500;
 }
 
 .summary-user h3 {
     color: var(--text-quaternary);
-    font-size: 64px;
+    font-size: 4rem;
     font-weight: 700;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
     .summary {
         gap: 48px;
     }
 
     .summary-user h2 {
-        font-size: 40px;
+        font-size: 2.5rem;
     }
 
     .summary-user h3 {
-        font-size: 52px;
+        font-size: 3.25rem;
     }
 }
 
 @media (max-width: 1024px) {
-    .summary-section {
+    .main-content.summary-section {
         align-items: center;
         padding: 48px 20px 120px;
     }
@@ -219,10 +215,41 @@
     .summary-user {
         display: none;
     }
+
+    .main-content.summary-section.mobile-greeting-active {
+        justify-content: center;
+        padding-block: 0 80px;
+    }
+
+    .mobile-greeting-active .title,
+    .mobile-greeting-active .summary>.summary-content {
+        display: none;
+    }
+
+    .mobile-greeting-active .summary {
+        width: 100%;
+        min-height: calc(100dvh - 160px);
+    }
+
+    .mobile-greeting-active .summary-user {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+    }
+
+    .mobile-greeting-active .summary-user h2 {
+        font-size: 2.25rem;
+        font-weight: 400;
+    }
+
+    .mobile-greeting-active .summary-user h3 {
+        font-size: 2.5rem;
+    }
 }
 
 @media (max-width: 768px) {
-    .summary-section {
+    .main-content.summary-section {
         gap: 32px;
         padding-top: 32px;
     }
@@ -236,11 +263,11 @@
     }
 
     .title h1 {
-        font-size: 47px;
+        font-size: 3rem;
     }
 
     .title span {
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 
     .title-divider {
@@ -269,11 +296,11 @@
     }
 
     .card h4 {
-        font-size: 47px;
+        font-size: 3rem;
     }
 
     .card p {
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     .card.top {
@@ -294,7 +321,7 @@
     }
 
     .card h5 {
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .center-right {
@@ -302,7 +329,7 @@
     }
 
     .center-right p {
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     .card.bottom {
@@ -317,8 +344,8 @@
     }
 }
 
-@media (max-width: 440px) {
-    .summary-section {
+@media (max-width: 475px) {
+    .main-content.summary-section {
         padding-inline: 16px;
     }
 

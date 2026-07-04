@@ -50,6 +50,27 @@ function getNotLoggedInLegalSidebarTemplate(activePage) {
     `;
 }
 
+function getMobileNavTemplate(activePage) {
+    return `
+        <a class="${activePage.summary}" href="./summary.html" aria-label="Summary">
+            <img src="../assets/icons/summary.png" alt="">
+            <span>Summary</span>
+        </a>
+        <a class="${activePage.addTask}" href="./add-task.html" aria-label="Add Task">
+            <img src="../assets/icons/add-task.png" alt="">
+            <span>Add Task</span>
+        </a>
+        <a class="${activePage.board}" href="./board.html" aria-label="Board">
+            <img src="../assets/icons/board.png" alt="">
+            <span>Board</span>
+        </a>
+        <a class="${activePage.contacts}" href="./contacts.html" aria-label="Contacts">
+            <img src="../assets/icons/contacts.png" alt="">
+            <span>Contacts</span>
+        </a>
+    `;
+}
+
 function getHelpLinkTemplate() {
     return `
         <a class="help-link mobile-hide" href="./help.html">
@@ -62,7 +83,7 @@ function getTopbarTemplate(helpLink) {
     return `
         <div class="topbar-left">
             <p class="mobile-hide">Kanban Project Management Tool</p>
-            <img class="desktop-hide" src="../assets/icons/join-logo-dark.png" alt="Join Logo">
+            <img class="topbar-logo desktop-hide" src="../assets/icons/join-logo-dark.png" alt="Join Logo">
         </div>
         <div class="topbar-right">
             ${helpLink}
@@ -74,7 +95,8 @@ function getTopbarTemplate(helpLink) {
 function getNotLoggedInLegalTopbarTemplate() {
     return `
         <div class="topbar-left">
-            <p>Kanban Project Management Tool</p>
+            <p class="mobile-hide">Kanban Project Management Tool</p>
+            <img class="topbar-logo desktop-hide" src="../assets/icons/join-logo-dark.png" alt="Join Logo">
         </div>
     `;
 }

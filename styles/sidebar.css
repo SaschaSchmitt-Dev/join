@@ -39,7 +39,7 @@
     gap: 16px;
     padding: 8px 40px;
     color: var(--text-tertiary);
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .menu a:hover {
@@ -73,7 +73,7 @@
 .icons-sidebar {
     width: 30px;
     height: 30px;
-    font-size: 20px;
+    font-size: 1.25rem;
     object-fit: contain;
 }
 
@@ -95,6 +95,79 @@
 .login-icon {
     width: 30px;
     color: var(--text-tertiary);
-    font-size: 20px;
+    font-size: 1.25rem;
     text-align: center;
+}
+
+.mobile-nav {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .sidebar {
+        display: none;
+    }
+
+    .mobile-nav {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        height: 80px;
+        padding: 0 16px;
+        background: var(--sidebar-bg-color);
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    .mobile-nav a {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-width: 0;
+        height: 64px;
+        gap: 4px;
+        border-radius: 8px;
+        color: var(--text-tertiary);
+        font-size: 0.75rem;
+        text-align: center;
+    }
+
+    .mobile-nav a:hover {
+        background: var(--ui-dark-hover);
+    }
+
+    .mobile-nav img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+    }
+
+    .mobile-nav span {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 360px) {
+    .mobile-nav {
+        height: 76px;
+        padding: 0 8px;
+    }
+
+    .mobile-nav a {
+        height: 60px;
+        font-size: 0.6875rem;
+    }
+
+    .mobile-nav img {
+        width: 22px;
+        height: 22px;
+    }
 }

@@ -34,6 +34,25 @@ function getRenderedTopbarTemplate(currentPage, isNotLoggedInLegalLayout) {
     return getTopbarTemplate(helpLink);
 }
 
+function renderMobileNav(activePage, isNotLoggedInLegalLayout) {
+    const existingMobileNav = document.getElementById("mobileNav");
+
+    if (isNotLoggedInLegalLayout) {
+        existingMobileNav?.remove();
+        return;
+    }
+
+    const mobileNav = existingMobileNav || document.createElement("nav");
+    mobileNav.id = "mobileNav";
+    mobileNav.className = "mobile-nav";
+    mobileNav.setAttribute("aria-label", "Mobile navigation");
+    mobileNav.innerHTML = getMobileNavTemplate(activePage);
+
+    if (!existingMobileNav) {
+        document.body.appendChild(mobileNav);
+    }
+}
+
 function renderBars() {
     const currentPage = getCurrentPage();
     const sidebar = document.getElementById("sidebar");
@@ -47,6 +66,7 @@ function renderBars() {
     document.body.classList.toggle("not-logged-in-legal-layout", isNotLoggedInLegalLayout);
     sidebar.innerHTML = sidebarTemplate;
     topbar.innerHTML = getRenderedTopbarTemplate(currentPage, isNotLoggedInLegalLayout);
+    renderMobileNav(activePage, isNotLoggedInLegalLayout);
 }
 
 renderBars();

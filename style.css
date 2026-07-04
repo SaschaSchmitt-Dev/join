@@ -95,4 +95,8 @@ a {
     .mobile-hide {
         display: none;
     }
+
+    .main-content {
+        padding: 48px 20px 120px;
+    }
 }

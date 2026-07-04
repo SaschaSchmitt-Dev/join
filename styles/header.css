@@ -13,7 +13,7 @@
 }
 
 .topbar p {
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .topbar-left {
@@ -21,8 +21,11 @@
     align-items: center;
 }
 
-.topbar-left img {
+.topbar-logo {
+    display: block;
     width: 32px;
+    height: 39px;
+    object-fit: contain;
 }
 
 .topbar-right {
@@ -49,4 +52,17 @@
 
 .user-circle:hover {
     background-color: var(--ui-light-hover);
+}
+
+@media (max-width: 1024px) {
+    .topbar {
+        height: 80px;
+        padding: 20px 16px;
+    }
+
+    .user-circle {
+        width: 40px;
+        height: 40px;
+        font-size: 0.875rem;
+    }
 }
