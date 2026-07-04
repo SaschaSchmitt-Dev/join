@@ -53,6 +53,52 @@ function renderMobileNav(activePage, isNotLoggedInLegalLayout) {
     }
 }
 
+function closeAccountMenu() {
+    const accountMenuWrapper = document.querySelector(".account-menu-wrapper");
+    const accountAvatar = document.querySelector(".account-avatar");
+
+    accountMenuWrapper?.classList.remove("open");
+    accountAvatar?.setAttribute("aria-expanded", "false");
+}
+
+function toggleAccountMenu() {
+    const accountMenuWrapper = document.querySelector(".account-menu-wrapper");
+    const accountAvatar = document.querySelector(".account-avatar");
+
+    if (!accountMenuWrapper || !accountAvatar) {
+        return;
+    }
+
+    const isOpen = accountMenuWrapper.classList.toggle("open");
+    accountAvatar.setAttribute("aria-expanded", String(isOpen));
+}
+
+function initAccountMenu() {
+    const accountMenuWrapper = document.querySelector(".account-menu-wrapper");
+    const accountAvatar = document.querySelector(".account-avatar");
+
+    if (!accountMenuWrapper || !accountAvatar) {
+        return;
+    }
+
+    accountAvatar.addEventListener("click", (event) => {
+        event.stopPropagation();
+        toggleAccountMenu();
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!accountMenuWrapper.contains(event.target)) {
+            closeAccountMenu();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeAccountMenu();
+        }
+    });
+}
+
 function renderBars() {
     const currentPage = getCurrentPage();
     const sidebar = document.getElementById("sidebar");
@@ -67,6 +113,7 @@ function renderBars() {
     sidebar.innerHTML = sidebarTemplate;
     topbar.innerHTML = getRenderedTopbarTemplate(currentPage, isNotLoggedInLegalLayout);
     renderMobileNav(activePage, isNotLoggedInLegalLayout);
+    initAccountMenu();
 }
 
 renderBars();

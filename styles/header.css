@@ -1,5 +1,7 @@
 .topbar {
     position: sticky;
+    top: 0;
+    z-index: 30;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,24 +36,83 @@
     gap: 16px;
 }
 
+.account-menu-wrapper {
+    position: relative;
+}
+
 .help-link:hover {
     transform: scale(1.2);
 }
 
-.user-circle {
+.account-avatar {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 48px;
     height: 48px;
+    padding: 0;
     border: 2px solid var(--avatar-border);
     border-radius: 50%;
+    background: var(--avatar-bg);
     color: var(--ui-light);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
     font-weight: bold;
+    cursor: pointer;
 }
 
-.user-circle:hover {
+.account-avatar:hover,
+.account-avatar:focus-visible {
     background-color: var(--ui-light-hover);
+}
+
+.account-avatar:focus-visible {
+    outline: 2px solid var(--ui-light);
+    outline-offset: 3px;
+}
+
+.account-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    padding: 10px 0;
+    border-radius: 20px 0 20px 20px;
+    background: var(--ui-dark);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transform: translateX(24px);
+    transition: opacity 120ms ease, transform 160ms ease, visibility 120ms ease;
+}
+
+.account-menu-wrapper.open .account-menu {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.account-menu a {
+    margin: 0 8px;
+    padding: 11px 12px;
+    border-radius: 8px;
+    color: var(--text-tertiary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    line-height: 120%;
+    white-space: nowrap;
+}
+
+.account-menu a:hover,
+.account-menu a:focus-visible {
+    background: var(--ui-dark-hover);
+    color: var(--text-white);
+    outline: none;
 }
 
 @media (max-width: 1024px) {
@@ -60,9 +121,22 @@
         padding: 20px 16px;
     }
 
-    .user-circle {
+    .account-avatar {
         width: 40px;
         height: 40px;
         font-size: 0.875rem;
+    }
+
+    .account-menu {
+        position: fixed;
+        top: 80px;
+        right: 0;
+        min-width: 144px;
+        border-radius: 20px 0 20px 20px;
+        transform: translateX(100%);
+    }
+
+    .account-menu-wrapper.open .account-menu {
+        transform: translateX(0);
     }
 }

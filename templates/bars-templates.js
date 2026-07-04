@@ -87,7 +87,17 @@ function getTopbarTemplate(helpLink) {
         </div>
         <div class="topbar-right">
             ${helpLink}
-            <div class="user-circle">SM</div>
+            <div class="account-menu-wrapper">
+                <button class="account-avatar" type="button" aria-label="Open account menu" aria-expanded="false" aria-controls="accountMenu">
+                    SM
+                </button>
+                <nav id="accountMenu" class="account-menu" aria-label="Account menu">
+                    <a class="account-menu-help desktop-hide" href="./help.html">Help</a>
+                    <a href="./legal-notice.html">Legal Notice</a>
+                    <a href="./privacy-policy.html">Privacy Policy</a>
+                    <a href="./login.html">Log out</a>
+                </nav>
+            </div>
         </div>
     `;
 }
