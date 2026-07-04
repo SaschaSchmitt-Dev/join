@@ -36,12 +36,14 @@ function getRenderedTopbarTemplate(currentPage, isNotLoggedInLegalLayout) {
 
 function renderMobileNav(activePage, isNotLoggedInLegalLayout) {
     const existingMobileNav = document.getElementById("mobileNav");
-
     if (isNotLoggedInLegalLayout) {
         existingMobileNav?.remove();
         return;
     }
+    updateMobileNav(existingMobileNav, activePage);
+}
 
+function updateMobileNav(existingMobileNav, activePage) {
     const mobileNav = existingMobileNav || document.createElement("nav");
     mobileNav.id = "mobileNav";
     mobileNav.className = "mobile-nav";
@@ -76,27 +78,37 @@ function toggleAccountMenu() {
 function initAccountMenu() {
     const accountMenuWrapper = document.querySelector(".account-menu-wrapper");
     const accountAvatar = document.querySelector(".account-avatar");
-
     if (!accountMenuWrapper || !accountAvatar) {
         return;
     }
+    addAccountMenuEvents(accountMenuWrapper, accountAvatar);
+}
 
+function addAccountMenuEvents(accountMenuWrapper, accountAvatar) {
     accountAvatar.addEventListener("click", (event) => {
         event.stopPropagation();
         toggleAccountMenu();
     });
+    document.addEventListener("click", (event) => closeMenuOnOutsideClick(event, accountMenuWrapper));
+    document.addEventListener("keydown", closeMenuOnEscape);
+}
 
-    document.addEventListener("click", (event) => {
-        if (!accountMenuWrapper.contains(event.target)) {
-            closeAccountMenu();
-        }
-    });
+function closeMenuOnOutsideClick(event, accountMenuWrapper) {
+    if (!accountMenuWrapper.contains(event.target)) {
+        closeAccountMenu();
+    }
+}
 
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-            closeAccountMenu();
-        }
-    });
+function closeMenuOnEscape(event) {
+    if (event.key === "Escape") {
+        closeAccountMenu();
+    }
+}
+
+function getSidebarTemplateByLayout(activePage, isNotLoggedInLegalLayout) {
+    return isNotLoggedInLegalLayout
+        ? getNotLoggedInLegalSidebarTemplate(activePage)
+        : getSidebarTemplate(activePage);
 }
 
 function renderBars() {
@@ -105,12 +117,9 @@ function renderBars() {
     const topbar = document.getElementById("topbar");
     const isNotLoggedInLegalLayout = shouldShowNotLoggedInLegalLayout(currentPage);
     const activePage = getActivePage(currentPage);
-    const sidebarTemplate = isNotLoggedInLegalLayout
-        ? getNotLoggedInLegalSidebarTemplate(activePage)
-        : getSidebarTemplate(activePage);
 
     document.body.classList.toggle("not-logged-in-legal-layout", isNotLoggedInLegalLayout);
-    sidebar.innerHTML = sidebarTemplate;
+    sidebar.innerHTML = getSidebarTemplateByLayout(activePage, isNotLoggedInLegalLayout);
     topbar.innerHTML = getRenderedTopbarTemplate(currentPage, isNotLoggedInLegalLayout);
     renderMobileNav(activePage, isNotLoggedInLegalLayout);
     initAccountMenu();
