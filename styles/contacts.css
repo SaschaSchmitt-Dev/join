@@ -891,6 +891,9 @@
     }
 
     .contact-information h4 {
+        font-family: 'Inter';
+        font-style: bold;
+        font-weight: 700;
         font-size: 16px;
         font-weight: 700;
         margin: 16px 0 8px;

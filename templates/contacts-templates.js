@@ -44,7 +44,7 @@ function renderContactDetails(contact) {
                 <h2>${contact.name}</h2>
             </div>
 
-            <div class="contact-information">
+            <div class="contact-information" style="font-family: 'Inter'; font-style: regular; font-weight: 400;">
                 <h3>Contact Information</h3>
 
                 <h4>Email</h4>
@@ -52,6 +52,7 @@ function renderContactDetails(contact) {
 
                 <h4>Phone</h4>
                 <p>${contact.phone || ""}</p>
+            
             </div>
         </div>
     `;
