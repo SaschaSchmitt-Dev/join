@@ -1,6 +1,7 @@
-html, body {
-  height: 100vh;
-  margin: 0;
+html,
+body {
+    height: 100vh;
+    margin: 0;
 }
 
 header {
@@ -20,42 +21,58 @@ header span {
     font-size: 20px;
 }
 
+.input-wrap input:-webkit-autofill {
+    box-shadow: 0 0 0 1000px #fff inset;
+    -webkit-text-fill-color: #000;
+}
+
 .card-wrapper {
     display: flex;
     justify-content: center;
-    margin-top: 60px;
+    height: 449px;
 }
 
 .card {
     background: #fff;
     border-radius: 30px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-    padding: 40px 48px;
-    width: 360px;
+    width: 652px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .card h1 {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
-    font-size: 32px;
+    font-size: 61px;
     display: inline-block;
     border-bottom: 3px solid #1e88e5;
-    padding-bottom: 8px;
+    padding-bottom: 16px;
+    margin-top: 48px;
+    margin-bottom: 32px;
 }
 
 .input-wrap {
     position: relative;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
+    width: 422px;
+}
+
+.margin-bottom {
+    margin-bottom: 32px;
 }
 
 .input-wrap input {
-    width: 85%;
+    height: 48px;
+    width: 100%;
     padding: 12px 40px 12px 14px;
     border: 1px solid #ddd;
-    border-radius: 6px;
+    border-radius: 10px;
     font-size: 14px;
     outline: none;
+    box-sizing: border-box;
 }
 
 .input-wrap input:focus {
@@ -73,15 +90,14 @@ header span {
 
 .btn-row {
     display: flex;
-    gap: 10px;
-    margin-top: 24px;
+    gap: 35px;
+    margin-top: 32px;
 }
 
 .btn-row button {
-    flex: 1;
+    font-size: 21px;
     padding: 10px 0;
     border-radius: 6px;
-    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     font-family: 'Inter', sans-serif;
@@ -96,17 +112,12 @@ header span {
     background: #1f2a44;
     color: #fff;
     border: none;
-    font-weight: bold;
+    font-weight: 700;
     cursor: pointer;
     margin-left: 34px;
     font-family: 'Inter', sans-serif;
-    font-weight: 700;
     font-size: 16px;
-}
-
-.signup-btn:hover {
-    background: #29abe2
-    transition background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .signup-btn:hover {
@@ -118,29 +129,41 @@ header span {
     background: #1f2a44;
     color: #fff;
     border: none;
-    
+    width: 110px;
 }
 
 .login-btn:hover {
     background: #29abe2;
-}
-
-.signup-btn {
-    width: 91px;
-    height: 49px;
-    border-radius: 8px;
-    padding: 15px 16px;
-}
-
-.guest-btn:hover {
-    border-color: #1e88e5;
-    color: #1e88e5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .guest-btn {
     background: #fff;
     color: #1f2a44;
     border: 1px solid #ccc;
+    width: 170px;
+}
+
+.guest-btn:hover {
+    border-color: #1e88e5;
+    color: #1e88e5;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.error-msg {
+  color: #e63950;
+  font-size: 13px;
+  margin: 0px;
+}
+
+.input-wrap input.error {
+  border-color: #e63950;
+}
+
+#toggle-icon {
+  cursor: pointer;
 }
 
 footer {
@@ -161,4 +184,5 @@ footer a {
 
 footer a:hover {
     color: #1e88e5;
+    font-weight: bold;
 }
