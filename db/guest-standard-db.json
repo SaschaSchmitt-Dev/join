@@ -3,49 +3,49 @@
     "guest": {
       "contacts": {
         "c001": {
-          "color": "var(--profile-red)",
+          "contactColor": "var(--profile-red)",
           "email": "antonm@gmail.com",
           "name": "Anton Mayer",
           "phone": "+49 123 1234561"
         },
         "c002": {
-          "color": "var(--profile-magenta)",
+          "contactColor": "var(--profile-magenta)",
           "email": "aschulz@hotmail.com",
           "name": "Anja Schulz",
           "phone": "+49 123 1234562"
         },
         "c003": {
-          "color": "var(--profile-blue)",
+          "contactColor": "var(--profile-blue)",
           "email": "benzie@gmail.com",
           "name": "Benedikt Ziegler",
           "phone": "+49 123 1234563"
         },
         "c004": {
-          "color": "var(--profile-gold)",
+          "contactColor": "var(--profile-gold)",
           "email": "deisenberg@gmail.com",
           "name": "David Eisenberg",
           "phone": "+49 123 1234564"
         },
         "c005": {
-          "color": "var(--profile-turquoise)",
+          "contactColor": "var(--profile-turquoise)",
           "email": "feva@gmail.com",
           "name": "Eva Fischer",
           "phone": "+49 123 1234565"
         },
         "c006": {
-          "color": "var(--profile-purple)",
+          "contactColor": "var(--profile-purple)",
           "email": "mauemma@gmail.com",
           "name": "Emmanuel Mauer",
           "phone": "+49 123 1234566"
         },
         "c007": {
-          "color": "var(--profile-lime)",
+          "contactColor": "var(--profile-lime)",
           "email": "baumar@gmail.com",
           "name": "Marcel Bauer",
           "phone": "+49 123 1234567"
         },
         "c008": {
-          "color": "var(--profile-yellow)",
+          "contactColor": "var(--profile-yellow)",
           "email": "wolftat@gmail.com",
           "name": "Tatjana Wolf",
           "phone": "+49 123 1234568"
