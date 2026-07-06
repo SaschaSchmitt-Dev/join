@@ -771,6 +771,19 @@
         overflow-y: auto;
     }
 
+    .contact-card.active {
+        background: white;
+    }
+
+    .contact-card.active h4 {
+        color: var(--text-primary);
+    }
+
+    .contact-card.active a,
+    .contact-card.active p {
+        color: #007CEE;
+    }
+
     .contacts-sidebar .add-contact-btn {
         display: none;
     }
