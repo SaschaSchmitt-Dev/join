@@ -2,6 +2,16 @@ const mobileSummaryMediaQuery = window.matchMedia("(max-width: 1024px)");
 const mobileGreetingDuration = 1500;
 let mobileGreetingTimeout;
 
+function renderActiveUser() {
+    const activeUserElement = document.getElementById("activeUser");
+    const activeUser = getActiveUser();
+
+    if (!activeUserElement || !activeUser) return;
+
+    activeUserElement.textContent = activeUser.name;
+    activeUserElement.style.color = getUserColor(activeUser.userColor);
+}
+
 function getSummarySection() {
     return document.querySelector(".summary-section");
 }
@@ -38,4 +48,5 @@ function handleSummaryViewportChange(event) {
 }
 
 showMobileGreeting();
+renderActiveUser();
 mobileSummaryMediaQuery.addEventListener("change", handleSummaryViewportChange);

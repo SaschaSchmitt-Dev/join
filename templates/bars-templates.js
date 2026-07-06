@@ -79,7 +79,7 @@ function getHelpLinkTemplate() {
     `;
 }
 
-function getTopbarTemplate(helpLink) {
+function getTopbarTemplate(helpLink, accountAvatar) {
     return `
         <div class="topbar-left">
             <p class="mobile-hide">Kanban Project Management Tool</p>
@@ -88,14 +88,14 @@ function getTopbarTemplate(helpLink) {
         <div class="topbar-right">
             ${helpLink}
             <div class="account-menu-wrapper">
-                <button class="account-avatar" type="button" aria-label="Open account menu" aria-expanded="false" aria-controls="accountMenu">
-                    SM
+                <button class="account-avatar" type="button" aria-label="Open account menu" aria-expanded="false" aria-controls="accountMenu" style="--account-avatar-bg:${accountAvatar.backgroundColor}; --account-avatar-text:${accountAvatar.textColor}">
+                    ${accountAvatar.initials}
                 </button>
                 <nav id="accountMenu" class="account-menu" aria-label="Account menu">
                     <a class="account-menu-help desktop-hide" href="./help.html">Help</a>
                     <a href="./legal-notice.html">Legal Notice</a>
                     <a href="./privacy-policy.html">Privacy Policy</a>
-                    <a href="./login.html">Log out</a>
+                    <a id="logoutLink" href="./login.html">Log out</a>
                 </nav>
             </div>
         </div>

@@ -9,6 +9,19 @@ function shouldShowNotLoggedInLegalLayout(currentPage) {
     return legalPages.includes(currentPage);
 }
 
+function isProtectedPage(currentPage) {
+    return !legalPages.includes(currentPage);
+}
+
+function redirectLoggedOutUser(currentPage) {
+    if (isProtectedPage(currentPage) && !getActiveUser()) {
+        window.location.replace("./login.html");
+        return true;
+    }
+
+    return false;
+}
+
 function getActiveClass(currentPage, page) {
     return currentPage === page ? "active" : "";
 }
@@ -30,8 +43,19 @@ function getRenderedTopbarTemplate(currentPage, isNotLoggedInLegalLayout) {
     }
 
     const helpLink = pagesWithHelpLink.includes(currentPage) ? getHelpLinkTemplate() : "";
+    const accountAvatar = getAccountAvatar();
 
-    return getTopbarTemplate(helpLink);
+    return getTopbarTemplate(helpLink, accountAvatar);
+}
+
+function getAccountAvatar() {
+    const activeUser = getActiveUser();
+
+    return {
+        initials: getUserInitials(activeUser?.name),
+        backgroundColor: getUserColor(activeUser?.userColor),
+        textColor: getUserTextColor(activeUser?.userColor)
+    };
 }
 
 function renderMobileNav(activePage, isNotLoggedInLegalLayout) {
@@ -82,6 +106,7 @@ function initAccountMenu() {
         return;
     }
     addAccountMenuEvents(accountMenuWrapper, accountAvatar);
+    addLogoutEvent();
 }
 
 function addAccountMenuEvents(accountMenuWrapper, accountAvatar) {
@@ -105,6 +130,18 @@ function closeMenuOnEscape(event) {
     }
 }
 
+function addLogoutEvent() {
+    const logoutLink = document.getElementById("logoutLink");
+
+    if (!logoutLink) return;
+
+    logoutLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        clearActiveUser();
+        window.location.replace("./login.html");
+    });
+}
+
 function getSidebarTemplateByLayout(activePage, isNotLoggedInLegalLayout) {
     return isNotLoggedInLegalLayout
         ? getNotLoggedInLegalSidebarTemplate(activePage)
@@ -113,6 +150,9 @@ function getSidebarTemplateByLayout(activePage, isNotLoggedInLegalLayout) {
 
 function renderBars() {
     const currentPage = getCurrentPage();
+
+    if (redirectLoggedOutUser(currentPage)) return;
+
     const sidebar = document.getElementById("sidebar");
     const topbar = document.getElementById("topbar");
     const isNotLoggedInLegalLayout = shouldShowNotLoggedInLegalLayout(currentPage);
@@ -126,3 +166,7 @@ function renderBars() {
 }
 
 renderBars();
+
+window.addEventListener("pageshow", function () {
+    redirectLoggedOutUser(getCurrentPage());
+});

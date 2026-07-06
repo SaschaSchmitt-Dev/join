@@ -53,17 +53,18 @@
     padding: 0;
     border: 2px solid var(--avatar-border);
     border-radius: 50%;
-    background: var(--avatar-bg);
-    color: var(--ui-light);
+    background: var(--account-avatar-bg, var(--avatar-bg));
+    color: var(--account-avatar-text, var(--ui-light));
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 120ms ease;
 }
 
 .account-avatar:hover,
 .account-avatar:focus-visible {
-    background-color: var(--ui-light-hover);
+    background: color-mix(in srgb, var(--account-avatar-bg, var(--avatar-bg)) 82%, white);
 }
 
 .account-avatar:focus-visible {

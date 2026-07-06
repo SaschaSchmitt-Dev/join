@@ -1,13 +1,110 @@
-function checkLogin() {
+async function checkLogin() {
     const email = document.getElementById('email');
     const password = document.getElementById('password');
-    const errorMsg = document.getElementById('error-msg');
+
+    if (hasInvalidLoginInput(email, password)) {
+        showLoginError('Check your email and password. Please try again.');
+        return;
+    }
+
+    const userEntry = await getUserByLogin(email.value.trim(), password.value.trim());
+
+    if (!userEntry) {
+        showLoginError('Check your email and password. Please try again.');
+        return;
+    }
+
+    completeUserLogin(userEntry);
+}
+
+function hasInvalidLoginInput(email, password) {
     const invalid = !email.value.trim() || !password.value.trim();
 
     email.classList.toggle('error', invalid);
     password.classList.toggle('error', invalid);
-    errorMsg.textContent = invalid ? 'Check your email and password. Please try again.' : '';
-    errorMsg.classList.toggle('show', invalid);
+
+    return invalid;
+}
+
+async function getUserByLogin(email, password) {
+    const response = await fetch(BASE_URL + 'users.json');
+    const users = await response.json();
+
+    if (!users) return null;
+
+    const matchingUser = getMatchingUser(users, email, password);
+
+    return matchingUser ? getUserEntry(matchingUser) : null;
+}
+
+function getMatchingUser(users, email, password) {
+    return Object.entries(users).find(function ([, user]) {
+        return user.email === email && user.password === password;
+    });
+}
+
+function getUserEntry(userEntry) {
+    return {
+        id: userEntry[0],
+        user: userEntry[1]
+    };
+}
+
+function completeUserLogin(userEntry) {
+    setActiveUser(userEntry.id, userEntry.user);
+    window.location.href = './summary.html';
+}
+
+async function loginAsGuest() {
+    try {
+        setGuestButtonDisabled(true);
+        clearError();
+        await completeGuestLogin();
+    } catch (error) {
+        showLoginError('Guest login is currently not available. Please try again.');
+    } finally {
+        setGuestButtonDisabled(false);
+    }
+}
+
+function setGuestButtonDisabled(isDisabled) {
+    const guestButton = document.querySelector('.guest-btn');
+
+    guestButton.disabled = isDisabled;
+}
+
+async function completeGuestLogin() {
+    const guestUser = await resetGuestUser();
+
+    setActiveUser(guestUserId, guestUser);
+    window.location.href = './summary.html';
+}
+
+async function resetGuestUser() {
+    const standardDbResponse = await fetch('../db/guest-standard-db.json');
+    const standardDb = await standardDbResponse.json();
+    const guestUser = standardDb.users[guestUserId];
+
+    await putGuestUser(guestUser);
+
+    return guestUser;
+}
+
+async function putGuestUser(guestUser) {
+    await fetch(BASE_URL + 'users/' + guestUserId + '.json', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(guestUser)
+    });
+}
+
+function showLoginError(message) {
+    const errorMsg = document.getElementById('error-msg');
+
+    errorMsg.textContent = message;
+    errorMsg.classList.add('show');
 }
 
 function togglePasswordIcon() {
@@ -29,6 +126,7 @@ document.getElementById('toggle-icon').addEventListener('click', () => {
 
 document.getElementById('email').addEventListener('focus', clearError);
 document.getElementById('password').addEventListener('focus', clearError);
+document.querySelector('.guest-btn').addEventListener('click', loginAsGuest);
 
 function clearError() {
   document.getElementById('email').classList.remove('error');
