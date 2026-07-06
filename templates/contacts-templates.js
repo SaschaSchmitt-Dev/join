@@ -1,9 +1,89 @@
+function renderContactDetails(contact) {
+    const contactDetails = document.getElementById("contact-details");
+
+    contactDetails.innerHTML = `
+        <div class="contacts-header">
+            <h1>Contacts</h1>
+            <div class="header-divider"></div>
+            <span>Better with a team</span>
+        </div>
+
+        <div class="contact-detail-content">
+            <div class="contact-detail-top">
+                <div class="contact-detail-avatar" style="background:${contact.color || "var(--profile-orange)"}">
+                    ${getInitials(contact.name)}
+                </div>
+
+                <div class="contact-detail-name-box">
+                    <h2>${contact.name}</h2>
+
+                    <div class="contact-actions">
+                        <button type="button" onclick="openEditContactOverlay()">
+                            <img src="../assets/icons/edit.png" alt="Edit">
+                            <span>Edit</span>
+                        </button>
+
+                        <button type="button" onclick="deleteContact()">
+                            <img src="../assets/icons/delete.png" alt="Delete">
+                            <span>Delete</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-information">
+                <h3>Contact Information</h3>
+
+                <h4>Email</h4>
+                <p class="contact-email">${contact.email}</p>
+
+                <h4>Phone</h4>
+                <p>${contact.phone || ""}</p>
+            </div>
+        </div>
+    `;
+}
+
+function renderContacts() {
+    const contactsList = document.getElementById("contacts-list");
+    contactsList.innerHTML = "";
+
+    let currentLetter = "";
+
+    contacts.forEach(function (contact, index) {
+        const firstLetter = contact.name.charAt(0).toUpperCase();
+
+        if (firstLetter !== currentLetter) {
+            currentLetter = firstLetter;
+
+            contactsList.innerHTML += `
+                <div class="contact-group">
+                    <h3>${currentLetter}</h3>
+                </div>
+            `;
+        }
+
+        const activeClass = index === currentContactIndex ? "active" : "";
+
+        contactsList.innerHTML += `
+            <div class="contact-card ${activeClass}" onclick="showContact(${index})">
+                <div class="contact-avatar" style="background:${contact.color || "var(--profile-orange)"}">
+                    ${getInitials(contact.name)}
+                </div>
+
+                <div class="contact-info">
+                    <h4>${contact.name}</h4>
+                    <p class="contact-email-detail">${contact.email}</p>
+                </div>
+            </div>
+        `;
+    });
+}
+
 async function deleteContact() {
     const contact = contacts[currentContactIndex];
 
-    if (!contact) {
-        return;
-    }
+    if (!contact) return;
 
     await fetch(BASE_URL + "users/" + currentUserId + "/contacts/" + contact.id + ".json", {
         method: "DELETE"
@@ -14,66 +94,45 @@ async function deleteContact() {
     closeMobileOptionsMenu();
     closeAddContactOverlay();
     closeMobileContactView();
-    loadContacts();
+
+    await loadContacts();
 
     document.getElementById("contact-details").innerHTML = `
         <div class="contacts-header">
             <h1>Contacts</h1>
-            <span>Better with a team</span>
             <div class="header-divider"></div>
+            <span>Better with a team</span>
         </div>
     `;
 }
 
-function renderContactDetails(contact) {
+function renderColorOptions() {
+    if (!colorOptions) return;
+
+    colorOptions.innerHTML = "";
+
+    profileColors.forEach(function (color) {
+        const activeClass = color === selectedContactColor ? "active" : "";
+
+        colorOptions.innerHTML += `
+            <button
+                type="button"
+                class="color-option ${activeClass}"
+                style="background:${color}"
+                onclick="selectContactColor('${color}')">
+            </button>
+        `;
+    });
+}
+
+function renderEmptyContactDetails() {
     const contactDetails = document.getElementById("contact-details");
 
     contactDetails.innerHTML = `
         <div class="contacts-header">
             <h1>Contacts</h1>
-            <span>Better with a team</span>
             <div class="header-divider"></div>
-        </div>
-
-        <div class="contact-mobile-detail">
-            <div class="selected-contact">
-                <div class="contact-avatar" style="background:${contact.color || "#FF7A00"}">
-                    ${getInitials(contact.name)}
-                </div>
-
-                <h2>${contact.name}</h2>
-            </div>
-
-            <div class="contact-information" style="font-family: 'Inter'; font-style: regular; font-weight: 400;">
-                <h3>Contact Information</h3>
-
-                <h4>Email</h4>
-                <a href="mailto:${contact.email}">${contact.email}</a>
-
-                <h4>Phone</h4>
-                <p>${contact.phone || ""}</p>
-            
-            </div>
+            <span>Better with a team</span>
         </div>
     `;
-}
-
-function renderContacts() {
-    const contactsList = document.getElementById("contacts-list");
-    contactsList.innerHTML = "";
-
-    contacts.forEach(function (contact, index) {
-        contactsList.innerHTML += `
-            <div class="contact-card" onclick="showContact(${index})">
-                <div class="contact-avatar" style="background:${contact.color || "#FF7A00"}">
-                    ${getInitials(contact.name)}
-                </div>
-
-                <div class="contact-info">
-                    <h4>${contact.name}</h4>
-                    <a href="mailto:${contact.email}">${contact.email}</a>
-                </div>
-            </div>
-        `;
-    });
 }
