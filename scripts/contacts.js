@@ -1,25 +1,7 @@
-const currentUserId = "guest";
 let contacts = [];
 let currentContactIndex = null;
 let modalMode = "add";
 let selectedContactColor = "var(--profile-orange)";
-const profileColors = [
-    "var(--profile-orange)",
-    "var(--profile-pink)",
-    "var(--profile-violet)",
-    "var(--profile-purple)",
-    "var(--profile-cyan)",
-    "var(--profile-turquoise)",
-    "var(--profile-salmon)",
-    "var(--profile-peach)",
-    "var(--profile-magenta)",
-    "var(--profile-gold)",
-    "var(--profile-blue)",
-    "var(--profile-lime)",
-    "var(--profile-yellow)",
-    "var(--profile-red)",
-    "var(--profile-amber)"
-];
 
 
 const overlay = document.getElementById("add-contact-overlay");
@@ -148,7 +130,7 @@ async function getContactsData() {
 }
 function getContactsUrl(contactId = "") {
     const path = contactId ? "/" + contactId : "";
-    return BASE_URL + "users/" + currentUserId + "/contacts" + path + ".json";
+    return getUserDatabaseUrl(getCurrentUserId(), "contacts" + path);
 }
 function createContactsArray(data) {
     if (!data) return [];
@@ -324,7 +306,7 @@ function setEditAvatar(contact) {
     selectedContactColor = contact.color || "var(--profile-orange)";
     contactPlaceholder.classList.add("edit-mode");
     contactPlaceholder.style.background = selectedContactColor;
-    contactAvatarInitials.textContent = getInitials(contact.name);
+    contactAvatarInitials.textContent = getUserInitials(contact.name);
 }
 function setEditButtons() {
     secondaryBtnText.textContent = "Delete";
@@ -340,20 +322,8 @@ function selectContactColor(color) {
     renderColorOptions();
 }
 
-function getInitials(name) {
-    return name
-        .split(" ")
-        .map(function (word) {
-            return word[0];
-        })
-        .join("")
-        .toUpperCase();
-}
-
 function getRandomContactColor() {
-    const randomIndex = Math.floor(Math.random() * profileColors.length);
-
-    return profileColors[randomIndex];
+    return getRandomProfileColor();
 }
 
 function showContactToast(message) {

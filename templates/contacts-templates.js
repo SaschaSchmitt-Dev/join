@@ -11,7 +11,7 @@ function renderContactDetails(contact) {
         <div class="contact-detail-content">
             <div class="contact-detail-top">
                 <div class="contact-detail-avatar" style="background:${contact.color || "var(--profile-orange)"}">
-                    ${getInitials(contact.name)}
+                    ${getUserInitials(contact.name)}
                 </div>
 
                 <div class="contact-detail-name-box">
@@ -68,7 +68,7 @@ function renderContacts() {
         contactsList.innerHTML += `
             <div class="contact-card ${activeClass}" onclick="showContact(${index})">
                 <div class="contact-avatar" style="background:${contact.color || "var(--profile-orange)"}">
-                    ${getInitials(contact.name)}
+                    ${getUserInitials(contact.name)}
                 </div>
 
                 <div class="contact-info">

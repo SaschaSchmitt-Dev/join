@@ -27,7 +27,7 @@ function hasInvalidLoginInput(email, password) {
 }
 
 async function getUserByLogin(email, password) {
-    const response = await fetch(BASE_URL + 'users.json');
+    const response = await fetch(getDatabaseUrl('users'));
     const users = await response.json();
 
     if (!users) return null;
@@ -91,7 +91,7 @@ async function resetGuestUser() {
 }
 
 async function putGuestUser(guestUser) {
-    await fetch(BASE_URL + 'users/' + guestUserId + '.json', {
+    await fetch(getUserDatabaseUrl(guestUserId), {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
