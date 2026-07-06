@@ -80,32 +80,6 @@ function renderContacts() {
     });
 }
 
-async function deleteContact() {
-    const contact = contacts[currentContactIndex];
-
-    if (!contact) return;
-
-    await fetch(BASE_URL + "users/" + currentUserId + "/contacts/" + contact.id + ".json", {
-        method: "DELETE"
-    });
-
-    currentContactIndex = null;
-
-    closeMobileOptionsMenu();
-    closeAddContactOverlay();
-    closeMobileContactView();
-
-    await loadContacts();
-
-    document.getElementById("contact-details").innerHTML = `
-        <div class="contacts-header">
-            <h1>Contacts</h1>
-            <div class="header-divider"></div>
-            <span>Better with a team</span>
-        </div>
-    `;
-}
-
 function renderColorOptions() {
     if (!colorOptions) return;
 
