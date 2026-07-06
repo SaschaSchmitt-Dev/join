@@ -136,7 +136,7 @@ function togglePasswordIcon() {
     const visible = password.type === 'text';
 
     if (password.value.length === 0) return icon.src = '../assets/icons/lock.png';
-    icon.src = visible ? '../assets/icons/visability.png' : '../assets/icons/visability_off.png';
+    icon.src = visible ? '../assets/icons/visability.png' : '../assets/icons/visability-off.png';
 }
 
 document.getElementById('password').addEventListener('input', togglePasswordIcon);
@@ -152,9 +152,9 @@ document.getElementById('password').addEventListener('focus', clearError);
 document.querySelector('.guest-btn').addEventListener('click', loginAsGuest);
 
 function clearError() {
-  document.getElementById('email').classList.remove('error');
-  document.getElementById('password').classList.remove('error');
-  const errorMsg = document.getElementById('error-msg');
-  errorMsg.classList.remove('show');
-  errorMsg.textContent = '';
+    document.getElementById('email').classList.remove('error');
+    document.getElementById('password').classList.remove('error');
+    const errorMsg = document.getElementById('error-msg');
+    errorMsg.classList.remove('show');
+    errorMsg.textContent = '';
 }
