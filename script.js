@@ -1,7 +1,15 @@
 const BASE_URL = "https://join-94aa0-default-rtdb.europe-west1.firebasedatabase.app/";
 const activeUserStorageKey = "joinActiveUser";
 const guestUserId = "guest";
-const brightProfileColors = ["yellow", "lime", "gold", "cyan", "turquoise", "peach", "amber"];
+const brightProfileColors = [
+    "var(--profile-yellow)",
+    "var(--profile-lime)",
+    "var(--profile-gold)",
+    "var(--profile-cyan)",
+    "var(--profile-turquoise)",
+    "var(--profile-peach)",
+    "var(--profile-amber)"
+];
 
 function setActiveUser(userId, user) {
     const activeUser = {
@@ -55,15 +63,8 @@ function getUserColor(userColor) {
     return `var(--profile-${userColor})`;
 }
 
-function getUserColorName(userColor) {
-    return String(userColor || "blue")
-        .replace("var(--profile-", "")
-        .replace("--profile-", "")
-        .replace(")", "");
-}
-
 function getUserTextColor(userColor) {
-    const colorName = getUserColorName(userColor);
+    const avatarColor = getUserColor(userColor);
 
-    return brightProfileColors.includes(colorName) ? "var(--text-primary)" : "var(--text-white)";
+    return brightProfileColors.includes(avatarColor) ? "var(--text-primary)" : "var(--text-white)";
 }
