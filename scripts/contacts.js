@@ -74,6 +74,7 @@ document.addEventListener("click", function (event) {
     }
 });
 
+
 function openAddContactOverlay() {
     modalMode = "add";
 
@@ -83,6 +84,7 @@ function openAddContactOverlay() {
 
     overlay.classList.add("active");
 }
+
 
 function openEditContactOverlay() {
     if (currentContactIndex === null) return;
@@ -99,9 +101,11 @@ function openEditContactOverlay() {
     overlay.classList.add("active");
 }
 
+
 function closeAddContactOverlay() {
     overlay.classList.remove("active");
 }
+
 
 function toggleMobileOptionsMenu(event) {
     event.stopPropagation();
@@ -111,11 +115,13 @@ function toggleMobileOptionsMenu(event) {
     mobileOptionsMenu.classList.toggle("active");
 }
 
+
 function closeMobileOptionsMenu() {
     if (!mobileOptionsMenu) return;
 
     mobileOptionsMenu.classList.remove("active");
 }
+
 
 async function loadContacts() {
     const data = await getContactsData();
@@ -124,10 +130,14 @@ async function loadContacts() {
     renderContacts();
     renderInitialContactDetails();
 }
+
+
 async function getContactsData() {
     const response = await fetch(getContactsUrl());
     return await response.json();
 }
+
+
 function getContactsUrl(contactId = "") {
     const path = contactId ? "/" + contactId : "";
     if (getCurrentUserId() === guestUserId) {
@@ -135,22 +145,30 @@ function getContactsUrl(contactId = "") {
     }
     return getDatabaseUrl("contacts" + path);
 }
+
+
 function createContactsArray(data) {
     if (!data) return [];
     return Object.entries(data).map(function ([id, contact]) {
         return { id: id, ...contact };
     });
 }
+
+
 function sortContactsByName() {
     contacts.sort(function (a, b) {
         return a.name.localeCompare(b.name);
     });
 }
+
+
 function renderInitialContactDetails() {
     if (currentContactIndex === null) {
         renderEmptyContactDetails();
     }
 }
+
+
 function showContact(index) {
     const contact = contacts[index];
     if (!contact) return;
@@ -159,15 +177,21 @@ function showContact(index) {
     renderContactDetails(contact);
     openMobileContactDetails();
 }
+
+
 function openMobileContactDetails() {
     if (window.innerWidth <= 1024) {
         contactsPage.classList.add("mobile-detail-open");
     }
 }
+
+
 function closeMobileContactView() {
     contactsPage.classList.remove("mobile-detail-open");
     closeMobileOptionsMenu();
 }
+
+
 function handleContactSubmit(event) {
     event.preventDefault();
     if (modalMode === "edit") {
@@ -176,6 +200,8 @@ function handleContactSubmit(event) {
     }
     createContact();
 }
+
+
 async function deleteContact() {
     const contact = contacts[currentContactIndex];
     if (!contact) return;
@@ -186,23 +212,31 @@ async function deleteContact() {
     await loadContacts();
     renderEmptyContactDetails();
 }
+
+
 function deleteContactFromFirebase(contactId) {
     return fetch(getContactsUrl(contactId), {
         method: "DELETE"
     });
 }
+
+
 async function removeContactFromAssignedTasks(contactId) {
     const tasks = await getContactTasks();
     const updates = getTaskAssignmentUpdates(tasks, contactId);
 
     await Promise.all(updates.map(updateTaskAssignments));
 }
+
+
 async function getContactTasks() {
     const response = await fetch(getContactTasksUrl());
     const tasks = await response.json();
 
     return Object.entries(tasks || {});
 }
+
+
 function getContactTasksUrl(taskId = "") {
     const path = taskId ? "/" + taskId : "";
 
@@ -211,11 +245,15 @@ function getContactTasksUrl(taskId = "") {
     }
     return getDatabaseUrl("tasks" + path);
 }
+
+
 function getTaskAssignmentUpdates(tasks, contactId) {
     return tasks
         .map(([taskId, task]) => getTaskAssignmentUpdate(taskId, task, contactId))
         .filter(Boolean);
 }
+
+
 function getTaskAssignmentUpdate(taskId, task, contactId) {
     const assignedTo = getAssignmentsWithoutContact(task, contactId);
 
@@ -223,11 +261,15 @@ function getTaskAssignmentUpdate(taskId, task, contactId) {
 
     return { taskId, assignedTo };
 }
+
+
 function getAssignmentsWithoutContact(task, contactId) {
     return (task.assignedTo || []).filter(function (assignedUser) {
         return assignedUser.id !== contactId || assignedUser.type !== "contact";
     });
 }
+
+
 function updateTaskAssignments(update) {
     return fetch(getContactTasksUrl(update.taskId), {
         method: "PATCH",
@@ -235,11 +277,15 @@ function updateTaskAssignments(update) {
         body: JSON.stringify({ assignedTo: update.assignedTo })
     });
 }
+
+
 function closeContactInterfaces() {
     closeMobileOptionsMenu();
     closeAddContactOverlay();
     closeMobileContactView();
 }
+
+
 function handleSecondaryButton() {
     if (modalMode === "edit") {
         deleteContact();
@@ -247,6 +293,8 @@ function handleSecondaryButton() {
     }
     closeAddContactOverlay();
 }
+
+
 async function createContact() {
     const newContact = getContactFormData();
     await postNewContact(newContact);
@@ -255,6 +303,8 @@ async function createContact() {
     await loadContacts();
     showContactToast("Contact successfully created");
 }
+
+
 function getContactFormData() {
     return {
         name: document.getElementById("contact-name").value.trim(),
@@ -263,6 +313,8 @@ function getContactFormData() {
         color: selectedContactColor || getRandomContactColor()
     };
 }
+
+
 function postNewContact(contact) {
     return fetch(getContactsUrl(), {
         method: "POST",
@@ -270,6 +322,8 @@ function postNewContact(contact) {
         body: JSON.stringify(contact)
     });
 }
+
+
 async function saveContact() {
     const contact = contacts[currentContactIndex];
     if (!contact) return;
@@ -279,6 +333,8 @@ async function saveContact() {
     renderSavedContact();
     closeAddContactOverlay();
 }
+
+
 function getUpdatedContactData(contact) {
     return {
         name: document.getElementById("contact-name").value.trim(),
@@ -288,6 +344,8 @@ function getUpdatedContactData(contact) {
         contactColor: null
     };
 }
+
+
 function patchContact(contactId, updatedContact) {
     return fetch(getContactsUrl(contactId), {
         method: "PATCH",
@@ -295,16 +353,22 @@ function patchContact(contactId, updatedContact) {
         body: JSON.stringify(updatedContact)
     });
 }
+
+
 function getContactIndexById(contactId) {
     return contacts.findIndex(function (contact) {
         return contact.id === contactId;
     });
 }
+
+
 function renderSavedContact() {
     if (currentContactIndex === -1) return;
     renderContacts();
     renderContactDetails(contacts[currentContactIndex]);
 }
+
+
 function setAddMode() {
     resetAddModalText();
     resetAddAvatar();
@@ -312,70 +376,7 @@ function setAddMode() {
     selectedContactColor = getRandomContactColor();
     clearColorOptions();
 }
-function resetAddModalText() {
-    modal.classList.remove("edit-mode");
-    modalTitle.textContent = "Add contact";
-    modalSubtitle.textContent = "Tasks are better with a team!";
-    modalSubtitle.style.display = "block";
-}
-function resetAddAvatar() {
-    contactPlaceholder.classList.remove("edit-mode");
-    contactPlaceholder.style.background = "#D1D1D1";
-    contactAvatarInitials.style.color = "";
-    contactAvatarInitials.textContent = "";
-}
-function setAddButtons() {
-    secondaryBtnText.textContent = "Cancel";
-    secondaryBtnIcon.style.display = "block";
-    submitBtnText.textContent = "Create contact";
-}
-function clearColorOptions() {
-    if (colorOptions) {
-        colorOptions.innerHTML = "";
-    }
-}
-function setEditMode(contact) {
-    modal.classList.add("edit-mode");
-    setEditModalText();
-    fillContactForm(contact);
-    setEditAvatar(contact);
-    setEditButtons();
-    renderColorOptions();
-}
-function setEditModalText() {
-    modalTitle.textContent = "Edit contact";
-    modalSubtitle.style.display = "none";
-}
-function fillContactForm(contact) {
-    document.getElementById("contact-name").value = contact.name;
-    document.getElementById("contact-email").value = contact.email;
-    document.getElementById("contact-phone").value = contact.phone || "";
-}
-function setEditAvatar(contact) {
-    selectedContactColor = contact.color || contact.contactColor || "var(--profile-orange)";
-    contactPlaceholder.classList.add("edit-mode");
-    contactPlaceholder.style.background = selectedContactColor;
-    contactAvatarInitials.style.color = getUserTextColor(selectedContactColor);
-    contactAvatarInitials.textContent = getUserInitials(contact.name);
-}
-function setEditButtons() {
-    secondaryBtnText.textContent = "Delete";
-    secondaryBtnIcon.style.display = "none";
-    submitBtnText.textContent = "Save";
-}
 
-function selectContactColor(color) {
-    selectedContactColor = color;
-
-    contactPlaceholder.style.background = color;
-    contactAvatarInitials.style.color = getUserTextColor(color);
-
-    renderColorOptions();
-}
-
-function getRandomContactColor() {
-    return getRandomProfileColor();
-}
 
 function showContactToast(message) {
     if (!contactToast) return;
