@@ -80,3 +80,73 @@ function selectContactColor(color) {
 function getRandomContactColor() {
     return getRandomProfileColor();
 }
+
+function renderContactDetails(contact) {
+    const contactDetails = document.getElementById("contact-details");
+    const contactColor = getContactAvatarColor(contact);
+
+    contactDetails.innerHTML = getContactsHeaderTemplate() + getContactDetailTemplate(contact, contactColor);
+}
+
+
+function renderContacts() {
+    const contactsList = document.getElementById("contacts-list");
+    contactsList.innerHTML = "";
+
+    let currentLetter = "";
+
+    contacts.forEach(function (contact, index) {
+        currentLetter = renderContactEntry(contactsList, contact, index, currentLetter);
+    });
+}
+
+
+function renderContactEntry(contactsList, contact, index, currentLetter) {
+    const firstLetter = contact.name.charAt(0).toUpperCase();
+
+    if (firstLetter !== currentLetter) {
+        contactsList.innerHTML += getContactGroupTemplate(firstLetter);
+        currentLetter = firstLetter;
+    }
+
+    contactsList.innerHTML += getRenderedContactCard(contact, index);
+    return currentLetter;
+}
+
+
+function getRenderedContactCard(contact, index) {
+    const activeClass = index === currentContactIndex ? "active" : "";
+    const contactColor = getContactAvatarColor(contact);
+
+    return getContactCardTemplate(contact, index, activeClass, contactColor);
+}
+
+
+function getContactAvatarColor(contact) {
+    return contact.color || contact.contactColor || "var(--profile-orange)";
+}
+
+
+function renderColorOptions() {
+    if (!colorOptions) return;
+
+    colorOptions.innerHTML = "";
+
+    profileColors.forEach(function (color) {
+        colorOptions.innerHTML += getRenderedColorOption(color);
+    });
+}
+
+
+function getRenderedColorOption(color) {
+    const activeClass = color === selectedContactColor ? "active" : "";
+
+    return getColorOptionTemplate(color, activeClass);
+}
+
+
+function renderEmptyContactDetails() {
+    const contactDetails = document.getElementById("contact-details");
+
+    contactDetails.innerHTML = getContactsHeaderTemplate();
+}
