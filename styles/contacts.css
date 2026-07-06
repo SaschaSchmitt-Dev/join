@@ -141,9 +141,12 @@
 }
 
 .header-divider {
+    display: block;
     width: 3px;
+    min-width: 3px;
     height: 59px;
-    background: var(--accent-color);
+    background-color: #29ABE2;
+    flex-shrink: 0;
 }
 
 .contacts-header span {

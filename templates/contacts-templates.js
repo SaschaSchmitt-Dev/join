@@ -2,11 +2,11 @@ function renderContactDetails(contact) {
     const contactDetails = document.getElementById("contact-details");
 
     contactDetails.innerHTML = `
-        <div class="contacts-header">
-            <h1>Contacts</h1>
-            <div class="header-divider"></div>
-            <span>Better with a team</span>
-        </div>
+       <div class="contacts-header">
+           <h1>Contacts</h1>
+         <div class="header-divider"></div>
+              <span>Better with a team</span>
+         </div>
 
         <div class="contact-detail-content">
             <div class="contact-detail-top">
