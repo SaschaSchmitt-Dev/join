@@ -81,13 +81,36 @@ async function completeGuestLogin() {
 }
 
 async function resetGuestUser() {
-    const standardDbResponse = await fetch('../db/guest-standard-db.json');
-    const standardDb = await standardDbResponse.json();
-    const guestUser = standardDb.users[guestUserId];
+    const guestUser = await getGuestUser();
+    guestUser.contacts = await getGlobalData('contacts');
+    guestUser.tasks = await getGlobalData('tasks');
 
     await putGuestUser(guestUser);
 
     return guestUser;
+}
+
+async function getGuestUser() {
+    const response = await fetch(getUserDatabaseUrl(guestUserId));
+    const guestUser = await response.json();
+
+    return guestUser || getDefaultGuestUser();
+}
+
+function getDefaultGuestUser() {
+    return {
+        email: 'guest@login.com',
+        name: 'Guest',
+        password: 'guest123!',
+        userColor: 'var(--profile-blue)'
+    };
+}
+
+async function getGlobalData(path) {
+    const response = await fetch(getDatabaseUrl(path));
+    const data = await response.json();
+
+    return data || {};
 }
 
 async function putGuestUser(guestUser) {

@@ -130,7 +130,10 @@ async function getContactsData() {
 }
 function getContactsUrl(contactId = "") {
     const path = contactId ? "/" + contactId : "";
-    return getUserDatabaseUrl(getCurrentUserId(), "contacts" + path);
+    if (getCurrentUserId() === guestUserId) {
+        return getUserDatabaseUrl(guestUserId, "contacts" + path);
+    }
+    return getDatabaseUrl("contacts" + path);
 }
 function createContactsArray(data) {
     if (!data) return [];
@@ -177,6 +180,7 @@ async function deleteContact() {
     const contact = contacts[currentContactIndex];
     if (!contact) return;
     await deleteContactFromFirebase(contact.id);
+    await removeContactFromAssignedTasks(contact.id);
     currentContactIndex = null;
     closeContactInterfaces();
     await loadContacts();
@@ -185,6 +189,50 @@ async function deleteContact() {
 function deleteContactFromFirebase(contactId) {
     return fetch(getContactsUrl(contactId), {
         method: "DELETE"
+    });
+}
+async function removeContactFromAssignedTasks(contactId) {
+    const tasks = await getContactTasks();
+    const updates = getTaskAssignmentUpdates(tasks, contactId);
+
+    await Promise.all(updates.map(updateTaskAssignments));
+}
+async function getContactTasks() {
+    const response = await fetch(getContactTasksUrl());
+    const tasks = await response.json();
+
+    return Object.entries(tasks || {});
+}
+function getContactTasksUrl(taskId = "") {
+    const path = taskId ? "/" + taskId : "";
+
+    if (getCurrentUserId() === guestUserId) {
+        return getUserDatabaseUrl(guestUserId, "tasks" + path);
+    }
+    return getDatabaseUrl("tasks" + path);
+}
+function getTaskAssignmentUpdates(tasks, contactId) {
+    return tasks
+        .map(([taskId, task]) => getTaskAssignmentUpdate(taskId, task, contactId))
+        .filter(Boolean);
+}
+function getTaskAssignmentUpdate(taskId, task, contactId) {
+    const assignedTo = getAssignmentsWithoutContact(task, contactId);
+
+    if (assignedTo.length === (task.assignedTo || []).length) return null;
+
+    return { taskId, assignedTo };
+}
+function getAssignmentsWithoutContact(task, contactId) {
+    return (task.assignedTo || []).filter(function (assignedUser) {
+        return assignedUser.id !== contactId || assignedUser.type !== "contact";
+    });
+}
+function updateTaskAssignments(update) {
+    return fetch(getContactTasksUrl(update.taskId), {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ assignedTo: update.assignedTo })
     });
 }
 function closeContactInterfaces() {
