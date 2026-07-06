@@ -273,6 +273,7 @@ function resetAddModalText() {
 function resetAddAvatar() {
     contactPlaceholder.classList.remove("edit-mode");
     contactPlaceholder.style.background = "#D1D1D1";
+    contactAvatarInitials.style.color = "";
     contactAvatarInitials.textContent = "";
 }
 function setAddButtons() {
@@ -303,9 +304,10 @@ function fillContactForm(contact) {
     document.getElementById("contact-phone").value = contact.phone || "";
 }
 function setEditAvatar(contact) {
-    selectedContactColor = contact.color || "var(--profile-orange)";
+    selectedContactColor = contact.color || contact.contactColor || "var(--profile-orange)";
     contactPlaceholder.classList.add("edit-mode");
     contactPlaceholder.style.background = selectedContactColor;
+    contactAvatarInitials.style.color = getUserTextColor(selectedContactColor);
     contactAvatarInitials.textContent = getUserInitials(contact.name);
 }
 function setEditButtons() {
@@ -318,6 +320,7 @@ function selectContactColor(color) {
     selectedContactColor = color;
 
     contactPlaceholder.style.background = color;
+    contactAvatarInitials.style.color = getUserTextColor(color);
 
     renderColorOptions();
 }

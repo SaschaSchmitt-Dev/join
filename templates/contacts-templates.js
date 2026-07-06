@@ -1,5 +1,6 @@
 function renderContactDetails(contact) {
     const contactDetails = document.getElementById("contact-details");
+    const contactColor = getContactAvatarColor(contact);
 
     contactDetails.innerHTML = `
        <div class="contacts-header">
@@ -10,7 +11,7 @@ function renderContactDetails(contact) {
 
         <div class="contact-detail-content">
             <div class="contact-detail-top">
-                <div class="contact-detail-avatar" style="background:${contact.color || "var(--profile-orange)"}">
+                <div class="contact-detail-avatar" style="background:${contactColor}; color:${getUserTextColor(contactColor)}">
                     ${getUserInitials(contact.name)}
                 </div>
 
@@ -64,10 +65,11 @@ function renderContacts() {
         }
 
         const activeClass = index === currentContactIndex ? "active" : "";
+        const contactColor = getContactAvatarColor(contact);
 
         contactsList.innerHTML += `
             <div class="contact-card ${activeClass}" onclick="showContact(${index})">
-                <div class="contact-avatar" style="background:${contact.color || "var(--profile-orange)"}">
+                <div class="contact-avatar" style="background:${contactColor}; color:${getUserTextColor(contactColor)}">
                     ${getUserInitials(contact.name)}
                 </div>
 
@@ -78,6 +80,10 @@ function renderContacts() {
             </div>
         `;
     });
+}
+
+function getContactAvatarColor(contact) {
+    return contact.color || contact.contactColor || "var(--profile-orange)";
 }
 
 function renderColorOptions() {
