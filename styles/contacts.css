@@ -771,6 +771,19 @@
         overflow-y: auto;
     }
 
+    .contact-card.active {
+        background: white;
+    }
+
+    .contact-card.active h4 {
+        color: var(--text-primary);
+    }
+
+    .contact-card.active a,
+    .contact-card.active p {
+        color: #007CEE;
+    }
+
     .contacts-sidebar .add-contact-btn {
         display: none;
     }
@@ -1224,20 +1237,20 @@
         height: 56px;
         border: none;
         border-radius: 50%;
-        background: transparent;
+        background: var(--sidebar-bg-color);
         justify-content: center;
         align-items: center;
         padding: 0;
         cursor: pointer;
         z-index: 9998;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     }
 
     .contacts-page.mobile-detail-open .mobile-more-btn img {
-        width: 56px;
-        height: 56px;
+        display: block;
+        width: 24px;
+        height: 24px;
         object-fit: contain;
-        filter: none;
-        transform: none;
     }
 
     .mobile-options-menu {

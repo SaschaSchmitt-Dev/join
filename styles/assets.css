@@ -1,3 +1,7 @@
+buttons {
+    border: unset;
+}
+
 .back-arrow-button {
     display: flex;
     justify-content: center;
