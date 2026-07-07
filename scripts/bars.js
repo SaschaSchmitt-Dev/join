@@ -52,9 +52,7 @@ function getAccountAvatar() {
     const activeUser = getActiveUser();
 
     return {
-        initials: getUserInitials(activeUser?.name),
-        backgroundColor: getUserColor(activeUser?.userColor),
-        textColor: getUserTextColor(activeUser?.userColor)
+        initials: getUserInitials(activeUser?.name)
     };
 }
 

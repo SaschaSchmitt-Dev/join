@@ -53,8 +53,8 @@
     padding: 0;
     border: 2px solid var(--avatar-border);
     border-radius: 50%;
-    background: var(--account-avatar-bg, var(--avatar-bg));
-    color: var(--account-avatar-text, var(--ui-light));
+    background: var(--avatar-bg);
+    color: var(--text-user);
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     font-weight: bold;
@@ -64,7 +64,7 @@
 
 .account-avatar:hover,
 .account-avatar:focus-visible {
-    background: color-mix(in srgb, var(--account-avatar-bg, var(--avatar-bg)) 82%, white);
+    background: var(--avatar-bg-hover);
 }
 
 .account-avatar:focus-visible {

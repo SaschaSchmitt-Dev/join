@@ -71,7 +71,7 @@ function renderActiveUser() {
     const isGuest = activeUser.id === guestUserId;
     greetingElement.textContent = isGuest ? "Good morning!" : "Good morning,";
     activeUserElement.textContent = isGuest ? "" : activeUser.name;
-    if (!isGuest) activeUserElement.style.color = getUserColor(activeUser.userColor);
+    activeUserElement.style.color = "var(--text-user)";
 }
 
 function getSummarySection() {
