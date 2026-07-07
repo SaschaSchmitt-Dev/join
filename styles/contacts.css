@@ -33,15 +33,17 @@
     color: white;
     border: none;
     border-radius: 10px;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 12px;
+    font-family: "Inter", sans-serif;
     font-size: 21px;
     font-weight: 700;
-    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    flex-shrink: 0;
     margin-bottom: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 }
 
 .add-contact-btn img {
@@ -1174,6 +1176,37 @@
 
     .contacts-page.mobile-detail-open .contact-actions {
         display: none;
+    }
+
+    .contacts-page.mobile-detail-open .contact-detail-top {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        width: 100%;
+    }
+
+    .contacts-page.mobile-detail-open .contact-detail-avatar {
+        flex-shrink: 0;
+    }
+
+    .contacts-page.mobile-detail-open .contact-detail-name-box {
+        flex: 1;
+        min-width: 0;
+        max-width: 100%;
+        overflow: visible;
+    }
+
+    .contacts-page.mobile-detail-open .contact-detail-name-box h2 {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+
+        max-width: 100%;
+
+        word-break: normal;
+        overflow-wrap: break-word;
+
+        line-height: 120%;
     }
 
     .selected-contact {
