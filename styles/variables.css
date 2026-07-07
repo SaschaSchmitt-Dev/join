@@ -13,6 +13,7 @@
     --text-white: rgb(255, 255, 255);
     --text-link: rgb(168, 168, 168);
     --text-link-hover: rgb(41, 171, 226);
+    --text-user: rgba(18, 70, 88, 1);
 
     /** avatar */
     --avatar-bg: rgb(255, 255, 255);

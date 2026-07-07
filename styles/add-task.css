@@ -109,6 +109,10 @@ textarea::placeholder {
     cursor: pointer;
 }
 
+.medium img {
+    filter: invert(1);
+}
+
 #urgent:checked+label {
     background-color: var(--priority-urgent);
 }
@@ -127,17 +131,60 @@ textarea::placeholder {
     filter: brightness(0) invert(1);
 }
 
-.assignet-to {
-    margin-top: 4px;
-}
-
 .assignet-to::placeholder {
     opacity: 1;
     color: black;
 }
 
+.dropdown-list label {
+    display: block;
+}
+
 .input-wrapper {
     position: relative;
+}
+
+.dropdown-content a,
+.dropdown-content label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 8px;
+    border-radius: 10px;
+    margin-right: 40px;
+    cursor: pointer;
+}
+
+.contact-info-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown-content a:hover,
+.dropdown-content label:hover {
+    background-color: var(--main-bg-color);
+    margin-right: 40px;
+}
+
+.dropdown-content {
+    display: none;
+}
+
+.dropdown-list {
+    position: relative;
+}
+
+.dropdown-list .dropdown-content {
+    position: absolute;
+    background-color: white;
+    z-index: 10;
+    border-radius: 10px;
+    width: 100%;
 }
 
 .input-wrapper input {
@@ -150,7 +197,16 @@ textarea::placeholder {
     right: 16px;
     top: 50%;
     transform: translateY(-50%);
+    background-color: white;
+    border: none;
 }
+
+.input-icon:hover{
+    background-color: var(--main-bg-color);
+    border-radius: 50%;
+}
+
+
 
 .category::placeholder {
     opacity: 1;
@@ -213,25 +269,14 @@ footer button {
     background-color: var(--ui-light);
 }
 
-.input-wrapper a {
-    display: block;
-    margin-left: 8px;
-    padding: 8px 8px;
-    color: black;
-    text-decoration: none;
+.contact-avatar {
+    width: 32px !important;
+    height: 32px !important;
 }
 
-.input-wrapper a:hover {
-    background-color: var(--main-bg-color);
-    border-radius: 10px;
-    margin-right: 32px;
-}
-
-.input-wrapper .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    border-radius: 0 0 10px 10px;
-    width: 100%;
-    z-index: 10;
+.selected-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
 }

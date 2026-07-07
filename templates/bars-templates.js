@@ -88,7 +88,7 @@ function getTopbarTemplate(helpLink, accountAvatar) {
         <div class="topbar-right">
             ${helpLink}
             <div class="account-menu-wrapper">
-                <button class="account-avatar" type="button" aria-label="Open account menu" aria-expanded="false" aria-controls="accountMenu" style="--account-avatar-bg:${accountAvatar.backgroundColor}; --account-avatar-text:${accountAvatar.textColor}">
+                <button class="account-avatar" type="button" aria-label="Open account menu" aria-expanded="false" aria-controls="accountMenu">
                     ${accountAvatar.initials}
                 </button>
                 <nav id="accountMenu" class="account-menu" aria-label="Account menu">

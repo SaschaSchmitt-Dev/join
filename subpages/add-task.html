@@ -19,6 +19,7 @@
     <script src="../script.js" defer></script>
     <script src="../templates/bars-templates.js" defer></script>
     <script src="../scripts/bars.js" defer></script>
+    <script src="../scripts/add-task.js" defer></script>
 </head>
 
 <body data-page="add-task">
@@ -36,7 +37,7 @@
                     <label class="label-textarea" for="description">Description</label>
                     <textarea class="textarea" type="text" placeholder="Enter a Description"></textarea>
                     <label class="label" for="due-date">Due date<span style="color: #FF8190">*</span></label>
-                    <input class="input-field" type="text" required placeholder="dd/mm/yyy">
+                    <input class="input-field" type="text"  required placeholder="dd/mm/yyy" onfocus="this.type='date'" onblur="if(!this.value) this.type='text'">
                 </div>
                 <div class="horizontal-divider"></div>
                 <div class="add-task-fields-right">
@@ -46,26 +47,36 @@
                         <label id="urgent" for="urgent">Urgent <img src="../assets/icons/urgent-priority.png"
                                 alt=""></label>
 
-                        <input type="radio" name="priority" id="medium" value="medium">
-                        <label id="medium" for="medium">Medium <img src="../assets/icons/medium-priority.png"
-                                alt=""></label>
+                        <input type="radio" name="priority" id="medium" value="medium" checked>
+                        <label id="medium" for="medium" class="medium">Medium <img
+                                src="../assets/icons/medium-priority.png" alt=""></label>
 
                         <input type="radio" name="priority" id="low" value="low">
                         <label id="low" for="low">Low <img src="../assets/icons/low-priority.png" alt=""></label>
                     </div>
-                    <div class="dropdown-list"></div>
-                    <label for="assignet-to" class="assignet-to">Assignet to</label>
-                    <div class="input-wrapper">
-                        <input type="text" class="assignet-to" id="assignet-to" placeholder="Select contacts to assign">
-                        <img class="input-icon" src="../assets/icons/arrow-dropdown.png" alt="">
+                    <div class="dropdown-list">
+                        <label for="assignet-to" class="assignet-to">Assignet to</label>
+                        <div class="input-wrapper">
+                            <input type="text" class="assignet-to" id="assignet-to"
+                                placeholder="Select contacts to assign">
+                            <img class="input-icon" src="../assets/icons/arrow-dropdown.png" alt="">
+                        </div>
+                        <div class="dropdown-content"></div>
+                        <div class="selected-contacts"></div>
                     </div>
-                    <label for="assignet-to">Category<span style="color: #FF8190">*</span></label>
-                    <div class="input-wrapper">
-                        <input type="text" class="assignet-to" id="assignet-to" placeholder="Select contacts to assign">
-                        <img class="input-icon" src="../assets/icons/arrow-dropdown.png" alt="">
+                    <div class="dropdown-list">
+                        <label for="category" class="category">Category<span style="color: #FF8190">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" class="category" id="category" placeholder="Select task category" readonly>
+                            <img class="input-icon" src="../assets/icons/arrow-dropdown.png" alt="">
+                            <div class="dropdown-content">
+                                <a href="">Technikal task</a>
+                                <a href="">User Story</a>
+                            </div>
+                        </div>
+                        <label class="label" for="title">Subtasks</label>
+                        <input class="input-field" type="text" required placeholder="Add new subtasks">
                     </div>
-                    <label class="label" for="title">Subtasks</label>
-                    <input class="input-field" type="text" required placeholder="Add new subtasks">
                 </div>
             </form>
             <footer>

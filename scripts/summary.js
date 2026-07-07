@@ -62,13 +62,16 @@ function setSummaryValue(elementId, value) {
 }
 
 function renderActiveUser() {
+    const greetingElement = document.querySelector(".summary-user h2");
     const activeUserElement = document.getElementById("activeUser");
     const activeUser = getActiveUser();
 
-    if (!activeUserElement || !activeUser) return;
+    if (!greetingElement || !activeUserElement || !activeUser) return;
 
-    activeUserElement.textContent = activeUser.name;
-    activeUserElement.style.color = getUserColor(activeUser.userColor);
+    const isGuest = activeUser.id === guestUserId;
+    greetingElement.textContent = isGuest ? "Good morning!" : "Good morning,";
+    activeUserElement.textContent = isGuest ? "" : activeUser.name;
+    activeUserElement.style.color = "var(--text-user)";
 }
 
 function getSummarySection() {
