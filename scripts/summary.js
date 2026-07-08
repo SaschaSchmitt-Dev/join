@@ -102,6 +102,19 @@ function setSummaryValue(elementId, value) {
 
 
 /**
+ * Gets the greeting for the current time of day.
+ * @returns {string} The time based greeting.
+ */
+function getTimeBasedGreeting() {
+    const currentHour = new Date().getHours();
+
+    if (currentHour < 12) return "Good morning";
+    if (currentHour < 18) return "Good afternoon";
+    return "Good evening";
+}
+
+
+/**
  * Shows the active user on the summary page.
  */
 function renderActiveUser() {
@@ -112,7 +125,9 @@ function renderActiveUser() {
     if (!greetingElement || !activeUserElement || !activeUser) return;
 
     const isGuest = activeUser.id === guestUserId;
-    greetingElement.textContent = isGuest ? "Good morning!" : "Good morning,";
+    const greeting = getTimeBasedGreeting();
+
+    greetingElement.textContent = isGuest ? `${greeting}!` : `${greeting},`;
     activeUserElement.textContent = isGuest ? "" : activeUser.name;
     activeUserElement.style.color = "var(--text-user)";
 }
