@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../styles/fonts.css">
     <link rel="stylesheet" href="../styles/sidebar.css">
     <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/board.css">
     <link rel="stylesheet" href="../style.css">
 
     <script src="../script.js" defer></script>
@@ -25,7 +26,136 @@
     <section class="page-content" aria-label="Seiteninhalt">
         <header id="topbar" class="topbar"></header>
 
-        <main class="main-content"></main>
+        <main class="main-content">
+            <section class="board">
+                <article class="board-header">
+                    <h1>Board</h1>
+                    <div class="board-actions">
+                        <label class="task-search" for="taskSearch">
+                            <input id="taskSearch" type="search" placeholder="Find Task">
+                            <span class="search-divider" aria-hidden="true"></span>
+                            <span class="search-icon-button">
+                                <img class="search-icon" src="../assets/icons/search-icon.png" alt="">
+                            </span>
+                        </label>
+                        <button class="add-task-button" type="button">Add task <span
+                                aria-hidden="true">+</span></button>
+                    </div>
+                </article>
+                <article class="board-columns">
+                    <div class="board-column" id="toDo">
+                        <div class="column-header">
+                            <h2>To do</h2>
+                            <button class="add-column-task" type="button" aria-label="Add task to To do">
+                                <img src="../assets/icons/add-column-task.png" alt="">
+                            </button>
+                        </div>
+                        <div class="task-card" id="taskNo001">
+                            <span class="task-category user-story">User Story</span>
+                            <h3>Contact Form &amp; Imprint</h3>
+                            <p>Create a contact form and imprint page...</p>
+                            <div class="task-progress">
+                                <span class="progress-bar progress-0"><span></span></span>
+                                <span>0/2 Subtasks</span>
+                            </div>
+                            <div class="task-footer">
+                                <div class="task-users">
+                                    <span class="avatar profile-orange">AN</span>
+                                    <span class="avatar profile-turquoise text-dark">EM</span>
+                                    <span class="avatar profile-violet">MB</span>
+                                </div>
+                                <img class="priority-icon" src="../assets/icons/urgent-priority.png"
+                                    alt="Urgent priority">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="board-column" id="inProgress">
+                        <div class="column-header">
+                            <h2>In progress</h2>
+                            <button class="add-column-task" type="button" aria-label="Add task to In progress">
+                                <img src="../assets/icons/add-column-task.png" alt="">
+                            </button>
+                        </div>
+                        <div class="task-card" id="taskNo002">
+                            <span class="task-category user-story">User Story</span>
+                            <h3>Kochwelt Page &amp; Recipe Recommender</h3>
+                            <p>Build start page with recipe recommendation...</p>
+                            <div class="task-progress">
+                                <span class="progress-bar progress-50"><span></span></span>
+                                <span>1/2 Subtasks</span>
+                            </div>
+                            <div class="task-footer">
+                                <div class="task-users">
+                                    <span class="avatar profile-orange">AN</span>
+                                    <span class="avatar profile-turquoise text-dark">EM</span>
+                                    <span class="avatar profile-violet">MB</span>
+                                </div>
+                                <img class="priority-icon" src="../assets/icons/medium-priority.png"
+                                    alt="Medium priority">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="board-column" id="awaitFeedback">
+                        <div class="column-header">
+                            <h2>Await feedback</h2>
+                            <button class="add-column-task" type="button" aria-label="Add task to Await feedback">
+                                <img src="../assets/icons/add-column-task.png" alt="">
+                            </button>
+                        </div>
+                        <div class="task-card" id="taskNo003">
+                            <span class="task-category technical-task">Technical Task</span>
+                            <h3>HTML Base Template Creation</h3>
+                            <p>Create reusable HTML base templates...</p>
+                            <div class="task-footer">
+                                <div class="task-users">
+                                    <span class="avatar profile-orange">AN</span>
+                                    <span class="avatar profile-turquoise text-dark">EM</span>
+                                    <span class="avatar profile-violet">MB</span>
+                                </div>
+                                <img class="priority-icon" src="../assets/icons/low-priority.png" alt="Low priority">
+                            </div>
+                        </div>
+                        <div class="task-card" id="taskNo005">
+                            <span class="task-category user-story">User Story</span>
+                            <h3>Daily Kochwelt Recipe</h3>
+                            <p>Implement daily recipe and portion calculator...</p>
+                            <div class="task-footer">
+                                <div class="task-users">
+                                    <span class="avatar profile-orange">AN</span>
+                                    <span class="avatar profile-turquoise text-dark">EM</span>
+                                    <span class="avatar profile-violet">MB</span>
+                                </div>
+                                <img class="priority-icon" src="../assets/icons/medium-priority.png"
+                                    alt="Medium priority">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="board-column" id="done">
+                        <div class="column-header">
+                            <h2>Done</h2>
+                        </div>
+                        <div class="task-card" id="taskNo004">
+                            <span class="task-category technical-task">Technical Task</span>
+                            <h3>CSS Architecture Planning</h3>
+                            <p>Define CSS naming conventions and structure...</p>
+                            <div class="task-progress">
+                                <span class="progress-bar progress-100"><span></span></span>
+                                <span>2/2 Subtasks</span>
+                            </div>
+                            <div class="task-footer">
+                                <div class="task-users">
+                                    <span class="avatar profile-orange">AN</span>
+                                    <span class="avatar profile-turquoise text-dark">EM</span>
+                                    <span class="avatar profile-violet">MB</span>
+                                </div>
+                                <img class="priority-icon" src="../assets/icons/urgent-priority.png"
+                                    alt="Urgent priority">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
     </section>
 </body>
 

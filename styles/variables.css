@@ -13,7 +13,9 @@
     --text-white: rgb(255, 255, 255);
     --text-link: rgb(168, 168, 168);
     --text-link-hover: rgb(41, 171, 226);
-    --text-user: rgba(18, 70, 88, 1);
+    --text-user: rgb(18, 70, 88);
+    --text-card-description: rgb(104, 104, 104);
+    --text-column-title: rgb(66, 82, 110);
 
     /** avatar */
     --avatar-bg: rgb(255, 255, 255);
@@ -28,6 +30,11 @@
     --ui-dark-active: rgb(9, 25, 49);
     --divider-color-blue: rgb(41, 171, 226);
     --divider-color-grey: rgb(209, 209, 209);
+    --board-input-border: rgb(168, 168, 168);
+    --board-input-border-hover: rgb(231, 231, 231);
+    --board-input-border-active: rgb(18, 70, 88);
+    --progress-bar-background: rgb(244, 244, 244);
+    --progress-bar-content: rgb(69, 137, 255);
 
     /** Scrollbar */
     --scrollbar-track-bg-color: rgb(236, 236, 236);

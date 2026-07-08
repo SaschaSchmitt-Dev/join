@@ -1,0 +1,341 @@
+.board {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1208px;
+    gap: 48px;
+    font-family: 'Inter', sans-serif;
+}
+
+.board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 40px;
+}
+
+.board-header h1 {
+    color: var(--text-primary);
+}
+
+.board-actions {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.task-search {
+    display: flex;
+    align-items: center;
+    width: 312px;
+    height: 48px;
+    padding: 0 8px 0 16px;
+    border: 1px solid var(--board-input-border);
+    border-radius: 10px;
+    background-color: var(--assets-bg-color);
+}
+
+.task-search:hover {
+    border-color: var(--board-input-border-hover);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
+}
+
+.task-search:focus-within {
+    border-color: var(--board-input-border-active);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
+}
+
+.task-search input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+}
+
+.task-search input::placeholder {
+    color: var(--text-tertiary);
+    opacity: 1;
+}
+
+.search-divider {
+    width: 1px;
+    height: 31px;
+    margin: 0 12px 0 16px;
+    background: var(--divider-color-grey);
+}
+
+.search-icon-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.search-icon-button:hover {
+    background: var(--ui-light-hover);
+}
+
+.search-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.add-task-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 160px;
+    height: 48px;
+    gap: 8px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--ui-dark);
+    color: var(--text-white);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.add-task-button:hover {
+    background: var(--ui-light);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.add-task-button span {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.board-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+}
+
+.board-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    gap: 16px;
+}
+
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 244px;
+    height: 24px;
+}
+
+.column-header h2 {
+    color: var(--text-column-title);
+    font-size: 1.25rem;
+}
+
+.add-column-task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.add-column-task img {
+    width: 24px;
+    height: 24px;
+}
+
+.add-column-task:hover img {
+    opacity: 0.7;
+}
+
+.task-card {
+    display: flex;
+    flex-direction: column;
+    width: 252px;
+    padding: 16px;
+    gap: 24px;
+    border-radius: 24px;
+    background: var(--assets-bg-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+.task-card h3 {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.task-card p {
+    color: var(--text-card-description);
+}
+
+.task-category {
+    align-self: flex-start;
+    padding: 4px 16px;
+    border-radius: 8px;
+    color: var(--text-white);
+    font-size: 1rem;
+    line-height: 120%;
+}
+
+.user-story {
+    background: var(--profile-blue);
+}
+
+.technical-task {
+    background: var(--profile-turquoise);
+}
+
+.task-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.progress-bar {
+    flex: 1;
+    width: 110px;
+    height: 8px;
+    border-radius: 8px;
+    background: var(--progress-bar-background);
+    overflow: hidden;
+}
+
+.progress-bar span {
+    display: block;
+    height: 100%;
+    border-radius: 8px;
+    background: var(--progress-bar-content);
+}
+
+.progress-0 span {
+    width: 0;
+}
+
+.progress-50 span {
+    width: 50%;
+}
+
+.progress-100 span {
+    width: 100%;
+}
+
+.task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.task-users {
+    display: flex;
+    min-width: 0;
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    margin-left: -8px;
+    border: 1px solid var(--text-white);
+    border-radius: 50%;
+    color: var(--text-white);
+    font-size: 0.75rem;
+}
+
+.avatar:first-child {
+    margin-left: 0;
+}
+
+.avatar.profile-orange {
+    background: var(--profile-orange);
+}
+
+.avatar.profile-pink {
+    background: var(--profile-pink);
+}
+
+.avatar.profile-violet {
+    background: var(--profile-violet);
+}
+
+.avatar.profile-purple {
+    background: var(--profile-purple);
+}
+
+.avatar.profile-cyan {
+    background: var(--profile-cyan);
+}
+
+.avatar.profile-turquoise {
+    background: var(--profile-turquoise);
+}
+
+.avatar.profile-salmon {
+    background: var(--profile-salmon);
+}
+
+.avatar.profile-peach {
+    background: var(--profile-peach);
+}
+
+.avatar.profile-magenta {
+    background: var(--profile-magenta);
+}
+
+.avatar.profile-gold {
+    background: var(--profile-gold);
+}
+
+.avatar.profile-blue {
+    background: var(--profile-blue);
+}
+
+.avatar.profile-lime {
+    background: var(--profile-lime);
+}
+
+.avatar.profile-yellow {
+    background: var(--profile-yellow);
+}
+
+.avatar.profile-red {
+    background: var(--profile-red);
+}
+
+.avatar.profile-amber {
+    background: var(--profile-amber);
+}
+
+.avatar.text-dark {
+    color: var(--text-primary);
+}
+
+@media (max-width: 1240px) {
+    .board-columns {
+        gap: 18px;
+    }
+
+    .board-actions {
+        gap: 16px;
+    }
+}
