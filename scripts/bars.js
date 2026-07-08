@@ -12,10 +12,10 @@ function getCurrentPage() {
 /**
  * Checks if the legal layout should be shown.
  * @param {string} currentPage - The current page.
- * @returns {boolean} True if it is a legal page.
+ * @returns {boolean} True if it is a legal page and no user is logged in.
  */
 function shouldShowNotLoggedInLegalLayout(currentPage) {
-    return legalPages.includes(currentPage);
+    return legalPages.includes(currentPage) && !getActiveUser();
 }
 
 
@@ -111,7 +111,7 @@ function getAccountAvatar() {
 function renderMobileNav(activePage, isNotLoggedInLegalLayout) {
     const existingMobileNav = document.getElementById("mobileNav");
     if (isNotLoggedInLegalLayout) {
-        existingMobileNav?.remove();
+        updateNotLoggedInLegalMobileNav(existingMobileNav, activePage);
         return;
     }
     updateMobileNav(existingMobileNav, activePage);
@@ -129,6 +129,24 @@ function updateMobileNav(existingMobileNav, activePage) {
     mobileNav.className = "mobile-nav";
     mobileNav.setAttribute("aria-label", "Mobile navigation");
     mobileNav.innerHTML = getMobileNavTemplate(activePage);
+
+    if (!existingMobileNav) {
+        document.body.appendChild(mobileNav);
+    }
+}
+
+
+/**
+ * Updates the mobile legal nav for logged out users.
+ * @param {Object} existingMobileNav - The mobile nav.
+ * @param {Object} activePage - The active page classes.
+ */
+function updateNotLoggedInLegalMobileNav(existingMobileNav, activePage) {
+    const mobileNav = existingMobileNav || document.createElement("nav");
+    mobileNav.id = "mobileNav";
+    mobileNav.className = "mobile-nav not-logged-in-mobile-nav";
+    mobileNav.setAttribute("aria-label", "Mobile legal navigation");
+    mobileNav.innerHTML = getNotLoggedInLegalMobileNavTemplate(activePage);
 
     if (!existingMobileNav) {
         document.body.appendChild(mobileNav);

@@ -153,6 +153,15 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+
+    .not-logged-in-mobile-nav a {
+        font-size: 1rem;
+    }
+
+    .not-logged-in-mobile-nav img {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 @media (max-width: 360px) {

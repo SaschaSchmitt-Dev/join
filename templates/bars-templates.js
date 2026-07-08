@@ -90,6 +90,27 @@ function getMobileNavTemplate(activePage) {
 
 
 /**
+ * Gets the logged out legal mobile nav template.
+ * @param {Object} activePage - The active page classes.
+ * @returns {string} The mobile nav html.
+ */
+function getNotLoggedInLegalMobileNavTemplate(activePage) {
+    return `
+        <a class="login-link" href="./login.html" aria-label="Log In">
+            <img src="../assets/icons/login.png" alt="">
+            <span>Log In</span>
+        </a>
+        <a class="${activePage.privacyPolicy}" href="./privacy-policy.html" aria-label="Privacy Policy">
+            <span>Privacy Policy</span>
+        </a>
+        <a class="${activePage.legalNotice}" href="./legal-notice.html" aria-label="Legal Notice">
+            <span>Legal Notice</span>
+        </a>
+    `;
+}
+
+
+/**
  * Gets the help link template.
  * @returns {string} The help link html.
  */
