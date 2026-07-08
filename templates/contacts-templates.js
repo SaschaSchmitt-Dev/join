@@ -1,3 +1,7 @@
+/**
+ * Returns the contacts header template.
+ * @returns {string} The contacts header HTML.
+ */
 function getContactsHeaderTemplate() {
     return `
         <div class="contacts-header">
@@ -9,6 +13,12 @@ function getContactsHeaderTemplate() {
 }
 
 
+/**
+ * Returns the contact detail template.
+ * @param {Object} contact - The selected contact.
+ * @param {string} contactColor - The contact avatar color.
+ * @returns {string} The contact detail HTML.
+ */
 function getContactDetailTemplate(contact, contactColor) {
     return `
         <div class="contact-detail-content">
@@ -22,6 +32,12 @@ function getContactDetailTemplate(contact, contactColor) {
 }
 
 
+/**
+ * Returns the avatar template for the contact detail view.
+ * @param {Object} contact - The selected contact.
+ * @param {string} contactColor - The contact avatar color.
+ * @returns {string} The contact detail avatar HTML.
+ */
 function getContactDetailAvatarTemplate(contact, contactColor) {
     return `
         <div class="contact-detail-avatar" style="background:${contactColor}; color:${getUserTextColor(contactColor)}">
@@ -31,6 +47,11 @@ function getContactDetailAvatarTemplate(contact, contactColor) {
 }
 
 
+/**
+ * Returns the contact name section template.
+ * @param {Object} contact - The selected contact.
+ * @returns {string} The contact name HTML.
+ */
 function getContactDetailNameTemplate(contact) {
     return `
         <div class="contact-detail-name-box">
@@ -41,6 +62,10 @@ function getContactDetailNameTemplate(contact) {
 }
 
 
+/**
+ * Returns the edit and delete button template.
+ * @returns {string} The contact actions HTML.
+ */
 function getContactActionsTemplate() {
     return `
         <div class="contact-actions">
@@ -58,6 +83,11 @@ function getContactActionsTemplate() {
 }
 
 
+/**
+ * Returns the contact information template.
+ * @param {Object} contact - The selected contact.
+ * @returns {string} The contact information HTML.
+ */
 function getContactInformationTemplate(contact) {
     return `
         <div class="contact-information">
@@ -71,6 +101,11 @@ function getContactInformationTemplate(contact) {
 }
 
 
+/**
+ * Returns the contact group template.
+ * @param {string} letter - The contact group letter.
+ * @returns {string} The contact group HTML.
+ */
 function getContactGroupTemplate(letter) {
     return `
         <div class="contact-group">
@@ -80,6 +115,14 @@ function getContactGroupTemplate(letter) {
 }
 
 
+/**
+ * Returns one contact card template.
+ * @param {Object} contact - The contact data.
+ * @param {number} index - The contact index.
+ * @param {string} activeClass - The active contact class.
+ * @param {string} contactColor - The contact avatar color.
+ * @returns {string} The contact card HTML.
+ */
 function getContactCardTemplate(contact, index, activeClass, contactColor) {
     return `
         <div class="contact-card ${activeClass}" onclick="showContact(${index})">
@@ -90,6 +133,12 @@ function getContactCardTemplate(contact, index, activeClass, contactColor) {
 }
 
 
+/**
+ * Returns the contact avatar template.
+ * @param {Object} contact - The contact data.
+ * @param {string} contactColor - The contact avatar color.
+ * @returns {string} The contact avatar HTML.
+ */
 function getContactAvatarTemplate(contact, contactColor) {
     return `
         <div class="contact-avatar" style="background:${contactColor}; color:${getUserTextColor(contactColor)}">
@@ -99,6 +148,11 @@ function getContactAvatarTemplate(contact, contactColor) {
 }
 
 
+/**
+ * Returns the contact info template.
+ * @param {Object} contact - The contact data.
+ * @returns {string} The contact info HTML.
+ */
 function getContactInfoTemplate(contact) {
     return `
         <div class="contact-info">
@@ -109,6 +163,12 @@ function getContactInfoTemplate(contact) {
 }
 
 
+/**
+ * Returns one color option template.
+ * @param {string} color - The contact color.
+ * @param {string} activeClass - The active color class.
+ * @returns {string} The color option HTML.
+ */
 function getColorOptionTemplate(color, activeClass) {
     return `
         <button
