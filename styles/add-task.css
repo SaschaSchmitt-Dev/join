@@ -43,6 +43,20 @@ input {
 
 .input-field {
     margin: 0;
+    padding-left: 8px;
+}
+
+.input-field.input-error,
+.input-wrapper input.input-error {
+    border: 1px solid #FF8190;
+    outline: none;
+}
+
+.error-message {
+    color: #FF8190;
+    font-size: 14px;
+    min-height: 18px;
+    margin-top: 4px;
 }
 
 label {
@@ -55,18 +69,17 @@ label {
     border-radius: 10px;
     border: 1px solid #D1D1D1;
     margin-bottom: 20px;
+    padding: 8px;
 }
 
 input::placeholder {
     opacity: 0.3;
     font-size: 18px;
-    padding: 8px;
 }
 
 textarea::placeholder {
     opacity: 0.3;
     font-size: 18px;
-    padding: 8px;
 }
 
 .horizontal-divider {

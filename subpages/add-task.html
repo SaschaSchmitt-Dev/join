@@ -33,11 +33,13 @@
             <form class="add-task-form">
                 <div class="add-task-fields-left">
                     <label class="label" for="title">Title<span style="color: #FF8190">*</span></label>
-                    <input class="input-field" type="text" required placeholder="Enter a title">
+                    <input class="input-field" id="title" type="text" placeholder="Enter a title">
+                    <div class="error-message" id="title-error"></div>
                     <label class="label-textarea" for="description">Description</label>
-                    <textarea class="textarea" type="text" placeholder="Enter a Description"></textarea>
+                    <textarea class="textarea" id="description" type="text" placeholder="Enter a Description"></textarea>
                     <label class="label" for="due-date">Due date<span style="color: #FF8190">*</span></label>
-                    <input class="input-field" type="text"  required placeholder="dd/mm/yyy" onfocus="this.type='date'" onblur="if(!this.value) this.type='text'">
+                    <input class="input-field" id="due-date" type="text" placeholder="dd/mm/yyyy">
+                    <div class="error-message" id="due-date-error"></div>
                 </div>
                 <div class="horizontal-divider"></div>
                 <div class="add-task-fields-right">
@@ -74,6 +76,7 @@
                                 <a href="">User Story</a>
                             </div>
                         </div>
+                        <div class="error-message" id="category-error"></div>
                         <label class="label" for="title">Subtasks</label>
                         <input class="input-field" type="text" required placeholder="Add new subtasks">
                     </div>
@@ -82,7 +85,7 @@
             <footer>
                 <p><span style="color: #FF8190;">*</span>This field is required</p>
                 <div class="footer-buttons">
-                    <button class="clear">
+                    <button class="clear" onclick="clearForm()">
                         Clear <img src="../assets/icons/cancel.png" alt="">
                     </button>
                     <button class="create-task">
