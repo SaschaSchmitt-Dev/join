@@ -1,3 +1,6 @@
+/**
+ * Checks the login data.
+ */
 async function checkLogin() {
     const email = document.getElementById('email');
     const password = document.getElementById('password');
@@ -17,6 +20,13 @@ async function checkLogin() {
     completeUserLogin(userEntry);
 }
 
+
+/**
+ * Checks if the login inputs are empty.
+ * @param {Object} email - The email input.
+ * @param {Object} password - The password input.
+ * @returns {boolean} True if the input is invalid.
+ */
 function hasInvalidLoginInput(email, password) {
     const invalid = !email.value.trim() || !password.value.trim();
 
@@ -26,6 +36,13 @@ function hasInvalidLoginInput(email, password) {
     return invalid;
 }
 
+
+/**
+ * Gets a user by email and password.
+ * @param {string} email - The email.
+ * @param {string} password - The password.
+ * @returns {Object} The user entry.
+ */
 async function getUserByLogin(email, password) {
     const response = await fetch(getDatabaseUrl('users'));
     const users = await response.json();
@@ -37,12 +54,26 @@ async function getUserByLogin(email, password) {
     return matchingUser ? getUserEntry(matchingUser) : null;
 }
 
+
+/**
+ * Finds the matching user.
+ * @param {Object} users - The users.
+ * @param {string} email - The email.
+ * @param {string} password - The password.
+ * @returns {Array} The matching user.
+ */
 function getMatchingUser(users, email, password) {
     return Object.entries(users).find(function ([, user]) {
         return user.email === email && user.password === password;
     });
 }
 
+
+/**
+ * Creates a user entry object.
+ * @param {Array} userEntry - The user entry.
+ * @returns {Object} The user entry object.
+ */
 function getUserEntry(userEntry) {
     return {
         id: userEntry[0],
@@ -50,11 +81,20 @@ function getUserEntry(userEntry) {
     };
 }
 
+
+/**
+ * Finishes the user login.
+ * @param {Object} userEntry - The user entry.
+ */
 function completeUserLogin(userEntry) {
     setActiveUser(userEntry.id, userEntry.user);
     window.location.href = './summary.html';
 }
 
+
+/**
+ * Logs in as guest.
+ */
 async function loginAsGuest() {
     try {
         setGuestButtonDisabled(true);
@@ -67,12 +107,21 @@ async function loginAsGuest() {
     }
 }
 
+
+/**
+ * Disables or enables the guest button.
+ * @param {boolean} isDisabled - True if the button is disabled.
+ */
 function setGuestButtonDisabled(isDisabled) {
     const guestButton = document.querySelector('.guest-btn');
 
     guestButton.disabled = isDisabled;
 }
 
+
+/**
+ * Finishes the guest login.
+ */
 async function completeGuestLogin() {
     const guestUser = await resetGuestUser();
 
@@ -80,6 +129,11 @@ async function completeGuestLogin() {
     window.location.href = './summary.html';
 }
 
+
+/**
+ * Resets the guest user.
+ * @returns {Object} The guest user.
+ */
 async function resetGuestUser() {
     const guestUser = await getGuestUser();
     guestUser.contacts = await getGlobalData('contacts');
@@ -90,6 +144,11 @@ async function resetGuestUser() {
     return guestUser;
 }
 
+
+/**
+ * Gets the guest user.
+ * @returns {Object} The guest user.
+ */
 async function getGuestUser() {
     const response = await fetch(getUserDatabaseUrl(guestUserId));
     const guestUser = await response.json();
@@ -97,6 +156,11 @@ async function getGuestUser() {
     return guestUser || getDefaultGuestUser();
 }
 
+
+/**
+ * Gets default guest data.
+ * @returns {Object} The default guest user.
+ */
 function getDefaultGuestUser() {
     return {
         email: 'guest@login.com',
@@ -106,6 +170,12 @@ function getDefaultGuestUser() {
     };
 }
 
+
+/**
+ * Gets global data from the database.
+ * @param {string} path - The database path.
+ * @returns {Object} The data.
+ */
 async function getGlobalData(path) {
     const response = await fetch(getDatabaseUrl(path));
     const data = await response.json();
@@ -113,6 +183,11 @@ async function getGlobalData(path) {
     return data || {};
 }
 
+
+/**
+ * Saves the guest user in the database.
+ * @param {Object} guestUser - The guest user.
+ */
 async function putGuestUser(guestUser) {
     await fetch(getUserDatabaseUrl(guestUserId), {
         method: 'PUT',
@@ -123,6 +198,11 @@ async function putGuestUser(guestUser) {
     });
 }
 
+
+/**
+ * Shows a login error.
+ * @param {string} message - The error message.
+ */
 function showLoginError(message) {
     const errorMsg = document.getElementById('error-msg');
 
@@ -130,6 +210,10 @@ function showLoginError(message) {
     errorMsg.classList.add('show');
 }
 
+
+/**
+ * Changes the password icon.
+ */
 function togglePasswordIcon() {
     const password = document.getElementById('password');
     const icon = document.getElementById('toggle-icon');
@@ -139,6 +223,7 @@ function togglePasswordIcon() {
     icon.src = visible ? '../assets/icons/visability.png' : '../assets/icons/visability-off.png';
 }
 
+
 document.getElementById('password').addEventListener('input', togglePasswordIcon);
 document.getElementById('toggle-icon').addEventListener('click', () => {
     const password = document.getElementById('password');
@@ -146,11 +231,14 @@ document.getElementById('toggle-icon').addEventListener('click', () => {
     password.type = password.type === 'password' ? 'text' : 'password';
     togglePasswordIcon();
 });
-
 document.getElementById('email').addEventListener('focus', clearError);
 document.getElementById('password').addEventListener('focus', clearError);
 document.querySelector('.guest-btn').addEventListener('click', loginAsGuest);
 
+
+/**
+ * Clears the login error.
+ */
 function clearError() {
     document.getElementById('email').classList.remove('error');
     document.getElementById('password').classList.remove('error');

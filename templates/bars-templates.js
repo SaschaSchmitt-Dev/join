@@ -1,3 +1,8 @@
+/**
+ * Gets the sidebar template.
+ * @param {Object} activePage - The active page classes.
+ * @returns {string} The sidebar html.
+ */
 function getSidebarTemplate(activePage) {
     return `
         <div class="logo">
@@ -30,6 +35,12 @@ function getSidebarTemplate(activePage) {
     `;
 }
 
+
+/**
+ * Gets the legal sidebar template.
+ * @param {Object} activePage - The active page classes.
+ * @returns {string} The sidebar html.
+ */
 function getNotLoggedInLegalSidebarTemplate(activePage) {
     return `
         <div class="logo">
@@ -50,6 +61,12 @@ function getNotLoggedInLegalSidebarTemplate(activePage) {
     `;
 }
 
+
+/**
+ * Gets the mobile nav template.
+ * @param {Object} activePage - The active page classes.
+ * @returns {string} The mobile nav html.
+ */
 function getMobileNavTemplate(activePage) {
     return `
         <a class="${activePage.summary}" href="./summary.html" aria-label="Summary">
@@ -71,6 +88,11 @@ function getMobileNavTemplate(activePage) {
     `;
 }
 
+
+/**
+ * Gets the help link template.
+ * @returns {string} The help link html.
+ */
 function getHelpLinkTemplate() {
     return `
         <a class="help-link mobile-hide" href="./help.html">
@@ -79,6 +101,13 @@ function getHelpLinkTemplate() {
     `;
 }
 
+
+/**
+ * Gets the topbar template.
+ * @param {string} helpLink - The help link.
+ * @param {Object} accountAvatar - The account avatar.
+ * @returns {string} The topbar html.
+ */
 function getTopbarTemplate(helpLink, accountAvatar) {
     return `
         <div class="topbar-left">
@@ -102,6 +131,11 @@ function getTopbarTemplate(helpLink, accountAvatar) {
     `;
 }
 
+
+/**
+ * Gets the legal topbar template.
+ * @returns {string} The topbar html.
+ */
 function getNotLoggedInLegalTopbarTemplate() {
     return `
         <div class="topbar-left">

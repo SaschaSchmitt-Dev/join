@@ -1,18 +1,39 @@
 const pagesWithHelpLink = ["summary", "add-task", "board", "contacts"];
 const legalPages = ["privacy-policy", "legal-notice"];
 
+/**
+ * Gets the current page.
+ * @returns {string} The current page.
+ */
 function getCurrentPage() {
     return document.body.dataset.page;
 }
 
+/**
+ * Checks if the legal layout should be shown.
+ * @param {string} currentPage - The current page.
+ * @returns {boolean} True if it is a legal page.
+ */
 function shouldShowNotLoggedInLegalLayout(currentPage) {
     return legalPages.includes(currentPage);
 }
 
+
+/**
+ * Checks if a page is protected.
+ * @param {string} currentPage - The current page.
+ * @returns {boolean} True if the page is protected.
+ */
 function isProtectedPage(currentPage) {
     return !legalPages.includes(currentPage);
 }
 
+
+/**
+ * Redirects the user if he is not logged in.
+ * @param {string} currentPage - The current page.
+ * @returns {boolean} True if the user was redirected.
+ */
 function redirectLoggedOutUser(currentPage) {
     if (isProtectedPage(currentPage) && !getActiveUser()) {
         window.location.replace("./login.html");
@@ -22,10 +43,23 @@ function redirectLoggedOutUser(currentPage) {
     return false;
 }
 
+
+/**
+ * Gets the active class for a page.
+ * @param {string} currentPage - The current page.
+ * @param {string} page - The page to check.
+ * @returns {string} The active class.
+ */
 function getActiveClass(currentPage, page) {
     return currentPage === page ? "active" : "";
 }
 
+
+/**
+ * Gets all active page classes.
+ * @param {string} currentPage - The current page.
+ * @returns {Object} The active page classes.
+ */
 function getActivePage(currentPage) {
     return {
         summary: getActiveClass(currentPage, "summary"),
@@ -37,6 +71,13 @@ function getActivePage(currentPage) {
     };
 }
 
+
+/**
+ * Gets the topbar template.
+ * @param {string} currentPage - The current page.
+ * @param {boolean} isNotLoggedInLegalLayout - True if legal layout is used.
+ * @returns {string} The topbar html.
+ */
 function getRenderedTopbarTemplate(currentPage, isNotLoggedInLegalLayout) {
     if (isNotLoggedInLegalLayout) {
         return getNotLoggedInLegalTopbarTemplate();
@@ -48,6 +89,11 @@ function getRenderedTopbarTemplate(currentPage, isNotLoggedInLegalLayout) {
     return getTopbarTemplate(helpLink, accountAvatar);
 }
 
+
+/**
+ * Gets the account avatar data.
+ * @returns {Object} The account avatar.
+ */
 function getAccountAvatar() {
     const activeUser = getActiveUser();
 
@@ -56,6 +102,12 @@ function getAccountAvatar() {
     };
 }
 
+
+/**
+ * Renders the mobile nav.
+ * @param {Object} activePage - The active page classes.
+ * @param {boolean} isNotLoggedInLegalLayout - True if legal layout is used.
+ */
 function renderMobileNav(activePage, isNotLoggedInLegalLayout) {
     const existingMobileNav = document.getElementById("mobileNav");
     if (isNotLoggedInLegalLayout) {
@@ -65,6 +117,12 @@ function renderMobileNav(activePage, isNotLoggedInLegalLayout) {
     updateMobileNav(existingMobileNav, activePage);
 }
 
+
+/**
+ * Updates the mobile nav.
+ * @param {Object} existingMobileNav - The mobile nav.
+ * @param {Object} activePage - The active page classes.
+ */
 function updateMobileNav(existingMobileNav, activePage) {
     const mobileNav = existingMobileNav || document.createElement("nav");
     mobileNav.id = "mobileNav";
@@ -77,6 +135,10 @@ function updateMobileNav(existingMobileNav, activePage) {
     }
 }
 
+
+/**
+ * Closes the account menu.
+ */
 function closeAccountMenu() {
     const accountMenuWrapper = document.querySelector(".account-menu-wrapper");
     const accountAvatar = document.querySelector(".account-avatar");
@@ -85,6 +147,10 @@ function closeAccountMenu() {
     accountAvatar?.setAttribute("aria-expanded", "false");
 }
 
+
+/**
+ * Opens or closes the account menu.
+ */
 function toggleAccountMenu() {
     const accountMenuWrapper = document.querySelector(".account-menu-wrapper");
     const accountAvatar = document.querySelector(".account-avatar");
@@ -97,6 +163,10 @@ function toggleAccountMenu() {
     accountAvatar.setAttribute("aria-expanded", String(isOpen));
 }
 
+
+/**
+ * Starts the account menu.
+ */
 function initAccountMenu() {
     const accountMenuWrapper = document.querySelector(".account-menu-wrapper");
     const accountAvatar = document.querySelector(".account-avatar");
@@ -107,6 +177,12 @@ function initAccountMenu() {
     addLogoutEvent();
 }
 
+
+/**
+ * Adds the account menu events.
+ * @param {Object} accountMenuWrapper - The account menu wrapper.
+ * @param {Object} accountAvatar - The account avatar.
+ */
 function addAccountMenuEvents(accountMenuWrapper, accountAvatar) {
     accountAvatar.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -116,18 +192,33 @@ function addAccountMenuEvents(accountMenuWrapper, accountAvatar) {
     document.addEventListener("keydown", closeMenuOnEscape);
 }
 
+
+/**
+ * Closes the menu after a click outside.
+ * @param {Object} event - The click event.
+ * @param {Object} accountMenuWrapper - The account menu wrapper.
+ */
 function closeMenuOnOutsideClick(event, accountMenuWrapper) {
     if (!accountMenuWrapper.contains(event.target)) {
         closeAccountMenu();
     }
 }
 
+
+/**
+ * Closes the menu with escape.
+ * @param {Object} event - The key event.
+ */
 function closeMenuOnEscape(event) {
     if (event.key === "Escape") {
         closeAccountMenu();
     }
 }
 
+
+/**
+ * Adds the logout event.
+ */
 function addLogoutEvent() {
     const logoutLink = document.getElementById("logoutLink");
 
@@ -140,12 +231,23 @@ function addLogoutEvent() {
     });
 }
 
+
+/**
+ * Gets the sidebar template.
+ * @param {Object} activePage - The active page classes.
+ * @param {boolean} isNotLoggedInLegalLayout - True if legal layout is used.
+ * @returns {string} The sidebar html.
+ */
 function getSidebarTemplateByLayout(activePage, isNotLoggedInLegalLayout) {
     return isNotLoggedInLegalLayout
         ? getNotLoggedInLegalSidebarTemplate(activePage)
         : getSidebarTemplate(activePage);
 }
 
+
+/**
+ * Renders the sidebar and topbar.
+ */
 function renderBars() {
     const currentPage = getCurrentPage();
 
@@ -162,6 +264,7 @@ function renderBars() {
     renderMobileNav(activePage, isNotLoggedInLegalLayout);
     initAccountMenu();
 }
+
 
 renderBars();
 

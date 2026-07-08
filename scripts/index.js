@@ -1,3 +1,12 @@
-setTimeout(() => {
+const loginRedirectDelay = 1000;
+
+
+/**
+ * Redirects the start page to the login page.
+ */
+function redirectToLoginPage() {
     window.location.href = "./subpages/login.html";
-}, 1000);
+}
+
+
+setTimeout(redirectToLoginPage, loginRedirectDelay);
