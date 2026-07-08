@@ -75,6 +75,9 @@ document.addEventListener("click", function (event) {
 });
 
 
+/**
+ * Opens the add contact overlay.
+ */
 function openAddContactOverlay() {
     modalMode = "add";
 
@@ -86,6 +89,9 @@ function openAddContactOverlay() {
 }
 
 
+/**
+ * Opens the edit contact overlay.
+ */
 function openEditContactOverlay() {
     if (currentContactIndex === null) return;
 
@@ -102,11 +108,18 @@ function openEditContactOverlay() {
 }
 
 
+/**
+ * Closes the contact overlay.
+ */
 function closeAddContactOverlay() {
     overlay.classList.remove("active");
 }
 
 
+/**
+ * Toggles the mobile options menu.
+ * @param {Event} event - The click event.
+ */
 function toggleMobileOptionsMenu(event) {
     event.stopPropagation();
 
@@ -116,6 +129,9 @@ function toggleMobileOptionsMenu(event) {
 }
 
 
+/**
+ * Closes the mobile options menu.
+ */
 function closeMobileOptionsMenu() {
     if (!mobileOptionsMenu) return;
 
@@ -123,6 +139,9 @@ function closeMobileOptionsMenu() {
 }
 
 
+/**
+ * Loads and renders all contacts.
+ */
 async function loadContacts() {
     const data = await getContactsData();
     contacts = createContactsArray(data);
@@ -132,12 +151,21 @@ async function loadContacts() {
 }
 
 
+/**
+ * Gets the contacts data.
+ * @returns {Promise<Object|null>} The contacts data.
+ */
 async function getContactsData() {
     const response = await fetch(getContactsUrl());
     return await response.json();
 }
 
 
+/**
+ * Returns the contacts database URL.
+ * @param {string} contactId - The optional contact id.
+ * @returns {string} The contacts database URL.
+ */
 function getContactsUrl(contactId = "") {
     const path = contactId ? "/" + contactId : "";
     if (getCurrentUserId() === guestUserId) {
@@ -147,6 +175,11 @@ function getContactsUrl(contactId = "") {
 }
 
 
+/**
+ * Converts the contacts object to an array.
+ * @param {Object|null} data - The contacts data.
+ * @returns {Array} The contacts array.
+ */
 function createContactsArray(data) {
     if (!data) return [];
     return Object.entries(data).map(function ([id, contact]) {
@@ -155,6 +188,9 @@ function createContactsArray(data) {
 }
 
 
+/**
+ * Sorts contacts by name.
+ */
 function sortContactsByName() {
     contacts.sort(function (a, b) {
         return a.name.localeCompare(b.name);
@@ -162,6 +198,9 @@ function sortContactsByName() {
 }
 
 
+/**
+ * Renders the empty detail view if no contact is selected.
+ */
 function renderInitialContactDetails() {
     if (currentContactIndex === null) {
         renderEmptyContactDetails();
@@ -169,6 +208,10 @@ function renderInitialContactDetails() {
 }
 
 
+/**
+ * Shows the selected contact.
+ * @param {number} index - The contact index.
+ */
 function showContact(index) {
     const contact = contacts[index];
     if (!contact) return;
@@ -179,6 +222,9 @@ function showContact(index) {
 }
 
 
+/**
+ * Opens the mobile contact detail view.
+ */
 function openMobileContactDetails() {
     if (window.innerWidth <= 1024) {
         contactsPage.classList.add("mobile-detail-open");
@@ -186,12 +232,19 @@ function openMobileContactDetails() {
 }
 
 
+/**
+ * Closes the mobile contact detail view.
+ */
 function closeMobileContactView() {
     contactsPage.classList.remove("mobile-detail-open");
     closeMobileOptionsMenu();
 }
 
 
+/**
+ * Handles the contact form submit.
+ * @param {Event} event - The submit event.
+ */
 function handleContactSubmit(event) {
     event.preventDefault();
     if (modalMode === "edit") {
@@ -202,6 +255,9 @@ function handleContactSubmit(event) {
 }
 
 
+/**
+ * Deletes the selected contact.
+ */
 async function deleteContact() {
     const contact = contacts[currentContactIndex];
     if (!contact) return;
@@ -214,6 +270,11 @@ async function deleteContact() {
 }
 
 
+/**
+ * Deletes a contact from the database.
+ * @param {string} contactId - The contact id.
+ * @returns {Promise<Response>} The delete request.
+ */
 function deleteContactFromFirebase(contactId) {
     return fetch(getContactsUrl(contactId), {
         method: "DELETE"
@@ -221,6 +282,10 @@ function deleteContactFromFirebase(contactId) {
 }
 
 
+/**
+ * Removes a contact from assigned tasks.
+ * @param {string} contactId - The contact id.
+ */
 async function removeContactFromAssignedTasks(contactId) {
     const tasks = await getContactTasks();
     const updates = getTaskAssignmentUpdates(tasks, contactId);
@@ -229,6 +294,10 @@ async function removeContactFromAssignedTasks(contactId) {
 }
 
 
+/**
+ * Gets the task entries.
+ * @returns {Promise<Array>} The task entries.
+ */
 async function getContactTasks() {
     const response = await fetch(getContactTasksUrl());
     const tasks = await response.json();
@@ -237,6 +306,11 @@ async function getContactTasks() {
 }
 
 
+/**
+ * Returns the tasks database URL.
+ * @param {string} taskId - The optional task id.
+ * @returns {string} The tasks database URL.
+ */
 function getContactTasksUrl(taskId = "") {
     const path = taskId ? "/" + taskId : "";
 
@@ -247,6 +321,12 @@ function getContactTasksUrl(taskId = "") {
 }
 
 
+/**
+ * Gets updates for assigned tasks.
+ * @param {Array} tasks - The task entries.
+ * @param {string} contactId - The contact id.
+ * @returns {Array} The task updates.
+ */
 function getTaskAssignmentUpdates(tasks, contactId) {
     return tasks
         .map(([taskId, task]) => getTaskAssignmentUpdate(taskId, task, contactId))
@@ -254,6 +334,13 @@ function getTaskAssignmentUpdates(tasks, contactId) {
 }
 
 
+/**
+ * Gets one task assignment update.
+ * @param {string} taskId - The task id.
+ * @param {Object} task - The task data.
+ * @param {string} contactId - The contact id.
+ * @returns {Object|null} The task update or null.
+ */
 function getTaskAssignmentUpdate(taskId, task, contactId) {
     const assignedTo = getAssignmentsWithoutContact(task, contactId);
 
@@ -263,6 +350,12 @@ function getTaskAssignmentUpdate(taskId, task, contactId) {
 }
 
 
+/**
+ * Removes a contact from a task assignment list.
+ * @param {Object} task - The task data.
+ * @param {string} contactId - The contact id.
+ * @returns {Array} The filtered assignments.
+ */
 function getAssignmentsWithoutContact(task, contactId) {
     return (task.assignedTo || []).filter(function (assignedUser) {
         return assignedUser.id !== contactId || assignedUser.type !== "contact";
@@ -270,6 +363,11 @@ function getAssignmentsWithoutContact(task, contactId) {
 }
 
 
+/**
+ * Updates the assigned contacts of a task.
+ * @param {Object} update - The task update data.
+ * @returns {Promise<Response>} The update request.
+ */
 function updateTaskAssignments(update) {
     return fetch(getContactTasksUrl(update.taskId), {
         method: "PATCH",
@@ -279,6 +377,9 @@ function updateTaskAssignments(update) {
 }
 
 
+/**
+ * Closes all contact interfaces.
+ */
 function closeContactInterfaces() {
     closeMobileOptionsMenu();
     closeAddContactOverlay();
@@ -286,6 +387,9 @@ function closeContactInterfaces() {
 }
 
 
+/**
+ * Handles the secondary modal button.
+ */
 function handleSecondaryButton() {
     if (modalMode === "edit") {
         deleteContact();
@@ -293,100 +397,4 @@ function handleSecondaryButton() {
     }
     closeAddContactOverlay();
 }
-
-
-async function createContact() {
-    const newContact = getContactFormData();
-    await postNewContact(newContact);
-    addContactForm.reset();
-    closeAddContactOverlay();
-    await loadContacts();
-    showContactToast("Contact successfully created");
-}
-
-
-function getContactFormData() {
-    return {
-        name: document.getElementById("contact-name").value.trim(),
-        email: document.getElementById("contact-email").value.trim(),
-        phone: document.getElementById("contact-phone").value.trim(),
-        color: selectedContactColor || getRandomContactColor()
-    };
-}
-
-
-function postNewContact(contact) {
-    return fetch(getContactsUrl(), {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contact)
-    });
-}
-
-
-async function saveContact() {
-    const contact = contacts[currentContactIndex];
-    if (!contact) return;
-    await patchContact(contact.id, getUpdatedContactData(contact));
-    await loadContacts();
-    currentContactIndex = getContactIndexById(contact.id);
-    renderSavedContact();
-    closeAddContactOverlay();
-}
-
-
-function getUpdatedContactData(contact) {
-    return {
-        name: document.getElementById("contact-name").value.trim(),
-        email: document.getElementById("contact-email").value.trim(),
-        phone: document.getElementById("contact-phone").value.trim(),
-        color: selectedContactColor || contact.color || getRandomContactColor(),
-        contactColor: null
-    };
-}
-
-
-function patchContact(contactId, updatedContact) {
-    return fetch(getContactsUrl(contactId), {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedContact)
-    });
-}
-
-
-function getContactIndexById(contactId) {
-    return contacts.findIndex(function (contact) {
-        return contact.id === contactId;
-    });
-}
-
-
-function renderSavedContact() {
-    if (currentContactIndex === -1) return;
-    renderContacts();
-    renderContactDetails(contacts[currentContactIndex]);
-}
-
-
-function setAddMode() {
-    resetAddModalText();
-    resetAddAvatar();
-    setAddButtons();
-    selectedContactColor = getRandomContactColor();
-    clearColorOptions();
-}
-
-
-function showContactToast(message) {
-    if (!contactToast) return;
-
-    contactToast.textContent = message;
-    contactToast.classList.add("active");
-
-    setTimeout(function () {
-        contactToast.classList.remove("active");
-    }, 2000);
-}
-
 loadContacts();

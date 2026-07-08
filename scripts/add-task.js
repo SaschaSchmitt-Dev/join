@@ -25,9 +25,25 @@ assignetToArrow.addEventListener('click', () => {
     dropdownToggle(assignetToArrow.parentElement);
 });
 
-closeDropdown(assignetToInput, renderSelectedContacts);
+closeDropdown(assignetToInput, () => {
+    assignetToInput.value = '';
+    assignetToInput.closest('.dropdown-list').querySelectorAll('.dropdown-content label').forEach((label) => {
+        label.style.display = '';
+    });
+    renderSelectedContacts();
+});
 
-categoryInput.addEventListener('click',()=>{
+assignetToInput.addEventListener('input', () => {
+    const query = assignetToInput.value.toLowerCase();
+    const dropdownContent = assignetToInput.closest('.dropdown-list').querySelector('.dropdown-content');
+    dropdownContent.style.display = 'block';
+    dropdownContent.querySelectorAll('label').forEach((label) => {
+        const name = label.querySelector('span').textContent.toLowerCase();
+        label.style.display = name.startsWith(query) ? '' : 'none';
+    });
+});
+
+categoryInput.addEventListener('click', () => {
     dropdownToggle(categoryInput.parentElement)
 })
 
@@ -83,3 +99,81 @@ function renderAssignetToContacts(contacts) {
 fetch(BASE_URL + 'contacts.json')
     .then((response) => response.json())
     .then((contacts) => renderAssignetToContacts(contacts));
+
+function showError(input, errorEl) {
+    input.classList.add('input-error');
+    errorEl.textContent = 'This field is required';
+}
+
+function clearError(input, errorEl) {
+    input.classList.remove('input-error');
+    errorEl.textContent = '';
+}
+
+const titleInput = document.getElementById('title');
+const titleError = document.getElementById('title-error');
+
+titleInput.addEventListener('blur', () => {
+    if (!titleInput.value.trim()) showError(titleInput, titleError);
+});
+titleInput.addEventListener('input', () => {
+    if (titleInput.value.trim()) clearError(titleInput, titleError);
+});
+
+const dueDateInput = document.getElementById('due-date');
+const dueDateError = document.getElementById('due-date-error');
+
+dueDateInput.addEventListener('focus', () => { dueDateInput.type = 'date'; });
+dueDateInput.addEventListener('blur', () => {
+    if (!dueDateInput.value) {
+        dueDateInput.type = 'text';
+        showError(dueDateInput, dueDateError);
+    } else {
+        clearError(dueDateInput, dueDateError);
+    }
+});
+dueDateInput.addEventListener('change', () => {
+    if (dueDateInput.value) clearError(dueDateInput, dueDateError);
+});
+
+const categoryError = document.getElementById('category-error');
+
+categoryInput.addEventListener('blur', () => {
+    if (!categoryInput.value.trim()) showError(categoryInput, categoryError);
+});
+categoryDropdownContent.querySelectorAll('a').forEach((option) => {
+    option.addEventListener('click', () => clearError(categoryInput, categoryError));
+});
+
+document.querySelector('.create-task').addEventListener('click', (e) => {
+    e.preventDefault();
+    const fields = [
+        { input: titleInput, error: titleError, isEmpty: () => !titleInput.value.trim() },
+        { input: dueDateInput, error: dueDateError, isEmpty: () => !dueDateInput.value },
+        { input: categoryInput, error: categoryError, isEmpty: () => !categoryInput.value.trim() },
+    ];
+    let firstInvalid = null;
+    fields.forEach(({ input, error, isEmpty }) => {
+        if (isEmpty()) {
+            if (input === dueDateInput) input.type = 'text';
+            showError(input, error);
+            firstInvalid = firstInvalid || input;
+        }
+    });
+    if (firstInvalid) firstInvalid.focus();
+});
+
+const descriptionInput = document.getElementById('description');
+
+function clearForm() {
+    titleInput.value = '';
+    descriptionInput.value = '';
+    dueDateInput.value = '';
+    assignetToInput.value = '';
+    categoryInput.value = '';
+    document.querySelectorAll('.contact-checkbox:checked').forEach((checkbox) => {
+        checkbox.checked = false;
+    });
+    renderSelectedContacts();
+    document.getElementById('medium').checked = true;
+}
