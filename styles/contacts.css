@@ -1423,3 +1423,48 @@
         font-size: 32px;
     }
 }
+
+@media (max-width: 380px) {
+    .contacts-page.mobile-detail-open .contact-details {
+        padding: 24px 10px 120px 10px;
+        overflow-x: hidden;
+    }
+
+    .contacts-page.mobile-detail-open .contact-detail-top {
+        gap: 14px;
+        align-items: center;
+    }
+
+    .contacts-page.mobile-detail-open .contact-detail-avatar {
+        width: 72px;
+        height: 72px;
+        min-width: 72px;
+        min-height: 72px;
+        font-size: 28px;
+        flex-shrink: 0;
+    }
+
+    .contacts-page.mobile-detail-open .contact-detail-name-box {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .contacts-page.mobile-detail-open .contact-detail-name-box h2 {
+        font-size: 22px;
+        line-height: 120%;
+        max-width: 100%;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+    .contacts-page.mobile-detail-open .contact-actions {
+        display: none;
+    }
+
+    .contacts-page.mobile-detail-open .contact-information {
+        margin-top: 32px;
+    }
+}
