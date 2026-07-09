@@ -35,7 +35,7 @@ h1 {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     line-height: 120%;
-    font-size: clamp(2.9375rem, 11vw, 3.75rem);
+    font-size: clamp(2.9375rem, 11vw, 3.8125rem);
 }
 
 h2 {
