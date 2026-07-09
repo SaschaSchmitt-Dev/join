@@ -78,6 +78,7 @@ a {
     width: calc(100% - 232px);
     height: 100dvh;
     margin-left: 232px;
+    min-width: 0;
 }
 
 .main-content {
@@ -85,8 +86,10 @@ a {
     flex-direction: column;
     width: 100%;
     max-width: 1208px;
+    min-width: 0;
     padding: 72px 20px 72px 96px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 @media (max-width: 1024px) {
