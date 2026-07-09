@@ -80,11 +80,10 @@ document.addEventListener("click", function (event) {
  */
 function openAddContactOverlay() {
     modalMode = "add";
-
     closeMobileOptionsMenu();
     setAddMode();
     addContactForm.reset();
-
+    addContactForm.classList.remove("submitted");
     overlay.classList.add("active");
 }
 
@@ -98,12 +97,9 @@ function openEditContactOverlay() {
     const contact = contacts[currentContactIndex];
 
     if (!contact) return;
-
     modalMode = "edit";
-
     closeMobileOptionsMenu();
     setEditMode(contact);
-
     overlay.classList.add("active");
 }
 
@@ -247,13 +243,14 @@ function closeMobileContactView() {
  */
 function handleContactSubmit(event) {
     event.preventDefault();
+    addContactForm.classList.add("submitted");
+    if (!addContactForm.checkValidity()) return;
     if (modalMode === "edit") {
         saveContact();
         return;
     }
     createContact();
 }
-
 
 /**
  * Deletes the selected contact.
@@ -301,7 +298,6 @@ async function removeContactFromAssignedTasks(contactId) {
 async function getContactTasks() {
     const response = await fetch(getContactTasksUrl());
     const tasks = await response.json();
-
     return Object.entries(tasks || {});
 }
 

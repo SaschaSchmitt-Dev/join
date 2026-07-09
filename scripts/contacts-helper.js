@@ -361,3 +361,4 @@ function showContactToast(message) {
         contactToast.classList.remove("active");
     }, 2000);
 }
+
