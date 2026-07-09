@@ -565,7 +565,7 @@
     color: #FF3D00;
     font-family: "Inter", sans-serif;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 #add-contact-form.submitted .input-field input:invalid {
@@ -1452,6 +1452,7 @@
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     }
 
+
     .contacts-page.mobile-detail-open .mobile-more-btn img {
         display: block;
         width: 24px;
@@ -1462,10 +1463,10 @@
     .mobile-options-menu {
         display: none;
         position: fixed;
-        right: 16px;
-        bottom: 160px;
-        width: 116px;
-        padding: 10px 0;
+        right: 8px;
+        bottom: 92px;
+        width: 140px;
+        padding: 12px 0;
         background: white;
         border-radius: 20px 20px 0 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
@@ -1479,31 +1480,23 @@
 
     .mobile-options-menu button {
         width: 100%;
-        height: 40px;
+        height: 48px;
         border: none;
         background: transparent;
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 0 16px;
+        padding: 0 20px;
         color: var(--text-primary);
         font-size: 16px;
         font-family: "Inter", sans-serif;
         cursor: pointer;
     }
 
-    .mobile-options-menu button:hover {
-        color: #29ABE2;
-    }
-
     .mobile-options-menu img {
         width: 24px;
         height: 24px;
         object-fit: contain;
-    }
-
-    .mobile-options-menu button:hover img {
-        filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(1323%) hue-rotate(165deg) brightness(94%) contrast(89%);
     }
 
     .color-picker {
@@ -1633,70 +1626,215 @@
 }
 
 @media (max-width: 380px) {
-    .contacts-page.mobile-detail-open .contact-details {
-        padding: 24px 10px 120px 10px;
-        overflow-x: hidden;
-    }
-
-    .contacts-page.mobile-detail-open .contact-detail-top {
-        gap: 14px;
+    .add-contact-overlay {
+        top: 80px;
+        bottom: 80px;
+        padding: 8px;
         align-items: center;
+        overflow: hidden;
     }
 
-    .contacts-page.mobile-detail-open .contact-detail-avatar {
-        width: 72px;
-        height: 72px;
-        min-width: 72px;
-        min-height: 72px;
-        font-size: 28px;
-        flex-shrink: 0;
+    .add-contact-modal {
+        width: calc(100vw - 16px);
+        max-height: calc(100dvh - 176px);
+        border-radius: 24px;
+        overflow: hidden;
     }
 
-    .contacts-page.mobile-detail-open .contact-detail-name-box {
-        min-width: 0;
-        flex: 1;
-    }
-
-    .contacts-page.mobile-detail-open .contact-detail-name-box h2 {
-        font-size: 22px;
-        line-height: 120%;
-        max-width: 100%;
-        white-space: normal;
-        overflow: visible;
-        text-overflow: unset;
-        overflow-wrap: break-word;
-        word-break: normal;
-    }
-
-    .contacts-page.mobile-detail-open .contact-actions {
-        display: none;
-    }
-
-    .contacts-page.mobile-detail-open .contact-information {
-        margin-top: 32px;
+    .modal-left {
+        height: 170px;
+        min-height: 170px;
+        padding: 50px 20px 18px;
+        border-radius: 24px 24px 0 0;
     }
 
     .modal-left h2 {
-        font-size: 36px;
+        font-size: 34px;
+        line-height: 1;
+        margin-bottom: 8px;
     }
 
     .modal-left p {
-        font-size: 17px;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .blue-line {
+        width: 80px;
+        height: 3px;
+        margin-top: 12px;
+    }
+
+    .contact-placeholder {
+        top: 170px;
+        width: 84px;
+        height: 84px;
+        min-width: 84px;
+        min-height: 84px;
+    }
+
+    .add-contact-modal:not(.edit-mode) .contact-placeholder img {
+        width: 84px;
+        height: 84px;
+    }
+
+    .contact-avatar-initials {
+        font-size: 34px;
     }
 
     .modal-right {
-        padding-left: 12px;
-        padding-right: 12px;
+        padding: 48px 12px 14px;
+        overflow: hidden;
+    }
+
+    #add-contact-form {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .input-field {
+        margin-bottom: 8px;
+    }
+
+    .input-field input {
+        height: 40px;
+        font-size: 16px;
+        padding: 0 38px 0 14px;
+    }
+
+    .input-field img {
+        top: 20px;
+        right: 14px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .contact-input-error {
+        margin-top: 3px;
+        font-size: 11px;
+    }
+
+    .modal-buttons {
+        padding-top: 8px;
+        padding-bottom: 0;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .cancel-btn {
+        display: none;
     }
 
     .create-btn {
-        width: 190px;
-        min-width: 190px;
+        width: 100%;
+        min-width: 0;
+        height: 44px;
+        font-size: 18px;
     }
 
-    .add-contact-modal.edit-mode .cancel-btn,
+    .close-modal {
+        top: 18px;
+        right: 18px;
+    }
+
+    .add-contact-modal.edit-mode .modal-left {
+        height: 135px;
+        min-height: 135px;
+        padding: 42px 20px 14px;
+    }
+
+    .add-contact-modal.edit-mode .modal-left h2 {
+        font-size: 30px;
+        line-height: 1;
+        margin-bottom: 6px;
+    }
+
+    .add-contact-modal.edit-mode .blue-line {
+        width: 80px;
+        margin-top: 8px;
+    }
+
+    .add-contact-modal.edit-mode .contact-placeholder {
+        top: 135px;
+        width: 68px;
+        height: 68px;
+        min-width: 68px;
+        min-height: 68px;
+    }
+
+    .add-contact-modal.edit-mode .contact-avatar-initials {
+        font-size: 28px;
+    }
+
+    .add-contact-modal.edit-mode .modal-right {
+        padding: 36px 12px 10px;
+        overflow: hidden;
+    }
+
+    .add-contact-modal.edit-mode .input-field {
+        margin-bottom: 5px;
+    }
+
+    .add-contact-modal.edit-mode .input-field input {
+        height: 34px;
+        font-size: 14px;
+        padding: 0 34px 0 12px;
+    }
+
+    .add-contact-modal.edit-mode .input-field img {
+        top: 17px;
+        right: 12px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .add-contact-modal.edit-mode .color-picker {
+        margin-bottom: 6px;
+    }
+
+    .add-contact-modal.edit-mode .color-picker h4 {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+    .add-contact-modal.edit-mode .color-options {
+        gap: 4px;
+    }
+
+    .add-contact-modal.edit-mode .color-option {
+        width: 17px;
+        height: 17px;
+    }
+
+    .add-contact-modal.edit-mode .modal-buttons {
+        width: 100%;
+        gap: 8px;
+        padding-top: 4px;
+        padding-bottom: 0;
+    }
+
+    .add-contact-modal:not(.edit-mode) .modal-right {
+        padding-bottom: 30px;
+    }
+
+    .add-contact-modal.edit-mode .cancel-btn {
+        display: flex;
+        width: 90px;
+        min-width: 90px;
+        height: 36px;
+        font-size: 15px;
+    }
+
     .add-contact-modal.edit-mode .create-btn {
-        width: 92px;
-        min-width: 92px;
+        flex: 1;
+        width: auto;
+        min-width: 0;
+        height: 36px;
+        font-size: 15px;
+    }
+
+    .add-contact-modal.edit-mode .create-btn img {
+        width: 16px;
+        height: 16px;
     }
 }
