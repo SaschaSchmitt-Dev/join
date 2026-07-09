@@ -234,7 +234,7 @@
 }
 
 .delete-contact-btn {
-    transition: transform 75ms end,
+    transition: transform 150ms ease-in-out,
         color 150ms ease-in-out;
 }
 
@@ -608,7 +608,8 @@
 }
 
 .create-btn {
-    width: 100%;
+    width: 214px;
+    min-width: 214px;
     height: 57px;
     background: var(--login-button-primary-bg);
     color: var(--text-white);
@@ -622,6 +623,7 @@
     font-size: 21px;
     font-family: "Inter", sans-serif;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .create-btn img {
@@ -707,7 +709,6 @@
     align-items: center;
     font-family: "Inter", sans-serif;
     font-size: 20px;
-    font-style: regular;
     font-weight: 400;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
     opacity: 0;
@@ -924,7 +925,7 @@
         background: var(--assets-bg-color);
         padding: 24px 24px 100px;
         box-shadow: none;
-        overflow-y: auto;
+        overflow-y: scroll;
     }
 
     .contact-card.active {
@@ -1044,12 +1045,6 @@
         flex-direction: column;
         overflow: hidden;
         position: relative;
-        transform: translateX(120%);
-        transition: transform 350ms ease;
-    }
-
-    .add-contact-overlay.active .add-contact-modal {
-        transform: translateX(0);
     }
 
     .modal-left {
@@ -1209,23 +1204,12 @@
     }
 
     .create-btn {
-        width: 214px;
-        min-width: 214px;
         height: 56px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        font-size: 21px;
-        border-radius: 10px;
-        white-space: nowrap;
     }
 
     .create-btn img {
         width: 18px;
         height: 18px;
-        object-fit: contain;
-        filter: brightness(0) invert(1);
     }
 
     .add-contact-modal.edit-mode .modal-left {
@@ -1234,20 +1218,12 @@
         padding: 88px 24px 32px;
     }
 
-    .add-contact-modal.edit-mode .modal-left p {
-        display: none;
-    }
-
     .add-contact-modal.edit-mode .contact-placeholder {
         top: 230px;
     }
 
     .add-contact-modal.edit-mode .modal-right {
         padding-top: 82px;
-    }
-
-    .add-contact-modal.edit-mode .modal-buttons {
-        gap: 16px;
     }
 
     .add-contact-modal.edit-mode .cancel-btn {
@@ -1458,7 +1434,7 @@
         bottom: 92px;
         width: 140px;
         padding: 12px 0;
-        background: white;
+        background: var(--assets-bg-color);
         border-radius: 20px 20px 0 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
         z-index: 10000;
@@ -1658,15 +1634,15 @@
 
     .contact-placeholder {
         top: 170px;
-        width: 84px;
-        height: 84px;
-        min-width: 84px;
-        min-height: 84px;
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        min-height: 60px;
     }
 
     .add-contact-modal:not(.edit-mode) .contact-placeholder img {
-        width: 84px;
-        height: 84px;
+        width: 60px;
+        height: 60px;
     }
 
     .contact-avatar-initials {
@@ -1716,7 +1692,7 @@
         display: none;
     }
 
-    .create-btn {
+    .add-contact-modal:not(.edit-mode) .create-btn {
         width: 100%;
         min-width: 0;
         height: 44px;
@@ -1817,9 +1793,9 @@
     }
 
     .add-contact-modal.edit-mode .create-btn {
-        flex: 1;
-        width: auto;
-        min-width: 0;
+        width: 96px;
+        min-width: 96px;
+        flex: none;
         height: 36px;
         font-size: 15px;
     }
