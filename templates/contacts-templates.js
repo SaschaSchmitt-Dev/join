@@ -67,14 +67,14 @@ function getContactDetailNameTemplate(contact) {
  * @returns {string} The contact actions HTML.
  */
 function getContactActionsTemplate() {
-    return `
+     return `
         <div class="contact-actions">
-            <button type="button" onclick="openEditContactOverlay()">
+            <button class="contact-action-btn edit-contact-btn" type="button" onclick="openEditContactOverlay()">
                 <img src="../assets/icons/edit.png" alt="Edit">
                 <span>Edit</span>
             </button>
 
-            <button type="button" onclick="deleteContact()">
+            <button class="contact-action-btn delete-contact-btn" type="button" onclick="deleteContact()">
                 <img src="../assets/icons/delete.png" alt="Delete">
                 <span>Delete</span>
             </button>

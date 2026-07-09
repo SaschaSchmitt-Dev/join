@@ -51,6 +51,24 @@
     height: 32px;
 }
 
+.add-contact-btn {
+    transition: background-color;
+}
+
+.add-contact-btn:hover {
+    background-color: #29ABE2;
+    color: white;
+}
+
+.add-contact-btn:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.contact-information .contact-email {
+    color: #29ABE2;
+    cursor: default;
+}
+
 .contact-group h3 {
     font-size: 20px;
     font-weight: 400;
@@ -173,7 +191,6 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    border: 3px solid white;
     color: white;
     display: flex;
     justify-content: center;
@@ -182,6 +199,9 @@
     font-family: "Inter", sans-serif;
     font-weight: 500;
     flex-shrink: 0;
+    border: 3px solid white;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
 
 .contact-detail-name-box h2 {
@@ -189,7 +209,6 @@
     font-family: "Inter", sans-serif;
     font-weight: 500;
     color: #000;
-
     margin: 0 0 12px;
 }
 
@@ -209,21 +228,42 @@
     color: var(--text-primary);
     font-size: 16px;
     font-family: "Inter", sans-serif;
+    font-weight: 400;
     padding: 0;
 }
 
-.contact-actions button:hover {
-    color: #29ABE2;
+.edit-contact-btn {
+    width: 56px;
+}
+
+.edit-contact-btn:hover {
+    font-weight: 700;
+    color: rgb(18, 70, 88);
+}
+
+.delete-contact-btn {
+    transition: transform 75ms end,
+        color 150ms ease-in-out;
+}
+
+.delete-contact-btn:hover {
+    color: rgb(18, 70, 88);
+    font-weight: 700;
+    transform: translateX(-1px);
+}
+
+.delete-contact-btn img {
+    transition: filter 150ms ease-in-out;
+}
+
+.delete-contact-btn:hover img {
+    filter: brightness(0) saturate(100%) invert(20%) sepia(25%) saturate(1200%) hue-rotate(155deg) brightness(90%) contrast(95%);
 }
 
 .contact-actions img {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
     object-fit: contain;
-}
-
-.contact-actions button:hover img {
-    filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(1323%) hue-rotate(165deg) brightness(94%) contrast(89%);
 }
 
 .contact-information h3 {
@@ -231,16 +271,15 @@
     font-family: "Inter", sans-serif;
     font-weight: 400;
     color: #000;
-    margin: 0 0 32px;
+    margin: 0 0 50px;
 }
 
 .contact-information h4 {
     font-family: "Inter", sans-serif;
-    font-style: normal;
     font-size: 16px;
     font-weight: 700;
     color: #000;
-    margin: 0 0 8px;
+    margin: 0 0 15px;
 }
 
 .contact-information a {
@@ -255,6 +294,7 @@
 .contact-information p {
     font-size: 16px;
     font-family: "Inter", sans-serif;
+    font-weight: 400;
     color: #000;
     margin: 0 0 22px;
 }
@@ -297,8 +337,8 @@
 }
 
 .add-contact-modal {
-    width: min(1110px, calc(100vw - 64px));
-    min-height: 500px;
+    width: min(1212px, calc(100vw - 64px));
+    height: min(592px, calc(100vh - 64px));
     background: white;
     border-radius: 30px;
     display: flex;
@@ -306,6 +346,24 @@
     position: relative;
     transform: translateX(120%);
     transition: transform 350ms ease;
+}
+
+.add-contact-modal button[type="submit"]:hover {
+    background-color: #091931;
+}
+
+#cancel-contact-btn:hover {
+    border: 2px solid var(--login-button-secondary-border);
+    background: var(--assets-bg-color);
+    color: var(--login-button-secondary-text);
+    transform: translateX(-1px);
+}
+
+.add-contact-modal button[type="submit"]:hover {
+    border: none;
+    background-color: #091931;
+    color: var(--text-white);
+    transform: translateX(-1px);
 }
 
 #add-contact-form {
@@ -320,11 +378,16 @@
 /*modal left desktop*/
 
 .modal-left {
-    width: 420px;
+    width: 467px;
+    height: 100%;
     background: var(--sidebar-bg-color);
     color: white;
-    padding: 110px 48px;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 140px 48px;
+    box-sizing: border-box;
 }
 
 .modal-left img {
@@ -333,14 +396,14 @@
 }
 
 .modal-left h2 {
-    font-size: 50px;
+    font-size: 61px;
     font-family: "Inter", sans-serif;
     font-weight: 700;
     margin-bottom: 8px;
 }
 
 .modal-left p {
-    font-size: 22px;
+    font-size: 27px;
     font-family: "Inter", sans-serif;
     font-weight: 400;
 }
@@ -348,7 +411,7 @@
 .blue-line {
     width: 90px;
     height: 3px;
-    background: var(--accent-color);
+    background: rgb(41, 171, 226);
     margin-top: 16px;
 }
 
@@ -388,8 +451,11 @@
 .contact-placeholder {
     width: 120px;
     height: 120px;
+    min-width: 120px;
+    min-height: 120px;
     border-radius: 50%;
-    background: #D1D1D1;
+    border: 3px solid white;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -397,32 +463,40 @@
     align-self: center;
     margin-left: 72px;
     margin-right: 72px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
 }
 
-.contact-placeholder img {
-    width: 56px;
-    height: 56px;
+.add-contact-modal:not(.edit-mode) .contact-placeholder {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.add-contact-modal:not(.edit-mode) .contact-placeholder img {
+    display: block;
+    width: 120px;
+    height: 120px;
     object-fit: contain;
 }
 
-.contact-avatar-initials {
+.add-contact-modal:not(.edit-mode) .contact-avatar-initials {
     display: none;
-    color: white;
-    font-family: "Inter", sans-serif;
-    font-size: 47px;
-    font-weight: 400;
 }
 
-.contact-placeholder.edit-mode {
+.add-contact-modal.edit-mode .contact-placeholder {
     background: #FF7A00;
 }
 
-.contact-placeholder.edit-mode img {
+.add-contact-modal.edit-mode .contact-placeholder img {
     display: none;
 }
 
-.contact-placeholder.edit-mode .contact-avatar-initials {
+.add-contact-modal.edit-mode .contact-avatar-initials {
     display: block;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 47px;
+    font-weight: 500;
 }
 
 /*modal right desktop*/
@@ -450,8 +524,9 @@
 
 .input-field input {
     width: 100%;
-    height: 48px;
-    padding: 0 48px 0 16px;
+    height: 50px;
+    padding: 0 48px 0 21px;
+    box-sizing: border-box;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     background: white;
@@ -473,7 +548,7 @@
 .input-field img {
     position: absolute;
     top: 50%;
-    right: 16px;
+    right: 21px;
     width: 24px;
     height: 24px;
     transform: translateY(-50%);
@@ -516,8 +591,12 @@
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.cancel-btn:hover img {
-    filter: brightness(0) saturate(100%) invert(58%) sepia(89%) saturate(1323%) hue-rotate(165deg) brightness(94%) contrast(89%);
+#cancel-contact-btn:hover,
+.cancel-btn:hover {
+    border: 2px solid var(--login-button-secondary-border);
+    background: var(--assets-bg-color);
+    color: var(--login-button-secondary-text);
+    transform: translateX(-1px);
 }
 
 .create-btn {
