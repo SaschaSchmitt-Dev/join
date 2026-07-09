@@ -75,8 +75,9 @@ a {
 .page-content {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: calc(100% - 232px);
     height: 100dvh;
+    margin-left: 232px;
 }
 
 .main-content {
@@ -99,5 +100,10 @@ a {
 
     .main-content {
         padding: 48px 20px 120px;
+    }
+
+    .page-content {
+        width: 100%;
+        margin-left: 0;
     }
 }
