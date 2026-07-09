@@ -35,7 +35,7 @@ h1 {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     line-height: 120%;
-    font-size: clamp(2.9375rem, 11vw, 3.75rem);
+    font-size: clamp(2.9375rem, 11vw, 3.8125rem);
 }
 
 h2 {
@@ -75,8 +75,10 @@ a {
 .page-content {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: calc(100% - 232px);
     height: 100dvh;
+    margin-left: 232px;
+    min-width: 0;
 }
 
 .main-content {
@@ -84,8 +86,10 @@ a {
     flex-direction: column;
     width: 100%;
     max-width: 1208px;
+    min-width: 0;
     padding: 72px 20px 72px 96px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 @media (max-width: 1024px) {
@@ -99,5 +103,10 @@ a {
 
     .main-content {
         padding: 48px 20px 120px;
+    }
+
+    .page-content {
+        width: 100%;
+        margin-left: 0;
     }
 }

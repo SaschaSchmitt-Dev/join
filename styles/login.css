@@ -107,9 +107,6 @@ body {
     padding-bottom: 16px;
     border-bottom: 3px solid var(--divider-color-blue);
     color: var(--text-primary);
-    font-family: 'Inter', sans-serif;
-    font-size: 3.75rem;
-    font-weight: 700;
 }
 
 .input-wrap {
@@ -303,7 +300,6 @@ body {
         justify-content: center;
         order: 3;
         width: 100%;
-        padding-top: 28px;
     }
 
     .signup-area span {
@@ -315,7 +311,6 @@ body {
         align-items: center;
         flex: 0;
         order: 2;
-        padding-top: 8px;
     }
 
     .card {
@@ -327,7 +322,6 @@ body {
     .card h1 {
         margin-bottom: 14px;
         padding-bottom: 8px;
-        font-size: 2.5rem;
     }
 
     .input-wrap {
@@ -376,7 +370,6 @@ body {
 
     .login-footer {
         order: 4;
-        padding-top: 24px;
     }
 
     .login-footer a {
@@ -385,12 +378,20 @@ body {
 }
 
 @media (max-width: 768px) {
+    .login-content {
+        padding: 24px 16px 18px;
+    }
+
     .login-header {
+        flex: 0 0 auto;
         order: 1;
     }
 
     .login-main {
+        flex: 0 0 auto;
         order: 2;
+        margin-top: clamp(16px, 3dvh, 48px);
+        padding-top: 0;
     }
 
     .signup-area {
@@ -398,7 +399,9 @@ body {
         justify-content: center;
         order: 3;
         width: 100%;
-        padding-top: 28px;
+        margin-top: 32px;
+        margin-bottom: auto;
+        padding-top: 0;
     }
 
     .signup-area span {
@@ -406,7 +409,9 @@ body {
     }
 
     .login-footer {
+        flex: 0 0 auto;
         order: 4;
+        padding-top: 0;
     }
 }
 
@@ -427,7 +432,9 @@ body {
         padding: 20px 14px 14px;
     }
 
-    .card h1 {
-        font-size: 2.25rem;
+    .signup-area {
+        margin-top: 16px;
+        margin-bottom: 16px;
     }
+
 }

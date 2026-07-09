@@ -415,11 +415,6 @@
         max-width: 396px;
     }
 
-    .board-header h1 {
-        grid-column: 1;
-        grid-row: 1;
-    }
-
     .board-actions {
         display: contents;
     }

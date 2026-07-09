@@ -202,6 +202,17 @@
     }
 }
 
+@media (max-width: 1120px) {
+    .main-content.summary-section {
+        align-items: center;
+        padding-left: 20px;
+    }
+
+    .summary-user {
+        display: none;
+    }
+}
+
 @media (max-width: 1024px) {
     .main-content.summary-section {
         align-items: center;
@@ -210,10 +221,6 @@
 
     .summary {
         justify-content: center;
-    }
-
-    .summary-user {
-        display: none;
     }
 
     .main-content.summary-section.mobile-greeting-active {
@@ -260,10 +267,6 @@
         gap: 8px;
         width: 100%;
         max-width: 396px;
-    }
-
-    .title h1 {
-        font-size: 3rem;
     }
 
     .title span {

@@ -2,10 +2,13 @@
     display: flex;
     flex: 0 0 232px;
     flex-direction: column;
-    position: sticky;
+    position: fixed;
     top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 25;
     width: 232px;
-    height: 100dvh;
+    height: auto;
     padding: 64px 0 20px;
     background: var(--sidebar-bg-color);
     color: var(--text-white);

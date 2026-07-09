@@ -53,6 +53,9 @@
     --board-input-border-active: rgb(18, 70, 88);
     --progress-bar-background: rgb(244, 244, 244);
     --progress-bar-content: rgb(69, 137, 255);
+    --contact-link: rgb(0, 124, 238);
+    --contact-overlay-bg: rgba(0, 0, 0, 0.25);
+    --contact-close-hover-bg: rgb(225, 230, 236);
 
     /** Scrollbar */
     --scrollbar-track-bg-color: rgb(236, 236, 236);
