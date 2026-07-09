@@ -87,6 +87,7 @@
     width: 18px;
     height: 18px;
     object-fit: contain;
+    cursor: pointer;
 }
 
 .add-task-button {
@@ -130,6 +131,12 @@
     gap: 16px;
 }
 
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .column-header {
     display: flex;
     justify-content: space-between;
@@ -161,6 +168,21 @@
 
 .add-column-task:hover img {
     opacity: 0.7;
+}
+
+.task-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 252px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px dashed rgba(104, 104, 104, 1);
+    background: var(--no-task-placeholder-bg);
+    color: var(--no-task-placeholder-text);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
 .task-card {
