@@ -30,7 +30,7 @@ function getSidebarTemplate(activePage) {
 
         <div class="legal-links">
             <a class="${activePage.privacyPolicy}" href="./privacy-policy.html">Privacy Policy</a>
-            <a class="${activePage.legalNotice}" href="./legal-notice.html">Legal notice</a>
+            <a class="${activePage.legalNotice}" href="./legal-notice.html">Legal Notice</a>
         </div>
     `;
 }
@@ -56,7 +56,7 @@ function getNotLoggedInLegalSidebarTemplate(activePage) {
 
         <div class="legal-links">
             <a class="${activePage.privacyPolicy}" href="./privacy-policy.html">Privacy Policy</a>
-            <a class="${activePage.legalNotice}" href="./legal-notice.html">Legal notice</a>
+            <a class="${activePage.legalNotice}" href="./legal-notice.html">Legal Notice</a>
         </div>
     `;
 }
