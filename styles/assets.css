@@ -19,17 +19,23 @@ input {
     background-color: var(--ui-light-hover);
 }
 
-.main-content::-webkit-scrollbar {
-    width: 6px;
+* {
+    scrollbar-color: var(--scrollbar-secondary-thumb-color) var(--scrollbar-track-bg-color);
+    scrollbar-width: thin;
 }
 
-.main-content::-webkit-scrollbar-track {
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track {
     background: var(--scrollbar-track-bg-color);
     border-radius: 999px;
     box-shadow: inset 0 0 8px var(--scrollbar-track-shadow-color);
 }
 
-.main-content::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, var(--scrollbar-primary-thumb-color), var(--scrollbar-secondary-thumb-color), var(--scrollbar-tertiary-thumb-color));
     border-radius: 999px;
     border: 1px solid var(--scrollbar-thumb-border-color);
