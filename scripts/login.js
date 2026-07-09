@@ -5,17 +5,11 @@ async function checkLogin() {
     const email = document.getElementById('email');
     const password = document.getElementById('password');
 
-    if (hasInvalidLoginInput(email, password)) {
-        showLoginError('Check your email and password. Please try again.');
-        return;
-    }
+    if (hasInvalidLoginInput(email, password)) return showLoginError('Check your email and password. Please try again.');
 
     const userEntry = await getUserByLogin(email.value.trim(), password.value.trim());
 
-    if (!userEntry) {
-        showLoginError('Check your email and password. Please try again.');
-        return;
-    }
+    if (!userEntry) return showLoginError('Check your email and password. Please try again.');
 
     completeUserLogin(userEntry);
 }
@@ -234,6 +228,7 @@ document.getElementById('toggle-icon').addEventListener('click', () => {
 document.getElementById('email').addEventListener('focus', clearError);
 document.getElementById('password').addEventListener('focus', clearError);
 document.querySelector('.guest-btn').addEventListener('click', loginAsGuest);
+animateLoginLogoFromIndex();
 
 
 /**
@@ -245,4 +240,127 @@ function clearError() {
     const errorMsg = document.getElementById('error-msg');
     errorMsg.classList.remove('show');
     errorMsg.textContent = '';
+}
+
+
+function animateLoginLogoFromIndex() {
+    const logo = document.getElementById('loginLogo');
+
+    if (!canAnimateLoginLogo(logo)) return;
+
+    requestAnimationFrame(function () {
+        playResponsiveLoginLogoAnimation(logo);
+    });
+}
+
+
+function canAnimateLoginLogo(logo) {
+    if (!logo || !shouldAnimateLoginLogo()) return false;
+
+    return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+
+function playResponsiveLoginLogoAnimation(logo) {
+    if (window.matchMedia('(max-width: 768px)').matches) {
+        playMobileLoginLogoAnimation(logo);
+        return;
+    }
+
+    playLoginLogoAnimation(logo);
+}
+
+
+function shouldAnimateLoginLogo() {
+    const shouldAnimate = sessionStorage.getItem('joinLoginLogoTransition') === 'true';
+
+    sessionStorage.removeItem('joinLoginLogoTransition');
+
+    return shouldAnimate;
+}
+
+
+function playLoginLogoAnimation(logo) {
+    logo.animate(getLogoAnimationKeyframes(logo, 274), getLogoAnimationOptions());
+}
+
+
+function playMobileLoginLogoAnimation(logo) {
+    const animatedLogo = createAnimatedLoginLogo(logo);
+    const animation = animatedLogo.animate(getLogoAnimationKeyframes(animatedLogo, 100), getLogoAnimationOptions());
+
+    logo.style.opacity = '0';
+    animation.addEventListener('finish', function () {
+        finishMobileLogoAnimation(logo, animatedLogo);
+    });
+}
+
+
+function finishMobileLogoAnimation(logo, animatedLogo) {
+    logo.style.opacity = '';
+    animatedLogo.remove();
+}
+
+
+function createAnimatedLoginLogo(logo) {
+    const rect = logo.getBoundingClientRect();
+    const animatedLogo = document.createElement('img');
+
+    setAnimatedLogoImage(animatedLogo);
+    setAnimatedLogoPosition(animatedLogo, rect);
+    document.body.appendChild(animatedLogo);
+
+    return animatedLogo;
+}
+
+
+function setAnimatedLogoImage(animatedLogo) {
+    animatedLogo.src = '../assets/icons/join-logo-light.png';
+    animatedLogo.alt = '';
+}
+
+
+function setAnimatedLogoPosition(animatedLogo, rect) {
+    animatedLogo.style.cssText = `position: fixed; left: ${rect.left}px; top: ${rect.top}px; width: ${rect.width}px; height: ${rect.height}px; z-index: 1000; pointer-events: none; transform-origin: center;`;
+}
+
+
+function getLogoAnimationKeyframes(logo, startWidth) {
+    const data = getLogoAnimationData(logo, startWidth);
+
+    return [getLogoStartFrame(data), getLogoEndFrame()];
+}
+
+
+function getLogoAnimationData(logo, startWidth) {
+    const rect = logo.getBoundingClientRect();
+
+    return {
+        moveX: window.innerWidth / 2 - (rect.left + rect.width / 2),
+        moveY: window.innerHeight / 2 - (rect.top + rect.height / 2),
+        scale: startWidth / rect.width
+    };
+}
+
+
+function getLogoStartFrame(data) {
+    return {
+        transform: `translate(${data.moveX}px, ${data.moveY}px) scale(${data.scale})`
+    };
+}
+
+
+function getLogoEndFrame() {
+    return {
+        transform: 'translate(0, 0) scale(1)'
+    };
+}
+
+
+function getLogoAnimationOptions() {
+    return {
+        duration: 650,
+        easing: 'cubic-bezier(0.2, 0, 0, 1)',
+        fill: 'both'
+    };
 }

@@ -10,3 +10,11 @@ body {
     background-size: 274px 334px;
     background-color: var(--main-bg-color);
 }
+
+@media (max-width: 768px) {
+    body {
+        background-image: url("../assets/icons/join-logo-light.png");
+        background-size: 100px 122px;
+        background-color: var(--ui-dark);
+    }
+}

@@ -2,54 +2,58 @@
 <html lang="de">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join-Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join-Login</title>
 
-  <link rel="shortcut icon" href="../assets/icons/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/icons/favicon.png" type="image/x-icon">
 
-  <link rel="stylesheet" href="../styles/assets.css">
-  <link rel="stylesheet" href="../styles/variables.css">
-  <link rel="stylesheet" href="../styles/fonts.css">
-  <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/variables.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../styles/assets.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../styles/login.css">
 
-  <script src="../script.js" defer></script>
+    <script src="../script.js" defer></script>
+    <script src="../scripts/login.js" defer></script>
 </head>
 
-<body>
-  <header>
-    <img src="../assets/icons/join-logo-dark.png" alt="Join Logo">
-    <div>
-      <span>Not a Join user </span>
-      <button class="signup-btn">Sign up</button>
-    </div>
-  </header>
+<body class="login-page">
+    <section class="login-content" aria-label="Login">
+        <header class="login-header">
+            <img id="loginLogo" class="login-logo" src="../assets/icons/join-logo-dark.png" alt="Join Logo">
+        </header>
 
-  <div class="card-wrapper">
-    <div class="card">
-      <h1>Log in</h1>
-      <div class="input-wrap margin-bottom">
-        <input type="email" id="email" placeholder="Email">
-        <img src="../assets/icons/mail.png" class="icon" alt="mail">
-      </div>
-      <div class="input-wrap">
-        <input type="password" id="password" placeholder="Password">
-        <img src="../assets/icons/lock.png" class="icon" id="toggle-icon" alt="lock">
-      </div>
-      <p id="error-msg" class="error-msg"></p>
-      <div class="btn-row">
-        <button onclick="checkLogin()" class="login-btn">Log in</button>
-        <button class="guest-btn">Guest Log in</button>
-      </div>
-    </div>
-  </div>
+        <main class="login-main">
+            <section class="card">
+                <h1>Log in</h1>
+                <div class="input-wrap margin-bottom">
+                    <input type="email" id="email" placeholder="Email">
+                    <img src="../assets/icons/mail.png" class="icon" alt="mail">
+                </div>
+                <div class="input-wrap">
+                    <input type="password" id="password" placeholder="Password">
+                    <img src="../assets/icons/lock.png" class="icon" id="toggle-icon" alt="lock">
+                </div>
+                <p id="error-msg" class="error-msg"></p>
+                <div class="btn-row">
+                    <button onclick="checkLogin()" class="login-btn" type="button">Log in</button>
+                    <button class="guest-btn" type="button">Guest Log in</button>
+                </div>
+            </section>
+        </main>
 
-  <footer>
-    <a href="..//subpages/privacy-policy.html">Privacy Policy</a><a href="..//subpages/legal-notice.html">Legal
-      notice</a>
-  </footer>
+        <div class="signup-area">
+            <span>Not a Join user?</span>
+            <button class="signup-btn" type="button">Sign up</button>
+        </div>
+
+        <footer class="login-footer">
+            <a href="./privacy-policy.html">Privacy Policy</a>
+            <a href="./legal-notice.html">Legal notice</a>
+        </footer>
+    </section>
 
 </body>
-<script src="../scripts/login.js" defer></script>
 
 </html>
