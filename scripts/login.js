@@ -198,7 +198,10 @@ async function putGuestUser(guestUser) {
  * @param {string} message - The error message.
  */
 function showLoginError(message) {
-    const errorMsg = document.getElementById('error-msg');
+    document.getElementById('email').classList.add('error');
+    document.getElementById('password').classList.add('error');
+
+    const errorMsg = document.getElementById('errorMessage');
 
     errorMsg.textContent = message;
     errorMsg.classList.add('show');
@@ -210,7 +213,7 @@ function showLoginError(message) {
  */
 function togglePasswordIcon() {
     const password = document.getElementById('password');
-    const icon = document.getElementById('toggle-icon');
+    const icon = document.getElementById('toggleIcon');
     const visible = password.type === 'text';
 
     if (password.value.length === 0) return icon.src = '../assets/icons/lock.png';
@@ -219,7 +222,7 @@ function togglePasswordIcon() {
 
 
 document.getElementById('password').addEventListener('input', togglePasswordIcon);
-document.getElementById('toggle-icon').addEventListener('click', () => {
+document.getElementById('toggleIcon').addEventListener('click', () => {
     const password = document.getElementById('password');
     if (!password.value.length) return;
     password.type = password.type === 'password' ? 'text' : 'password';
@@ -237,7 +240,7 @@ animateLoginLogoFromIndex();
 function clearError() {
     document.getElementById('email').classList.remove('error');
     document.getElementById('password').classList.remove('error');
-    const errorMsg = document.getElementById('error-msg');
+    const errorMsg = document.getElementById('errorMessage');
     errorMsg.classList.remove('show');
     errorMsg.textContent = '';
 }
