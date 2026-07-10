@@ -3,10 +3,10 @@
 }
 
 .add-task-content {
-    height: 100%;
-    background: --main-bg-color;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    background: --main-bg-color;
 }
 
 .site-header {
@@ -19,8 +19,8 @@
     flex-direction: column;
     width: 440px;
     margin-left: 96px;
-    border-radius: 10px;
     border: none;
+    border-radius: 10px;
     font-size: 18px;
 }
 
@@ -28,17 +28,17 @@
     display: flex;
     flex-direction: column;
     width: 440px;
-    border-radius: 10px;
     border: none;
+    border-radius: 10px;
     font-size: 18px;
 }
 
 input {
     height: 48px;
-    font-size: 18px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1;
     padding-bottom: 0;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    font-size: 18px;
 }
 
 .input-field {
@@ -53,10 +53,10 @@ input {
 }
 
 .error-message {
-    color: #FF8190;
-    font-size: 14px;
     min-height: 18px;
     margin-top: 4px;
+    color: #FF8190;
+    font-size: 14px;
 }
 
 label {
@@ -65,11 +65,11 @@ label {
 
 .add-task-fields-left textarea {
     height: 120px;
-    font-size: 24px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1;
     margin-bottom: 20px;
     padding: 8px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    font-size: 24px;
 }
 
 input::placeholder {
@@ -83,17 +83,17 @@ textarea::placeholder {
 }
 
 .horizontal-divider {
-    border: 1px solid #D1D1D1;
     opacity: 0.5;
     width: 0;
     height: 424px;
     margin: 16px 40px;
+    border: 1px solid #D1D1D1;
 }
 
 .add-task-form {
     display: flex;
-    flex-direction: row;
     flex-grow: 1;
+    flex-direction: row;
 }
 
 .priority-group {
@@ -110,15 +110,15 @@ textarea::placeholder {
 }
 
 .priority-group label {
-    margin-top: 4px;
-    width: 136px;
-    height: 56px;
-    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 136px;
+    height: 56px;
+    margin-top: 4px;
     padding-top: 0;
     background-color: white;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -160,15 +160,15 @@ textarea::placeholder {
 .dropdown-content a,
 .dropdown-content label {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     gap: 8px;
-    text-decoration: none;
-    color: black;
-    background-color: white;
-    padding: 8px;
-    border-radius: 10px;
     margin-right: 40px;
+    padding: 8px;
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    text-decoration: none;
     cursor: pointer;
 }
 
@@ -180,8 +180,8 @@ textarea::placeholder {
 
 .dropdown-content a:hover,
 .dropdown-content label:hover {
-    background-color: var(--main-bg-color);
     margin-right: 40px;
+    background-color: var(--main-bg-color);
 }
 
 .dropdown-content {
@@ -194,10 +194,10 @@ textarea::placeholder {
 
 .dropdown-list .dropdown-content {
     position: absolute;
-    background-color: white;
     z-index: 10;
-    border-radius: 10px;
     width: 100%;
+    background-color: white;
+    border-radius: 10px;
 }
 
 .input-wrapper input {
@@ -207,11 +207,11 @@ textarea::placeholder {
 
 .input-icon {
     position: absolute;
-    right: 16px;
     top: 50%;
-    transform: translateY(-50%);
+    right: 16px;
     background-color: white;
     border: none;
+    transform: translateY(-50%);
 }
 
 .input-icon:hover{
@@ -229,9 +229,9 @@ textarea::placeholder {
 footer {
     display: flex;
     justify-content: space-between;
-    margin-left: 96px;
-    margin-bottom: 96px;
     margin-right: 160px;
+    margin-bottom: 96px;
+    margin-left: 96px;
 }
 
 footer button {
@@ -248,11 +248,11 @@ footer button {
 
 .clear {
     position: relative;
-    border: 1px solid;
+    top: -60%;
     width: 110px;
     height: 56px;
+    border: 1px solid;
     border-radius: 10px;
-    top: -60%;
     font-size: 18px;
     font-weight: 400;
 }
@@ -268,11 +268,11 @@ footer button {
 
 .create-task {
     position: relative;
+    top: -60%;
     width: 184px;
     height: 56px;
-    border-radius: 10px;
-    top: -60%;
     background-color: var(--ui-dark);
+    border-radius: 10px;
     color: white;
     font-size: 18px;
     font-weight: 700;

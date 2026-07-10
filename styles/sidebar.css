@@ -1,12 +1,12 @@
 .sidebar {
     display: flex;
-    flex: 0 0 232px;
-    flex-direction: column;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 25;
+    flex: 0 0 232px;
+    flex-direction: column;
     width: 232px;
     height: auto;
     padding: 64px 0 20px;
@@ -32,7 +32,7 @@
     display: flex;
     flex-direction: column;
     gap: 28px;
-    font-family: 'Inter';
+    font-family: Inter, sans-serif;
     font-weight: 400;
 }
 
@@ -57,7 +57,7 @@
     display: flex;
     flex-direction: column;
     margin-top: auto;
-    font-family: 'Inter';
+    font-family: Inter, sans-serif;
     font-weight: 400;
 }
 
@@ -69,8 +69,8 @@
 
 .legal-links a:hover {
     color: var(--text-link-hover);
-    font-weight: 700;
     font-size: 1.05rem;
+    font-weight: 700;
 }
 
 .icons-sidebar {
@@ -106,23 +106,23 @@
     display: none;
 }
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
     .sidebar {
         display: none;
     }
 
     .mobile-nav {
+        display: flex;
         position: fixed;
         right: 0;
         bottom: 0;
         left: 0;
         z-index: 20;
-        display: flex;
         align-items: center;
         height: 80px;
         padding: 0 16px;
         background: var(--sidebar-bg-color);
-        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 -2px 8px rgb(0 0 0 / 12%);
     }
 
     .mobile-nav a {
@@ -131,9 +131,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 4px;
         min-width: 0;
         height: 64px;
-        gap: 4px;
         border-radius: 8px;
         color: var(--text-tertiary);
         font-size: 0.75rem;
@@ -167,7 +167,7 @@
     }
 }
 
-@media (max-width: 360px) {
+@media (width <= 360px) {
     .mobile-nav {
         height: 76px;
         padding: 0 8px;

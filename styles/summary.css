@@ -10,7 +10,7 @@
 
 .title span {
     color: var(--text-secondary);
-    font-family: "Inter", sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 1.7rem;
     font-weight: 400;
 }
@@ -44,9 +44,9 @@
     justify-content: center;
     align-items: center;
     background: var(--assets-bg-color);
-    color: var(--text-primary);
     border-radius: 30px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 4px rgb(0 0 0 / 10%);
+    color: var(--text-primary);
     transition: background-color 125ms ease-in-out,
         color 125ms ease-in-out,
         transform 125ms ease-in-out,
@@ -55,9 +55,9 @@
 
 .card:hover {
     background: var(--ui-dark);
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
     color: var(--text-white);
     transform: scale(1.04);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .card img {
@@ -67,7 +67,7 @@
 }
 
 .card h4 {
-    font-family: "Inter", sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 4rem;
     font-weight: 600;
     line-height: 120%;
@@ -76,7 +76,7 @@
 
 .card h5 {
     color: var(--text-secondary);
-    font-family: "Inter", sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 1.3rem;
     font-weight: 700;
     line-height: 120%;
@@ -98,9 +98,9 @@
 
 .card.top {
     flex-direction: row;
+    gap: 18px;
     width: 264px;
     height: 168px;
-    gap: 18px;
 }
 
 .card.top div {
@@ -124,9 +124,9 @@
 .card.center {
     flex-direction: row;
     justify-content: flex-start;
+    gap: 61px;
     width: 560px;
     height: 168px;
-    gap: 61px;
     padding: 28px 48px;
 }
 
@@ -161,9 +161,9 @@
 
 .card.bottom {
     flex-direction: column;
+    gap: 8px;
     width: 168px;
     height: 168px;
-    gap: 8px;
     padding: 20px;
 }
 
@@ -188,7 +188,7 @@
     font-weight: 700;
 }
 
-@media (max-width: 1280px) {
+@media (width <= 1280px) {
     .summary {
         gap: 48px;
     }
@@ -202,7 +202,7 @@
     }
 }
 
-@media (max-width: 1120px) {
+@media (width <= 1120px) {
     .main-content.summary-section {
         align-items: center;
         padding-left: 20px;
@@ -213,7 +213,7 @@
     }
 }
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
     .main-content.summary-section {
         align-items: center;
         padding: 48px 20px 120px;
@@ -255,15 +255,15 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .main-content.summary-section {
         gap: 32px;
         padding-top: 32px;
     }
 
     .title {
-        align-items: flex-start;
         flex-direction: column;
+        align-items: flex-start;
         gap: 8px;
         width: 100%;
         max-width: 396px;
@@ -307,15 +307,15 @@
     }
 
     .card.top {
+        gap: 10px;
         width: 186px;
         height: 110px;
-        gap: 10px;
     }
 
     .card.center {
+        gap: 20px;
         width: 396px;
         height: 110px;
-        gap: 20px;
         padding: 20px 28px;
     }
 
@@ -336,9 +336,9 @@
     }
 
     .card.bottom {
+        gap: 4px;
         width: 116px;
         height: 116px;
-        gap: 4px;
         padding: 12px;
     }
 
@@ -347,7 +347,7 @@
     }
 }
 
-@media (max-width: 475px) {
+@media (width <= 475px) {
     .main-content.summary-section {
         padding-inline: 16px;
     }

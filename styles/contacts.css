@@ -1,4 +1,4 @@
-/*contacts layout*/
+/* contacts layout */
 
 .main-content {
     padding: 0;
@@ -9,41 +9,41 @@
     flex-direction: row;
     width: 100%;
     height: calc(100vh - 90px);
-    background: var(--main-bg-color);
     overflow: hidden;
+    background: var(--main-bg-color);
 }
 
-/*contacts sidebar*/
+/* contacts sidebar */
 
 .contacts-sidebar {
     z-index: 2;
+    flex-shrink: 0;
     width: 456px;
     height: 100%;
-    background: var(--assets-bg-color);
     padding: 24px;
     overflow-y: auto;
-    flex-shrink: 0;
-    box-shadow: 4px 0 6px rgba(0, 0, 0, 0.08);
+    background: var(--assets-bg-color);
+    box-shadow: 4px 0 6px rgb(0 0 0 / 8%);
 }
 
 .add-contact-btn {
-    width: 100%;
-    height: 56px;
-    background: var(--sidebar-bg-color);
-    color: var(--text-white);
-    border: none;
-    border-radius: 10px;
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
     gap: 12px;
-    font-family: "Inter", sans-serif;
+    width: 100%;
+    height: 56px;
+    margin-bottom: 24px;
+    background: var(--sidebar-bg-color);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 12%);
+    color: var(--text-white);
+    font-family: Inter, sans-serif;
     font-size: 21px;
     font-weight: 700;
     cursor: pointer;
-    flex-shrink: 0;
-    margin-bottom: 24px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 }
 
 .add-contact-btn img {
@@ -65,23 +65,23 @@
 }
 
 .contact-group h3 {
+    margin: 0 0 8px;
+    padding: 16px 0 16px 24px;
+    border-bottom: 1px solid var(--divider-color-grey);
+    font-family: Inter, sans-serif;
     font-size: 20px;
     font-weight: 400;
-    font-family: "Inter", sans-serif;
-    padding: 16px 0 16px 24px;
-    margin: 0 0 8px;
-    border-bottom: 1px solid var(--divider-color-grey);
 }
 
 .contact-card {
     display: flex;
     align-items: center;
     gap: 24px;
-    padding: 16px 24px;
     margin-bottom: 8px;
+    padding: 16px 24px;
     border-radius: 10px;
+    font-family: Inter, sans-serif;
     cursor: pointer;
-    font-family: "Inter", sans-serif;
 }
 
 .contact-card:hover {
@@ -102,42 +102,42 @@
 }
 
 .contact-avatar {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: var(--profile-orange);
-    color: var(--text-white);
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
+    width: 42px;
+    height: 42px;
+    background: var(--profile-orange);
+    border-radius: 50%;
+    color: var(--text-white);
     font-size: 14px;
-    flex-shrink: 0;
 }
 
 .contact-info h4 {
+    margin: 0 0 4px;
+    color: var(--text-primary);
     font-size: 20px;
     font-weight: 400;
-    color: var(--text-primary);
-    margin: 0 0 4px;
 }
 
 .contact-info a,
 .contact-info p {
-    font-size: 14px;
-    color: var(--contact-link);
-    text-decoration: none;
     margin: 0;
+    color: var(--contact-link);
+    font-size: 14px;
+    text-decoration: none;
 }
 
-/*contact detail desktop*/
+/* contact detail desktop */
 
 .contact-details {
+    position: relative;
     flex: 1;
     height: 100%;
-    background: var(--main-bg-color);
     padding: 80px 56px;
-    position: relative;
     overflow-y: auto;
+    background: var(--main-bg-color);
 }
 
 .contacts-header {
@@ -148,23 +148,23 @@
 }
 
 .contacts-header h1 {
-    color: var(--text-primary);
     margin: 0;
+    color: var(--text-primary);
 }
 
 .header-divider {
     display: block;
+    flex-shrink: 0;
     width: 3px;
     min-width: 3px;
     height: 59px;
     background-color: var(--ui-light);
-    flex-shrink: 0;
 }
 
 .contacts-header span {
-    font-size: 27px;
     color: var(--text-primary);
-    font-family: "Inter", sans-serif;
+    font-family: Inter, sans-serif;
+    font-size: 27px;
     font-weight: 400;
 }
 
@@ -180,28 +180,28 @@
 }
 
 .contact-detail-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    color: var(--text-white);
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
-    font-size: 47px;
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    flex-shrink: 0;
-    border: 3px solid var(--text-white);
     box-sizing: border-box;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--text-white);
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgb(0 0 0 / 40%);
+    color: var(--text-white);
+    font-family: Inter, sans-serif;
+    font-size: 47px;
+    font-weight: 500;
 }
 
 .contact-detail-name-box h2 {
-    font-size: 47px;
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    color: var(--text-primary);
     margin: 0 0 12px;
+    color: var(--text-primary);
+    font-family: Inter, sans-serif;
+    font-size: 47px;
+    font-weight: 500;
 }
 
 .contact-actions {
@@ -211,17 +211,17 @@
 }
 
 .contact-actions button {
-    border: none;
-    background: transparent;
     display: flex;
     align-items: center;
     gap: 8px;
-    cursor: pointer;
-    color: var(--text-primary);
-    font-size: 16px;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
     padding: 0;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
 }
 
 .edit-contact-btn {
@@ -229,8 +229,8 @@
 }
 
 .edit-contact-btn:hover {
-    font-weight: 700;
     color: var(--text-link-hover-dark);
+    font-weight: 700;
 }
 
 .delete-contact-btn {
@@ -259,39 +259,39 @@
 }
 
 .contact-information h3 {
-    font-size: 20px;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    color: var(--text-primary);
     margin: 0 0 50px;
+    color: var(--text-primary);
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .contact-information h4 {
-    font-family: "Inter", sans-serif;
+    margin: 0 0 15px;
+    color: var(--text-primary);
+    font-family: Inter, sans-serif;
     font-size: 16px;
     font-weight: 700;
-    color: var(--text-primary);
-    margin: 0 0 15px;
 }
 
 .contact-information a {
     display: block;
-    font-size: 16px;
-    font-family: "Inter", sans-serif;
-    color: var(--contact-link);
-    text-decoration: none;
     margin-bottom: 22px;
+    color: var(--contact-link);
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    text-decoration: none;
 }
 
 .contact-information p {
-    font-size: 16px;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    color: var(--text-primary);
     margin: 0 0 22px;
+    color: var(--text-primary);
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
 }
 
-/*mobile elements hidden on desktop*/
+/* mobile elements hidden on desktop */
 
 .mobile-add-contact-btn,
 .mobile-back-btn,
@@ -301,25 +301,25 @@
     display: none;
 }
 
-/*overlay*/
+/* overlay */
 
 .add-contact-overlay {
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
     position: fixed;
     inset: 0;
-    background: var(--contact-overlay-bg);
     z-index: 10000;
-    display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    visibility: hidden;
+    background: var(--contact-overlay-bg);
     pointer-events: none;
     transition: opacity 300ms ease, visibility 300ms ease;
 }
 
 .add-contact-overlay.active {
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
     pointer-events: auto;
 }
 
@@ -329,15 +329,15 @@
 }
 
 .add-contact-modal {
+    display: flex;
+    position: relative;
     width: min(1212px, calc(100vw - 64px));
     height: min(592px, calc(100vh - 64px));
+    overflow: hidden;
     background: var(--assets-bg-color);
     border-radius: 30px;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    transform: translateX(120%);
     transition: transform 350ms ease;
+    transform: translateX(120%);
 }
 
 .add-contact-modal.edit-mode .cancel-btn {
@@ -371,19 +371,19 @@
     padding-top: 24px;
 }
 
-/*modal left desktop*/
+/* modal left desktop */
 
 .modal-left {
-    width: 467px;
-    height: 100%;
-    background: var(--sidebar-bg-color);
-    color: var(--text-white);
-    flex-shrink: 0;
     display: flex;
+    flex-shrink: 0;
     flex-direction: column;
     align-items: flex-start;
-    padding: 140px 48px;
     box-sizing: border-box;
+    width: 467px;
+    height: 100%;
+    padding: 140px 48px;
+    background: var(--sidebar-bg-color);
+    color: var(--text-white);
 }
 
 .modal-left img {
@@ -392,42 +392,42 @@
 }
 
 .modal-left h2 {
-    font-size: 61px;
-    font-family: "Inter", sans-serif;
-    font-weight: 700;
     margin-bottom: 8px;
+    font-family: Inter, sans-serif;
+    font-size: 61px;
+    font-weight: 700;
 }
 
 .modal-left p {
+    font-family: Inter, sans-serif;
     font-size: 27px;
-    font-family: "Inter", sans-serif;
     font-weight: 400;
 }
 
 .blue-line {
     width: 90px;
     height: 3px;
-    background: var(--ui-light);
     margin-top: 16px;
+    background: var(--ui-light);
 }
 
-/*close button*/
+/* close button */
 
 .close-modal {
+    display: flex;
     position: absolute;
     top: 24px;
     right: 32px;
-    width: 32px;
-    height: 32px;
-    display: flex;
+    z-index: 50;
     justify-content: center;
     align-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
     border: none;
     border-radius: 50%;
-    background: transparent;
-    padding: 0;
     cursor: pointer;
-    z-index: 50;
 }
 
 .close-modal img {
@@ -442,24 +442,24 @@
     transform: scale(1.1);
 }
 
-/*contact placeholder desktop*/
+/* contact placeholder desktop */
 
 .contact-placeholder {
-    width: 120px;
-    height: 120px;
-    min-width: 120px;
-    min-height: 120px;
-    border-radius: 50%;
-    border: 3px solid var(--text-white);
-    box-sizing: border-box;
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0;
     align-self: center;
-    margin-left: 72px;
+    box-sizing: border-box;
+    width: 120px;
+    min-width: 120px;
+    height: 120px;
+    min-height: 120px;
     margin-right: 72px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
+    margin-left: 72px;
+    border: 3px solid var(--text-white);
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
 }
 
 .add-contact-modal:not(.edit-mode) .contact-placeholder {
@@ -490,21 +490,21 @@
 .add-contact-modal.edit-mode .contact-avatar-initials {
     display: block;
     color: var(--text-white);
-    font-family: "Inter", sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 47px;
     font-weight: 500;
 }
 
-/*modal right desktop*/
+/* modal right desktop */
 
 .modal-right {
-    flex: 1;
-    min-width: 0;
-    position: relative;
     display: flex;
+    position: relative;
+    flex: 1;
     justify-content: center;
     align-items: center;
     gap: 48px;
+    min-width: 0;
     padding: 40px;
 }
 
@@ -519,23 +519,23 @@
 }
 
 .input-field input {
+    box-sizing: border-box;
     width: 100%;
     height: 50px;
     padding: 0 48px 0 21px;
-    box-sizing: border-box;
+    background: var(--assets-bg-color);
     border: 1px solid var(--form-input-border);
     border-radius: 10px;
-    background: var(--assets-bg-color);
     color: var(--text-primary);
+    font-family: Inter, sans-serif;
     font-size: 20px;
-    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
 }
 
 .input-field input:focus {
-    outline: none;
     border-color: var(--form-input-border-focus);
+    outline: none;
     color: var(--text-primary);
 }
 
@@ -545,15 +545,15 @@
     right: 21px;
     width: 24px;
     height: 24px;
-    transform: translateY(-50%);
     pointer-events: none;
+    transform: translateY(-50%);
 }
 
 .contact-input-error {
     display: none;
-    margin: 6px 0 0 0;
+    margin: 6px 0 0;
     color: var(--priority-urgent);
-    font-family: "Inter", sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 12px;
     font-weight: 600;
 }
@@ -573,20 +573,20 @@
 }
 
 .cancel-btn {
-    width: 126px;
-    height: 56px;
-    border: 1px solid var(--login-button-secondary-border);
-    background: var(--assets-bg-color);
-    color: var(--login-button-secondary-text);
-    border-radius: 10px;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 6px;
+    width: 126px;
+    height: 56px;
+    background: var(--assets-bg-color);
+    border: 1px solid var(--login-button-secondary-border);
+    border-radius: 10px;
+    color: var(--login-button-secondary-text);
+    font-family: Inter, sans-serif;
     font-size: 20px;
-    font-family: "Inter", sans-serif;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .cancel-btn img {
@@ -598,8 +598,8 @@
 
 .cancel-btn:hover {
     border-color: var(--login-button-secondary-hover);
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
     color: var(--login-button-secondary-hover);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .cancel-btn:active {
@@ -608,22 +608,22 @@
 }
 
 .create-btn {
-    width: 214px;
-    min-width: 214px;
-    height: 57px;
-    background: var(--login-button-primary-bg);
-    color: var(--text-white);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
+    width: 214px;
+    min-width: 214px;
+    height: 57px;
+    background: var(--login-button-primary-bg);
+    border: none;
+    border-radius: 10px;
+    color: var(--text-white);
+    font-family: Inter, sans-serif;
     font-size: 21px;
-    font-family: "Inter", sans-serif;
     font-weight: 700;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .create-btn img {
@@ -635,7 +635,7 @@
 
 .create-btn:hover {
     background: var(--login-button-primary-bg-hover);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
 }
 
 .create-btn:active {
@@ -652,11 +652,11 @@
 }
 
 .color-picker h4 {
-    font-family: "Inter", sans-serif;
+    margin: 0 0 12px;
+    color: var(--text-primary);
+    font-family: Inter, sans-serif;
     font-size: 16px;
     font-weight: 700;
-    color: var(--text-primary);
-    margin: 0 0 12px;
 }
 
 .color-options {
@@ -668,13 +668,10 @@
 .color-option {
     width: 28px;
     height: 28px;
-
+    padding: 0;
     border: 2px solid transparent;
     border-radius: 50%;
-
     cursor: pointer;
-    padding: 0;
-
     transition: transform 120ms ease, box-shadow 120ms ease;
 }
 
@@ -687,48 +684,48 @@
     box-shadow: 0 0 0 2px var(--text-white), 0 0 0 4px var(--sidebar-bg-color);
 }
 
-/*edit mode desktop*/
+/* edit mode desktop */
 
 .add-contact-modal.edit-mode .modal-left p {
     display: none;
 }
 
 .contact-toast {
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
     position: fixed;
-    left: 50%;
     bottom: 112px;
-    transform: translateX(-50%) translateY(40px);
+    left: 50%;
+    z-index: 20000;
+    justify-content: center;
+    align-items: center;
     min-width: 326px;
     height: 48px;
     padding: 0 24px;
     background: var(--sidebar-bg-color);
-    color: var(--text-white);
     border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Inter", sans-serif;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 25%);
+    color: var(--text-white);
+    font-family: Inter, sans-serif;
     font-size: 20px;
     font-weight: 400;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-    opacity: 0;
-    visibility: hidden;
     pointer-events: none;
     transition: opacity 250ms ease, transform 250ms ease, visibility 250ms ease;
-    z-index: 20000;
+    transform: translateX(-50%) translateY(40px);
 }
 
 .contact-toast.active {
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
 
-/*RESPONSIVE*/
+/* RESPONSIVE */
 
-/*small desktop / laptop*/
+/* small desktop / laptop */
 
-@media (max-width: 1280px) {
+@media (width <= 1280px) {
     .contacts-sidebar {
         width: 380px;
         padding: 20px;
@@ -774,8 +771,8 @@
     }
 
     .contact-detail-name-box h2 {
+        font-family: Inter, sans-serif;
         font-size: 38px;
-        font-family: "Inter", sans-serif;
         font-weight: 700;
     }
 
@@ -785,9 +782,9 @@
     }
 
     .modal-left {
+        justify-content: center;
         width: 380px;
         padding: 0 40px;
-        justify-content: center;
     }
 
     .modal-left h2 {
@@ -800,11 +797,11 @@
 
     .contact-placeholder {
         width: 110px;
-        height: 110px;
         min-width: 110px;
+        height: 110px;
         min-height: 110px;
-        margin-left: 48px;
         margin-right: 48px;
+        margin-left: 48px;
     }
 
     .modal-right {
@@ -817,8 +814,8 @@
     }
 
     .modal-buttons {
-        gap: 16px;
         flex-wrap: nowrap;
+        gap: 16px;
     }
 
     .cancel-btn {
@@ -833,9 +830,9 @@
     }
 }
 
-/*tight desktop before mobile layout*/
+/* tight desktop before mobile layout */
 
-@media (min-width: 1025px) and (max-width: 1120px) {
+@media (width >= 1025px) and (width <= 1120px) {
     .add-contact-modal {
         width: min(1000px, calc(100vw - 40px));
     }
@@ -855,11 +852,11 @@
 
     .contact-placeholder {
         width: 96px;
-        height: 96px;
         min-width: 96px;
+        height: 96px;
         min-height: 96px;
-        margin-left: 24px;
         margin-right: 24px;
+        margin-left: 24px;
     }
 
     .modal-right {
@@ -887,9 +884,9 @@
     }
 }
 
-/*tablet / mobile contact layout*/
+/* tablet / mobile contact layout */
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
     body {
         overflow: hidden;
         background: var(--assets-bg-color);
@@ -912,20 +909,20 @@
 
     .contacts-page {
         display: block;
+        position: relative;
         width: 100%;
         height: calc(100vh - 80px);
         background: var(--assets-bg-color);
-        position: relative;
     }
 
     .contacts-sidebar {
         display: block !important;
         width: 100%;
         height: calc(100vh - 160px);
-        background: var(--assets-bg-color);
         padding: 24px 24px 100px;
-        box-shadow: none;
         overflow-y: scroll;
+        background: var(--assets-bg-color);
+        box-shadow: none;
     }
 
     .contact-card.active {
@@ -954,17 +951,17 @@
         position: fixed;
         right: 16px;
         bottom: 96px;
-        width: 56px;
-        height: 56px;
-        border: none;
-        border-radius: 50%;
-        background: var(--sidebar-bg-color);
+        z-index: 9998;
         justify-content: center;
         align-items: center;
+        width: 56px;
+        height: 56px;
+        background: var(--sidebar-bg-color);
+        border: none;
+        border-radius: 50%;
         cursor: pointer;
         transition: background-color 125ms ease-in-out,
             box-shadow 125ms ease-in-out;
-        z-index: 9998;
     }
 
     .mobile-add-contact-btn img {
@@ -984,28 +981,28 @@
         position: fixed;
         bottom: 0;
         left: 0;
+        z-index: 9999;
+        justify-content: space-around;
+        align-items: center;
         width: 100%;
         height: 80px;
         background: var(--sidebar-bg-color);
-        justify-content: space-around;
-        align-items: center;
-        z-index: 9999;
     }
 
     #mobileNav a,
     .mobile-nav a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
         width: 72px;
         height: 64px;
         border-radius: 12px;
         color: var(--text-white);
-        text-decoration: none;
+        font-family: Inter, sans-serif;
         font-size: 12px;
-        font-family: "Inter", sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
+        text-decoration: none;
     }
 
     #mobileNav a.active,
@@ -1021,41 +1018,38 @@
     }
 
     .add-contact-overlay {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        right: 0;
-        bottom: 80px;
-        background: var(--contact-overlay-bg);
         display: flex;
+        position: fixed;
+        inset: 80px 0;
+        z-index: 10000;
         justify-content: center;
         align-items: center;
         padding: 8px 16px;
-        z-index: 10000;
         overflow: hidden;
+        background: var(--contact-overlay-bg);
     }
 
     .add-contact-modal {
+        display: flex;
+        position: relative;
+        flex-direction: column;
         width: min(420px, calc(100vw - 32px));
         height: auto;
         max-height: calc(100dvh - 176px);
+        overflow: hidden;
         background: var(--assets-bg-color);
         border-radius: 30px;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        position: relative;
     }
 
     .modal-left {
+        flex-shrink: 0;
         width: 100%;
         height: 270px;
         min-height: 270px;
-        background: var(--sidebar-bg-color);
-        color: var(--text-white);
         padding: 88px 24px 32px;
+        background: var(--sidebar-bg-color);
         border-radius: 30px 30px 0 0;
-        flex-shrink: 0;
+        color: var(--text-white);
     }
 
     .modal-left img {
@@ -1063,16 +1057,16 @@
     }
 
     .modal-left h2 {
-        font-size: 47px;
-        line-height: 1;
         margin-bottom: 12px;
-        font-family: "Inter", sans-serif;
+        font-family: Inter, sans-serif;
+        font-size: 47px;
         font-weight: 700;
+        line-height: 1;
     }
 
     .modal-left p {
+        font-family: Inter, sans-serif;
         font-size: 20px;
-        font-family: "Inter", sans-serif;
         font-weight: 400;
     }
 
@@ -1080,8 +1074,8 @@
         display: block;
         width: 90px;
         height: 3px;
-        background: var(--ui-light);
         margin-top: 16px;
+        background: var(--ui-light);
     }
 
     .close-modal {
@@ -1089,8 +1083,8 @@
         right: 24px;
         width: 32px;
         height: 32px;
-        border-radius: 0;
         background: transparent;
+        border-radius: 0;
     }
 
     .close-modal img {
@@ -1111,18 +1105,18 @@
         position: absolute;
         top: 270px;
         left: 50%;
-        transform: translate(-50%, -50%);
-        width: 120px;
-        height: 120px;
-        min-width: 120px;
-        min-height: 120px;
-        border-radius: 50%;
-        background: var(--divider-color-grey);
-        border: 3px solid var(--text-white);
+        z-index: 30;
         justify-content: center;
         align-items: center;
+        width: 120px;
+        min-width: 120px;
+        height: 120px;
+        min-height: 120px;
         margin: 0;
-        z-index: 30;
+        background: var(--divider-color-grey);
+        border: 3px solid var(--text-white);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .contact-placeholder img {
@@ -1137,16 +1131,15 @@
     }
 
     .modal-right {
-        width: 100%;
-        flex: 0 1 auto;
         display: flex;
+        flex: 0 1 auto;
         flex-direction: column;
         align-items: center;
+        width: 100%;
         padding: 82px 24px 32px;
-        background: var(--assets-bg-color);
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow: hidden auto;
         scrollbar-width: none;
+        background: var(--assets-bg-color);
     }
 
     .modal-right::-webkit-scrollbar {
@@ -1165,38 +1158,38 @@
     }
 
     .input-field input {
+        box-sizing: border-box;
         width: 100%;
         height: 50px;
         padding: 0 48px 0 21px;
         background: var(--assets-bg-color);
-        color: var(--text-primary);
         border: 1px solid var(--form-input-border);
         border-radius: 10px;
+        color: var(--text-primary);
+        font-family: Inter, sans-serif;
         font-size: 20px;
-        font-family: "Inter", sans-serif;
-        box-sizing: border-box;
     }
 
     .input-field input:focus {
-        outline: none;
         border-color: var(--form-input-border-focus);
+        outline: none;
         color: var(--text-primary);
     }
 
     .input-field img {
+        right: 21px;
         width: 24px;
         height: 24px;
-        right: 21px;
     }
 
     .modal-buttons {
         display: flex;
+        flex-wrap: nowrap;
         justify-content: center;
         align-items: center;
         gap: 16px;
         padding-top: 20px;
         padding-bottom: 8px;
-        flex-wrap: nowrap;
     }
 
     .cancel-btn {
@@ -1231,8 +1224,8 @@
         width: 111px;
         min-width: 111px;
         height: 48px;
-        font-size: 18px;
         background: var(--assets-bg-color);
+        font-size: 18px;
     }
 
     .add-contact-modal.edit-mode .cancel-btn img {
@@ -1259,9 +1252,9 @@
         display: block;
         width: 100%;
         height: calc(100vh - 160px);
-        background: var(--main-bg-color);
         padding: 32px 24px 100px;
         overflow-y: auto;
+        background: var(--main-bg-color);
     }
 
     .contacts-page.mobile-detail-open .mobile-add-contact-btn {
@@ -1273,14 +1266,14 @@
         position: absolute;
         top: 36px;
         right: 24px;
-        width: 32px;
-        height: 32px;
-        border: none;
-        background: transparent;
+        z-index: 10;
         justify-content: center;
         align-items: center;
+        width: 32px;
+        height: 32px;
+        background: transparent;
+        border: none;
         cursor: pointer;
-        z-index: 10;
     }
 
     .mobile-back-btn img {
@@ -1302,15 +1295,15 @@
     }
 
     .contacts-page.mobile-detail-open .contacts-header span {
-        font-size: 20px;
         color: var(--text-primary);
+        font-size: 20px;
     }
 
     .contacts-page.mobile-detail-open .header-divider {
+        order: 3;
         width: 90px;
         height: 3px;
         background: var(--ui-light);
-        order: 3;
     }
 
     .contacts-page.mobile-detail-open .contact-mobile-detail {
@@ -1341,10 +1334,10 @@
 
     .contacts-page.mobile-detail-open .contact-detail-name-box h2 {
         max-width: 100%;
-        line-height: 120%;
-        white-space: normal;
         overflow: visible;
+        line-height: 120%;
         text-overflow: unset;
+        white-space: normal;
         word-break: normal;
         overflow-wrap: break-word;
     }
@@ -1359,44 +1352,44 @@
     .selected-contact .contact-avatar {
         width: 80px;
         height: 80px;
-        font-size: 27px;
         border: 3px solid var(--text-white);
+        font-size: 27px;
     }
 
     .selected-contact h2 {
-        font-size: 36px;
-        font-family: "Inter", sans-serif;
-        font-weight: 700;
         margin: 0;
         color: var(--text-primary);
+        font-family: Inter, sans-serif;
+        font-size: 36px;
+        font-weight: 700;
     }
 
     .contact-information h3 {
-        font-size: 20px;
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
         margin-bottom: 24px;
         color: var(--text-primary);
+        font-family: Inter, sans-serif;
+        font-size: 20px;
+        font-weight: 400;
     }
 
     .contact-information h4 {
-        font-family: "Inter", sans-serif;
-        font-size: 16px;
-        font-weight: 700;
         margin: 16px 0 8px;
         color: var(--text-primary);
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
     }
 
     .contact-information a {
-        font-size: 16px;
         color: var(--contact-link);
+        font-size: 16px;
         text-decoration: none;
     }
 
     .contact-information p {
-        font-size: 16px;
         margin: 0;
         color: var(--text-primary);
+        font-size: 16px;
     }
 
     .contacts-page.mobile-detail-open .mobile-more-btn {
@@ -1404,19 +1397,19 @@
         position: fixed;
         right: 16px;
         bottom: 96px;
-        width: 56px;
-        height: 56px;
-        border: none;
-        border-radius: 50%;
-        background: var(--sidebar-bg-color);
+        z-index: 9998;
         justify-content: center;
         align-items: center;
+        width: 56px;
+        height: 56px;
         padding: 0;
+        background: var(--sidebar-bg-color);
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
         cursor: pointer;
         transition: background-color 125ms ease-in-out,
             box-shadow 125ms ease-in-out;
-        z-index: 9998;
-        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     }
 
 
@@ -1432,12 +1425,12 @@
         position: fixed;
         right: 8px;
         bottom: 92px;
+        z-index: 10000;
         width: 140px;
         padding: 12px 0;
         background: var(--assets-bg-color);
-        border-radius: 20px 20px 0 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-        z-index: 10000;
+        border-radius: 20px 20px 0;
+        box-shadow: 0 4px 8px rgb(0 0 0 / 25%);
     }
 
     .mobile-options-menu.active {
@@ -1446,17 +1439,17 @@
     }
 
     .mobile-options-menu button {
-        width: 100%;
-        height: 48px;
-        border: none;
-        background: transparent;
         display: flex;
         align-items: center;
         gap: 12px;
+        width: 100%;
+        height: 48px;
         padding: 0 20px;
+        background: transparent;
+        border: none;
         color: var(--text-primary);
+        font-family: Inter, sans-serif;
         font-size: 16px;
-        font-family: "Inter", sans-serif;
         cursor: pointer;
     }
 
@@ -1472,8 +1465,8 @@
     }
 
     .color-picker h4 {
-        font-size: 15px;
         margin-bottom: 10px;
+        font-size: 15px;
     }
 
     .color-options {
@@ -1494,16 +1487,16 @@
     }
 }
 
-/*very small phones*/
+/* very small phones */
 
-@media (max-width: 420px) {
+@media (width <= 420px) {
     .contacts-sidebar {
         padding: 20px 16px 100px;
     }
 
     .contact-card {
-        padding: 14px 12px;
         gap: 14px;
+        padding: 14px 12px;
     }
 
     .contact-info h4 {
@@ -1537,8 +1530,8 @@
     .contact-placeholder {
         top: 250px;
         width: 110px;
-        height: 110px;
         min-width: 110px;
+        height: 110px;
         min-height: 110px;
     }
 
@@ -1557,9 +1550,9 @@
     }
 
     .input-field img {
+        right: 16px;
         width: 22px;
         height: 22px;
-        right: 16px;
     }
 
     .create-btn {
@@ -1592,20 +1585,20 @@
     }
 }
 
-@media (max-width: 380px) {
+@media (width <= 380px) {
     .add-contact-overlay {
         top: 80px;
         bottom: 80px;
-        padding: 8px;
         align-items: center;
+        padding: 8px;
         overflow: hidden;
     }
 
     .add-contact-modal {
         width: calc(100vw - 16px);
         max-height: calc(100dvh - 176px);
-        border-radius: 24px;
         overflow: hidden;
+        border-radius: 24px;
     }
 
     .modal-left {
@@ -1616,14 +1609,14 @@
     }
 
     .modal-left h2 {
+        margin-bottom: 8px;
         font-size: 34px;
         line-height: 1;
-        margin-bottom: 8px;
     }
 
     .modal-left p {
-        font-size: 16px;
         margin: 0;
+        font-size: 16px;
     }
 
     .blue-line {
@@ -1635,8 +1628,8 @@
     .contact-placeholder {
         top: 170px;
         width: 60px;
-        height: 60px;
         min-width: 60px;
+        height: 60px;
         min-height: 60px;
     }
 
@@ -1665,8 +1658,8 @@
 
     .input-field input {
         height: 40px;
-        font-size: 16px;
         padding: 0 38px 0 14px;
+        font-size: 16px;
     }
 
     .input-field img {
@@ -1682,10 +1675,10 @@
     }
 
     .modal-buttons {
-        padding-top: 8px;
-        padding-bottom: 0;
         justify-content: center;
         gap: 10px;
+        padding-top: 8px;
+        padding-bottom: 0;
     }
 
     .cancel-btn {
@@ -1711,9 +1704,9 @@
     }
 
     .add-contact-modal.edit-mode .modal-left h2 {
+        margin-bottom: 6px;
         font-size: 30px;
         line-height: 1;
-        margin-bottom: 6px;
     }
 
     .add-contact-modal.edit-mode .blue-line {
@@ -1724,8 +1717,8 @@
     .add-contact-modal.edit-mode .contact-placeholder {
         top: 135px;
         width: 68px;
-        height: 68px;
         min-width: 68px;
+        height: 68px;
         min-height: 68px;
     }
 
@@ -1744,8 +1737,8 @@
 
     .add-contact-modal.edit-mode .input-field input {
         height: 34px;
-        font-size: 14px;
         padding: 0 34px 0 12px;
+        font-size: 14px;
     }
 
     .add-contact-modal.edit-mode .input-field img {
@@ -1760,8 +1753,8 @@
     }
 
     .add-contact-modal.edit-mode .color-picker h4 {
-        font-size: 13px;
         margin-bottom: 5px;
+        font-size: 13px;
     }
 
     .add-contact-modal.edit-mode .color-options {
@@ -1774,8 +1767,8 @@
     }
 
     .add-contact-modal.edit-mode .modal-buttons {
-        width: 100%;
         gap: 8px;
+        width: 100%;
         padding-top: 4px;
         padding-bottom: 0;
     }
@@ -1793,9 +1786,9 @@
     }
 
     .add-contact-modal.edit-mode .create-btn {
+        flex: none;
         width: 96px;
         min-width: 96px;
-        flex: none;
         height: 36px;
         font-size: 15px;
     }

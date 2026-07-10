@@ -9,19 +9,19 @@ input {
     align-items: center;
     width: 32px;
     height: 32px;
-    border-radius: 50%;
     background: none;
     border: none;
+    border-radius: 50%;
 }
 
 .back-arrow-button:hover {
-    transform: scale(1.01);
     background-color: var(--ui-light-hover);
+    transform: scale(1.01);
 }
 
 * {
-    scrollbar-color: var(--scrollbar-secondary-thumb-color) var(--scrollbar-track-bg-color);
     scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-secondary-thumb-color) var(--scrollbar-track-bg-color);
 }
 
 *::-webkit-scrollbar {
@@ -37,8 +37,8 @@ input {
 
 *::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, var(--scrollbar-primary-thumb-color), var(--scrollbar-secondary-thumb-color), var(--scrollbar-tertiary-thumb-color));
-    border-radius: 999px;
     border: 1px solid var(--scrollbar-thumb-border-color);
+    border-radius: 999px;
     box-shadow:
         0 0 10px var(--scrollbar-primary-thumb-shadow-color),
         0 0 18px var(--scrollbar-secondary-thumb-shadow-color);

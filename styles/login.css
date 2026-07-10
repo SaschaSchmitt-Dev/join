@@ -8,14 +8,14 @@ body {
     justify-content: center;
     width: 100%;
     min-height: 100dvh;
+    overflow: auto;
     background: var(--main-bg-color);
     color: var(--text-primary);
-    overflow: auto;
 }
 
 .login-content {
-    position: relative;
     display: flex;
+    position: relative;
     flex-direction: column;
     width: 100%;
     max-width: 1440px;
@@ -38,17 +38,17 @@ body {
 }
 
 .signup-area {
+    display: flex;
     position: absolute;
     top: 73px;
     right: 122px;
-    display: flex;
     align-items: center;
     gap: 35px;
 }
 
 .signup-area span {
     color: var(--text-primary);
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 1.25rem;
     font-weight: 400;
 }
@@ -59,11 +59,11 @@ body {
     align-items: center;
     width: 91px;
     height: 49px;
+    background: var(--login-button-primary-bg);
     border: none;
     border-radius: 10px;
-    background: var(--login-button-primary-bg);
     color: var(--text-white);
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
@@ -73,7 +73,7 @@ body {
 
 .signup-btn:hover {
     background: var(--login-button-primary-bg-hover);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
 }
 
 .signup-btn:active {
@@ -82,9 +82,9 @@ body {
 
 .login-main {
     display: flex;
+    flex: 1;
     justify-content: center;
     align-items: flex-start;
-    flex: 1;
     width: 100%;
     padding-top: 64px;
 }
@@ -96,9 +96,9 @@ body {
     width: 652px;
     min-height: 493px;
     padding: 48px 0;
-    border-radius: 30px;
     background: var(--assets-bg-color);
-    box-shadow: 0 0 14px rgba(0, 0, 0, 0.12);
+    border-radius: 30px;
+    box-shadow: 0 0 14px rgb(0 0 0 / 12%);
 }
 
 .card h1 {
@@ -123,18 +123,18 @@ body {
     width: 100%;
     height: 48px;
     padding: 12px 44px 12px 21px;
+    background: var(--assets-bg-color);
     border: 1px solid var(--form-input-border);
     border-radius: 10px;
     outline: none;
-    background: var(--assets-bg-color);
     color: var(--text-primary);
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 1.25rem;
 }
 
 .input-wrap input::placeholder {
-    color: var(--text-primary);
     opacity: 0.3;
+    color: var(--text-primary);
 }
 
 .input-wrap input:focus {
@@ -168,7 +168,7 @@ body {
     min-height: 16px;
     margin: 0;
     color: var(--form-input-border-error);
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 1rem;
 }
 
@@ -182,7 +182,7 @@ body {
 .btn-row button {
     height: 48px;
     border-radius: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 1.25rem;
     font-weight: 700;
     cursor: pointer;
@@ -194,14 +194,14 @@ body {
 
 .login-btn {
     width: 110px;
-    border: none;
     background: var(--login-button-primary-bg);
+    border: none;
     color: var(--text-white);
 }
 
 .login-btn:hover {
     background: var(--login-button-primary-bg-hover);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
 }
 
 .login-btn:active {
@@ -210,15 +210,15 @@ body {
 
 .guest-btn {
     width: 177px;
-    border: 1px solid var(--login-button-secondary-border);
     background: var(--assets-bg-color);
+    border: 1px solid var(--login-button-secondary-border);
     color: var(--login-button-secondary-text);
 }
 
 .guest-btn:hover {
     border-color: var(--login-button-secondary-hover);
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
     color: var(--login-button-secondary-hover);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .guest-btn:active {
@@ -248,7 +248,7 @@ body {
     font-weight: 700;
 }
 
-@media (max-width: 900px) {
+@media (width <= 900px) {
     .login-content {
         padding: 37px 32px 32px;
     }
@@ -281,14 +281,14 @@ body {
     }
 }
 
-@media (max-width: 560px) {
+@media (width <= 560px) {
     .login-content {
         padding: 24px 16px 18px;
     }
 
     .login-header {
-        min-height: 80px;
         order: 1;
+        min-height: 80px;
     }
 
     .login-logo {
@@ -308,8 +308,8 @@ body {
     }
 
     .login-main {
-        align-items: center;
         flex: 0;
+        align-items: center;
         order: 2;
     }
 
@@ -352,9 +352,9 @@ body {
 
     .btn-row {
         flex-direction: column;
+        gap: 12px;
         width: 100%;
         max-width: 180px;
-        gap: 12px;
         margin-top: 14px;
     }
 
@@ -377,7 +377,7 @@ body {
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .login-content {
         padding: 24px 16px 18px;
     }
@@ -415,7 +415,7 @@ body {
     }
 }
 
-@media (max-width: 360px) {
+@media (width <= 360px) {
     .login-content {
         padding-inline: 14px;
     }

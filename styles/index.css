@@ -4,17 +4,17 @@ body {
     align-items: center;
     width: 100%;
     min-height: 100dvh;
+    background-color: var(--main-bg-color);
     background-image: url("../assets/icons/join-logo-dark.png");
+    background-size: 274px 334px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 274px 334px;
-    background-color: var(--main-bg-color);
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     body {
+        background-color: var(--ui-dark);
         background-image: url("../assets/icons/join-logo-light.png");
         background-size: 100px 122px;
-        background-color: var(--ui-dark);
     }
 }
