@@ -59,10 +59,14 @@
 
     /** Scrollbar */
     --scrollbar-track-bg-color: rgb(236 236 236);
+    --scrollbar-track-hover-color: rgb(225 230 236);
+    --scrollbar-track-active-color: rgb(209 209 209);
     --scrollbar-track-shadow-color: transparent;
     --scrollbar-primary-thumb-color: rgb(168 168 168);
     --scrollbar-secondary-thumb-color: rgb(138 138 138);
     --scrollbar-tertiary-thumb-color: rgb(107 107 107);
+    --scrollbar-thumb-hover-color: rgb(104 104 104);
+    --scrollbar-thumb-active-color: rgb(66 82 110);
     --scrollbar-thumb-border-color: transparent;
     --scrollbar-primary-thumb-shadow-color: transparent;
     --scrollbar-secondary-thumb-shadow-color: transparent;
