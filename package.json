@@ -1,0 +1,26 @@
+{
+  "name": "join",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "lint:css": "stylelint \"style.css\" \"styles/**/*.css\"",
+    "lint:css:fix": "npm run lint:css -- --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaschaSchmitt-Dev/join.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaschaSchmitt-Dev/join/issues"
+  },
+  "homepage": "https://github.com/SaschaSchmitt-Dev/join#readme",
+  "devDependencies": {
+    "stylelint": "^17.14.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-order": "^8.1.1"
+  }
+}

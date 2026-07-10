@@ -1,6 +1,8 @@
 /** @type {import("stylelint").Config} */
 export default {
+    extends: ["stylelint-config-standard"],
     plugins: ["stylelint-order"],
+    ignoreFiles: ["node_modules/**", "out/**"],
     rules: {
         "order/properties-order": [
             [
@@ -36,7 +38,12 @@ export default {
                         "justify-content",
                         "align-items",
                         "align-content",
+                        "align-self",
                         "place-items",
+                        "place-content",
+                        "place-self",
+                        "justify-items",
+                        "justify-self",
                         "gap",
                         "row-gap",
                         "column-gap",
@@ -45,7 +52,8 @@ export default {
                         "grid-template-columns",
                         "grid-template-rows",
                         "grid-column",
-                        "grid-row"
+                        "grid-row",
+                        "order"
                     ]
                 },
                 {
@@ -72,7 +80,13 @@ export default {
                         "padding-top",
                         "padding-right",
                         "padding-bottom",
-                        "padding-left"
+                        "padding-left",
+                        "padding-block",
+                        "padding-block-start",
+                        "padding-block-end",
+                        "padding-inline",
+                        "padding-inline-start",
+                        "padding-inline-end"
                     ]
                 },
                 {
@@ -83,7 +97,11 @@ export default {
                         "overflow-y",
                         "scrollbar-width",
                         "scrollbar-color",
-                        "scrollbar-gutter"
+                        "scrollbar-gutter",
+                        "scroll-behavior",
+                        "scroll-snap-type",
+                        "scroll-snap-align",
+                        "scroll-snap-stop"
                     ]
                 },
                 {
@@ -101,27 +119,41 @@ export default {
                         "border-bottom",
                         "border-left",
                         "border-color",
+                        "border-width",
+                        "border-style",
                         "border-radius",
-                        "box-shadow"
+                        "box-shadow",
+                        "outline",
+                        "outline-color",
+                        "outline-offset",
+                        "outline-style",
+                        "outline-width"
                     ]
                 },
                 {
                     groupName: "Text and Font",
                     properties: [
                         "color",
+                        "text-fill-color",
                         "font",
                         "font-family",
                         "font-size",
                         "font-style",
                         "font-weight",
+                        "font-display",
+                        "src",
                         "line-height",
                         "letter-spacing",
                         "text-align",
                         "text-decoration",
                         "text-transform",
+                        "text-overflow",
                         "white-space",
                         "word-break",
-                        "overflow-wrap"
+                        "overflow-wrap",
+                        "list-style",
+                        "list-style-position",
+                        "list-style-type"
                     ]
                 },
                 {
@@ -148,6 +180,7 @@ export default {
                         "transition-duration",
                         "transition-timing-function",
                         "transform",
+                        "transform-origin",
                         "animation"
                     ]
                 }
