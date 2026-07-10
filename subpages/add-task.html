@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../styles/add-task.css">
-    <link rel="stylesheet" href="../styles/contacts.css">
 
     <script src="../script.js" defer></script>
     <script src="../templates/bars-templates.js" defer></script>
@@ -78,8 +77,16 @@
                             </div>
                         </div>
                         <div class="error-message" id="category-error"></div>
-                        <label class="label" for="title">Subtasks</label>
-                        <input class="input-field" type="text" required placeholder="Add new subtasks">
+                        <label class="label" for="subtasks">Subtasks</label>
+                        <div class="subtask-input-wrapper">
+                            <input class="input-field" id="subtasks" type="text" placeholder="Add new subtasks">
+                            <div class="subtask-actions">
+                                <img class="subtask-cancel" src="../assets/icons/cancel.png" alt="cancel">
+                                <span class="subtask-divider"></span>
+                                <img class="subtask-check" src="../assets/icons/check.png" alt="check">
+                            </div>
+                        </div>
+                        <ul class="subtask-list"></ul>
                     </div>
                 </div>
             </form>

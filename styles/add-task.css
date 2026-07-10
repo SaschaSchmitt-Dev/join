@@ -1,16 +1,16 @@
 * {
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Inter, sans-serif
 }
 
 .add-task-content {
-    display: flex;
-    flex-direction: column;
     height: 100%;
     background: --main-bg-color;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .site-header {
-    padding: 48px 96px;
     font-weight: bold;
 }
 
@@ -18,30 +18,38 @@
     display: flex;
     flex-direction: column;
     width: 440px;
-    margin-left: 96px;
-    border: none;
     border-radius: 10px;
-    font-size: 18px;
+    border: none;
+    font-size: 16px;
 }
 
 .add-task-fields-right {
     display: flex;
     flex-direction: column;
     width: 440px;
-    border: none;
     border-radius: 10px;
-    font-size: 18px;
+    border: none;
+    font-size: 16px;
 }
 
 input {
     height: 48px;
-    padding-bottom: 0;
-    border: 1px solid #D1D1D1;
+    font-size: 16px;
     border-radius: 10px;
-    font-size: 18px;
+    border: 1px solid #D1D1D1;
+    padding-bottom: 0;
+}
+
+input:focus {
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    box-shadow: none;
+    border-color: var(--form-input-border-focus);
 }
 
 .input-field {
+    width: 100%;
     margin: 0;
     padding-left: 8px;
 }
@@ -53,10 +61,10 @@ input {
 }
 
 .error-message {
-    min-height: 18px;
-    margin-top: 4px;
     color: #FF8190;
     font-size: 14px;
+    min-height: 16px;
+    margin-top: 4px;
 }
 
 label {
@@ -65,35 +73,35 @@ label {
 
 .add-task-fields-left textarea {
     height: 120px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
     margin-bottom: 20px;
     padding: 8px;
-    border: 1px solid #D1D1D1;
-    border-radius: 10px;
-    font-size: 24px;
 }
 
 input::placeholder {
     opacity: 0.3;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 textarea::placeholder {
     opacity: 0.3;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .horizontal-divider {
+    border: 1px solid #D1D1D1;
     opacity: 0.5;
     width: 0;
-    height: 424px;
-    margin: 16px 40px;
-    border: 1px solid #D1D1D1;
+    margin: 16px 32px;
 }
 
 .add-task-form {
     display: flex;
-    flex-grow: 1;
     flex-direction: row;
+    flex-grow: 1;
+    width: 960px;
 }
 
 .priority-group {
@@ -110,20 +118,16 @@ textarea::placeholder {
 }
 
 .priority-group label {
+    margin-top: 4px;
+    width: 136px;
+    height: 56px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 136px;
-    height: 56px;
-    margin-top: 4px;
     padding-top: 0;
     background-color: white;
-    border-radius: 10px;
     cursor: pointer;
-}
-
-.medium img {
-    filter: invert(1);
 }
 
 #urgent:checked+label {
@@ -160,15 +164,17 @@ textarea::placeholder {
 .dropdown-content a,
 .dropdown-content label {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
-    margin-right: 40px;
-    padding: 8px;
-    background-color: white;
-    border-radius: 10px;
-    color: black;
     text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 4px 8px;
+    border-radius: 10px;
+    margin-right: 40px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     cursor: pointer;
 }
 
@@ -178,10 +184,58 @@ textarea::placeholder {
     gap: 8px;
 }
 
+.contact-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background: var(--profile-orange);
+    color: var(--text-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
 .dropdown-content a:hover,
 .dropdown-content label:hover {
-    margin-right: 40px;
     background-color: var(--main-bg-color);
+    margin-right: 40px;
+}
+
+.dropdown-content label:has(.contact-checkbox:checked) {
+    background-color: var(--ui-dark);
+    color: white;
+}
+
+.contact-checkbox {
+    position: relative;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--ui-dark);
+    border-radius: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.contact-checkbox:checked {
+    background-color: var(--ui-dark);
+    border-color: white;
+}
+
+.contact-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
 }
 
 .dropdown-content {
@@ -194,24 +248,30 @@ textarea::placeholder {
 
 .dropdown-list .dropdown-content {
     position: absolute;
-    z-index: 10;
-    width: 100%;
     background-color: white;
+    z-index: 10;
     border-radius: 10px;
+    width: 100%;
 }
 
 .input-wrapper input {
     width: 100%;
     cursor: pointer;
+    padding-left: 8px;
 }
 
 .input-icon {
     position: absolute;
-    top: 50%;
     right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
     background-color: white;
     border: none;
-    transform: translateY(-50%);
+    transition: transform 0.2s ease;
+}
+
+.input-wrapper.open .input-icon {
+    transform: translateY(-50%) rotate(180deg);
 }
 
 .input-icon:hover{
@@ -229,9 +289,10 @@ textarea::placeholder {
 footer {
     display: flex;
     justify-content: space-between;
-    margin-right: 160px;
-    margin-bottom: 96px;
-    margin-left: 96px;
+    align-items: flex-end;
+    width: 947px;
+    margin-bottom: 48px;
+    margin-top: 24px;
 }
 
 footer button {
@@ -247,44 +308,46 @@ footer button {
 }
 
 .clear {
-    position: relative;
-    top: -60%;
+    border: 1px solid var(--ui-dark);
     width: 110px;
     height: 56px;
-    border: 1px solid;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
 }
 
 .clear:hover {
-    border: 1px solid var(--ui-light);
-    color: var(--ui-light);
-}
-
-.clear:hover img {
-    filter: brightness(0) saturate(100%) invert(55%) sepia(74%) saturate(511%) hue-rotate(156deg) brightness(92%) contrast(92%);
+    border: 2px solid;
 }
 
 .create-task {
-    position: relative;
-    top: -60%;
     width: 184px;
     height: 56px;
-    background-color: var(--ui-dark);
     border-radius: 10px;
+    background-color: var(--ui-dark);
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
 }
 
 .create-task:hover {
-    background-color: var(--ui-light);
+    box-shadow: 0 2px 0 0 var(--ui-dark);
+    background-color: var(--ui-dark-hover);
 }
 
-.contact-avatar {
-    width: 32px !important;
-    height: 32px !important;
+.create-task:disabled {
+    background-color: var(--ui-dark);
+    cursor: not-allowed;
+}
+
+.create-task:disabled:hover {
+    box-shadow: none;
+    background-color: var(--ui-dark);
+}
+
+.selected-contacts .contact-avatar {
+    width: 32px;
+    height: 32px;
 }
 
 .selected-contacts {
@@ -292,4 +355,109 @@ footer button {
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 8px;
+}
+
+.subtask-input-wrapper {
+    position: relative;
+}
+
+.subtask-actions {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    display: none;
+    align-items: center;
+    gap: 4px;
+    transform: translateY(-50%);
+}
+
+.subtask-input-wrapper.is-writing .subtask-actions {
+    display: flex;
+}
+
+.subtask-divider {
+    width: 1px;
+    height: 24px;
+    background-color: #D1D1D1;
+}
+
+.subtask-cancel,
+.subtask-check {
+    cursor: pointer;
+    filter: brightness(0);
+}
+
+.subtask-list {
+    list-style: none;
+    margin: 8px 0 0;
+    padding-left: 0;
+}
+
+.subtask-list li {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.subtask-list li:hover {
+    background-color: var(--scrollbar-track-bg-color);
+    border: none;
+}
+
+.subtask-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 24px;
+}
+
+.subtask-text-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    margin-left: 8px;
+}
+
+.subtask-edit-input {
+    height: auto;
+    flex: 1;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    font: inherit;
+    background: transparent;
+}
+
+.subtask-edit-input:focus {
+    outline: none;
+    border: none;
+}
+
+.subtask-item-actions {
+    display: none;
+    align-items: center;
+    gap: 8px;
+}
+
+.subtask-list li:hover .subtask-item-actions,
+.subtask-list li.is-editing .subtask-item-actions {
+    display: flex;
+}
+
+.subtask-edit,
+.subtask-delete,
+.subtask-save-edit {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    filter: brightness(0);
+}
+
+.subtask-delete {
+    order: 1;
+}
+
+.subtask-save-edit {
+    order: 2;
 }
