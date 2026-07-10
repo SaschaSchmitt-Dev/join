@@ -5,6 +5,7 @@
     width: 100%;
     max-width: 1208px;
     font-family: Inter, sans-serif;
+    line-height: 120%;
 }
 
 .board-header {
@@ -117,7 +118,7 @@
     background: var(--ui-dark-active);
 }
 
-.add-task-button span {
+.add-task-plus {
     padding-bottom: 4px;
     font-size: 2rem;
     font-weight: 400;
@@ -250,21 +251,10 @@
 
 .progress-bar span {
     display: block;
+    width: var(--task-progress, 0%);
     height: 100%;
     background: var(--progress-bar-content);
     border-radius: 8px;
-}
-
-.progress-0 span {
-    width: 0;
-}
-
-.progress-50 span {
-    width: 50%;
-}
-
-.progress-100 span {
-    width: 100%;
 }
 
 .task-footer {
@@ -289,75 +279,11 @@
     border: 1px solid var(--text-white);
     border-radius: 50%;
     color: var(--text-white);
-    font-size: 0.75rem;
+    font-size: 1rem;
 }
 
 .avatar:first-child {
     margin-left: 0;
-}
-
-.avatar.profile-orange {
-    background: var(--profile-orange);
-}
-
-.avatar.profile-pink {
-    background: var(--profile-pink);
-}
-
-.avatar.profile-violet {
-    background: var(--profile-violet);
-}
-
-.avatar.profile-purple {
-    background: var(--profile-purple);
-}
-
-.avatar.profile-cyan {
-    background: var(--profile-cyan);
-}
-
-.avatar.profile-turquoise {
-    background: var(--profile-turquoise);
-}
-
-.avatar.profile-salmon {
-    background: var(--profile-salmon);
-}
-
-.avatar.profile-peach {
-    background: var(--profile-peach);
-}
-
-.avatar.profile-magenta {
-    background: var(--profile-magenta);
-}
-
-.avatar.profile-gold {
-    background: var(--profile-gold);
-}
-
-.avatar.profile-blue {
-    background: var(--profile-blue);
-}
-
-.avatar.profile-lime {
-    background: var(--profile-lime);
-}
-
-.avatar.profile-yellow {
-    background: var(--profile-yellow);
-}
-
-.avatar.profile-red {
-    background: var(--profile-red);
-}
-
-.avatar.profile-amber {
-    background: var(--profile-amber);
-}
-
-.avatar.text-dark {
-    color: var(--text-primary);
 }
 
 @media (width <= 1240px) {
@@ -433,10 +359,14 @@
         width: 40px;
         min-width: 40px;
         height: 40px;
-        font-size: 0;
+        font-size: 1rem;
     }
 
-    .add-task-button span {
+    .add-task-label {
+        display: none;
+    }
+
+    .add-task-plus {
         font-size: 2.5rem;
     }
 }
@@ -478,21 +408,21 @@
     }
 
     .task-card h3 {
-        font-size: 0.875rem;
+        font-size: 1rem;
     }
 
     .task-card p,
     .task-progress {
-        font-size: 0.75rem;
+        font-size: 1rem;
     }
 
     .task-category {
-        font-size: 0.75rem;
+        font-size: 1rem;
     }
 
     .avatar {
         width: 24px;
         height: 24px;
-        font-size: 0.625rem;
+        font-size: 1rem;
     }
 }

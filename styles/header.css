@@ -104,7 +104,7 @@
     border-radius: 8px;
     color: var(--text-tertiary);
     font-family: Inter, sans-serif;
-    font-size: 0.875rem;
+    font-size: 1rem;
     line-height: 120%;
     white-space: nowrap;
 }
@@ -125,7 +125,7 @@
     .account-avatar {
         width: 40px;
         height: 40px;
-        font-size: 0.875rem;
+        font-size: 1rem;
     }
 
     .account-menu {

@@ -26,24 +26,10 @@ async function renderSummaryMetrics() {
  */
 async function getSummaryTasks() {
     try {
-        const response = await fetch(getSummaryTasksUrl());
-        const tasks = await response.json();
-
-        return Object.values(tasks || {});
+        return await getTasks();
     } catch (error) {
         return [];
     }
-}
-
-
-/**
- * Gets the url for the summary tasks.
- * @returns {string} The tasks url.
- */
-function getSummaryTasksUrl() {
-    const currentUserId = getCurrentUserId();
-
-    return currentUserId === guestUserId ? getUserDatabaseUrl(guestUserId, "tasks") : getDatabaseUrl("tasks");
 }
 
 

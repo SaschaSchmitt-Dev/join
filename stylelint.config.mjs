@@ -2,8 +2,11 @@
 export default {
     extends: ["stylelint-config-standard"],
     plugins: ["stylelint-order"],
-    ignoreFiles: ["node_modules/**", "out/**"],
+    ignoreFiles: ["node_modules/**", "out/**", "styles/add-task.css"],
     rules: {
+        "no-descending-specificity": null,
+        "selector-class-pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+        "selector-id-pattern": "^[a-z][a-zA-Z0-9]*$",
         "order/properties-order": [
             [
                 {

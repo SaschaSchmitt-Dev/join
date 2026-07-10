@@ -111,7 +111,7 @@
     background: var(--profile-orange);
     border-radius: 50%;
     color: var(--text-white);
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .contact-info h4 {
@@ -125,7 +125,7 @@
 .contact-info p {
     margin: 0;
     color: var(--contact-link);
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: none;
 }
 
@@ -355,7 +355,7 @@
     white-space: nowrap;
 }
 
-#add-contact-form {
+#addContactForm {
     width: 100%;
     max-width: 422px;
 }
@@ -554,15 +554,15 @@
     margin: 6px 0 0;
     color: var(--priority-urgent);
     font-family: Inter, sans-serif;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 600;
 }
 
-#add-contact-form.submitted .input-field input:invalid {
+#addContactForm.submitted .input-field input:invalid {
     border-color: var(--priority-urgent);
 }
 
-#add-contact-form.submitted .input-field input:invalid~.contact-input-error {
+#addContactForm.submitted .input-field input:invalid~.contact-input-error {
     display: block;
 }
 
@@ -757,7 +757,7 @@
     }
 
     .contact-info a {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .contact-detail-top {
@@ -808,7 +808,7 @@
         padding: 32px 24px;
     }
 
-    #add-contact-form {
+    #addContactForm {
         width: 422px;
         max-width: 422px;
     }
@@ -863,7 +863,7 @@
         padding: 32px 16px;
     }
 
-    #add-contact-form {
+    #addContactForm {
         width: 422px;
         max-width: 422px;
     }
@@ -1001,7 +1001,7 @@
         border-radius: 12px;
         color: var(--text-white);
         font-family: Inter, sans-serif;
-        font-size: 12px;
+        font-size: 16px;
         text-decoration: none;
     }
 
@@ -1146,7 +1146,7 @@
         display: none;
     }
 
-    #add-contact-form {
+    #addContactForm {
         width: 100%;
         max-width: 422px;
         margin: 0 auto;
@@ -1466,7 +1466,7 @@
 
     .color-picker h4 {
         margin-bottom: 10px;
-        font-size: 15px;
+        font-size: 16px;
     }
 
     .color-options {
@@ -1483,7 +1483,7 @@
         min-width: 280px;
         max-width: calc(100% - 48px);
         height: 48px;
-        font-size: 15px;
+        font-size: 16px;
     }
 }
 
@@ -1647,7 +1647,7 @@
         overflow: hidden;
     }
 
-    #add-contact-form {
+    #addContactForm {
         width: 100%;
         max-width: 100%;
     }
@@ -1671,7 +1671,7 @@
 
     .contact-input-error {
         margin-top: 3px;
-        font-size: 11px;
+        font-size: 16px;
     }
 
     .modal-buttons {
@@ -1738,7 +1738,7 @@
     .add-contact-modal.edit-mode .input-field input {
         height: 34px;
         padding: 0 34px 0 12px;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .add-contact-modal.edit-mode .input-field img {
@@ -1754,7 +1754,7 @@
 
     .add-contact-modal.edit-mode .color-picker h4 {
         margin-bottom: 5px;
-        font-size: 13px;
+        font-size: 16px;
     }
 
     .add-contact-modal.edit-mode .color-options {
@@ -1782,7 +1782,7 @@
         width: 90px;
         min-width: 90px;
         height: 36px;
-        font-size: 15px;
+        font-size: 16px;
     }
 
     .add-contact-modal.edit-mode .create-btn {
@@ -1790,7 +1790,7 @@
         width: 96px;
         min-width: 96px;
         height: 36px;
-        font-size: 15px;
+        font-size: 16px;
     }
 
     .add-contact-modal.edit-mode .create-btn img {

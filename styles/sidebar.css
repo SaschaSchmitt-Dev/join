@@ -136,7 +136,7 @@
         height: 64px;
         border-radius: 8px;
         color: var(--text-tertiary);
-        font-size: 0.75rem;
+        font-size: 1rem;
         text-align: center;
     }
 
@@ -175,7 +175,7 @@
 
     .mobile-nav a {
         height: 60px;
-        font-size: 0.6875rem;
+        font-size: 1rem;
     }
 
     .mobile-nav img {

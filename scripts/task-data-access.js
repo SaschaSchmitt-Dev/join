@@ -1,0 +1,52 @@
+/**
+ * Returns the database URL for all tasks or one task.
+ * Guest users work with their separate sandbox data.
+ * @param {string} taskId - The optional Firebase task id.
+ * @returns {string} The task database URL.
+ */
+function getTasksUrl(taskId = "") {
+    const taskPath = taskId ? `tasks/${taskId}` : "tasks";
+
+    if (getCurrentUserId() === guestUserId) {
+        return getUserDatabaseUrl(guestUserId, taskPath);
+    }
+
+    return getDatabaseUrl(taskPath);
+}
+
+
+/**
+ * Loads the raw task data.
+ * @returns {Promise<Object>} Tasks indexed by Firebase id.
+ */
+async function getTasksData() {
+    const response = await fetch(getTasksUrl());
+    return await response.json() || {};
+}
+
+
+/**
+ * Loads all tasks and keeps their Firebase ids.
+ * @returns {Promise<Array>} The task list.
+ */
+async function getTasks() {
+    const tasks = await getTasksData();
+
+    return Object.entries(tasks).map(([id, task]) => ({ id, ...task }));
+}
+
+
+/**
+ * Creates a task and returns it with its generated Firebase id.
+ * @param {Object} task - The task to create.
+ * @returns {Promise<Object>} The created task including its id.
+ */
+async function createTask(task) {
+    const response = await fetch(getTasksUrl(), {
+        method: "POST",
+        body: JSON.stringify(task)
+    });
+    const result = await response.json();
+    task.id = result.name;
+    return task;
+}

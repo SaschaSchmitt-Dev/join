@@ -12,7 +12,7 @@ const mobileMoreBtn = document.querySelector(".mobile-more-btn");
 const mobileBackBtn = document.querySelector(".mobile-back-btn");
 const closeContactModal = document.getElementById("close-contact-modal");
 const cancelContactBtn = document.getElementById("cancel-contact-btn");
-const addContactForm = document.getElementById("add-contact-form");
+const addContactForm = document.getElementById("addContactForm");
 const contactsPage = document.querySelector(".contacts-page");
 const modalTitle = document.getElementById("contact-modal-title");
 const modalSubtitle = document.getElementById("contact-modal-subtitle");
@@ -296,24 +296,8 @@ async function removeContactFromAssignedTasks(contactId) {
  * @returns {Promise<Array>} The task entries.
  */
 async function getContactTasks() {
-    const response = await fetch(getContactTasksUrl());
-    const tasks = await response.json();
-    return Object.entries(tasks || {});
-}
-
-
-/**
- * Returns the tasks database URL.
- * @param {string} taskId - The optional task id.
- * @returns {string} The tasks database URL.
- */
-function getContactTasksUrl(taskId = "") {
-    const path = taskId ? "/" + taskId : "";
-
-    if (getCurrentUserId() === guestUserId) {
-        return getUserDatabaseUrl(guestUserId, "tasks" + path);
-    }
-    return getDatabaseUrl("tasks" + path);
+    const tasks = await getTasksData();
+    return Object.entries(tasks);
 }
 
 
@@ -365,7 +349,7 @@ function getAssignmentsWithoutContact(task, contactId) {
  * @returns {Promise<Response>} The update request.
  */
 function updateTaskAssignments(update) {
-    return fetch(getContactTasksUrl(update.taskId), {
+    return fetch(getTasksUrl(update.taskId), {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ assignedTo: update.assignedTo })
