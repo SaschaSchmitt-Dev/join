@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+
+    <link rel="shortcut icon" href="../assets/icons/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../styles/variables.css">
+    <link rel="stylesheet" href="../styles/assets.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../styles/add-task.css">
+
+    <script src="../script.js" defer></script>
+    <script src="../templates/bars-templates.js" defer></script>
+    <script src="../scripts/bars.js" defer></script>
+    <script src="../scripts/add-task.js" defer></script>
+</head>
+
+<body data-page="add-task">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <section class="page-content" aria-label="Seiteninhalt">
+        <header id="topbar" class="topbar"></header>
+
+        <main class="main-content addTaskContent">
+            <h1 class="siteHeader">Add Task</h1>
+            <form class="addTaskForm">
+                <div class="addTaskFieldsLeft">
+                    <label class="label" for="title">Title<span style="color: #FF8190">*</span></label>
+                    <input class="inputField" id="title" type="text" placeholder="Enter a title">
+                    <div class="errorMessage" id="titleError"></div>
+                    <label class="labelTextarea" for="description">Description</label>
+                    <textarea class="textarea" id="description" type="text" placeholder="Enter a Description"></textarea>
+                    <label class="label" for="dueDate">Due date<span style="color: #FF8190">*</span></label>
+                    <input class="inputField" id="dueDate" type="text" placeholder="dd/mm/yyyy">
+                    <div class="errorMessage" id="dueDateError"></div>
+                </div>
+                <div class="horizontalDivider"></div>
+                <div class="addTaskFieldsRight">
+                    <label for="priority">Priority</label>
+                    <div class="priorityGroup">
+                        <input type="radio" name="priority" id="urgent" value="urgent">
+                        <label id="urgent" for="urgent">Urgent <img src="../assets/icons/urgent-priority.png"
+                                alt=""></label>
+
+                        <input type="radio" name="priority" id="medium" value="medium" checked>
+                        <label id="medium" for="medium" class="medium">Medium <img
+                                src="../assets/icons/medium-priority.png" alt=""></label>
+
+                        <input type="radio" name="priority" id="low" value="low">
+                        <label id="low" for="low">Low <img src="../assets/icons/low-priority.png" alt=""></label>
+                    </div>
+                    <div class="dropdownList">
+                        <label for="assignetTo" class="assignetTo">Assignet to</label>
+                        <div class="inputWrapper">
+                            <input type="text" class="assignetTo" id="assignetTo"
+                                placeholder="Select contacts to assign">
+                            <img class="inputIcon" src="../assets/icons/arrow-dropdown.png" alt="">
+                        </div>
+                        <div class="dropdownContent"></div>
+                        <div class="selectedContacts"></div>
+                    </div>
+                    <div class="dropdownList">
+                        <label for="category" class="category">Category<span style="color: #FF8190">*</span></label>
+                        <div class="inputWrapper">
+                            <input type="text" class="category" id="category" placeholder="Select task category" readonly>
+                            <img class="inputIcon" src="../assets/icons/arrow-dropdown.png" alt="">
+                            <div class="dropdownContent">
+                                <a href="">Technikal task</a>
+                                <a href="">User Story</a>
+                            </div>
+                        </div>
+                        <div class="errorMessage" id="categoryError"></div>
+                        <label class="label" for="subtasks">Subtasks</label>
+                        <div class="subtaskInputWrapper">
+                            <input class="inputField" id="subtasks" type="text" placeholder="Add new subtasks">
+                            <div class="subtaskActions">
+                                <img class="subtaskCancel" src="../assets/icons/cancel.png" alt="cancel">
+                                <span class="subtaskDivider"></span>
+                                <img class="subtaskCheck" src="../assets/icons/check.png" alt="check">
+                            </div>
+                        </div>
+                        <ul class="subtaskList"></ul>
+                    </div>
+                </div>
+            </form>
+            <footer>
+                <p><span style="color: #FF8190;">*</span>This field is required</p>
+                <div class="footerButtons">
+                    <button class="clear" onclick="clearForm()">
+                        Clear <img src="../assets/icons/cancel.png" alt="">
+                    </button>
+                    <button class="createTask">
+                        Create Task <img src="../assets/icons/check.png" alt="">
+                    </button>
+                </div>
+            </footer>
+        </main>
+    </section>
+</body>
+
+</html>
