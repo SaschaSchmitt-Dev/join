@@ -276,9 +276,6 @@ subtaskList.addEventListener('click', (event) => {
 });
 
 function getAddTaskUrl() {
-    if (getCurrentUserId() === guestUserId) {
-        return getUserDatabaseUrl(guestUserId, 'tasks');
-    }
     return getDatabaseUrl('tasks');
 }
 
