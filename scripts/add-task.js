@@ -273,6 +273,7 @@ createTaskButton.addEventListener('click', async (e) => {
         firstInvalid.focus();
         return;
     }
+    createTaskButton.disabled = true;
     await postNewTask(getTaskFormData());
     clearForm();
     showTaskAddedToast();

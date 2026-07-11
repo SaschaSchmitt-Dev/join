@@ -1,0 +1,118 @@
+@media(width <=1280px) {
+    .horizontalDivider {
+        margin: 16px 8px;
+    }
+
+    footer {
+        width: 779px;
+    }
+
+    .addTaskFieldsLeft {
+        width: 380px;
+    }
+
+    .addTaskFieldsRight {
+        width: 380px;
+    }
+}
+
+@media(width <=1120px) {
+    footer {
+        width: 679px;
+    }
+
+    .addTaskFieldsLeft {
+        width: 330px;
+    }
+
+    .addTaskFieldsRight {
+        width: 330px;
+    }
+}
+
+@media(width <=768px) {
+    .addTaskForm {
+        flex-direction: column;
+    }
+
+    .addTaskContent {
+        padding-bottom: 96px;
+    }
+
+    footer {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .footerButtons {
+        justify-content: flex-end;
+        position: fixed;
+        bottom: 88px;
+        left: 0;
+        gap: 16px;
+        margin: 0;
+        padding: 0px;
+        background-color: var(--main-bg-color);
+        z-index: 50;
+        width: 350px;
+    }
+
+    .clear {
+        width: 110px;
+        height: 56px;
+    }
+
+    .createTask {
+        width: 180px;
+        height: 56px;
+    }
+
+    label {
+        padding: 16px 0 4px;
+    }
+
+    .addTaskFieldsLeft textarea {
+        margin-bottom: 0;
+    }
+
+    .requiredFieldsNotice {
+        margin-bottom: 40px;
+    }
+
+    .horizontalDivider {
+        display: none;
+    }
+}
+
+@media(width <=475px) {
+    .priorityGroup label {
+        width: 120px;
+        height: 40px;
+    }
+
+    input {
+        height: 40px;
+    }
+
+    .addTaskFieldsLeft textarea {
+        height: 88px;
+    }
+}
+
+@media(width <=365px) {
+    .addTaskFieldsLeft {
+        width: 290px;
+    }
+
+    .addTaskFieldsRight {
+        width: 290px;
+    }
+
+    .footerButtons {
+        width: 310px;
+    }
+
+    .priorityGroup img {
+        margin-left: 4px;
+    }
+}

@@ -1,0 +1,133 @@
+.subtaskInputWrapper {
+    position: relative;
+}
+
+.subtaskActions {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    display: none;
+    align-items: center;
+    gap: 4px;
+    transform: translateY(-50%);
+}
+
+.subtaskInputWrapper.isWriting .subtaskActions {
+    display: flex;
+}
+
+.subtaskDivider {
+    width: 1px;
+    height: 24px;
+    background-color: #D1D1D1;
+}
+
+.subtaskCancel,
+.subtaskCheck {
+    cursor: pointer;
+    filter: brightness(0);
+}
+
+.subtaskList {
+    list-style: none;
+    margin: 8px 0 0;
+    padding-left: 0;
+}
+
+.subtaskList li {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.subtaskList li:hover {
+    background-color: var(--scrollbar-track-bg-color);
+    border: none;
+}
+
+.subtaskRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 24px;
+}
+
+.subtaskTextGroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    margin-left: 8px;
+}
+
+.subtaskEditInput {
+    height: auto;
+    flex: 1;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    font: inherit;
+    background: transparent;
+}
+
+.subtaskEditInput:focus {
+    outline: none;
+    border: none;
+}
+
+.subtaskItemActions {
+    display: none;
+    align-items: center;
+    gap: 8px;
+}
+
+.subtaskList li:hover .subtaskItemActions,
+.subtaskList li.isEditing .subtaskItemActions {
+    display: flex;
+}
+
+.subtaskEdit,
+.subtaskDelete,
+.subtaskSaveEdit {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    filter: brightness(0);
+}
+
+.subtaskDelete {
+    order: 1;
+}
+
+.subtaskSaveEdit {
+    order: 2;
+}
+
+.taskAddedToast {
+    display: flex;
+    position: fixed;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    align-items: center;
+    gap: 32px;
+    padding: 16px 24px;
+    background-color: var(--ui-dark);
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 10px;
+    z-index: 100;
+    transition: top 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+.taskAddedToast img {
+    width: 24px;
+    height: 24px;
+}
+
+.taskAddedToast.show {
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
