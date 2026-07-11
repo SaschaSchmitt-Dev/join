@@ -1,32 +1,8 @@
-function dropdownToggle(element, onClose) {
-    const dropdown = element.parentElement.querySelector('.dropdownContent');
-    const isOpen = dropdown.style.display === 'block';
-    dropdown.style.display = isOpen ? 'none' : 'block';
-    element.classList.toggle('open', !isOpen);
-    if (isOpen && onClose) onClose();
-}
-
-function closeDropdown(input, onClose) {
-    document.addEventListener('click', (event) => {
-        const dropdownList = input.closest('.dropdownList');
-        if (!dropdownList.contains(event.target)) {
-            dropdownList.querySelector('.dropdownContent').style.display = 'none';
-            dropdownList.querySelector('.inputWrapper').classList.remove('open');
-            if (onClose) onClose();
-        }
-    });
-}
-
-function setupDropdownToggle(input, onClose) {
-    const wrapper = input.parentElement;
-    const arrow = wrapper.querySelector('.inputIcon');
-    input.addEventListener('click', () => dropdownToggle(wrapper, onClose));
-    arrow.addEventListener('click', () => dropdownToggle(wrapper, onClose));
-}
-
+/**
+ * @fileoverview This script handles the task addition functionality, including dropdowns for assignees and categories, error handling, and rendering selected contacts.
+ */
 const assignetToInput = document.getElementById('assignetTo');
 const categoryInput = document.getElementById('category');
-
 function resetAssignetToDropdown() {
     assignetToInput.value = '';
     assignetToInput.closest('.dropdownList').querySelectorAll('.dropdownContent label').forEach((label) => {
@@ -35,9 +11,9 @@ function resetAssignetToDropdown() {
     renderSelectedContacts();
 }
 
+
 setupDropdownToggle(assignetToInput, resetAssignetToDropdown);
 closeDropdown(assignetToInput, resetAssignetToDropdown);
-
 assignetToInput.addEventListener('input', () => {
     const query = assignetToInput.value.toLowerCase();
     const dropdownContent = assignetToInput.closest('.dropdownList').querySelector('.dropdownContent');
@@ -49,11 +25,10 @@ assignetToInput.addEventListener('input', () => {
     });
 });
 
+
 setupDropdownToggle(categoryInput);
 closeDropdown(categoryInput);
-
 const categoryDropdownContent = categoryInput.closest('.dropdownList').querySelector('.dropdownContent');
-
 categoryDropdownContent.querySelectorAll('a').forEach((option) => {
     option.addEventListener('click', (event) => {
         event.preventDefault();
@@ -63,6 +38,7 @@ categoryDropdownContent.querySelectorAll('a').forEach((option) => {
         updateCreateTaskButtonState();
     });
 });
+
 
 function renderSelectedContacts() {
     const selectedContacts = document.querySelector('.selectedContacts');
@@ -78,41 +54,53 @@ function renderSelectedContacts() {
     });
 }
 
+
+/** * Renders the list of contacts in the "Assigned To" dropdown.
+ * @param {Object} contacts - An object containing contact information.
+ */
 function renderAssignetToContacts(contacts) {
     const dropdownContent = assignetToInput.closest('.dropdownList').querySelector('.dropdownContent');
     dropdownContent.innerHTML = '';
     for (let key in contacts) {
-        const contact = contacts[key];
-        const contactColor = getUserColor(contact.color);
-        const row = document.createElement('label');
-        row.innerHTML = `
-            <div class="contactInfoWrapper">
-                <div class="contactAvatar" style="background:${contactColor}; color:${getUserTextColor(contactColor)}">${getUserInitials(contact.name)}</div>
-                <span>${contact.name}</span>
-            </div>
-            <input type="checkbox" class="contactCheckbox" data-id="${key}" data-name="${contact.name}" data-initials="${getUserInitials(contact.name)}" data-color="${contactColor}" data-text-color="${getUserTextColor(contactColor)}">
-        `;
-        dropdownContent.appendChild(row);
+        dropdownContent.appendChild(buildContactRow(key, contacts[key]));
     }
 }
+
 
 fetch(BASE_URL + 'contacts.json')
     .then((response) => response.json())
     .then((contacts) => renderAssignetToContacts(contacts));
 
+
+/** * Displays an error message for the specified input field.
+ * @param {HTMLElement} input - The input element to show the error for.
+ * @param {HTMLElement} errorEl - The element to display the error message in.
+ */
 function showError(input, errorEl) {
     input.classList.add('inputError');
     errorEl.textContent = 'This field is required';
 }
 
+
+/** * Clears the error message for the specified input field.
+ * @param {HTMLElement} input - The input element to clear the error for.
+ * @param {HTMLElement} errorEl - The element to clear the error message from.
+ */
 function clearError(input, errorEl) {
     input.classList.remove('inputError');
     errorEl.textContent = '';
 }
 
+/** * Updates the state of the "Create Task" button based on the required fields.
+ */
+function updateCreateTaskButtonState() {
+    const isFilled = titleInput.value.trim() && dueDateInput.value && categoryInput.value.trim();
+    createTaskButton.disabled = !isFilled;
+}
+
+
 const titleInput = document.getElementById('title');
 const titleError = document.getElementById('titleError');
-
 titleInput.addEventListener('blur', () => {
     if (!titleInput.value.trim()) showError(titleInput, titleError);
 });
@@ -121,9 +109,9 @@ titleInput.addEventListener('input', () => {
     updateCreateTaskButtonState();
 });
 
+
 const dueDateInput = document.getElementById('dueDate');
 const dueDateError = document.getElementById('dueDateError');
-
 dueDateInput.addEventListener('focus', () => { dueDateInput.type = 'date'; });
 dueDateInput.addEventListener('blur', () => {
     if (!dueDateInput.value) {
@@ -138,59 +126,37 @@ dueDateInput.addEventListener('change', () => {
     updateCreateTaskButtonState();
 });
 
-const categoryError = document.getElementById('categoryError');
 
+const categoryError = document.getElementById('categoryError');
 categoryInput.addEventListener('blur', () => {
     if (!categoryInput.value.trim()) showError(categoryInput, categoryError);
 });
 
-const descriptionInput = document.getElementById('description');
 
+const descriptionInput = document.getElementById('description');
 const subtaskInput = document.getElementById('subtasks');
 const subtaskWrapper = subtaskInput.closest('.subtaskInputWrapper');
 const subtaskCancel = subtaskWrapper.querySelector('.subtaskCancel');
 const subtaskCheck = subtaskWrapper.querySelector('.subtaskCheck');
 const subtaskList = subtaskWrapper.parentElement.querySelector('.subtaskList');
-
 subtaskInput.addEventListener('input', () => {
     subtaskWrapper.classList.toggle('isWriting', subtaskInput.value.trim() !== '');
 });
-
 subtaskCancel.addEventListener('click', () => {
     subtaskInput.value = '';
     subtaskWrapper.classList.remove('isWriting');
     subtaskInput.focus();
 });
 
+
+/** * Adds a new subtask to the subtask list based on the input value. */
 function addSubtask() {
     const subtaskText = subtaskInput.value.trim();
     if (!subtaskText) return;
     const listItem = document.createElement('li');
-
     const row = document.createElement('div');
     row.className = 'subtaskRow';
-
-    const textGroup = document.createElement('div');
-    textGroup.className = 'subtaskTextGroup';
-
-    const bullet = document.createElement('span');
-    bullet.className = 'subtaskBullet';
-    bullet.textContent = '•';
-
-    const textSpan = document.createElement('span');
-    textSpan.className = 'subtaskText';
-    textSpan.textContent = subtaskText;
-
-    textGroup.append(bullet, textSpan);
-
-    const actions = document.createElement('div');
-    actions.className = 'subtaskItemActions';
-    actions.innerHTML = `
-        <img class="subtaskEdit" src="../assets/icons/edit.png" alt="edit">
-        <img class="subtaskDelete" src="../assets/icons/delete.png" alt="delete">
-    `;
-
-    row.append(textGroup, actions);
+    row.append(buildSubtaskTextGroup(subtaskText), buildSubtaskActions());
     listItem.append(row);
     subtaskList.appendChild(listItem);
     subtaskInput.value = '';
@@ -198,8 +164,8 @@ function addSubtask() {
     subtaskInput.focus();
 }
 
-subtaskCheck.addEventListener('click', addSubtask);
 
+subtaskCheck.addEventListener('click', addSubtask);
 subtaskInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         event.preventDefault();
@@ -207,48 +173,26 @@ subtaskInput.addEventListener('keydown', (event) => {
     }
 });
 
+
+/** * Initiates the editing of a subtask, replacing the text with an input field and setting up event handlers.
+ * @param {HTMLElement} listItem - The list item element containing the subtask to edit.
+ */
 function editSubtask(listItem) {
     const textSpan = listItem.querySelector('.subtaskText');
     if (!textSpan) return;
     const currentText = textSpan.textContent;
     const editIcon = listItem.querySelector('.subtaskEdit');
-
     listItem.classList.add('isEditing');
-    editIcon.src = '../assets/icons/check.png';
-    editIcon.alt = 'save';
-    editIcon.classList.replace('subtaskEdit', 'subtaskSaveEdit');
-
-    const editInput = document.createElement('input');
-    editInput.type = 'text';
-    editInput.className = 'subtaskEditInput';
-    editInput.value = currentText;
+    enterSubtaskEditIcon(editIcon);
+    const editInput = createSubtaskEditInput(currentText);
     textSpan.replaceWith(editInput);
     editInput.focus();
     editInput.select();
-
-    function stopEditing(newText) {
-        const newSpan = document.createElement('span');
-        newSpan.className = 'subtaskText';
-        newSpan.textContent = newText;
-        editInput.replaceWith(newSpan);
-        listItem.classList.remove('isEditing');
-        editIcon.src = '../assets/icons/edit.png';
-        editIcon.alt = 'edit';
-        editIcon.classList.replace('subtaskSaveEdit', 'subtaskEdit');
-    }
-
-    editInput.addEventListener('blur', () => {
-        stopEditing(editInput.value.trim() || currentText);
-    });
-    editInput.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            editInput.blur();
-        }
-    });
-
-    listItem._saveEdit = () => stopEditing(editInput.value.trim() || currentText);
+    const stopEditing = (newText) => finishSubtaskEdit(listItem, editIcon, editInput, currentText, newText);
+    wireSubtaskEditEvents(editInput, stopEditing);
+    listItem._saveEdit = () => stopEditing(editInput.value.trim());
 }
+
 
 subtaskList.addEventListener('dblclick', (event) => {
     if (event.target.closest('.subtaskEditInput')) return;
@@ -257,11 +201,13 @@ subtaskList.addEventListener('dblclick', (event) => {
     editSubtask(listItem);
 });
 
+
 subtaskList.addEventListener('mousedown', (event) => {
     if (event.target.closest('.subtaskItemActions')) {
         event.preventDefault();
     }
 });
+
 
 subtaskList.addEventListener('click', (event) => {
     const listItem = event.target.closest('li');
@@ -275,34 +221,38 @@ subtaskList.addEventListener('click', (event) => {
     }
 });
 
+
+/** * Retrieves the URL for adding a new task to the database.
+ * @returns {string} The URL for adding a new task.
+ */
 function getAddTaskUrl() {
     return getDatabaseUrl('tasks');
 }
 
-function getTaskFormData() {
-    const assignedTo = Array.from(document.querySelectorAll('.contactCheckbox:checked')).map((checkbox) => ({
-        id: checkbox.dataset.id,
-        type: 'contact'
-    }));
-    const subtasks = {};
-    subtaskList.querySelectorAll('.subtaskText').forEach((textSpan, index) => {
-        const subtaskId = 's' + String(index + 1).padStart(3, '0');
-        subtasks[subtaskId] = { title: textSpan.textContent, completed: false };
-    });
 
+/** * Retrieves the form data for creating a new task, including title, description, due date, priority, category, assigned contacts, and subtasks.
+ * @returns {Object} An object containing the new task data.
+ */
+function getTaskFormData() {
+    const subtasks = getSubtasksData();
     const task = {
         title: titleInput.value.trim(),
         description: descriptionInput.value.trim(),
         dueDate: dueDateInput.value,
         priority: document.querySelector('input[name="priority"]:checked').value,
         category: categoryInput.value.trim(),
-        assignedTo,
+        assignedTo: getAssignedContacts(),
         column: 'todo'
     };
     if (Object.keys(subtasks).length) task.subtasks = subtasks;
     return task;
 }
 
+
+/** * Sends a POST request to add a new task to the database.
+ * @param {Object} task - The task data to be added.
+ * @returns {Promise<Response>} A promise that resolves to the response of the fetch request.
+ */
 function postNewTask(task) {
     return fetch(getAddTaskUrl(), {
         method: 'POST',
@@ -311,38 +261,35 @@ function postNewTask(task) {
     });
 }
 
+
 const createTaskButton = document.querySelector('.createTask');
-
-function updateCreateTaskButtonState() {
-    const isFilled = titleInput.value.trim() && dueDateInput.value && categoryInput.value.trim();
-    createTaskButton.disabled = !isFilled;
-}
-
 updateCreateTaskButtonState();
+
 
 createTaskButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    const fields = [
-        { input: titleInput, error: titleError, isEmpty: () => !titleInput.value.trim() },
-        { input: dueDateInput, error: dueDateError, isEmpty: () => !dueDateInput.value },
-        { input: categoryInput, error: categoryError, isEmpty: () => !categoryInput.value.trim() },
-    ];
-    let firstInvalid = null;
-    fields.forEach(({ input, error, isEmpty }) => {
-        if (isEmpty()) {
-            if (input === dueDateInput) input.type = 'text';
-            showError(input, error);
-            firstInvalid = firstInvalid || input;
-        }
-    });
+    const firstInvalid = validateRequiredFields();
     if (firstInvalid) {
         firstInvalid.focus();
         return;
     }
     await postNewTask(getTaskFormData());
     clearForm();
+    showTaskAddedToast();
 });
 
+
+/** * Displays a toast notification indicating that a task has been added and redirects to the board page after a delay. */
+const taskAddedToast = document.querySelector('.taskAddedToast');
+function showTaskAddedToast() {
+    taskAddedToast.classList.add('show');
+    setTimeout(() => {
+        window.location.href = 'board.html';
+    }, 2000);
+}
+
+
+/** * Clears the task form, resetting all input fields, checkboxes, and the subtask list to their default states. */
 function clearForm() {
     titleInput.value = '';
     descriptionInput.value = '';

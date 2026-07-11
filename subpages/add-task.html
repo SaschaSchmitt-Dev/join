@@ -19,6 +19,7 @@
     <script src="../script.js" defer></script>
     <script src="../templates/bars-templates.js" defer></script>
     <script src="../scripts/bars.js" defer></script>
+    <script src="../scripts/add-task-helper.js" defer></script>
     <script src="../scripts/add-task.js" defer></script>
 </head>
 
@@ -36,7 +37,8 @@
                     <input class="inputField" id="title" type="text" placeholder="Enter a title">
                     <div class="errorMessage" id="titleError"></div>
                     <label class="labelTextarea" for="description">Description</label>
-                    <textarea class="textarea" id="description" type="text" placeholder="Enter a Description"></textarea>
+                    <textarea class="textarea" id="description" type="text"
+                        placeholder="Enter a Description"></textarea>
                     <label class="label" for="dueDate">Due date<span style="color: #FF8190">*</span></label>
                     <input class="inputField" id="dueDate" type="text" placeholder="dd/mm/yyyy">
                     <div class="errorMessage" id="dueDateError"></div>
@@ -47,21 +49,23 @@
                     <div class="priorityGroup">
                         <input type="radio" name="priority" id="urgent" value="urgent">
                         <label id="urgent" for="urgent">Urgent <img src="../assets/icons/urgent-priority.png"
-                                alt=""></label>
+                                alt="Urgent priority icon"></label>
 
                         <input type="radio" name="priority" id="medium" value="medium" checked>
                         <label id="medium" for="medium" class="medium">Medium <img
-                                src="../assets/icons/medium-priority.png" alt=""></label>
+                                src="../assets/icons/medium-priority.png" alt="Medium priority icon"></label>
 
                         <input type="radio" name="priority" id="low" value="low">
-                        <label id="low" for="low">Low <img src="../assets/icons/low-priority.png" alt=""></label>
+                        <label id="low" for="low">Low <img src="../assets/icons/low-priority.png"
+                                alt="Low priority icon"></label>
                     </div>
                     <div class="dropdownList">
                         <label for="assignetTo" class="assignetTo">Assignet to</label>
                         <div class="inputWrapper">
                             <input type="text" class="assignetTo" id="assignetTo"
                                 placeholder="Select contacts to assign">
-                            <img class="inputIcon" src="../assets/icons/arrow-dropdown.png" alt="">
+                            <img class="inputIcon" src="../assets/icons/arrow-dropdown.png"
+                                alt="Toggle contacts dropdown">
                         </div>
                         <div class="dropdownContent"></div>
                         <div class="selectedContacts"></div>
@@ -69,8 +73,10 @@
                     <div class="dropdownList">
                         <label for="category" class="category">Category<span style="color: #FF8190">*</span></label>
                         <div class="inputWrapper">
-                            <input type="text" class="category" id="category" placeholder="Select task category" readonly>
-                            <img class="inputIcon" src="../assets/icons/arrow-dropdown.png" alt="">
+                            <input type="text" class="category" id="category" placeholder="Select task category"
+                                readonly>
+                            <img class="inputIcon" src="../assets/icons/arrow-dropdown.png"
+                                alt="Toggle category dropdown">
                             <div class="dropdownContent">
                                 <a href="">Technikal task</a>
                                 <a href="">User Story</a>
@@ -81,9 +87,9 @@
                         <div class="subtaskInputWrapper">
                             <input class="inputField" id="subtasks" type="text" placeholder="Add new subtasks">
                             <div class="subtaskActions">
-                                <img class="subtaskCancel" src="../assets/icons/cancel.png" alt="cancel">
+                                <img class="subtaskCancel" src="../assets/icons/cancel.png" alt="Discard subtask input">
                                 <span class="subtaskDivider"></span>
-                                <img class="subtaskCheck" src="../assets/icons/check.png" alt="check">
+                                <img class="subtaskCheck" src="../assets/icons/check.png" alt="Add subtask">
                             </div>
                         </div>
                         <ul class="subtaskList"></ul>
@@ -91,18 +97,23 @@
                 </div>
             </form>
             <footer>
-                <p><span style="color: #FF8190;">*</span>This field is required</p>
+                <p class="requiredFieldsNotice"><span style="color: #FF8190;">*</span>This field is required</p>
                 <div class="footerButtons">
                     <button class="clear" onclick="clearForm()">
-                        Clear <img src="../assets/icons/cancel.png" alt="">
+                        Clear <img src="../assets/icons/cancel.png" alt="Cancel icon">
                     </button>
                     <button class="createTask">
-                        Create Task <img src="../assets/icons/check.png" alt="">
+                        Create Task <img src="../assets/icons/check.png" alt="Check icon">
                     </button>
                 </div>
             </footer>
         </main>
     </section>
+
+    <div class="taskAddedToast">
+        <span>Task added to board</span>
+        <img src="../assets/icons/board.png" alt="Board icon">
+    </div>
 </body>
 
 </html>
