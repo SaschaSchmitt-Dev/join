@@ -313,16 +313,24 @@
     }
 }
 
-@media (width <= 1440px) {
+@media (width < 1440px) {
+    .main-content.board-main {
+        overflow: hidden auto;
+    }
+
     .board {
+        flex: none;
         gap: 24px;
+        min-height: auto;
     }
 
     .board-columns {
         display: flex;
+        flex: none;
         flex-direction: column;
         gap: 24px;
-        overflow: hidden auto;
+        min-height: auto;
+        overflow: visible;
     }
 
     .board-column {
@@ -338,6 +346,7 @@
     .task-list {
         flex: none;
         flex-direction: row;
+        align-items: flex-start;
         width: 100%;
         padding: 2px 0 10px;
         overflow: auto hidden;
