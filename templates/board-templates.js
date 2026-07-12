@@ -11,6 +11,7 @@ function getAddTaskDialogTemplate() {
                     <div class="horizontal-divider"></div>
                     ${getAddTaskDialogRightFieldsTemplate()}
                 </form>
+                <p class="mobile-required-notice"><span class="required-marker">*</span>This field is required</p>
                 ${getAddTaskDialogFooterTemplate()}
             </section>
         </div>

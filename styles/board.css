@@ -288,10 +288,13 @@
 
 .avatar {
     display: flex;
+    flex: 0 0 32px;
     justify-content: center;
     align-items: center;
     width: 32px;
+    min-width: 32px;
     height: 32px;
+    min-height: 32px;
     margin-left: -8px;
     border: 1px solid var(--text-white);
     border-radius: 50%;
@@ -448,9 +451,4 @@
         font-size: 1rem;
     }
 
-    .avatar {
-        width: 24px;
-        height: 24px;
-        font-size: 1rem;
-    }
 }

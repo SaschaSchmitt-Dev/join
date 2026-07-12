@@ -1,8 +1,8 @@
 .add-task-dialog-backdrop {
     display: flex;
     position: fixed;
-    inset: 0;
-    z-index: 1000;
+    inset: 96px 0 0 232px;
+    z-index: 10;
     justify-content: center;
     align-items: center;
     padding: 24px;
@@ -13,14 +13,15 @@
     position: relative;
     width: 100%;
     max-width: 1116px;
-    max-height: calc(100vh - 48px);
-    padding: 64px 72px 56px;
+    max-height: calc(100% - 48px);
+    padding: 64px clamp(32px, 6vw, 72px) 56px;
     overflow: auto;
     background: var(--assets-bg-color);
     border: 1px solid var(--divider-color-grey);
     border-radius: 30px;
     box-shadow: 0 0 8px rgb(0 0 0 / 16%);
     font-family: Inter, sans-serif;
+    font-size: 1.25rem;
     line-height: 120%;
 }
 
@@ -48,7 +49,7 @@
     border: 0;
     border-radius: 50%;
     color: var(--ui-dark);
-    font-size: 1.75rem;
+    font-size: 2rem;
     cursor: pointer;
 }
 
@@ -60,10 +61,14 @@
     color: var(--form-input-border-error);
 }
 
+.mobile-required-notice {
+    display: none;
+}
+
 .add-task-form {
     display: grid;
-    gap: 44px;
-    grid-template-columns: 440px 1px 440px;
+    gap: clamp(24px, 4vw, 44px);
+    grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
 }
 
 .add-task-fields-left,
@@ -78,7 +83,7 @@
 }
 
 .add-task-fields-left {
-    gap: 16px;
+    gap: 24px;
 }
 
 .dialog-field-group {
@@ -90,7 +95,7 @@
 .add-task-form label {
     margin-bottom: 0;
     color: var(--text-column-title);
-    font-size: 1.125rem;
+    font-size: 1.25rem;
 }
 
 .add-task-form input,
@@ -200,7 +205,7 @@
     display: none;
     position: absolute;
     top: calc(100% - 1px);
-    z-index: 5;
+    z-index: 10;
     width: 100%;
     max-height: 190px;
     overflow: auto;
@@ -254,7 +259,9 @@
     justify-content: center;
     align-items: center;
     width: 32px;
+    min-width: 32px;
     height: 32px;
+    min-height: 32px;
     border: 1px solid var(--text-white);
     border-radius: 50%;
     font-size: 1rem;
@@ -340,7 +347,7 @@
 .error-message {
     min-height: 18px;
     color: var(--form-input-border-error);
-    font-size: 1rem;
+    font-size: inherit;
 }
 
 .error-message:empty {
@@ -372,7 +379,7 @@
     height: 56px;
     padding: 0 16px;
     border-radius: 10px;
-    font-size: 1.125rem;
+    font-size: clamp(1.125rem, 4.8vw, 1.3125rem);
     cursor: pointer;
     transition: background-color 125ms ease-in-out,
         color 125ms ease-in-out,
@@ -423,7 +430,7 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    z-index: 1100;
+    z-index: 50;
     justify-content: space-between;
     align-items: center;
     gap: 24px;
@@ -438,6 +445,15 @@
     transform: translate(-50%, -50%);
 }
 
+@media (width <= 1024px) {
+    .add-task-dialog-backdrop {
+        top: 80px;
+        bottom: 80px;
+        left: 0;
+        z-index: 10;
+    }
+}
+
 @media (width <= 900px) {
     .add-task-dialog {
         padding: 40px 32px;
@@ -446,7 +462,12 @@
     .add-task-form {
         display: flex;
         flex-direction: column;
-        gap: 0;
+        gap: 16px;
+    }
+
+    .add-task-fields-left,
+    .add-task-fields-right {
+        gap: 16px;
     }
 
     .horizontal-divider {
@@ -465,8 +486,9 @@
 
     .add-task-dialog {
         width: 100%;
-        max-height: 100vh;
-        padding: 32px 20px;
+        height: 100%;
+        max-height: none;
+        padding: 32px 20px 104px;
         border-radius: 0;
     }
 
@@ -480,16 +502,135 @@
     }
 
     .priority-group label {
-        font-size: 1rem;
+        height: clamp(41px, 12vw, 56px);
     }
 
     .add-task-dialog-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
+        position: fixed;
+        right: 0;
+        bottom: 80px;
+        left: 0;
+        z-index: 20;
+        align-items: center;
+        height: 80px;
+        margin: 0;
+        padding: 0 20px;
+        background: var(--assets-bg-color);
+        box-shadow: 0 -2px 8px rgb(0 0 0 / 8%);
+    }
+
+    .add-task-dialog-footer > p {
+        display: none;
+    }
+
+    .mobile-required-notice {
+        display: block;
+        padding-top: 16px;
     }
 
     .footer-buttons {
-        align-self: flex-end;
+        margin-left: auto;
+    }
+}
+
+@media (width <= 440px) {
+    .add-task-dialog,
+    .add-task-form label {
+        font-size: 1rem;
+    }
+
+    .add-task-dialog-close {
+        font-size: 2rem;
+    }
+}
+
+@media (width <= 400px) {
+    .add-task-dialog {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .add-task-dialog-close {
+        right: 10px;
+    }
+
+    .add-task-dialog-footer {
+        height: 72px;
+        padding: 0 10px;
+    }
+
+    .footer-buttons {
+        gap: 8px;
+    }
+
+    .add-task-dialog-footer button {
+        height: 48px;
+        padding: 0 10px;
+    }
+}
+
+@media (width <= 360px) {
+    .add-task-dialog-backdrop {
+        bottom: 76px;
+    }
+
+    .add-task-dialog-footer {
+        bottom: 76px;
+    }
+
+    .priority-group label {
+        gap: 4px;
+        height: 41px;
+    }
+
+    .priority-group label img {
+        width: 16px;
+    }
+}
+
+@media (700px <= width <= 1024px) and (height < 1251px) {
+    .add-task-dialog {
+        padding: 32px clamp(24px, 4vw, 40px) 28px;
+    }
+
+    .add-task-dialog h1 {
+        margin-bottom: 16px;
+    }
+
+    .add-task-form {
+        display: grid;
+        gap: clamp(20px, 3vw, 32px);
+        grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+    }
+
+    .add-task-fields-left,
+    .add-task-fields-right {
+        gap: 16px;
+    }
+
+    .horizontal-divider {
+        display: block;
+    }
+
+    .add-task-form textarea {
+        min-height: 96px;
+    }
+
+    .priority-group {
+        gap: 8px;
+    }
+
+    .priority-group label {
+        gap: 4px;
+        height: 48px;
+        font-size: 1rem;
+    }
+
+    .priority-group label img {
+        width: 18px;
+    }
+
+    .add-task-dialog-footer {
+        margin-top: 24px;
     }
 }
