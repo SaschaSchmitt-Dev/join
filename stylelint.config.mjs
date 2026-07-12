@@ -154,6 +154,7 @@ export default {
                         "white-space",
                         "word-break",
                         "overflow-wrap",
+                        "content",
                         "list-style",
                         "list-style-position",
                         "list-style-type"

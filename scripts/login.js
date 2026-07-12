@@ -82,6 +82,7 @@ function getUserEntry(userEntry) {
  */
 function completeUserLogin(userEntry) {
     setActiveUser(userEntry.id, userEntry.user);
+    sessionStorage.setItem('joinShowMobileGreeting', 'true');
     window.location.href = './summary.html';
 }
 
@@ -120,6 +121,7 @@ async function completeGuestLogin() {
     const guestUser = await resetGuestUser();
 
     setActiveUser(guestUserId, guestUser);
+    sessionStorage.setItem('joinShowMobileGreeting', 'true');
     window.location.href = './summary.html';
 }
 

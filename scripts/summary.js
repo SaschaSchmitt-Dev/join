@@ -1,5 +1,6 @@
 const mobileSummaryMediaQuery = window.matchMedia("(max-width: 1024px)");
 const mobileGreetingDuration = 1500;
+const mobileGreetingStorageKey = "joinShowMobileGreeting";
 let mobileGreetingTimeout;
 
 
@@ -142,8 +143,11 @@ function hideMobileGreeting(summarySection) {
  */
 function showMobileGreeting() {
     const summarySection = getSummarySection();
+    const shouldShowGreeting = sessionStorage.getItem(mobileGreetingStorageKey) === "true";
 
-    if (!summarySection || !mobileSummaryMediaQuery.matches) {
+    sessionStorage.removeItem(mobileGreetingStorageKey);
+
+    if (!summarySection || !mobileSummaryMediaQuery.matches || !shouldShowGreeting) {
         return;
     }
 
@@ -165,11 +169,7 @@ function handleSummaryViewportChange(event) {
         return;
     }
 
-    if (event.matches) {
-        showMobileGreeting();
-        return;
-    }
-    hideMobileGreeting(summarySection);
+    if (!event.matches) hideMobileGreeting(summarySection);
 }
 
 
