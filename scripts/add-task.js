@@ -350,6 +350,9 @@ subtaskList.addEventListener("click", (event) => {
  * @returns {string} The task database URL.
  */
 function getAddTaskUrl() {
+    if (getCurrentUserId() === guestUserId) {
+        return getUserDatabaseUrl(guestUserId, 'tasks');
+    }
     return getDatabaseUrl("tasks");
 }
 
