@@ -214,3 +214,59 @@ function validateRequiredFields() {
     });
     return fields.find(({ isEmpty }) => isEmpty())?.input || null;
 }
+
+
+/**
+ * Saves a new task in the database.
+ *
+ * @param {Object} task - The task data to save.
+ * @returns {Promise<Response>} The fetch response.
+ */
+function postNewTask(task) {
+    return fetch(getAddTaskUrl(), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(task)
+    });
+}
+
+
+/**
+ * Shows the success toast and redirects to the board.
+ */
+function showTaskAddedToast() {
+    taskAddedToast.classList.add("show");
+
+    setTimeout(() => {
+        window.location.href = "board.html";
+    }, 2000);
+}
+
+
+/**
+ * Clears the task form and resets all dynamic UI elements.
+ */
+function clearForm() {
+    titleInput.value = "";
+    descriptionInput.value = "";
+    dueDateInput.value = "";
+    dueDateInput.type = "text";
+    assignetToInput.value = "";
+    categoryInput.value = "";
+
+    clearError(titleInput, titleError);
+    clearError(dueDateInput, dueDateError);
+    clearError(categoryInput, categoryError);
+
+    document.querySelectorAll(".contactCheckbox:checked").forEach((checkbox) => {
+        checkbox.checked = false;
+    });
+
+    renderSelectedContacts();
+
+    document.getElementById("medium").checked = true;
+
+    subtaskList.innerHTML = "";
+
+    updateCreateTaskButtonState();
+}

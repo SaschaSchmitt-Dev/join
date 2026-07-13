@@ -33,79 +33,114 @@
 
         <main class="main-content addTaskContent">
             <h1 class="siteHeader">Add Task</h1>
+
             <form class="addTaskForm">
                 <div class="addTaskFieldsLeft">
-                    <label class="label" for="title">Title<span style="color: #FF8190">*</span></label>
+                    <label class="label" for="title">
+                        Title<span style="color: #FF8190">*</span>
+                    </label>
                     <input class="inputField" id="title" type="text" placeholder="Enter a title">
                     <div class="errorMessage" id="titleError"></div>
+
                     <label class="labelTextarea" for="description">Description</label>
-                    <textarea class="textarea" id="description" type="text"
-                        placeholder="Enter a Description"></textarea>
-                    <label class="label" for="dueDate">Due date<span style="color: #FF8190">*</span></label>
+                    <textarea class="textarea" id="description" placeholder="Enter a Description"></textarea>
+
+                    <label class="label" for="dueDate">
+                        Due date<span style="color: #FF8190">*</span>
+                    </label>
                     <input class="inputField" id="dueDate" type="text" placeholder="dd/mm/yyyy">
                     <div class="errorMessage" id="dueDateError"></div>
                 </div>
+
                 <div class="horizontalDivider"></div>
+
                 <div class="addTaskFieldsRight">
                     <label for="priority">Priority</label>
+
                     <div class="priorityGroup">
                         <input type="radio" name="priority" id="urgent" value="urgent">
-                        <label for="urgent">Urgent <img src="../assets/icons/urgent-priority.png"
-                                alt="Urgent priority icon"></label>
+                        <label for="urgent">
+                            Urgent
+                            <img src="../assets/icons/urgent-priority.png" alt="Urgent priority icon">
+                        </label>
 
                         <input type="radio" name="priority" id="medium" value="medium" checked>
-                        <label for="medium" class="medium">Medium <img
-                                src="../assets/icons/medium-priority.png" alt="Medium priority icon"></label>
+                        <label for="medium" class="medium">
+                            Medium
+                            <img src="../assets/icons/medium-priority.png" alt="Medium priority icon">
+                        </label>
 
                         <input type="radio" name="priority" id="low" value="low">
-                        <label for="low">Low <img src="../assets/icons/low-priority.png"
-                                alt="Low priority icon"></label>
+                        <label for="low">
+                            Low
+                            <img src="../assets/icons/low-priority.png" alt="Low priority icon">
+                        </label>
                     </div>
+
                     <div class="dropdownList">
                         <label for="assignetTo" class="assignetTo">Assignet to</label>
+
                         <div class="inputWrapper">
                             <input type="text" class="assignetTo" id="assignetTo"
                                 placeholder="Select contacts to assign">
                             <img class="inputIcon" src="../assets/icons/arrow-dropdown.png"
                                 alt="Toggle contacts dropdown">
                         </div>
+
                         <div class="dropdownContent"></div>
                         <div class="selectedContacts"></div>
                     </div>
+
                     <div class="dropdownList">
-                        <label for="category" class="category">Category<span style="color: #FF8190">*</span></label>
+                        <label for="category" class="category">
+                            Category<span style="color: #FF8190">*</span>
+                        </label>
+
                         <div class="inputWrapper">
                             <input type="text" class="category" id="category" placeholder="Select task category"
                                 readonly>
                             <img class="inputIcon" src="../assets/icons/arrow-dropdown.png"
                                 alt="Toggle category dropdown">
+
                             <div class="dropdownContent">
                                 <a href="">Technical Task</a>
                                 <a href="">User Story</a>
                             </div>
                         </div>
+
                         <div class="errorMessage" id="categoryError"></div>
+
                         <label class="label" for="subtasks">Subtasks</label>
+
                         <div class="subtaskInputWrapper">
                             <input class="inputField" id="subtasks" type="text" placeholder="Add new subtasks">
+
                             <div class="subtaskActions">
                                 <img class="subtaskCancel" src="../assets/icons/cancel.png" alt="Discard subtask input">
                                 <span class="subtaskDivider"></span>
                                 <img class="subtaskCheck" src="../assets/icons/check.png" alt="Add subtask">
                             </div>
                         </div>
+
                         <ul class="subtaskList"></ul>
                     </div>
                 </div>
             </form>
+
             <footer>
-                <p class="requiredFieldsNotice"><span style="color: #FF8190;">*</span>This field is required</p>
+                <p class="requiredFieldsNotice">
+                    <span style="color: #FF8190;">*</span>This field is required
+                </p>
+
                 <div class="footerButtons">
-                    <button class="clear" onclick="clearForm()">
-                        Clear <img src="../assets/icons/cancel.png" alt="Cancel icon">
+                    <button class="clear" type="button" onclick="clearForm()">
+                        Clear
+                        <img src="../assets/icons/cancel.png" alt="Cancel icon">
                     </button>
-                    <button class="createTask">
-                        Create Task <img src="../assets/icons/check.png" alt="Check icon">
+
+                    <button class="createTask" type="button">
+                        Create Task
+                        <img src="../assets/icons/check.png" alt="Check icon">
                     </button>
                 </div>
             </footer>

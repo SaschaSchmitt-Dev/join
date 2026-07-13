@@ -1,100 +1,22 @@
 * {
-    font-family: Inter, sans-serif
+    box-sizing: border-box;
+    font-family: Inter, sans-serif;
 }
 
+/*layout*/
+
 .addTaskContent {
-    height: 100%;
-    background: --main-bg-color;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    height: 100%;
+    background: var(--main-bg-color);
 }
 
 .siteHeader {
-    font-weight: bold;
-}
-
-.addTaskFieldsLeft {
-    display: flex;
-    flex-direction: column;
-    width: 440px;
-    border-radius: 10px;
-    border: none;
-    font-size: 16px;
-}
-
-.addTaskFieldsRight {
-    display: flex;
-    flex-direction: column;
-    width: 440px;
-    border-radius: 10px;
-    border: none;
-    font-size: 16px;
-}
-
-input {
-    height: 48px;
-    font-size: 16px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1;
-    padding-bottom: 0;
-}
-
-input:focus {
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    box-shadow: none;
-    border-color: var(--form-input-border-focus);
-}
-
-.inputField {
-    width: 100%;
-    margin: 0;
-    padding-left: 8px;
-}
-
-.inputField.inputError,
-.inputWrapper input.inputError {
-    border: 1px solid #FF8190;
-    outline: none;
-}
-
-.errorMessage {
-    color: #FF8190;
-    font-size: 14px;
-    min-height: 16px;
-    margin-top: 4px;
-}
-
-label {
-    padding: 24px 0 8px;
-}
-
-.addTaskFieldsLeft textarea {
-    height: 120px;
-    font-size: 16px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1;
-    margin-bottom: 20px;
-    padding: 8px;
-}
-
-input::placeholder {
-    opacity: 0.3;
-    font-size: 16px;
-}
-
-textarea::placeholder {
-    opacity: 0.3;
-    font-size: 16px;
-}
-
-.horizontalDivider {
-    border: 1px solid #D1D1D1;
-    opacity: 0.5;
-    width: 0;
-    margin: 16px 32px;
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 120%;
 }
 
 .addTaskForm {
@@ -104,13 +26,116 @@ textarea::placeholder {
     width: 960px;
 }
 
-.priorityGroup {
+.addTaskFieldsLeft,
+.addTaskFieldsRight {
     display: flex;
-    gap: 16px;
+    flex-direction: column;
+    width: 440px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
 }
 
-.priorityGroup img {
-    margin-left: 8px;
+.horizontalDivider {
+    width: 0;
+    height: 424px;
+    margin: 16px 32px;
+    border: 1px solid var(--form-input-border);
+    opacity: 0.5;
+}
+
+/*form basics*/
+
+label {
+    margin: 0;
+    padding: 0;
+    color: var(--text-primary);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.addTaskFieldsLeft>label,
+.addTaskFieldsRight>label,
+.dropdownList>label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    height: 48px;
+    padding: 12px 16px;
+    border: 1px solid var(--form-input-border);
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+input:focus {
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    border-color: var(--form-input-border-focus);
+    box-shadow: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+    opacity: 0.3;
+    font-size: 16px;
+}
+
+.inputField {
+    width: 100%;
+    margin: 0;
+    padding: 12px 16px;
+}
+
+.inputField.inputError,
+.inputWrapper input.inputError {
+    border: 1px solid #ff001f;
+    outline: none;
+}
+
+.errorMessage {
+    min-height: 0;
+    margin: 0 0 24px;
+    color: #ff001f;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.errorMessage:not(:empty) {
+    margin: 8px 0 20px;
+}
+
+.addTaskFieldsLeft textarea {
+    width: 100%;
+    height: 120px;
+    margin: 0 0 24px;
+    padding: 12px 16px;
+    border: 1px solid var(--form-input-border);
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.addTaskFieldsLeft textarea:focus {
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    border-color: var(--form-input-border-focus);
+    box-shadow: none;
+}
+
+/*priority*/
+
+.priorityGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 24px;
 }
 
 .priorityGroup input[type="radio"] {
@@ -118,16 +143,38 @@ textarea::placeholder {
 }
 
 .priorityGroup label {
-    margin-top: 4px;
-    width: 136px;
-    height: 56px;
-    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 0;
-    background-color: white;
+    gap: 8px;
+    flex: 0 1 136px;
+    max-width: 136px;
+    height: 56px;
+    margin: 0;
+    padding: 0;
+    background: var(--assets-bg-color);
+    border: none;
+    border-radius: 10px;
+    color: var(--text-primary);
+    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
+    font-size: 20px;
+    font-weight: 400;
     cursor: pointer;
+    white-space: nowrap;
+}
+
+.priorityGroup label img {
+    width: 20px;
+    height: 20px;
+    margin-left: 0;
+    object-fit: contain;
+}
+
+#urgent:checked+label,
+#medium:checked+label,
+#low:checked+label {
+    color: var(--text-white);
+    box-shadow: none;
 }
 
 #urgent:checked+label {
@@ -148,125 +195,41 @@ textarea::placeholder {
     filter: brightness(0) invert(1);
 }
 
-.assignetTo::placeholder {
+/*dropdown*/
+
+.assignetTo::placeholder,
+.category::placeholder {
     opacity: 1;
-    color: black;
-}
-
-.dropdownList label {
-    display: block;
-}
-
-.inputWrapper {
-    position: relative;
-}
-
-.dropdownContent a,
-.dropdownContent label {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    text-decoration: none;
-    color: black;
-    background-color: white;
-    padding: 4px 8px;
-    border-radius: 10px;
-    margin-right: 40px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    cursor: pointer;
-}
-
-.contactInfoWrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.contactAvatar {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 2px solid white;
-    background: var(--profile-orange);
-    color: var(--text-white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    flex-shrink: 0;
-}
-
-.dropdownContent a:hover,
-.dropdownContent label:hover {
-    background-color: var(--main-bg-color);
-    margin-right: 40px;
-}
-
-.dropdownContent label:has(.contactCheckbox:checked) {
-    background-color: var(--ui-dark);
-    color: white;
-}
-
-.contactCheckbox {
-    position: relative;
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    border: 2px solid var(--ui-dark);
-    border-radius: 4px;
-    appearance: none;
-    -webkit-appearance: none;
-    cursor: pointer;
-}
-
-.contactCheckbox:checked {
-    background-color: var(--ui-dark);
-    border-color: white;
-}
-
-.contactCheckbox:checked::after {
-    content: '';
-    position: absolute;
-    left: 6px;
-    top: 2px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-.dropdownContent {
-    display: none;
+    color: var(--text-primary);
 }
 
 .dropdownList {
     position: relative;
+    margin-bottom: 24px;
 }
 
-.dropdownList .dropdownContent {
-    position: absolute;
-    background-color: white;
-    z-index: 10;
-    border-radius: 10px;
-    width: 100%;
+.dropdownList:last-child {
+    margin-bottom: 0;
+}
+
+.inputWrapper {
+    position: relative;
+    margin: 0;
 }
 
 .inputWrapper input {
     width: 100%;
+    padding: 12px 40px 12px 16px;
     cursor: pointer;
-    padding-left: 8px;
 }
 
 .inputIcon {
     position: absolute;
-    right: 16px;
     top: 50%;
-    transform: translateY(-50%);
-    background-color: white;
+    right: 16px;
+    background-color: var(--assets-bg-color);
     border: none;
+    transform: translateY(-50%);
     transition: transform 0.2s ease;
 }
 
@@ -279,20 +242,235 @@ textarea::placeholder {
     border-radius: 50%;
 }
 
-
-
-.category::placeholder {
-    opacity: 1;
-    color: black;
+.dropdownContent {
+    display: none;
 }
+
+.dropdownList .dropdownContent {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    background-color: var(--assets-bg-color);
+    border-radius: 10px;
+}
+
+.dropdownList label {
+    display: block;
+}
+
+.dropdownContent a,
+.dropdownContent label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    margin-right: 40px;
+    margin-bottom: 8px;
+    padding: 4px 8px;
+    background-color: var(--assets-bg-color);
+    border-radius: 10px;
+    color: var(--text-primary);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.dropdownContent a:hover,
+.dropdownContent label:hover {
+    margin-right: 40px;
+    background-color: var(--main-bg-color);
+}
+
+.dropdownContent label:has(.contactCheckbox:checked) {
+    background-color: var(--ui-dark);
+    color: var(--text-white);
+}
+
+/*contacts*/
+
+.contactInfoWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contactAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    background: var(--profile-orange);
+    border: 2px solid var(--text-white);
+    border-radius: 50%;
+    color: var(--text-white);
+    font-size: 14px;
+}
+
+.contactCheckbox {
+    position: relative;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 2px solid var(--ui-dark);
+    border-radius: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.contactCheckbox:checked {
+    background-color: var(--ui-dark);
+    border-color: var(--text-white);
+}
+
+.contactCheckbox:checked::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--text-white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.selectedContacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.selectedContacts:empty {
+    margin-top: 0;
+}
+
+.selectedContacts .contactAvatar {
+    width: 32px;
+    height: 32px;
+}
+
+/*subtasks*/
+
+.subtaskInputWrapper {
+    position: relative;
+    margin: 0;
+}
+
+.subtaskActions {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    display: none;
+    align-items: center;
+    gap: 4px;
+    transform: translateY(-50%);
+}
+
+.subtaskInputWrapper.isWriting .subtaskActions {
+    display: flex;
+}
+
+.subtaskDivider {
+    width: 1px;
+    height: 24px;
+    background-color: var(--form-input-border);
+}
+
+.subtaskCancel,
+.subtaskCheck {
+    cursor: pointer;
+    filter: brightness(0);
+}
+
+.subtaskList {
+    margin: 8px 0 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.subtaskList li {
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.subtaskList li:hover {
+    background-color: var(--scrollbar-track-bg-color);
+    border: none;
+}
+
+.subtaskRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 24px;
+}
+
+.subtaskTextGroup {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 8px;
+    margin-left: 8px;
+}
+
+.subtaskEditInput {
+    flex: 1;
+    height: auto;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    font: inherit;
+}
+
+.subtaskEditInput:focus {
+    outline: none;
+    border: none;
+}
+
+.subtaskItemActions {
+    display: none;
+    align-items: center;
+    gap: 8px;
+}
+
+.subtaskList li:hover .subtaskItemActions,
+.subtaskList li.isEditing .subtaskItemActions {
+    display: flex;
+}
+
+.subtaskEdit,
+.subtaskDelete,
+.subtaskSaveEdit {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    filter: brightness(0);
+}
+
+.subtaskDelete {
+    order: 1;
+}
+
+.subtaskSaveEdit {
+    order: 2;
+}
+
+/*footer buttons*/
 
 footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     width: 947px;
-    margin-bottom: 48px;
     margin-top: 24px;
+    margin-bottom: 48px;
 }
 
 footer button {
@@ -308,51 +486,521 @@ footer button {
 }
 
 .clear {
-    border: 1px solid var(--ui-dark);
-    width: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    min-width: 110px;
     height: 56px;
+    padding: 0 16px;
+    background: transparent;
+    border: 1px solid var(--ui-dark);
     border-radius: 10px;
-    font-size: 16px;
+    color: var(--ui-dark);
+    font-size: clamp(1.125rem, 4.8vw, 1.3125rem);
     font-weight: 400;
+    cursor: pointer;
+    transition: background-color 125ms ease-in-out, color 125ms ease-in-out, border-color 125ms ease-in-out, box-shadow 125ms ease-in-out;
 }
 
 .clear:hover {
-    border: 2px solid;
+    border-color: var(--login-button-secondary-hover);
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    color: var(--login-button-secondary-hover);
 }
 
 .createTask {
     width: 184px;
     height: 56px;
-    border-radius: 10px;
     background-color: var(--ui-dark);
-    color: white;
-    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    color: var(--text-white);
+    font-size: clamp(1.125rem, 4.8vw, 1.3125rem);
     font-weight: 700;
+    cursor: pointer;
+    transition: background-color 125ms ease-in-out, color 125ms ease-in-out, border-color 125ms ease-in-out, box-shadow 125ms ease-in-out;
 }
 
 .createTask:hover {
-    box-shadow: 0 2px 0 0 var(--ui-dark);
-    background-color: var(--ui-dark-hover);
+    background: var(--login-button-primary-bg-hover);
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
 }
 
-.createTask:disabled {
-    background-color: var(--ui-dark);
-    cursor: not-allowed;
-}
+/*toast*/
 
-.createTask:disabled:hover {
-    box-shadow: none;
-    background-color: var(--ui-dark);
-}
-
-.selectedContacts .contactAvatar {
-    width: 32px;
-    height: 32px;
-}
-
-.selectedContacts {
+.taskAddedToast {
+    position: fixed;
+    top: 100%;
+    left: 50%;
+    z-index: 100;
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
+    align-items: center;
+    gap: 32px;
+    padding: 16px 24px;
+    background-color: var(--ui-dark);
+    border-radius: 10px;
+    color: var(--text-white);
+    font-size: 16px;
+    font-weight: 400;
+    transform: translate(-50%, 0);
+    transition: top 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+.taskAddedToast img {
+    width: 24px;
+    height: 24px;
+}
+
+.taskAddedToast.show {
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*RESPONSIVE*/
+
+@media (width <=1280px) {
+    .horizontalDivider {
+        margin: 16px 8px;
+    }
+
+    footer {
+        width: 779px;
+    }
+
+    .addTaskFieldsLeft,
+    .addTaskFieldsRight {
+        width: 380px;
+    }
+
+    .priorityGroup label {
+        flex-basis: 116px;
+        max-width: 116px;
+        font-size: 18px;
+    }
+}
+
+/*tablet with sidebar*/
+
+@media (width <=1180px) {
+    .addTaskContent {
+        height: calc(100dvh - 96px);
+        padding: 48px 32px 160px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .siteHeader {
+        position: static;
+        margin: 0 0 24px;
+        padding: 0;
+        font-size: 47px;
+        line-height: 120%;
+    }
+
+    .addTaskForm {
+        flex-direction: column;
+        width: 100%;
+        max-width: 520px;
+        overflow: visible;
+    }
+
+    .addTaskFieldsLeft,
+    .addTaskFieldsRight {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .horizontalDivider {
+        display: none;
+    }
+
+    label {
+        font-size: 18px;
+    }
+
+    footer {
+        width: 100%;
+        max-width: 520px;
+    }
+
+    .priorityGroup {
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .priorityGroup label {
+        flex: 0 1 152px;
+        max-width: 152px;
+        height: 56px;
+        font-size: 20px;
+    }
+
+    .priorityGroup label img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/*tablet mobile nav starts*/
+
+@media (width <=1024px) {
+    :root {
+        --mobile-nav-height: 75px;
+        --footer-buttons-height: 70px;
+    }
+
+    .addTaskContent {
+        align-items: center;
+        height: calc(100dvh - 96px);
+        padding: 40px 48px calc(var(--mobile-nav-height) + var(--footer-buttons-height) + 32px);
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: var(--main-bg-color);
+    }
+
+    .siteHeader {
+        position: static;
+        z-index: auto;
+        width: 100%;
+        max-width: 560px;
+        flex-shrink: 0;
+        margin: 0 0 24px;
+        padding: 0;
+        background: transparent;
+        font-size: 47px;
+        line-height: 120%;
+    }
+
+    .addTaskForm {
+        flex: initial;
+        flex-direction: column;
+        width: 100%;
+        max-width: 560px;
+        min-height: auto;
+        margin: 0 auto;
+        padding-bottom: 0;
+        overflow: visible;
+    }
+
+    .addTaskFieldsLeft,
+    .addTaskFieldsRight {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .horizontalDivider {
+        display: none;
+    }
+
+    footer {
+        width: 100%;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+    .footerButtons {
+        position: fixed;
+        right: 0;
+        bottom: var(--mobile-nav-height);
+        left: 0;
+        z-index: 50;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+        height: var(--footer-buttons-height);
+        margin: 0;
+        padding: 0 48px;
+        background: var(--main-bg-color);
+        border-top: 1px solid var(--divider-color-grey);
+        box-sizing: border-box;
+    }
+
+    .clear {
+        width: 110px;
+        height: 56px;
+        background: var(--main-bg-color);
+        border: 1px solid var(--button-secondary-border);
+        color: var(--button-secondary-text);
+        font-size: 21px;
+    }
+
+    .createTask {
+        width: 180px;
+        height: 56px;
+        background: var(--button-primary-bg);
+        color: var(--text-white);
+        font-size: 20px;
+    }
+
+    .requiredFieldsNotice {
+        margin-bottom: 32px;
+    }
+}
+
+/*mobile*/
+
+@media (width <=768px) {
+    :root {
+        --mobile-nav-height: 80px;
+        --footer-buttons-height: 72px;
+    }
+
+    .addTaskContent {
+        padding: 32px 20px calc(var(--mobile-nav-height) + var(--footer-buttons-height) + 32px);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .siteHeader {
+        position: static;
+        margin: 0 0 24px;
+        padding: 0;
+        font-size: 47px;
+    }
+
+    .addTaskForm {
+        max-width: 100%;
+        padding-bottom: 0;
+        overflow: visible;
+    }
+
+    label {
+        padding: 0;
+        font-size: 18px;
+    }
+
+    .addTaskFieldsLeft>label,
+    .addTaskFieldsRight>label,
+    .dropdownList>label {
+        margin-bottom: 8px;
+    }
+
+    input {
+        width: 100%;
+        height: 48px;
+        padding: 12px 16px;
+        font-size: 18px;
+    }
+
+    .inputWrapper input {
+        padding: 12px 40px 12px 16px;
+    }
+
+    .addTaskFieldsLeft textarea {
+        width: 100%;
+        height: 108px;
+        margin-bottom: 24px;
+        padding: 12px 16px;
+        font-size: 18px;
+    }
+
+    .errorMessage {
+        font-size: 18px;
+    }
+
+    footer {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .footerButtons {
+        bottom: var(--mobile-nav-height);
+        gap: 12px;
+        height: var(--footer-buttons-height);
+        padding: 0 20px;
+    }
+}
+
+/*small mobile*/
+
+@media (width <=475px) {
+    :root {
+        --mobile-nav-height: 80px;
+        --footer-buttons-height: 72px;
+    }
+
+    .addTaskContent {
+        padding: 28px 16px calc(var(--mobile-nav-height) + var(--footer-buttons-height) + 32px);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .siteHeader {
+        position: static;
+        margin-bottom: 20px;
+        padding: 0;
+        font-size: 40px;
+    }
+
+    .addTaskForm {
+        padding-bottom: 0;
+        overflow: visible;
+    }
+
+    label {
+        padding: 0;
+        font-size: 18px;
+    }
+
+    input {
+        height: 46px;
+        padding: 10px 16px;
+        font-size: 16px;
+    }
+
+    .inputWrapper input {
+        padding: 10px 40px 10px 16px;
+    }
+
+    .addTaskFieldsLeft textarea {
+        height: 96px;
+        padding: 10px 16px;
+        font-size: 16px;
+    }
+
+    .errorMessage {
+        font-size: 16px;
+    }
+
+    .priorityGroup {
+        gap: 10px;
+    }
+
+    .priorityGroup label {
+        flex: 1;
+        max-width: none;
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .priorityGroup label img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .footerButtons {
+        bottom: var(--mobile-nav-height);
+        gap: 12px;
+        height: var(--footer-buttons-height);
+        padding: 0 16px;
+    }
+
+    .clear {
+        width: 100px;
+        height: 56px;
+        font-size: 20px;
+    }
+
+    .createTask {
+        width: 160px;
+        height: 56px;
+        font-size: 18px;
+    }
+}
+
+/*very small mobile*/
+
+@media (width <=365px) {
+    :root {
+        --mobile-nav-height: 75px;
+        --footer-buttons-height: 72px;
+    }
+
+    .addTaskContent {
+        padding: 24px 12px calc(var(--mobile-nav-height) + var(--footer-buttons-height) + 32px);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .siteHeader {
+        position: static;
+        margin-bottom: 16px;
+        padding: 0;
+        font-size: 36px;
+    }
+
+    .addTaskForm {
+        padding-bottom: 0;
+        overflow: visible;
+    }
+
+    label {
+        padding: 0;
+        font-size: 16px;
+    }
+
+    input {
+        height: 42px;
+        padding: 9px 12px;
+        font-size: 15px;
+    }
+
+    .inputWrapper input {
+        padding: 9px 36px 9px 12px;
+    }
+
+    .addTaskFieldsLeft textarea {
+        height: 88px;
+        padding: 9px 12px;
+        font-size: 15px;
+    }
+
+    .errorMessage {
+        font-size: 15px;
+    }
+
+    .priorityGroup {
+        gap: 8px;
+    }
+
+    .priorityGroup label {
+        height: 41px;
+        font-size: 15px;
+    }
+
+    .priorityGroup label img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .footerButtons {
+        bottom: var(--mobile-nav-height);
+        gap: 8px;
+        height: var(--footer-buttons-height);
+        padding: 0 12px;
+    }
+
+    .clear {
+        width: 96px;
+        height: 54px;
+        font-size: 18px;
+    }
+
+    .createTask {
+        width: 150px;
+        height: 54px;
+        font-size: 17px;
+    }
+}
+
+/*priority buttons from 400px*/
+
+@media (width <=400px) {
+    .priorityGroup {
+        gap: 8px;
+    }
+
+    .priorityGroup label {
+        height: 41px;
+        font-size: 15px;
+    }
+
+    .priorityGroup label img {
+        width: 16px;
+        height: 16px;
+    }
 }

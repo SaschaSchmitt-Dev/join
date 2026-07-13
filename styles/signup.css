@@ -137,7 +137,7 @@ header img {
 
 .signup-input-field input:focus {
     outline: none;
-    border-color: var(--divider-color-blue);
+    border-color: var(--form-input-border-focus);
 }
 
 .signup-input-field img {
