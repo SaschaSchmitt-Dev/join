@@ -11,39 +11,71 @@
     <link rel="stylesheet" href="../styles/variables.css">
     <link rel="stylesheet" href="../styles/fonts.css">
     <link rel="stylesheet" href="../styles/signup.css">
+    <script src="../scripts/sign-up.js" defer></script>
 </head>
 
 <body>
     <header>
-        <img src="../assets/icons/join-logo-dark.png" alt="Join Logo">
+        <img src="../assets/icons/join-logo-dark.png" alt="Join logo">
     </header>
-    <div class="div-textbox">
-        <div class="text-box">
-            <div class="textbox-div-signup">
-                <span>Sign up</span>
-            </div>
-            <div div class="textbox-div-inputfield">
-                <div class="textbox-inputfield">
-                    <input type="text" placeholder="Name" id="username">
-                    <input type="email" placeholder="Email" id="email">
-                    <input type="password" placeholder="Password" id="password">
-                    <input type="password" placeholder="Confirm Password" id="confirm-password">
-                    <div class="textbox-div-checkbox">
-                        <input class="checkbox" type="checkbox" id="terms-checkbox">
-                        <label for="terms-checkbox">I accept the</label>
-                        <p>Privacy Policy</p>
-                    </div>
 
+    <main class="signup-main">
+        <div class="textbox">
+            <div class="text-box">
+
+                <a class="back-to-login" href="../index.html" aria-label="Back to login">
+                    <img src="../assets/icons/arrow-left-signup.png" alt="" aria-hidden="true">
+                </a>
+
+                <div class="textbox-signup">
+                    <span>Sign up</span>
+                </div>
+
+                <div class="textbox-inputfield-wrapper">
+                    <form id="signup-form" class="textbox-inputfield">
+
+                        <div class="signup-input-field">
+                            <input type="text" placeholder="Name" id="username" required>
+                            <img src="../assets/icons/person.png" alt="" aria-hidden="true">
+                        </div>
+
+                        <div class="signup-input-field">
+                            <input type="email" placeholder="Email" id="email" required>
+                            <img src="../assets/icons/mail.png" alt="" aria-hidden="true">
+                        </div>
+
+                        <div class="signup-input-field">
+                            <input type="password" placeholder="Password" id="password" required>
+                            <img src="../assets/icons/lock.png" alt="" aria-hidden="true">
+                        </div>
+
+                        <div class="signup-input-field">
+                            <input type="password" placeholder="Confirm Password" id="confirm-password" required>
+                            <img src="../assets/icons/lock.png" alt="" aria-hidden="true">
+                        </div>
+
+                        <div class="textbox-checkbox">
+                            <input class="checkbox" type="checkbox" id="terms-checkbox">
+                            <label for="terms-checkbox">I accept the</label>
+                            <a href="./privacy-policy.html">Privacy policy</a>
+                        </div>
+
+                        <div class="btn">
+                            <button id="signup-btn" class="signup-btn" type="submit">
+                                Sign up
+                            </button>
+                        </div>
+
+                    </form>
                 </div>
             </div>
-
-            <div class="div-btn">
-                <button class="signup-btn">Sign up</button>
-            </div>
-
         </div>
-    </div>
-    <footer></footer>
+    </main>
+
+    <footer>
+        <a href="./privacy-policy.html">Privacy Policy</a>
+        <a href="./legal-notice.html">Legal notice</a>
+    </footer>
 </body>
 
 </html>
