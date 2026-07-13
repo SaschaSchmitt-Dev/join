@@ -151,6 +151,12 @@ header img {
     pointer-events: none;
 }
 
+#password-icon,
+#confirm-password-icon {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
 /*checkbox*/
 
 .textbox-checkbox {
