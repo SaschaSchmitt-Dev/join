@@ -15,13 +15,18 @@
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/board.css">
     <link rel="stylesheet" href="../styles/board-dialogs.css">
+    <link rel="stylesheet" href="../styles/board-add-task-dialog.css">
+    <link rel="stylesheet" href="../styles/board-open-task-dialog.css">
+    <link rel="stylesheet" href="../styles/board-edit-task-dialog.css">
     <link rel="stylesheet" href="../style.css">
 
     <script src="../script.js" defer></script>
     <script src="../templates/bars-templates.js" defer></script>
     <script src="../scripts/bars.js" defer></script>
     <script src="../scripts/task-data-access.js" defer></script>
-    <script src="../templates/board-templates.js" defer></script>
+    <script src="../templates/board-add-task-templates.js" defer></script>
+    <script src="../templates/board-open-task-templates.js" defer></script>
+    <script src="../templates/board-edit-task-templates.js" defer></script>
     <script src="../scripts/board.js" defer></script>
     <script src="../scripts/board-dialog-helpers.js" defer></script>
     <script src="../scripts/board-dialogs.js" defer></script>
@@ -55,7 +60,8 @@
                     <div class="board-column">
                         <div class="column-header">
                             <h2>To do</h2>
-                            <button class="add-column-task" type="button" data-task-column="todo" aria-label="Add task to To do">
+                            <button class="add-column-task" type="button" data-task-column="todo"
+                                aria-label="Add task to To do">
                                 <img src="../assets/icons/add-column-task.png" alt="">
                             </button>
                         </div>
@@ -64,7 +70,8 @@
                     <div class="board-column">
                         <div class="column-header">
                             <h2>In progress</h2>
-                            <button class="add-column-task" type="button" data-task-column="inprogress" aria-label="Add task to In progress">
+                            <button class="add-column-task" type="button" data-task-column="inprogress"
+                                aria-label="Add task to In progress">
                                 <img src="../assets/icons/add-column-task.png" alt="">
                             </button>
                         </div>
@@ -73,7 +80,8 @@
                     <div class="board-column">
                         <div class="column-header">
                             <h2>Await feedback</h2>
-                            <button class="add-column-task" type="button" data-task-column="awaitfeedback" aria-label="Add task to Await feedback">
+                            <button class="add-column-task" type="button" data-task-column="awaitfeedback"
+                                aria-label="Add task to Await feedback">
                                 <img src="../assets/icons/add-column-task.png" alt="">
                             </button>
                         </div>
