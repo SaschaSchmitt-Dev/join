@@ -661,7 +661,7 @@ footer button {
 /*tablet with sidebar*/
 
 @media (width <=1180px) and (width >1024px) {
-    
+
     .addTaskContent {
         align-items: center;
         min-height: calc(100dvh - 96px);
@@ -937,7 +937,7 @@ footer button {
 /*small mobile*/
 
 @media (width <=475px) {
-    
+
     .addTaskContent {
         --mobile-nav-height: 80px;
         --footer-buttons-height: 72px;
@@ -1034,7 +1034,7 @@ footer button {
 /*very small mobile*/
 
 @media (width <=365px) {
-    
+
     .addTaskContent {
         --mobile-nav-height: 75px;
         --footer-buttons-height: 72px;

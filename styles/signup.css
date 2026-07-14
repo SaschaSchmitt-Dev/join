@@ -131,13 +131,26 @@ header img {
     background: var(--assets-bg-color);
     color: var(--text-primary);
     font-family: "Inter", sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
 }
 
 .signup-input-field input:focus {
     outline: none;
     border-color: var(--form-input-border-focus);
+}
+
+.signup-input-field input.error {
+    display: flex;
+    border-color: var(--form-input-border-error);
+}
+
+.error-msg {
+    min-height: 16px;
+    margin: -14px 0 0;
+    color: var(--form-input-border-error);
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .signup-input-field img {
@@ -224,10 +237,7 @@ label {
 }
 
 .signup-btn:disabled {
-    background: var(--login-button-primary-bg);
-    opacity: 0.6;
     cursor: not-allowed;
-    box-shadow: none;
 }
 
 /*footer*/
