@@ -479,7 +479,6 @@ footer {
     align-items: flex-end;
     width: 947px;
     margin-top: 24px;
-    padding-bottom: 48px;
 }
 
 footer button {
@@ -620,8 +619,7 @@ footer button {
     footer {
         width: 100%;
         max-width: 850px;
-        margin: 32px auto 0;
-        padding-bottom: 48px;
+        margin: 450px auto 0;
     }
 
     .requiredFieldsNotice {
@@ -715,8 +713,7 @@ footer button {
         align-items: flex-end;
         width: 100%;
         max-width: 520px;
-        margin: 48px auto 0;
-        padding-bottom: 48px;
+        margin: 150px auto 0;
     }
 
     .requiredFieldsNotice {
