@@ -224,6 +224,10 @@ function togglePasswordIcon() {
 
 
 document.getElementById('password').addEventListener('input', togglePasswordIcon);
+document.getElementById('loginForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    checkLogin();
+});
 document.getElementById('toggleIcon').addEventListener('click', () => {
     const password = document.getElementById('password');
     if (!password.value.length) return;

@@ -50,3 +50,20 @@ async function createTask(task) {
     task.id = result.name;
     return task;
 }
+
+
+/**
+ * Updates the completion state of one subtask.
+ * @param {string} taskId - The Firebase task id.
+ * @param {string} subtaskId - The subtask id.
+ * @param {boolean} completed - The new completion state.
+ */
+async function updateSubtaskCompletion(taskId, subtaskId, completed) {
+    const url = getTasksUrl(`${taskId}/subtasks/${subtaskId}/completed`);
+    const response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(completed)
+    });
+
+    if (!response.ok) throw new Error("Subtask status could not be updated.");
+}

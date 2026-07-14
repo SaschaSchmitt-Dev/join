@@ -37,6 +37,15 @@ body {
     transform-origin: center;
 }
 
+.visually-hidden {
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
 .signup-area {
     display: flex;
     position: absolute;
@@ -131,6 +140,8 @@ body {
     color: var(--text-primary);
     font-family: Inter, sans-serif;
     font-size: 1.25rem;
+    transition: border-color 125ms ease-in-out,
+        box-shadow 125ms ease-in-out;
 }
 
 .input-wrap input::placeholder {
@@ -138,8 +149,14 @@ body {
     color: var(--text-primary);
 }
 
-.input-wrap input:focus {
-    border-color: var(--form-input-border-focus);
+.input-wrap input:hover {
+    border-color: var(--board-input-border-hover);
+    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
+}
+
+.input-wrap input:focus-visible {
+    border-color: var(--board-input-border-active);
+    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
 }
 
 .input-wrap input:-webkit-autofill {
@@ -435,7 +452,6 @@ body {
 
     .signup-area {
         margin-top: 16px;
-        margin-bottom: 16px;
     }
 
 }
