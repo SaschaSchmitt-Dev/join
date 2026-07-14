@@ -3,6 +3,106 @@ input {
     border: unset;
 }
 
+.custom-checkbox-wrapper {
+    display: flex;
+    position: relative;
+    flex: 0 0 24px;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+
+    --checkbox-background: var(--assets-bg-color);
+}
+
+.custom-checkbox-wrapper input {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.custom-checkbox {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--ui-dark);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 200ms ease;
+}
+
+.custom-checkbox-wrapper:has(input:hover) {
+    background: var(--ui-light-hover);
+
+    --checkbox-background: var(--ui-light-hover);
+}
+
+.custom-checkbox-wrapper:has(input:focus-visible) {
+    outline: 2px solid var(--form-input-border-focus);
+    outline-offset: 1px;
+}
+
+.custom-checkbox::before,
+.custom-checkbox::after {
+    position: absolute;
+    width: 3px;
+    height: 0;
+    background: var(--ui-dark);
+    border-radius: 4px;
+    content: "";
+    transform-origin: left top;
+}
+
+.custom-checkbox::before {
+    top: 17px;
+    left: 10px;
+    box-shadow: 0 0 0 3px var(--checkbox-background);
+    transform: rotate(-140deg);
+}
+
+.custom-checkbox::after {
+    top: 9px;
+    left: 2px;
+    transform: rotate(-40deg);
+}
+
+.custom-checkbox-wrapper input:checked + .custom-checkbox::after {
+    height: 12px;
+    animation: custom-check-short 200ms ease forwards;
+}
+
+.custom-checkbox-wrapper input:checked + .custom-checkbox::before {
+    height: 29px;
+    animation: custom-check-long 400ms ease forwards;
+}
+
+@keyframes custom-check-short {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 10px;
+    }
+}
+
+@keyframes custom-check-long {
+    0%,
+    50% {
+        height: 0;
+    }
+
+    100% {
+        height: 24px;
+    }
+}
+
 .back-arrow-button {
     display: flex;
     justify-content: center;

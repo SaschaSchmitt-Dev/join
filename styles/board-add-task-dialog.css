@@ -107,7 +107,14 @@
     border-radius: 10px;
     outline: none;
     font: inherit;
-    transition: border-color 125ms ease-in-out;
+    transition: border-color 125ms ease-in-out,
+        box-shadow 125ms ease-in-out;
+}
+
+.add-task-form input:not([type="radio"], [type="checkbox"]):hover,
+.add-task-form textarea:hover {
+    border-color: var(--board-input-border-hover);
+    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
 }
 
 .add-task-form input::placeholder,
@@ -243,6 +250,10 @@
     margin-left: auto;
 }
 
+.contact-option .custom-checkbox-wrapper {
+    margin-left: auto;
+}
+
 .contact-option > span:nth-child(2) {
     min-width: 0;
     overflow-wrap: anywhere;
@@ -250,7 +261,8 @@
 
 .add-task-form input:focus,
 .add-task-form textarea:focus {
-    border-color: var(--form-input-border-focus);
+    border-color: var(--board-input-border-active);
+    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
 }
 
 .selected-contacts {
@@ -272,6 +284,10 @@
 
 .subtask-input-wrapper:has(input:placeholder-shown) .subtask-actions {
     display: none;
+}
+
+.subtask-input-wrapper:has(input:not(:placeholder-shown)) input {
+    padding-right: 88px;
 }
 
 .subtask-actions img {

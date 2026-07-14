@@ -10,8 +10,8 @@
     flex-direction: column;
     gap: 48px;
     width: 100%;
-    min-height: 0;
     max-width: 1208px;
+    min-height: 0;
     font-family: Inter, sans-serif;
     line-height: 120%;
 }
@@ -284,6 +284,7 @@
 .task-users {
     display: flex;
     min-width: 0;
+    overflow: hidden;
 }
 
 .avatar {
@@ -304,6 +305,12 @@
 
 .avatar:first-child {
     margin-left: 0;
+}
+
+.avatar-overflow {
+    background: var(--ui-dark);
+    font-size: 1rem;
+    font-weight: 700;
 }
 
 @media (width <= 1240px) {

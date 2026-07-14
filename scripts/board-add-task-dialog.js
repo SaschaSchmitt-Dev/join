@@ -84,11 +84,23 @@ function initializeDialogActions(dialog) {
  * Renders all contacts in the dropdown.
  */
 function renderDialogContacts() {
-    const options = Object.entries(boardContacts).map(([id, contact]) => {
+    const sortedContacts = Object.entries(boardContacts).sort(compareDialogContactsByName);
+    const options = sortedContacts.map(([id, contact]) => {
         return getAddTaskContactOptionTemplate(getDialogContactView(id, contact));
     });
     const input = document.getElementById("assignedTo");
     input.closest(".input-wrapper").nextElementSibling.innerHTML = options.join("");
+}
+
+
+/**
+ * Compares two contact entries by name.
+ * @param {Array} firstEntry - The first contact entry.
+ * @param {Array} secondEntry - The second contact entry.
+ * @returns {number} The sort order.
+ */
+function compareDialogContactsByName(firstEntry, secondEntry) {
+    return firstEntry[1].name.localeCompare(secondEntry[1].name);
 }
 
 
@@ -362,4 +374,3 @@ function closeAddTaskDialog() {
 
 
 initializeAddTaskDialogButtons();
-

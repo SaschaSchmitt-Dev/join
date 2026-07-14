@@ -34,8 +34,8 @@ function getOpenTaskContactTemplate(contact) {
 
 
 function getOpenTaskSubtaskTemplate(subtask) {
-    return `<label class="open-task-subtask"><span class="open-task-checkbox-wrapper">
+    return `<label class="open-task-subtask"><span class="custom-checkbox-wrapper">
         <input type="checkbox" data-subtask-id="${subtask.id}" ${subtask.completed ? "checked" : ""}>
-        <span class="open-task-checkbox" aria-hidden="true"></span>
+        <span class="custom-checkbox" aria-hidden="true"></span>
         </span><span>${subtask.title}</span></label>`;
 }

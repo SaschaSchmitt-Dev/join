@@ -154,7 +154,10 @@ function getAddTaskContactOptionTemplate(contact) {
         <label class="contact-option">
             <span class="dialog-contact-avatar" style="background:${contact.color};color:${contact.textColor}">${contact.initials}</span>
             <span>${contact.name}</span>
-            <input class="contact-checkbox" type="checkbox" value="${contact.id}">
+            <span class="custom-checkbox-wrapper">
+                <input class="contact-checkbox" type="checkbox" value="${contact.id}">
+                <span class="custom-checkbox" aria-hidden="true"></span>
+            </span>
         </label>
     `;
 }
@@ -248,6 +251,16 @@ function getTaskProgressTemplate(completed, total, progress) {
  */
 function getTaskUserTemplate(contact) {
     return `<span class="avatar" style="background:${contact.color};color:${contact.textColor}">${contact.initials}</span>`;
+}
+
+
+/**
+ * Returns the number of assigned contacts hidden on the task card.
+ * @param {number} count - Number of hidden contacts.
+ * @returns {string} The overflow indicator HTML.
+ */
+function getTaskUserOverflowTemplate(count) {
+    return `<span class="avatar avatar-overflow" aria-label="${count} more assigned contacts">+${count}</span>`;
 }
 
 

@@ -137,7 +137,11 @@ function getTaskProgress(subtasks) {
  * @returns {string} The avatar HTML.
  */
 function getTaskUsers(assignments = [], contacts = {}) {
-    return assignments.map((item) => getTaskUser(contacts[item.id])).join("");
+    const assignedContacts = assignments.map((item) => contacts[item.id]).filter(Boolean);
+    const visibleContacts = assignedContacts.slice(0, 5);
+    const remainingContacts = assignedContacts.length - visibleContacts.length;
+    const avatars = visibleContacts.map((contact) => getTaskUser(contact)).join("");
+    return avatars + (remainingContacts ? getTaskUserOverflowTemplate(remainingContacts) : "");
 }
 
 
