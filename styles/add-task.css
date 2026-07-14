@@ -663,6 +663,7 @@ footer button {
 /*tablet with sidebar*/
 
 @media (width <=1180px) and (width >1024px) {
+    
     .addTaskContent {
         align-items: center;
         min-height: calc(100dvh - 96px);
@@ -1036,6 +1037,7 @@ footer button {
 /*very small mobile*/
 
 @media (width <=365px) {
+    
     .addTaskContent {
         --mobile-nav-height: 75px;
         --footer-buttons-height: 72px;
@@ -1150,19 +1152,23 @@ footer button {
 @media (width >1024px) {
     .page-content {
         height: 100dvh;
-        overflow-x: hidden;
-        overflow-y: auto;
+        overflow: hidden;
+    }
+
+    .topbar {
+        flex-shrink: 0;
     }
 
     .main-content,
     .addTaskContent {
-        height: auto;
-        min-height: calc(100dvh - 96px);
-        overflow: visible;
+        height: calc(100dvh - 96px);
+        min-height: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 }
 
-/* minimum supported mobile width */
+/*minimum supported mobile width*/
 
 @media (width <=320px) {
     .addTaskContent {
@@ -1198,5 +1204,29 @@ footer button {
         gap: 6px;
         padding-right: 10px;
         padding-left: 10px;
+    }
+}
+
+/*scrollbar under header*/
+
+@media (width >1024px) {
+    .page-content {
+        display: flex;
+        flex-direction: column;
+        height: 100dvh;
+        overflow: hidden;
+    }
+
+    .topbar {
+        flex-shrink: 0;
+    }
+
+    .main-content.addTaskContent {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: none;
+        min-height: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 }
