@@ -104,9 +104,9 @@
 }
 
 .card.top {
+    flex: 1 1 0;
     flex-direction: row;
     gap: 18px;
-    flex: 1 1 0;
     min-width: 0;
     height: clamp(110px, 13vw, 168px);
 }
@@ -168,9 +168,9 @@
 }
 
 .card.bottom {
+    flex: 1 1 0;
     flex-direction: column;
     gap: 8px;
-    flex: 1 1 0;
     min-width: 0;
     height: clamp(116px, 13vw, 168px);
     padding: 20px;
@@ -182,8 +182,8 @@
 
 .summary-user {
     display: flex;
-    flex-direction: column;
     flex: 1 1 0;
+    flex-direction: column;
     min-width: 0;
 }
 
@@ -254,6 +254,7 @@
         justify-content: center;
         width: 100%;
         text-align: center;
+        animation: mobile-greeting 1.8s cubic-bezier(0.4, 0, 0.2, 1) both;
     }
 
     .mobile-greeting-active .summary-user h2 {
@@ -263,6 +264,41 @@
 
     .mobile-greeting-active .summary-user h3 {
         font-size: 2.5rem;
+    }
+
+    .mobile-greeting-finished .title,
+    .mobile-greeting-finished .summary>.summary-content {
+        animation: mobile-summary-reveal 450ms ease-out both;
+    }
+
+    @keyframes mobile-greeting {
+        0% {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        22%,
+        58% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(-12px);
+        }
+    }
+
+    @keyframes mobile-summary-reveal {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 }
 
@@ -396,5 +432,13 @@
 
     .card.bottom {
         width: calc((100% - 32px) / 3);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mobile-greeting-active .summary-user,
+    .mobile-greeting-finished .title,
+    .mobile-greeting-finished .summary>.summary-content {
+        animation: none;
     }
 }

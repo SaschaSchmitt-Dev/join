@@ -1,7 +1,5 @@
 const mobileSummaryMediaQuery = window.matchMedia("(max-width: 1024px)");
-const mobileGreetingDuration = 1500;
 const mobileGreetingStorageKey = "joinShowMobileGreeting";
-let mobileGreetingTimeout;
 
 
 /**
@@ -135,6 +133,7 @@ function getSummarySection() {
  */
 function hideMobileGreeting(summarySection) {
     summarySection.classList.remove("mobile-greeting-active");
+    summarySection.classList.add("mobile-greeting-finished");
 }
 
 
@@ -147,13 +146,34 @@ function showMobileGreeting() {
 
     sessionStorage.removeItem(mobileGreetingStorageKey);
 
-    if (!summarySection || !mobileSummaryMediaQuery.matches || !shouldShowGreeting) {
+    if (!summarySection || !mobileSummaryMediaQuery.matches || !shouldShowGreeting || prefersReducedMotion()) {
         return;
     }
 
     summarySection.classList.add("mobile-greeting-active");
-    clearTimeout(mobileGreetingTimeout);
-    mobileGreetingTimeout = setTimeout(() => hideMobileGreeting(summarySection), mobileGreetingDuration);
+    addMobileGreetingEndListener(summarySection);
+}
+
+
+/**
+ * Checks whether the user prefers reduced motion.
+ * @returns {boolean} True if animations should be reduced.
+ */
+function prefersReducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+
+/**
+ * Finishes the greeting when its CSS animation ends.
+ * @param {Object} summarySection - The summary section.
+ */
+function addMobileGreetingEndListener(summarySection) {
+    const greeting = summarySection.querySelector(".summary-user");
+
+    if (!greeting) return hideMobileGreeting(summarySection);
+
+    greeting.addEventListener("animationend", () => hideMobileGreeting(summarySection), { once: true });
 }
 
 
@@ -163,7 +183,6 @@ function showMobileGreeting() {
  */
 function handleSummaryViewportChange(event) {
     const summarySection = getSummarySection();
-    clearTimeout(mobileGreetingTimeout);
 
     if (!summarySection) {
         return;
