@@ -38,6 +38,7 @@ function openTaskDialog(task) {
     const backdrop = document.getElementById("openTaskDialog");
     backdrop.querySelector(".open-task-close").addEventListener("click", closeOpenTaskDialog);
     backdrop.querySelector(".open-task-delete").addEventListener("click", deleteOpenTask);
+    backdrop.querySelector(".open-task-edit").addEventListener("click", () => openEditTaskDialog(task));
     backdrop.querySelector(".open-task-subtasks").addEventListener("change", changeOpenTaskSubtaskStatus);
     backdrop.addEventListener("click", closeOpenTaskOnBackdrop);
     document.addEventListener("keydown", closeOpenTaskOnEscape);
@@ -90,8 +91,10 @@ function getOpenTaskContacts(assignments = []) {
         const contact = boardContacts[assignment.id];
         if (!contact) return "";
         const color = getUserColor(contact.color);
-        return getOpenTaskContactTemplate({ name: escapeBoardHtml(contact.name),
-            initials: escapeBoardHtml(getUserInitials(contact.name)), color, textColor: getUserTextColor(color) });
+        return getOpenTaskContactTemplate({
+            name: escapeBoardHtml(contact.name),
+            initials: escapeBoardHtml(getUserInitials(contact.name)), color, textColor: getUserTextColor(color)
+        });
     }).join("");
 }
 
@@ -127,5 +130,11 @@ async function deleteOpenTask() {
     closeOpenTaskDialog();
 }
 
+
+function openEditTaskDialog(task) {
+    closeOpenTaskDialog();
+    document.body.insertAdjacentHTML
+    ("beforeend", getEditTaskDialogTemplate(task));
+}
 
 initializeOpenTaskDialog();
