@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -43,7 +43,10 @@
                     <label class="visually-hidden" for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Password"
                         autocomplete="current-password">
-                    <img src="./assets/icons/lock.png" class="icon" id="toggleIcon" alt="">
+                    <button id="togglePasswordButton" class="icon-toggle" type="button"
+                        aria-label="Show password">
+                        <img src="./assets/icons/lock.png" id="toggleIcon" alt="">
+                    </button>
                 </div>
                 <p id="errorMessage" class="error-msg" aria-live="polite"></p>
                 <div class="btn-row">
@@ -55,7 +58,7 @@
 
         <div class="signup-area">
             <span>Not a Join user?</span>
-            <a class="signup-btn" href="./subpages/signup.html">Sign up</a>
+            <a class="signup-btn" href="./subpages/sign-up.html">Sign up</a>
         </div>
 
         <footer class="login-footer">

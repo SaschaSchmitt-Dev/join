@@ -6,8 +6,10 @@
 function togglePasswordIcon(inputId, iconId) {
     const input = document.getElementById(inputId);
     const icon = document.getElementById(iconId);
+    const toggleButton = icon.closest('button');
     const visible = input.type === 'text';
 
+    toggleButton.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
     if (input.value.length === 0) return icon.src = '../assets/icons/lock.png';
     icon.src = visible ? '../assets/icons/visability.png' : '../assets/icons/visability-off.png';
 }
@@ -27,24 +29,24 @@ function togglePasswordVisibility(inputId, iconId) {
 }
 
 
-document.getElementById('password').addEventListener('input', () => togglePasswordIcon('password', 'password-icon'));
-document.getElementById('password-icon').addEventListener('click', () => togglePasswordVisibility('password', 'password-icon'));
+document.getElementById('password').addEventListener('input', () => togglePasswordIcon('password', 'passwordIcon'));
+document.getElementById('passwordToggle').addEventListener('click', () => togglePasswordVisibility('password', 'passwordIcon'));
 
-document.getElementById('confirm-password').addEventListener('input', () => togglePasswordIcon('confirm-password', 'confirm-password-icon'));
-document.getElementById('confirm-password-icon').addEventListener('click', () => togglePasswordVisibility('confirm-password', 'confirm-password-icon'));
+document.getElementById('confirmPassword').addEventListener('input', () => togglePasswordIcon('confirmPassword', 'confirmPasswordIcon'));
+document.getElementById('confirmPasswordToggle').addEventListener('click', () => togglePasswordVisibility('confirmPassword', 'confirmPasswordIcon'));
 
 
 /**
  * Enables or disables the signup button based on the terms checkbox state.
  */
 function updateSignupButtonState() {
-    const termsCheckbox = document.getElementById('terms-checkbox');
-    const signupBtn = document.getElementById('signup-btn');
+    const termsCheckbox = document.getElementById('termsCheckbox');
+    const signupBtn = document.getElementById('signupBtn');
     signupBtn.disabled = !termsCheckbox.checked;
 }
 
 
-document.getElementById('terms-checkbox').addEventListener('change', updateSignupButtonState);
+document.getElementById('termsCheckbox').addEventListener('change', updateSignupButtonState);
 updateSignupButtonState();
 
 
@@ -55,7 +57,7 @@ updateSignupButtonState();
  */
 function checkPasswordsMatch() {
     const password = document.getElementById('password');
-    const confirmPassword = document.getElementById('confirm-password');
+    const confirmPassword = document.getElementById('confirmPassword');
     const matches = password.value === confirmPassword.value;
 
     confirmPassword.classList.toggle('error', !matches);
@@ -69,18 +71,18 @@ function checkPasswordsMatch() {
  * Clears the signup password error state.
  */
 function clearPasswordError() {
-    document.getElementById('confirm-password').classList.remove('error');
+    document.getElementById('confirmPassword').classList.remove('error');
     document.getElementById('errorMessage').textContent = '';
 }
 
 
-document.getElementById('signup-form').addEventListener('submit', (event) => {
+document.getElementById('signupForm').addEventListener('submit', (event) => {
     event.preventDefault();
     handleSignup();
 });
 
 document.getElementById('password').addEventListener('input', clearPasswordError);
-document.getElementById('confirm-password').addEventListener('input', clearPasswordError);
+document.getElementById('confirmPassword').addEventListener('input', clearPasswordError);
 
 
 /**
@@ -90,7 +92,7 @@ document.getElementById('confirm-password').addEventListener('input', clearPassw
 async function handleSignup() {
     if (!checkPasswordsMatch()) return;
 
-    const signupBtn = document.getElementById('signup-btn');
+    const signupBtn = document.getElementById('signupBtn');
     signupBtn.disabled = true;
 
     try {
@@ -103,7 +105,7 @@ async function handleSignup() {
     } catch (error) {
         showSignupError('Signup is currently not available. Please try again.');
     } finally {
-        signupBtn.disabled = !document.getElementById('terms-checkbox').checked;
+        signupBtn.disabled = !document.getElementById('termsCheckbox').checked;
     }
 }
 
@@ -167,6 +169,7 @@ function showSignupToast() {
     const toast = document.querySelector('.signup-toast');
 
     if (!toast) return;
+    toast.textContent = 'You signed up successfully';
     toast.classList.add('show');
 
     setTimeout(() => {

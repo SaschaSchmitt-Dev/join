@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join-Login</title>
+    <title>Join Help</title>
 
     <link rel="shortcut icon" href="../assets/icons/favicon.png" type="image/x-icon">
 
@@ -35,8 +35,10 @@
             <section class="help-section">
                 <div class="help-title">
                     <h1>Help</h1>
-                    <button id="backToPreviousPage" class="back-arrow-button"><img src="../assets/icons/back-arrow.png"
-                            alt="Icon Back-Arrow"></button>
+                    <button id="backToPreviousPage" class="back-arrow-button" type="button"
+                        aria-label="Go back to the previous page">
+                        <img src="../assets/icons/arrow-left-sign-up.png" alt="">
+                    </button>
                 </div>
                 <p>
                     Welcome to the help page for <span>Join</span>, your guide to using our kanban project management
@@ -67,27 +69,27 @@
                     </p>
                 </article>
 
-                <h2>How to use it</h2>
-
                 <article class="help-step">
+                    <h2>How to use it</h2>
                     <p>
                         Here is a step-by-step guide on how to use <span>Join</span>:
                     </p>
 
-                    <div class="help-step-content">
-                        <h2>1.</h2>
-                        <div>
+                    <ol class="help-steps">
+                        <li class="help-step-content">
+                            <span class="help-step-number" aria-hidden="true">1.</span>
+                            <div>
                             <h3>Exploring the Board</h3>
                             <p>
                                 When you log in to <span>Join</span>, you'll find a default board. This board represents
                                 your project and contains four default lists: "To Do", "In Progress", “Await feedback”
                                 and "Done".
                             </p>
-                        </div>
-                    </div>
-                    <div class="help-step-content">
-                        <h2>2.</h2>
-                        <div>
+                            </div>
+                        </li>
+                        <li class="help-step-content">
+                            <span class="help-step-number" aria-hidden="true">2.</span>
+                            <div>
                             <h3>Creating Contacts</h3>
                             <p>
                                 In <span>Join</span>, you can add contacts to collaborate on your projects. Go to the
@@ -95,11 +97,11 @@
                                 added, these contacts can be assigned tasks and they can interact with the tasks on the
                                 board.
                             </p>
-                        </div>
-                    </div>
-                    <div class="help-step-content">
-                        <h2>3.</h2>
-                        <div>
+                            </div>
+                        </li>
+                        <li class="help-step-content">
+                            <span class="help-step-number" aria-hidden="true">3.</span>
+                            <div>
                             <h3>Adding Cards</h3>
                             <p>
                                 Now that you've added your contacts, you can start adding cards. Cards represent
@@ -107,21 +109,21 @@
                                 Fill in the task details in the card, like task name, description, due date, assignees,
                                 etc.
                             </p>
-                        </div>
-                    </div>
-                    <div class="help-step-content">
-                        <h2>4.</h2>
-                        <div>
+                            </div>
+                        </li>
+                        <li class="help-step-content">
+                            <span class="help-step-number" aria-hidden="true">4.</span>
+                            <div>
                             <h3>Moving Cards</h3>
                             <p>
                                 As the task moves from one stage to another, you can reflect that on the board by
                                 dragging and dropping the card from one list to another.
                             </p>
-                        </div>
-                    </div>
-                    <div class="help-step-content">
-                        <h2>5.</h2>
-                        <div>
+                            </div>
+                        </li>
+                        <li class="help-step-content">
+                            <span class="help-step-number" aria-hidden="true">5.</span>
+                            <div>
                             <h3>Deleting Cards</h3>
                             <p>
                                 Once a task is completed, you can either move it to the "Done" list or delete it.
@@ -142,8 +144,9 @@
                                     here to help you!
                                 </p>
                             </div>
-                        </div>
-                    </div>
+                            </div>
+                        </li>
+                    </ol>
                 </article>
 
                 <h2>Enjoy using Join!</h2>

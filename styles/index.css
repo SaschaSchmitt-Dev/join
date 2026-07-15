@@ -168,7 +168,8 @@ body {
     border-color: var(--form-input-border-error);
 }
 
-.input-wrap .icon {
+.input-wrap .icon,
+.input-wrap .icon-toggle {
     position: absolute;
     top: 50%;
     right: 21px;
@@ -178,8 +179,16 @@ body {
     transform: translateY(-50%);
 }
 
-#toggleIcon {
+.input-wrap .icon-toggle {
+    padding: 0;
+    background: none;
     cursor: pointer;
+}
+
+.input-wrap .icon-toggle img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .error-msg {
@@ -358,7 +367,8 @@ body {
         font-size: 1rem;
     }
 
-    .input-wrap .icon {
+    .input-wrap .icon,
+    .input-wrap .icon-toggle {
         width: 20px;
         height: 20px;
     }

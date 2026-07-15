@@ -216,8 +216,10 @@ function showLoginError(message) {
 function togglePasswordIcon() {
     const password = document.getElementById('password');
     const icon = document.getElementById('toggleIcon');
+    const toggleButton = document.getElementById('togglePasswordButton');
     const visible = password.type === 'text';
 
+    toggleButton.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
     if (password.value.length === 0) return icon.src = './assets/icons/lock.png';
     icon.src = visible ? './assets/icons/visability.png' : './assets/icons/visability-off.png';
 }
@@ -228,7 +230,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
     event.preventDefault();
     checkLogin();
 });
-document.getElementById('toggleIcon').addEventListener('click', () => {
+document.getElementById('togglePasswordButton').addEventListener('click', () => {
     const password = document.getElementById('password');
     if (!password.value.length) return;
     password.type = password.type === 'password' ? 'text' : 'password';
