@@ -212,6 +212,7 @@
 }
 
 .task-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -458,4 +459,115 @@
         font-size: 1rem;
     }
 
+}
+
+.mobile-move-task-btn {
+    display: none;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 6;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    background: #ffffff;
+    border: 1px solid #2a3647;
+    border-radius: 8px;
+    color: #2a3647;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 12%);
+    cursor: pointer;
+}
+
+.mobile-move-task-btn span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(45deg);
+}
+
+.mobile-move-menu {
+    position: absolute;
+    top: 12px;
+    right: -42px;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 12px 12px 13px;
+    background: #2a3647;
+    border-radius: 0 16px 16px 16px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+    box-sizing: border-box;
+}
+
+.mobile-move-title {
+    margin: 0;
+    color: #ffffff;
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.mobile-move-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    min-height: 14px;
+    padding: 0;
+    background: transparent;
+    border: unset;
+    color: #ffffff;
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 120%;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.mobile-move-option:hover {
+    color: #29abe2;
+}
+
+.mobile-move-option:hover .mobile-move-arrow {
+    color: #29abe2;
+}
+
+.mobile-move-arrow {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 8px;
+    min-width: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.mobile-move-option:focus-visible,
+.mobile-move-task-btn:focus-visible {
+    outline: 2px solid #29abe2;
+    outline-offset: 2px;
+}
+
+@media (width <=900px) {
+    .mobile-move-task-btn {
+        display: flex;
+    }
+
+    .task-card {
+        position: relative;
+        overflow: visible;
+        padding-top: 48px;
+    }
 }

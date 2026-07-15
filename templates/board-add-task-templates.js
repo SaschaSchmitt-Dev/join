@@ -214,6 +214,16 @@ function getTaskAddedMessageTemplate() {
 function getTaskCardTemplate(task, progressTemplate, usersTemplate) {
     return `
         <div class="task-card" id="task-${task.id}" data-task-id="${task.id}">
+            <button
+                class="mobile-move-task-btn"
+                type="button"
+                data-task-id="${task.id}"
+                data-column="${task.column}"
+                aria-label="Move task"
+            >
+                <img src="../assets/icons/move-btn.png" alt="" aria-hidden="true">
+            </button>
+
             <span class="task-category ${task.categoryClass}">${task.category}</span>
             <h3>${task.title}</h3>
             <p>${task.description}</p>
@@ -223,6 +233,40 @@ function getTaskCardTemplate(task, progressTemplate, usersTemplate) {
                 <img class="priority-icon" src="../assets/icons/${task.priorityIcon}" alt="${task.priority} priority">
             </div>
         </div>
+    `;
+}
+
+
+/**
+ * Returns the mobile move menu template.
+ * @param {string} taskId - The task id.
+ * @param {string} currentColumn - The current task column.
+ * @returns {string} The menu HTML.
+ */
+function getMobileMoveMenuTemplate(taskId, currentColumn) {
+    return `
+        <div class="mobile-move-title">Move to</div>
+        ${Object.entries(boardColumns)
+            .filter(([column]) => column !== currentColumn)
+            .map(([column, data]) => getMobileMoveOptionTemplate(taskId, column, data.label))
+            .join("")}
+    `;
+}
+
+
+/**
+ * Returns one mobile move option.
+ * @param {string} taskId - The task id.
+ * @param {string} column - The target column.
+ * @param {string} label - The visible column label.
+ * @returns {string} The option HTML.
+ */
+function getMobileMoveOptionTemplate(taskId, column, label) {
+    return `
+        <button class="mobile-move-option" type="button" data-task-id="${taskId}" data-column="${column}">
+            <span class="mobile-move-arrow" aria-hidden="true">↕</span>
+            <span>${label}</span>
+        </button>
     `;
 }
 
