@@ -363,6 +363,13 @@
         overflow: auto hidden;
         scrollbar-width: none;
         scroll-snap-type: x proximity;
+        cursor: grab;
+        user-select: none;
+    }
+
+    .task-list.is-dragging {
+        scroll-snap-type: none;
+        cursor: grabbing;
     }
 
     .task-card {

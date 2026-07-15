@@ -20,6 +20,9 @@ const subtaskList = subtaskWrapper.parentElement.querySelector(".subtaskList");
 const createTaskButton = document.querySelector(".createTask");
 const taskAddedToast = document.querySelector(".taskAddedToast");
 
+initializeHorizontalDragScroll(document.querySelector(".selectedContacts"));
+initializePriorityKeyboard(document.querySelector(".priorityGroup"));
+
 /**
  * Resets the assigned-to dropdown input and shows all contacts again.
  */
@@ -363,7 +366,6 @@ function getAddTaskUrl() {
  * @returns {Object} The task data.
  */
 function getTaskFormData() {
-    const subtasks = getSubtasksData();
     const task = {
         title: titleInput.value.trim(),
         description: descriptionInput.value.trim(),
@@ -373,11 +375,8 @@ function getTaskFormData() {
         assignedTo: getAssignedContacts(),
         column: "todo"
     };
-
-    if (Object.keys(subtasks).length) {
-        task.subtasks = subtasks;
-    }
-
+    const subtasks = getSubtasksData();
+    if (Object.keys(subtasks).length) task.subtasks = subtasks;
     return task;
 }
 

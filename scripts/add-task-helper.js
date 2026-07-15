@@ -60,7 +60,10 @@ function buildContactRow(key, contact) {
             <div class="contactAvatar" style="background:${contactColor}; color:${getUserTextColor(contactColor)}">${getUserInitials(contact.name)}</div>
             <span>${contact.name}</span>
         </div>
-        <input type="checkbox" class="contactCheckbox" data-id="${key}" data-name="${contact.name}" data-initials="${getUserInitials(contact.name)}" data-color="${contactColor}" data-text-color="${getUserTextColor(contactColor)}">
+        <span class="custom-checkbox-wrapper">
+            <input type="checkbox" class="contactCheckbox" data-id="${key}" data-name="${contact.name}" data-initials="${getUserInitials(contact.name)}" data-color="${contactColor}" data-text-color="${getUserTextColor(contactColor)}">
+            <span class="custom-checkbox" aria-hidden="true"></span>
+        </span>
     `;
     return row;
 }
@@ -247,26 +250,45 @@ function showTaskAddedToast() {
  * Clears the task form and resets all dynamic UI elements.
  */
 function clearForm() {
+    clearTaskInputs();
+    clearTaskErrors();
+    resetTaskSelections();
+    subtaskList.innerHTML = "";
+    updateCreateTaskButtonState();
+}
+
+
+/**
+ * Clears all basic task input values.
+ */
+function clearTaskInputs() {
     titleInput.value = "";
     descriptionInput.value = "";
     dueDateInput.value = "";
     dueDateInput.type = "text";
     assignetToInput.value = "";
     categoryInput.value = "";
+}
 
+
+/**
+ * Clears all required-field error messages.
+ */
+function clearTaskErrors() {
     clearError(titleInput, titleError);
     clearError(dueDateInput, dueDateError);
     clearError(categoryInput, categoryError);
+}
 
+
+/**
+ * Resets assigned contacts and the selected priority.
+ */
+function resetTaskSelections() {
     document.querySelectorAll(".contactCheckbox:checked").forEach((checkbox) => {
         checkbox.checked = false;
     });
-
     renderSelectedContacts();
-
     document.getElementById("medium").checked = true;
-
-    subtaskList.innerHTML = "";
-
-    updateCreateTaskButtonState();
+    updatePriorityAriaState(document.querySelector(".priorityGroup"));
 }

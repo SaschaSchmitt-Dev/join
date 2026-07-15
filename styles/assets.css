@@ -73,12 +73,12 @@ input {
 }
 
 .custom-checkbox-wrapper input:checked + .custom-checkbox::after {
-    height: 12px;
+    height: 10px;
     animation: custom-check-short 200ms ease forwards;
 }
 
 .custom-checkbox-wrapper input:checked + .custom-checkbox::before {
-    height: 29px;
+    height: 24px;
     animation: custom-check-long 400ms ease forwards;
 }
 

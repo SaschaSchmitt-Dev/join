@@ -10,9 +10,12 @@
 }
 
 .add-task-dialog {
+    display: flex;
     position: relative;
+    flex-direction: column;
     width: 100%;
     max-width: 1116px;
+    height: 870px;
     max-height: calc(100% - 48px);
     padding: 64px clamp(32px, 6vw, 72px) 56px;
     overflow: auto;
@@ -111,8 +114,8 @@
         box-shadow 125ms ease-in-out;
 }
 
-.add-task-form input:not([type="radio"], [type="checkbox"]):hover,
-.add-task-form textarea:hover {
+.add-task-form input:not([type="radio"], [type="checkbox"], :focus):hover,
+.add-task-form textarea:not(:focus):hover {
     border-color: var(--board-input-border-hover);
     box-shadow: 0 0 4px rgb(0 0 0 / 16%);
 }
@@ -146,6 +149,11 @@
     position: absolute;
     width: 1px;
     height: 1px;
+}
+
+.priority-group label:focus-visible {
+    outline: 2px solid var(--board-input-border-active);
+    outline-offset: 2px;
 }
 
 .priority-group label {
@@ -214,7 +222,7 @@
     top: calc(100% - 1px);
     z-index: 10;
     width: 100%;
-    max-height: 190px;
+    max-height: 270px;
     overflow: auto;
     background: var(--assets-bg-color);
     border-radius: 0 0 10px 10px;
@@ -233,14 +241,49 @@
     min-height: 44px;
     margin: 0;
     padding: 6px 12px;
+    border-radius: 10px;
     color: var(--text-primary);
     text-decoration: none;
     cursor: pointer;
 }
 
+.contact-option {
+    height: 54px;
+}
+
 .dropdown-content a:hover,
 .contact-option:hover {
     background: var(--ui-light-hover);
+}
+
+.contact-option:has(.contact-checkbox:checked) {
+    background: var(--ui-dark);
+    color: var(--text-white);
+
+    --checkbox-background: var(--ui-dark);
+}
+
+.contact-option:has(.contact-checkbox:checked):hover {
+    background: var(--ui-dark);
+}
+
+.contact-option:has(.contact-checkbox:checked) .custom-checkbox {
+    border-color: var(--text-white);
+}
+
+.contact-option:has(.contact-checkbox:checked) .custom-checkbox-wrapper {
+    --checkbox-background: var(--ui-dark);
+}
+
+.contact-option:has(.contact-checkbox:checked) .custom-checkbox::before,
+.contact-option:has(.contact-checkbox:checked) .custom-checkbox::after {
+    background: var(--text-white);
+}
+
+.contact-option:has(.contact-checkbox:checked) .custom-checkbox-wrapper:has(input:hover) {
+    background: transparent;
+
+    --checkbox-background: var(--ui-dark);
 }
 
 .contact-option .contact-checkbox {
@@ -267,13 +310,32 @@
 
 .selected-contacts {
     display: flex;
+    flex-wrap: nowrap;
     gap: 4px;
-    min-height: 32px;
+    width: 100%;
+    max-width: 100%;
     margin-top: 6px;
+    padding-bottom: 4px;
+    overflow: auto hidden;
+    cursor: grab;
+    user-select: none;
+}
+
+.selected-contacts.is-dragging {
+    cursor: grabbing;
 }
 
 .selected-contacts:empty {
     display: none;
+}
+
+.add-task-dialog .dialog-contact-avatar {
+    flex-shrink: 0;
+    flex-basis: 42px;
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    border-width: 1px;
 }
 
 .subtask-actions {
@@ -365,7 +427,8 @@
     justify-content: space-between;
     align-items: flex-end;
     width: 100%;
-    margin-top: 72px;
+    margin-top: auto;
+    padding-top: 24px;
 }
 
 .footer-buttons {
@@ -456,6 +519,26 @@
     }
 }
 
+@media (1024px < width <= 1200px) {
+    .add-task-dialog-backdrop {
+        padding: 16px;
+    }
+
+    .add-task-dialog {
+        padding-right: 32px;
+        padding-left: 32px;
+    }
+
+    .add-task-form {
+        gap: 24px;
+        grid-template-columns: minmax(0, 0.9fr) 1px minmax(0, 1.1fr);
+    }
+
+    .priority-group {
+        gap: 8px;
+    }
+}
+
 @media (width <= 900px) {
     .add-task-dialog {
         padding: 40px 32px;
@@ -477,7 +560,7 @@
     }
 
     .add-task-dialog-footer {
-        margin-top: 32px;
+        margin-top: auto;
     }
 }
 
@@ -633,6 +716,6 @@
     }
 
     .add-task-dialog-footer {
-        margin-top: 24px;
+        margin-top: auto;
     }
 }

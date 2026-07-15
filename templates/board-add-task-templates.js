@@ -89,10 +89,10 @@ function getAddTaskDialogRightFieldsTemplate() {
  */
 function getAddTaskPriorityTemplate() {
     return `
-        <div class="dialog-field-group"><label>Priority</label><div class="priority-group">
-            <input type="radio" name="priority" id="urgent" value="urgent"><label for="urgent">Urgent <img src="../assets/icons/urgent-priority.png" alt=""></label>
-            <input type="radio" name="priority" id="medium" value="medium" checked><label for="medium">Medium <img src="../assets/icons/medium-priority.png" alt=""></label>
-            <input type="radio" name="priority" id="low" value="low"><label for="low">Low <img src="../assets/icons/low-priority.png" alt=""></label>
+        <div class="dialog-field-group"><label>Priority</label><div class="priority-group" role="radiogroup" aria-label="Priority">
+            <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1" aria-hidden="true"><label for="urgent" tabindex="0" role="radio">Urgent <img src="../assets/icons/urgent-priority.png" alt=""></label>
+            <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true" checked><label for="medium" tabindex="0" role="radio">Medium <img src="../assets/icons/medium-priority.png" alt=""></label>
+            <input type="radio" name="priority" id="low" value="low" tabindex="-1" aria-hidden="true"><label for="low" tabindex="0" role="radio">Low <img src="../assets/icons/low-priority.png" alt=""></label>
         </div></div>
     `;
 }
@@ -106,8 +106,9 @@ function getAddTaskAssignedTemplate() {
     return `
         <div class="dropdown-list dialog-field-group"><label for="assignedTo" class="assigned-to">Assigned to</label>
             <div class="input-wrapper"><input class="assigned-to" id="assignedTo" placeholder="Select contacts to assign" readonly>
-                <img class="input-icon" src="../assets/icons/arrow-dropdown.png" alt=""></div>
-            <div class="dropdown-content"></div><div class="selected-contacts"></div>
+                <img class="input-icon" src="../assets/icons/arrow-dropdown.png" alt="">
+                <div class="dropdown-content"></div></div>
+            <div class="selected-contacts"></div>
         </div>
     `;
 }

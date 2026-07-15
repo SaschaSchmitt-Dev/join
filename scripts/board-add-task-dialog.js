@@ -30,6 +30,8 @@ function openAddTaskDialog(column) {
  */
 function prepareAddTaskDialog(dialog) {
     renderDialogContacts();
+    initializeHorizontalDragScroll(dialog.querySelector(".selected-contacts"));
+    initializePriorityKeyboard(dialog.querySelector(".priority-group"));
     initializeDialogDropdowns(dialog);
     initializeDialogSubtasks(dialog);
     initializeDialogActions(dialog);
@@ -89,7 +91,7 @@ function renderDialogContacts() {
         return getAddTaskContactOptionTemplate(getDialogContactView(id, contact));
     });
     const input = document.getElementById("assignedTo");
-    input.closest(".input-wrapper").nextElementSibling.innerHTML = options.join("");
+    input.closest(".input-wrapper").querySelector(".dropdown-content").innerHTML = options.join("");
 }
 
 

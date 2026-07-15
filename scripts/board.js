@@ -17,10 +17,20 @@ async function initializeBoard() {
         boardTasks = await getTasks();
         boardContacts = await getBoardContacts();
         renderBoardTasks(boardTasks, boardContacts);
+        initializeBoardCardDragScroll();
     } catch (error) {
         showBoardStatusMessage("Board data could not be loaded.");
         renderBoardTasks([], {});
+        initializeBoardCardDragScroll();
     }
+}
+
+
+/**
+ * Enables mouse dragging for horizontally arranged task-card rows.
+ */
+function initializeBoardCardDragScroll() {
+    document.querySelectorAll(".task-list").forEach(initializeHorizontalDragScroll);
 }
 
 

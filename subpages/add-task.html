@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../styles/add-task.css">
-    <link rel="stylesheet" href="../styles/add-task-subtasks.css">
-    <link rel="stylesheet" href="../styles/add-task-responsive.css">
 
     <script src="../script.js" defer></script>
     <script src="../templates/bars-templates.js" defer></script>
@@ -57,37 +55,37 @@
                 <div class="addTaskFieldsRight">
                     <label for="priority">Priority</label>
 
-                    <div class="priorityGroup">
-                        <input type="radio" name="priority" id="urgent" value="urgent">
-                        <label for="urgent">
+                    <div class="priorityGroup" role="radiogroup" aria-label="Priority">
+                        <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1" aria-hidden="true">
+                        <label for="urgent" tabindex="0" role="radio">
                             Urgent
                             <img src="../assets/icons/urgent-priority.png" alt="Urgent priority icon">
                         </label>
 
-                        <input type="radio" name="priority" id="medium" value="medium" checked>
-                        <label for="medium" class="medium">
+                        <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true" checked>
+                        <label for="medium" class="medium" tabindex="0" role="radio">
                             Medium
                             <img src="../assets/icons/medium-priority.png" alt="Medium priority icon">
                         </label>
 
-                        <input type="radio" name="priority" id="low" value="low">
-                        <label for="low">
+                        <input type="radio" name="priority" id="low" value="low" tabindex="-1" aria-hidden="true">
+                        <label for="low" tabindex="0" role="radio">
                             Low
                             <img src="../assets/icons/low-priority.png" alt="Low priority icon">
                         </label>
                     </div>
 
                     <div class="dropdownList">
-                        <label for="assignetTo" class="assignetTo">Assignet to</label>
+                        <label for="assignetTo" class="assignetTo">Assigned to</label>
 
                         <div class="inputWrapper">
                             <input type="text" class="assignetTo" id="assignetTo"
                                 placeholder="Select contacts to assign">
                             <img class="inputIcon" src="../assets/icons/arrow-dropdown.png"
                                 alt="Toggle contacts dropdown">
+                            <div class="dropdownContent"></div>
                         </div>
 
-                        <div class="dropdownContent"></div>
                         <div class="selectedContacts"></div>
                     </div>
 
