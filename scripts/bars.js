@@ -36,7 +36,7 @@ function isProtectedPage(currentPage) {
  */
 function redirectLoggedOutUser(currentPage) {
     if (isProtectedPage(currentPage) && !getActiveUser()) {
-        window.location.replace("./login.html");
+        window.location.replace("../index.html");
         return true;
     }
 
@@ -245,7 +245,7 @@ function addLogoutEvent() {
     logoutLink.addEventListener("click", function (event) {
         event.preventDefault();
         clearActiveUser();
-        window.location.replace("./login.html");
+        window.location.replace("../index.html");
     });
 }
 

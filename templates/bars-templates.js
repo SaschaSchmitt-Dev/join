@@ -48,7 +48,7 @@ function getNotLoggedInLegalSidebarTemplate(activePage) {
         </div>
 
         <nav class="menu not-logged-in-menu">
-            <a class="login-link" href="./login.html">
+            <a class="login-link" href="../index.html">
                 <img src="../assets/icons/login.png" alt="Login Icon">
                 <span>Log In</span>
             </a>
@@ -96,7 +96,7 @@ function getMobileNavTemplate(activePage) {
  */
 function getNotLoggedInLegalMobileNavTemplate(activePage) {
     return `
-        <a class="login-link" href="./login.html" aria-label="Log In">
+        <a class="login-link" href="../index.html" aria-label="Log In">
             <img src="../assets/icons/login.png" alt="">
             <span>Log In</span>
         </a>
@@ -145,7 +145,7 @@ function getTopbarTemplate(helpLink, accountAvatar) {
                     <a class="account-menu-help desktop-hide" href="./help.html">Help</a>
                     <a href="./legal-notice.html">Legal Notice</a>
                     <a href="./privacy-policy.html">Privacy Policy</a>
-                    <a id="logoutLink" href="./login.html">Log out</a>
+                    <a id="logoutLink" href="../index.html">Log out</a>
                 </nav>
             </div>
         </div>

@@ -170,6 +170,6 @@ function showSignupToast() {
     toast.classList.add('show');
 
     setTimeout(() => {
-        window.location.href = './login.html';
+        window.location.href = '../index.html';
     }, 2000);
 }

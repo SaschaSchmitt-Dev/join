@@ -17,7 +17,7 @@ function getPreviousPage() {
         return previousPage;
     }
 
-    return "login.html";
+    return "../index.html";
 }
 
 
