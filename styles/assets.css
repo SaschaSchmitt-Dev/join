@@ -119,6 +119,11 @@ input {
     transform: scale(1.01);
 }
 
+.back-arrow-button:focus-visible {
+    box-shadow: 0 0 0 2px var(--divider-color-blue);
+    outline: none;
+}
+
 *::-webkit-scrollbar {
     width: 4px;
     height: 4px;

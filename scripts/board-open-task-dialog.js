@@ -1,12 +1,31 @@
 /** Connects task cards with the task detail dialog. */
 function initializeOpenTaskDialog() {
-    document.querySelector(".board-columns").addEventListener("click", handleTaskCardClick);
+    const boardColumns = document.querySelector(".board-columns");
+
+    boardColumns.addEventListener("click", handleTaskCardClick);
+    boardColumns.addEventListener("keydown", handleTaskCardKeydown);
 }
 
 
 function handleTaskCardClick(event) {
     const card = event.target.closest(".task-card");
     if (!card) return;
+    openTaskCard(card);
+}
+
+
+/** Opens a focused task card with Enter or Space. */
+function handleTaskCardKeydown(event) {
+    const card = event.target.closest(".task-card");
+
+    if (!card || event.target !== card || !["Enter", " "].includes(event.key)) return;
+    event.preventDefault();
+    openTaskCard(card);
+}
+
+
+/** Opens the task represented by a board card. */
+function openTaskCard(card) {
     const task = boardTasks.find((item) => String(item.id) === card.dataset.taskId);
     if (task) openTaskDialog(task);
 }

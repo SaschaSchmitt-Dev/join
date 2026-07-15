@@ -126,6 +126,11 @@
     background: var(--ui-dark-active);
 }
 
+.add-task-button:focus-visible {
+    outline: 2px solid var(--divider-color-blue);
+    outline-offset: 2px;
+}
+
 .add-task-plus {
     padding-bottom: 4px;
     font-size: 2rem;
@@ -136,7 +141,7 @@
 .board-columns {
     display: grid;
     flex: 1;
-    gap: 24px;
+    gap: 16px;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
     min-height: 0;
 }
@@ -158,7 +163,7 @@
     gap: 16px;
     width: 100%;
     min-height: 0;
-    padding: 2px 4px 16px 0;
+    padding: 4px 4px 16px;
     overflow: hidden auto;
     scrollbar-gutter: stable;
 }
@@ -196,6 +201,12 @@
     opacity: 0.7;
 }
 
+.add-column-task:focus-visible {
+    border-radius: 4px;
+    outline: 2px solid var(--divider-color-blue);
+    outline-offset: 2px;
+}
+
 .task-placeholder {
     display: flex;
     justify-content: center;
@@ -212,8 +223,8 @@
 }
 
 .task-card {
-    position: relative;
     display: flex;
+    position: relative;
     flex-direction: column;
     gap: 24px;
     width: 252px;
@@ -222,6 +233,13 @@
     border-radius: 24px;
     box-shadow: 0 0 10px rgb(0 0 0 / 8%);
     cursor: pointer;
+}
+
+.task-card:focus-visible {
+    box-shadow:
+        inset 0 0 0 2px var(--ui-dark),
+        0 0 10px rgb(0 0 0 / 8%);
+    outline: none;
 }
 
 .task-card h3 {
@@ -359,7 +377,7 @@
         flex-direction: row;
         align-items: flex-start;
         width: 100%;
-        padding: 2px 0 10px;
+        padding: 4px 0 10px;
         overflow: auto hidden;
         scrollbar-width: none;
         scroll-snap-type: x proximity;
@@ -479,15 +497,15 @@
     width: 26px;
     height: 26px;
     padding: 0;
-    background: #ffffff;
+    background: var(--assets-bg-color);
     border: 1px solid #2a3647;
     border-radius: 8px;
-    color: #2a3647;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 12%);
+    color: var(--text-secondary);
     font-family: Inter, sans-serif;
     font-size: 14px;
     font-weight: 700;
     line-height: 1;
-    box-shadow: 0 2px 6px rgb(0 0 0 / 12%);
     cursor: pointer;
 }
 
@@ -499,23 +517,23 @@
 }
 
 .mobile-move-menu {
+    display: flex;
     position: absolute;
     top: 12px;
     right: -42px;
     z-index: 50;
-    display: flex;
     flex-direction: column;
     gap: 7px;
-    padding: 12px 12px 13px;
-    background: #2a3647;
-    border-radius: 0 16px 16px 16px;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
     box-sizing: border-box;
+    padding: 12px 12px 13px;
+    background: var(--ui-dark);
+    border-radius: 0 16px 16px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
 }
 
 .mobile-move-title {
     margin: 0;
-    color: #ffffff;
+    color: var(--text-white);
     font-family: Inter, sans-serif;
     font-size: 12px;
     font-weight: 700;
@@ -531,7 +549,7 @@
     padding: 0;
     background: transparent;
     border: unset;
-    color: #ffffff;
+    color: var(--text-white);
     font-family: Inter, sans-serif;
     font-size: 12px;
     font-weight: 400;
@@ -542,11 +560,11 @@
 }
 
 .mobile-move-option:hover {
-    color: #29abe2;
+    color: var(--text-quaternary);
 }
 
 .mobile-move-option:hover .mobile-move-arrow {
-    color: #29abe2;
+    color: var(--text-quaternary);
 }
 
 .mobile-move-arrow {
@@ -555,7 +573,7 @@
     align-items: center;
     width: 8px;
     min-width: 8px;
-    color: #ffffff;
+    color: var(--text-white);
     font-size: 14px;
     font-weight: 400;
     line-height: 1;
@@ -563,7 +581,7 @@
 
 .mobile-move-option:focus-visible,
 .mobile-move-task-btn:focus-visible {
-    outline: 2px solid #29abe2;
+    outline: 2px solid var(--divider-color-blue);
     outline-offset: 2px;
 }
 
@@ -574,7 +592,7 @@
 
     .task-card {
         position: relative;
-        overflow: visible;
         padding-top: 48px;
+        overflow: visible;
     }
 }

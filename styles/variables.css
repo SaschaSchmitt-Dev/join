@@ -56,6 +56,7 @@
     --contact-link: rgb(0 124 238);
     --contact-overlay-bg: rgb(0 0 0 / 25%);
     --contact-close-hover-bg: rgb(225 230 236);
+    --dialog-overlay-bg: rgb(0 0 0 / 22%);
 
     /** Scrollbar */
     --scrollbar-track-bg-color: rgb(236 236 236);

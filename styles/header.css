@@ -40,8 +40,27 @@
     position: relative;
 }
 
+.help-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+}
+
+.help-link img {
+    width: 24px;
+    height: 24px;
+}
+
 .help-link:hover {
     transform: scale(1.2);
+}
+
+.help-link:focus-visible {
+    box-shadow: 0 0 0 2px var(--divider-color-blue);
+    outline: none;
 }
 
 .account-avatar {

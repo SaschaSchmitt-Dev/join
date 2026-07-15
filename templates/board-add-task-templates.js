@@ -138,8 +138,12 @@ function getAddTaskSubtaskInputTemplate() {
     return `
         <div class="dialog-field-group"><label for="subtasks">Subtasks</label><div class="subtask-input-wrapper">
             <input id="subtasks" placeholder="Add new subtasks"><div class="subtask-actions">
-                <img class="subtask-cancel" src="../assets/icons/cancel.png" alt="cancel"><span class="subtask-divider"></span>
-                <img class="subtask-check" src="../assets/icons/check.png" alt="check">
+                <button class="subtask-cancel" type="button" aria-label="Clear subtask">
+                    <img src="../assets/icons/cancel.png" alt="">
+                </button><span class="subtask-divider"></span>
+                <button class="subtask-check" type="button" aria-label="Add subtask">
+                    <img src="../assets/icons/check.png" alt="">
+                </button>
             </div></div><ul class="subtask-list"></ul></div>
     `;
 }
@@ -214,7 +218,8 @@ function getTaskAddedMessageTemplate() {
  */
 function getTaskCardTemplate(task, progressTemplate, usersTemplate) {
     return `
-        <div class="task-card" id="task-${task.id}" data-task-id="${task.id}">
+        <div class="task-card" id="task-${task.id}" data-task-id="${task.id}" tabindex="0" role="button"
+            aria-label="Open task: ${task.title}">
             <button
                 class="mobile-move-task-btn"
                 type="button"
