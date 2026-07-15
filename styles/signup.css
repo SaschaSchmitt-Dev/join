@@ -264,19 +264,28 @@ footer a:hover {
     font-weight: 700;
 }
 
-/*toast*/
-
 .signup-toast {
     position: fixed;
-    top: 32px;
-    right: 80px;
-    padding: 22px 32px;
-    background: var(--login-button-primary-bg);
+    top: 100%;
+    left: 50%;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 16px 24px;
+    background-color: var(--ui-dark);
+    border-radius: 10px;
     color: var(--text-white);
-    border-radius: 20px;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
-    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
+    transform: translate(-50%, 0);
+    transition: top 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+.signup-toast.show {
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /*RESPONSIVE*/
@@ -339,14 +348,6 @@ footer a:hover {
 
     footer {
         padding-top: 40px;
-    }
-
-    .signup-toast {
-        top: auto;
-        right: 24px;
-        bottom: 104px;
-        left: 24px;
-        text-align: center;
     }
 }
 

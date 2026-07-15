@@ -75,9 +75,101 @@ function clearPasswordError() {
 
 
 document.getElementById('signup-form').addEventListener('submit', (event) => {
-    if (checkPasswordsMatch()) return;
     event.preventDefault();
+    handleSignup();
 });
 
 document.getElementById('password').addEventListener('input', clearPasswordError);
 document.getElementById('confirm-password').addEventListener('input', clearPasswordError);
+
+
+/**
+ * Handles the signup form submission: validates the input, creates the
+ * new user in the database and redirects to the login page.
+ */
+async function handleSignup() {
+    if (!checkPasswordsMatch()) return;
+
+    const signupBtn = document.getElementById('signup-btn');
+    signupBtn.disabled = true;
+
+    try {
+        const email = document.getElementById('email').value.trim();
+
+        if (await isEmailTaken(email)) return showSignupError('An account with this email already exists.');
+
+        await createNewUser(getSignupFormData());
+        showSignupToast();
+    } catch (error) {
+        showSignupError('Signup is currently not available. Please try again.');
+    } finally {
+        signupBtn.disabled = !document.getElementById('terms-checkbox').checked;
+    }
+}
+
+
+/**
+ * Reads the signup form fields into a new user object.
+ * @returns {Object} The new user data.
+ */
+function getSignupFormData() {
+    return {
+        name: document.getElementById('username').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value.trim(),
+        userColor: getRandomProfileColor()
+    };
+}
+
+
+/**
+ * Checks whether a user with the given email already exists.
+ * @param {string} email - The email to check.
+ * @returns {boolean} True if the email is already taken.
+ */
+async function isEmailTaken(email) {
+    const response = await fetch(getDatabaseUrl('users'));
+    const users = await response.json();
+
+    if (!users) return false;
+
+    return Object.values(users).some((user) => user.email === email);
+}
+
+
+/**
+ * Creates a new user in the database.
+ * @param {Object} user - The new user data.
+ * @returns {Promise} The fetch promise.
+ */
+function createNewUser(user) {
+    return fetch(getDatabaseUrl('users'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+    });
+}
+
+
+/**
+ * Shows a signup error message.
+ * @param {string} message - The error message.
+ */
+function showSignupError(message) {
+    document.getElementById('errorMessage').textContent = message;
+}
+
+
+/**
+ * Shows the signup success toast and redirects to the login page.
+ */
+function showSignupToast() {
+    const toast = document.querySelector('.signup-toast');
+
+    if (!toast) return;
+    toast.classList.add('show');
+
+    setTimeout(() => {
+        window.location.href = './login.html';
+    }, 2000);
+}
