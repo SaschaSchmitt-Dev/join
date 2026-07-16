@@ -128,3 +128,120 @@ function clearDialogFieldError(input, error) {
     error.textContent = "";
 }
 
+
+/** Enables input actions only while the subtask input contains text. */
+function updateDialogSubtaskActions() {
+    const input = document.getElementById("subtasks");
+    const hasContent = input.value.trim() !== "";
+    const actions = input.closest(".subtask-input-wrapper").querySelectorAll(".subtask-actions button");
+    actions.forEach((button) => { button.disabled = !hasContent; });
+}
+
+
+/**
+ * Runs the selected action for one dialog subtask.
+ * @param {MouseEvent} event - The delegated click event.
+ */
+function handleDialogSubtaskAction(event) {
+    const item = event.target.closest("li");
+    if (!item) return;
+    if (event.target.closest(".delete-dialog-subtask")) return deleteDialogSubtask(item);
+    if (event.target.closest(".edit-dialog-subtask")) return startDialogSubtaskEdit(item);
+    if (event.target.closest(".save-dialog-subtask")) saveDialogSubtaskEdit(item);
+}
+
+
+/**
+ * Deletes one dialog subtask.
+ * @param {HTMLElement} item - The subtask list item.
+ */
+function deleteDialogSubtask(item) {
+    dialogSubtasks.splice(Number(item.dataset.subtaskIndex), 1);
+    renderDialogSubtasks();
+}
+
+
+/**
+ * Replaces one saved subtask label with an editable input.
+ * @param {HTMLElement} item - The subtask list item.
+ */
+function startDialogSubtaskEdit(item) {
+    if (item.classList.contains("is-editing")) return;
+    const input = createDialogSubtaskEditInput(item);
+    const editButton = prepareDialogSubtaskSaveButton(item);
+    wireDialogSubtaskEdit(input, editButton, item);
+    input.focus();
+    input.select();
+}
+
+
+/**
+ * Creates the dialog subtask edit field.
+ * @param {HTMLElement} item - The subtask list item.
+ * @returns {HTMLInputElement} The edit field.
+ */
+function createDialogSubtaskEditInput(item) {
+    const input = document.createElement("input");
+    input.className = "dialog-subtask-edit-input";
+    input.value = dialogSubtasks[Number(item.dataset.subtaskIndex)];
+    item.querySelector(".dialog-subtask-text").replaceWith(input);
+    item.classList.add("is-editing");
+    return input;
+}
+
+
+/**
+ * Converts the edit action into a save action.
+ * @param {HTMLElement} item - The subtask list item.
+ * @returns {HTMLButtonElement} The save action.
+ */
+function prepareDialogSubtaskSaveButton(item) {
+    const button = item.querySelector(".edit-dialog-subtask");
+    button.className = "save-dialog-subtask";
+    button.setAttribute("aria-label", "Save subtask");
+    button.querySelector("img").src = "../assets/icons/check.png";
+    button.parentElement.append(button);
+    return button;
+}
+
+
+/**
+ * Connects the active dialog subtask edit controls.
+ * @param {HTMLInputElement} input - The edit field.
+ * @param {HTMLButtonElement} button - The save action.
+ * @param {HTMLElement} item - The subtask list item.
+ */
+function wireDialogSubtaskEdit(input, button, item) {
+    input.addEventListener("input", () => { button.disabled = input.value.trim() === ""; });
+    input.addEventListener("keydown", (event) => handleDialogSubtaskEditKeydown(event, item));
+}
+
+
+/**
+ * Saves the edited title and redraws the dialog subtask list.
+ * @param {HTMLElement} item - The subtask list item.
+ */
+function saveDialogSubtaskEdit(item) {
+    const input = item.querySelector(".dialog-subtask-edit-input");
+    const title = input && input.value.trim();
+    if (!title) return;
+    dialogSubtasks[Number(item.dataset.subtaskIndex)] = title;
+    renderDialogSubtasks();
+}
+
+
+/**
+ * Handles save and cancel keys in a subtask edit field.
+ * @param {KeyboardEvent} event - The keyboard event.
+ * @param {HTMLElement} item - The subtask list item.
+ */
+function handleDialogSubtaskEditKeydown(event, item) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        saveDialogSubtaskEdit(item);
+    }
+    if (event.key === "Escape") {
+        event.stopPropagation();
+        renderDialogSubtasks();
+    }
+}

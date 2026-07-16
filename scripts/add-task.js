@@ -245,13 +245,15 @@ categoryInput.addEventListener("change", () => {
 
 
 subtaskInput.addEventListener("input", () => {
-    subtaskWrapper.classList.toggle("isWriting", subtaskInput.value.trim() !== "");
+    const hasContent = subtaskInput.value.trim() !== "";
+    subtaskWrapper.classList.toggle("isWriting", hasContent);
+    subtaskCancel.disabled = !hasContent;
+    subtaskCheck.disabled = !hasContent;
 });
 
 
 subtaskCancel.addEventListener("click", () => {
-    subtaskInput.value = "";
-    subtaskWrapper.classList.remove("isWriting");
+    resetSubtaskInput();
     subtaskInput.focus();
 });
 
@@ -270,8 +272,7 @@ function addSubtask() {
     row.append(buildSubtaskTextGroup(subtaskText), buildSubtaskActions());
     listItem.append(row);
     subtaskList.appendChild(listItem);
-    subtaskInput.value = "";
-    subtaskWrapper.classList.remove("isWriting");
+    resetSubtaskInput();
     subtaskInput.focus();
 }
 
@@ -283,30 +284,6 @@ subtaskInput.addEventListener("keydown", (event) => {
         addSubtask();
     }
 });
-
-
-/**
- * Starts editing a subtask.
- *
- * @param {HTMLElement} listItem - The subtask list item.
- */
-function editSubtask(listItem) {
-    const textSpan = listItem.querySelector(".subtaskText");
-
-    if (!textSpan) return;
-
-    const currentText = textSpan.textContent;
-    const editIcon = listItem.querySelector(".subtaskEdit");
-    listItem.classList.add("isEditing");
-    enterSubtaskEditIcon(editIcon);
-    const editInput = createSubtaskEditInput(currentText);
-    textSpan.replaceWith(editInput);
-    editInput.focus();
-    editInput.select();
-    const stopEditing = (newText) => finishSubtaskEdit(listItem, editIcon, editInput, currentText, newText);
-    wireSubtaskEditEvents(editInput, stopEditing);
-    listItem._saveEdit = () => stopEditing(editInput.value.trim());
-}
 
 
 subtaskList.addEventListener("dblclick", (event) => {
@@ -331,17 +308,17 @@ subtaskList.addEventListener("click", (event) => {
 
     if (!listItem) return;
 
-    if (event.target.classList.contains("subtaskEdit")) {
+    if (event.target.closest(".subtaskEdit")) {
         editSubtask(listItem);
         return;
     }
 
-    if (event.target.classList.contains("subtaskDelete")) {
+    if (event.target.closest(".subtaskDelete")) {
         listItem.remove();
         return;
     }
 
-    if (event.target.classList.contains("subtaskSaveEdit")) {
+    if (event.target.closest(".subtaskSaveEdit")) {
         listItem._saveEdit();
     }
 });

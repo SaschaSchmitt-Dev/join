@@ -345,7 +345,7 @@
     gap: 8px;
 }
 
-.subtask-input-wrapper:has(input:placeholder-shown) .subtask-actions {
+.subtask-input-wrapper:has(.subtask-actions button:disabled) .subtask-actions {
     display: none;
 }
 
@@ -395,12 +395,39 @@
     min-height: 32px;
     padding: 2px 8px;
     border-radius: 8px;
+    font-size: 1rem;
 }
 
 .subtask-list li:hover {
     background: var(--ui-light-hover);
 }
 
+.dialog-subtask-item-actions {
+    display: flex;
+    opacity: 0;
+    position: relative;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 16px;
+    pointer-events: none;
+}
+
+.subtask-list li:hover .dialog-subtask-item-actions,
+.subtask-list li:focus-within .dialog-subtask-item-actions,
+.subtask-list li.is-editing .dialog-subtask-item-actions {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.edit-dialog-subtask:focus-visible,
+.save-dialog-subtask:focus-visible,
+.delete-dialog-subtask:focus-visible {
+    outline: 2px solid var(--board-input-border-active);
+    outline-offset: 2px;
+}
+
+.edit-dialog-subtask,
+.save-dialog-subtask,
 .delete-dialog-subtask {
     display: flex;
     padding: 2px;
@@ -409,8 +436,60 @@
     cursor: pointer;
 }
 
+.edit-dialog-subtask img,
+.save-dialog-subtask img,
 .delete-dialog-subtask img {
     width: 20px;
+    height: 20px;
+    filter: brightness(0);
+}
+
+.add-task-form .dialog-subtask-edit-input {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    height: 32px;
+    padding: 4px 0;
+    border: 0;
+    border-radius: 0;
+    font: inherit;
+}
+
+.add-task-form .dialog-subtask-edit-input:focus {
+    border: 0;
+    box-shadow: none;
+}
+
+.subtask-list li.is-editing {
+    position: relative;
+    height: 32px;
+    min-height: 32px;
+    padding: 0 8px;
+    background: var(--assets-bg-color);
+    border-radius: 0;
+}
+
+.subtask-list li.is-editing::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    height: 1px;
+    background: var(--board-input-border-active);
+    content: "";
+    pointer-events: none;
+}
+
+.subtask-list li.is-editing .save-dialog-subtask::before {
+    position: absolute;
+    top: 5px;
+    right: 28px;
+    bottom: 5px;
+    width: 1px;
+    background: var(--divider-color-grey);
+    content: "";
+    pointer-events: none;
 }
 
 .task-added-message img {

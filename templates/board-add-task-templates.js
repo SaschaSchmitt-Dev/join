@@ -138,10 +138,10 @@ function getAddTaskSubtaskInputTemplate() {
     return `
         <div class="dialog-field-group"><label for="subtasks">Subtasks</label><div class="subtask-input-wrapper">
             <input id="subtasks" placeholder="Add new subtasks"><div class="subtask-actions">
-                <button class="subtask-cancel" type="button" aria-label="Clear subtask">
+                <button class="subtask-cancel" type="button" tabindex="0" aria-label="Clear subtask" disabled>
                     <img src="../assets/icons/cancel.png" alt="">
                 </button><span class="subtask-divider"></span>
-                <button class="subtask-check" type="button" aria-label="Add subtask">
+                <button class="subtask-check" type="button" tabindex="0" aria-label="Add subtask" disabled>
                     <img src="../assets/icons/check.png" alt="">
                 </button>
             </div></div><ul class="subtask-list"></ul></div>
@@ -186,10 +186,11 @@ function getSelectedDialogContactTemplate(contact) {
 function getAddTaskSubtaskTemplate(subtask) {
     return `
         <li data-subtask-index="${subtask.index}">
-            <span>&bull; ${subtask.title}</span>
-            <button class="delete-dialog-subtask" type="button" aria-label="Delete subtask">
-                <img src="../assets/icons/delete.png" alt="">
-            </button>
+            <span class="dialog-subtask-text">&bull; ${subtask.title}</span>
+            <div class="dialog-subtask-item-actions">
+                <button class="edit-dialog-subtask" type="button" tabindex="0" aria-label="Edit subtask"><img src="../assets/icons/edit.png" alt=""></button>
+                <button class="delete-dialog-subtask" type="button" tabindex="0" aria-label="Delete subtask"><img src="../assets/icons/delete.png" alt=""></button>
+            </div>
         </li>
     `;
 }

@@ -64,8 +64,9 @@ function initializeDialogDropdowns(dialog) {
 function initializeDialogSubtasks(dialog) {
     dialog.querySelector(".subtask-check").addEventListener("click", addDialogSubtask);
     dialog.querySelector(".subtask-cancel").addEventListener("click", clearDialogSubtaskInput);
+    dialog.querySelector("#subtasks").addEventListener("input", updateDialogSubtaskActions);
     dialog.querySelector("#subtasks").addEventListener("keydown", handleDialogSubtaskKeydown);
-    dialog.querySelector(".subtask-list").addEventListener("click", deleteDialogSubtask);
+    dialog.querySelector(".subtask-list").addEventListener("click", handleDialogSubtaskAction);
 }
 
 
@@ -186,6 +187,7 @@ function addDialogSubtask() {
     if (!title) return;
     dialogSubtasks.push(title);
     input.value = "";
+    updateDialogSubtaskActions();
     renderDialogSubtasks();
     input.focus();
 }
@@ -197,6 +199,7 @@ function addDialogSubtask() {
 function clearDialogSubtaskInput() {
     const input = document.getElementById("subtasks");
     input.value = "";
+    updateDialogSubtaskActions();
     input.focus();
 }
 
@@ -220,19 +223,6 @@ function renderDialogSubtasks() {
         return getAddTaskSubtaskTemplate({ index, title: escapeBoardHtml(title) });
     });
     document.querySelector(".subtask-list").innerHTML = templates.join("");
-}
-
-
-/**
- * Deletes one dialog subtask.
- * @param {MouseEvent} event - The click event.
- */
-function deleteDialogSubtask(event) {
-    const button = event.target.closest(".delete-dialog-subtask");
-    if (!button) return;
-    const item = button.closest("li");
-    dialogSubtasks.splice(Number(item.dataset.subtaskIndex), 1);
-    renderDialogSubtasks();
 }
 
 

@@ -434,8 +434,29 @@
 
 .subtaskCancel,
 .subtaskCheck {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background: transparent;
+    border: 0;
     cursor: pointer;
+}
+
+.subtaskCancel img,
+.subtaskCheck img {
+    width: 24px;
+    height: 24px;
     filter: brightness(0);
+}
+
+.subtaskCancel:focus-visible,
+.subtaskCheck:focus-visible,
+.subtaskEdit:focus-visible,
+.subtaskDelete:focus-visible,
+.subtaskSaveEdit:focus-visible {
+    outline: 2px solid var(--board-input-border-active);
+    outline-offset: 2px;
 }
 
 .subtaskList {
@@ -445,6 +466,7 @@
 }
 
 .subtaskList li {
+    min-height: 32px;
     padding: 8px;
     border-radius: 10px;
     font-size: 1rem;
@@ -470,38 +492,83 @@
     margin-left: 8px;
 }
 
-.subtaskEditInput {
+.addTaskContent .subtaskEditInput {
     flex: 1;
-    height: auto;
-    padding: 0;
+    min-width: 0;
+    height: 32px;
+    padding: 4px 0;
     background: transparent;
     border: none;
     border-radius: 0;
     font: inherit;
 }
 
-.subtaskEditInput:focus {
+.addTaskForm .subtaskEditInput:focus {
     outline: none;
     border: none;
+    box-shadow: none;
 }
 
 .subtaskItemActions {
-    display: none;
+    display: flex;
     align-items: center;
     gap: 8px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.subtaskList li.isEditing {
+    position: relative;
+    height: 32px;
+    min-height: 32px;
+    padding: 0 8px;
+    background: var(--assets-bg-color);
+    border-radius: 0;
+}
+
+.subtaskList li.isEditing::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    height: 1px;
+    background: var(--board-input-border-active);
+    content: "";
+    pointer-events: none;
+}
+
+.subtaskList li.isEditing .subtaskBullet {
+    display: none;
+}
+
+.subtaskList li.isEditing .subtaskTextGroup {
+    height: 32px;
+    margin-left: 0;
 }
 
 .subtaskList li:hover .subtaskItemActions,
+.subtaskList li:focus-within .subtaskItemActions,
 .subtaskList li.isEditing .subtaskItemActions {
-    display: flex;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .subtaskEdit,
 .subtaskDelete,
 .subtaskSaveEdit {
+    display: flex;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.subtaskEdit img,
+.subtaskDelete img,
+.subtaskSaveEdit img {
     width: 24px;
     height: 24px;
-    cursor: pointer;
     filter: brightness(0);
 }
 
@@ -510,7 +577,19 @@
 }
 
 .subtaskSaveEdit {
+    position: relative;
     order: 2;
+}
+
+.subtaskSaveEdit::before {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: -5px;
+    width: 1px;
+    background: var(--form-input-border);
+    content: "";
+    pointer-events: none;
 }
 
 /*footer buttons*/

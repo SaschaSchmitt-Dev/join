@@ -96,8 +96,12 @@ function buildSubtaskActions() {
     const actions = document.createElement('div');
     actions.className = 'subtaskItemActions';
     actions.innerHTML = `
-        <img class="subtaskEdit" src="../assets/icons/edit.png" alt="edit">
-        <img class="subtaskDelete" src="../assets/icons/delete.png" alt="delete">
+        <button class="subtaskEdit" type="button" tabindex="0" aria-label="Edit subtask">
+            <img src="../assets/icons/edit.png" alt="">
+        </button>
+        <button class="subtaskDelete" type="button" tabindex="0" aria-label="Delete subtask">
+            <img src="../assets/icons/delete.png" alt="">
+        </button>
     `;
     return actions;
 }
@@ -108,9 +112,10 @@ function buildSubtaskActions() {
  * @param {HTMLElement} editIcon - The edit icon element to change.
  */
 function enterSubtaskEditIcon(editIcon) {
-    editIcon.src = '../assets/icons/check.png';
-    editIcon.alt = 'save';
+    editIcon.querySelector('img').src = '../assets/icons/check.png';
+    editIcon.setAttribute('aria-label', 'Save subtask');
     editIcon.classList.replace('subtaskEdit', 'subtaskSaveEdit');
+    editIcon.parentElement.append(editIcon);
 }
 
 
@@ -119,9 +124,10 @@ function enterSubtaskEditIcon(editIcon) {
  * @param {HTMLElement} editIcon - The edit icon element to change.
  */
 function exitSubtaskEditIcon(editIcon) {
-    editIcon.src = '../assets/icons/edit.png';
-    editIcon.alt = 'edit';
+    editIcon.querySelector('img').src = '../assets/icons/edit.png';
+    editIcon.setAttribute('aria-label', 'Edit subtask');
     editIcon.classList.replace('subtaskSaveEdit', 'subtaskEdit');
+    editIcon.parentElement.prepend(editIcon);
 }
 
 
@@ -163,12 +169,65 @@ function finishSubtaskEdit(listItem, editIcon, editInput, currentText, newText) 
  * @param {Function} onDone - The callback function to execute when editing is done.
  */
 function wireSubtaskEditEvents(editInput, onDone) {
-    editInput.addEventListener('blur', () => onDone(editInput.value.trim()));
     editInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
-            editInput.blur();
+            onDone(editInput.value.trim());
         }
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            onDone('');
+        }
+    });
+}
+
+
+/**
+ * Starts editing one subtask.
+ * @param {HTMLElement} listItem - The subtask list item.
+ */
+function editSubtask(listItem) {
+    const textSpan = listItem.querySelector('.subtaskText');
+    if (!textSpan) return;
+    const currentText = textSpan.textContent;
+    const editIcon = listItem.querySelector('.subtaskEdit');
+    const editInput = prepareSubtaskEdit(listItem, textSpan, editIcon, currentText);
+    wireActiveSubtaskEdit(listItem, editIcon, editInput, currentText);
+}
+
+
+/**
+ * Creates and displays the active subtask edit field.
+ * @param {HTMLElement} listItem - The subtask list item.
+ * @param {HTMLElement} textSpan - The current subtask text.
+ * @param {HTMLElement} editIcon - The edit action.
+ * @param {string} currentText - The current title.
+ * @returns {HTMLInputElement} The edit field.
+ */
+function prepareSubtaskEdit(listItem, textSpan, editIcon, currentText) {
+    const editInput = createSubtaskEditInput(currentText);
+    listItem.classList.add('isEditing');
+    enterSubtaskEditIcon(editIcon);
+    textSpan.replaceWith(editInput);
+    editInput.focus();
+    editInput.select();
+    return editInput;
+}
+
+
+/**
+ * Connects save and availability handling for an active edit.
+ * @param {HTMLElement} listItem - The subtask list item.
+ * @param {HTMLElement} editIcon - The save action.
+ * @param {HTMLInputElement} editInput - The edit field.
+ * @param {string} currentText - The original title.
+ */
+function wireActiveSubtaskEdit(listItem, editIcon, editInput, currentText) {
+    const stop = (text) => finishSubtaskEdit(listItem, editIcon, editInput, currentText, text);
+    wireSubtaskEditEvents(editInput, stop);
+    listItem._saveEdit = () => stop(editInput.value.trim());
+    editInput.addEventListener('input', () => {
+        editIcon.disabled = editInput.value.trim() === '';
     });
 }
 
@@ -268,6 +327,16 @@ function clearTaskInputs() {
     dueDateInput.type = "text";
     assignetToInput.value = "";
     categoryInput.value = "";
+    resetSubtaskInput();
+}
+
+
+/** Resets the subtask input and removes its actions from the tab order. */
+function resetSubtaskInput() {
+    subtaskInput.value = "";
+    subtaskWrapper.classList.remove("isWriting");
+    subtaskCancel.disabled = true;
+    subtaskCheck.disabled = true;
 }
 
 
