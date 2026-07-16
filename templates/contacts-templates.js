@@ -55,7 +55,7 @@ function getContactDetailAvatarTemplate(contact, contactColor) {
 function getContactDetailNameTemplate(contact) {
     return `
         <div class="contact-detail-name-box">
-            <h2>${getContactDisplayName(contact)}</h2>
+            <h2>${contact.name}</h2>
             ${getContactActionsTemplate()}
         </div>
     `;
