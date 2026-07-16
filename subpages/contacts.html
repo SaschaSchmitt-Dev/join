@@ -36,12 +36,12 @@
 
             <aside class="contacts-sidebar">
 
-                <button id="add-contact-btn" class="add-contact-btn">
+                <button id="addContactBtn" class="add-contact-btn">
                     <span class="btn-contact">Add new contact</span>
                     <img src="../assets/icons/person-add.png" alt="Add Contact">
                 </button>
 
-                <div id="contacts-list">
+                <div id="contactsList">
                     <div class="contact-group">
                         <h3>A</h3>
 
@@ -64,7 +64,7 @@
                     <img src="../assets/icons/back-arrow.png" alt="Back">
                 </button>
 
-                <div id="contact-details">
+                <div id="contactDetails">
 
                     <div class="contacts-header">
                         <h1>Contacts</h1>
@@ -95,51 +95,51 @@
                     <img src="../assets/icons/points.png" alt="More options">
                 </button>
 
-                <div id="mobile-options-menu" class="mobile-options-menu">
-                    <button id="mobile-edit-contact-btn" type="button">
+                <div id="mobileOptionsMenu" class="mobile-options-menu">
+                    <button id="mobileEditContactBtn" type="button">
                         <img src="../assets/icons/edit.png" alt="Edit">
                         <span>Edit</span>
                     </button>
 
-                    <button id="mobile-delete-contact-btn" type="button">
+                    <button id="mobileDeleteContactBtn" type="button">
                         <img src="../assets/icons/delete.png" alt="Delete">
                         <span>Delete</span>
                     </button>
                 </div>
-                <div id="contact-toast" class="contact-toast">
+                <div id="contactToast" class="contact-toast">
                     Contact successfully created
                 </div>
 
             </section>
 
-            <button id="mobile-add-contact-btn" class="mobile-add-contact-btn" type="button">
+            <button id="mobileAddContactBtn" class="mobile-add-contact-btn" type="button">
                 <img src="../assets/icons/person-add.png" alt="Add contact">
             </button>
 
         </main>
     </section>
 
-    <div id="add-contact-overlay" class="add-contact-overlay">
+    <div id="addContactOverlay" class="add-contact-overlay">
 
         <div class="add-contact-modal">
 
-            <button type="button" id="close-contact-modal" class="close-modal">
+            <button type="button" id="closeContactModal" class="close-modal">
                 <img src="../assets/icons/close.png" alt="Close">
             </button>
 
             <div class="modal-left">
                 <img src="../assets/icons/join-logo-light.png" alt="Join Logo">
 
-                <h2 id="contact-modal-title">Add contact</h2>
-                <p id="contact-modal-subtitle">Tasks are better with a team!</p>
+                <h2 id="contactModalTitle">Add contact</h2>
+                <p id="contactModalSubtitle">Tasks are better with a team!</p>
 
                 <div class="blue-line"></div>
             </div>
 
-            <div id="contact-placeholder" class="contact-placeholder">
-                <img id="contact-placeholder-icon" src="../assets/icons/contacts-logo.png"
+            <div id="contactPlaceholder" class="contact-placeholder">
+                <img id="contactPlaceholderIcon" src="../assets/icons/contacts-logo.png"
                     alt="Profile Photo Placeholder">
-                <span id="contact-avatar-initials" class="contact-avatar-initials"></span>
+                <span id="contactAvatarInitials" class="contact-avatar-initials"></span>
             </div>
 
             <div class="modal-right">
@@ -147,35 +147,35 @@
                 <form id="addContactForm" novalidate>
 
                     <div class="input-field">
-                        <input id="contact-name" type="text" placeholder="Name" required>
+                        <input id="contactName" type="text" placeholder="Name" required>
                         <img src="../assets/icons/person.png" alt="Person">
                         <p class="contact-input-error">Please enter a name.</p>
                     </div>
 
                     <div class="input-field">
-                        <input id="contact-email" type="email" placeholder="Email" required>
+                        <input id="contactEmail" type="email" placeholder="Email" required>
                         <img src="../assets/icons/mail.png" alt="Mail">
                         <p class="contact-input-error">Please enter a valid email.</p>
                     </div>
 
                     <div class="input-field">
-                        <input id="contact-phone" type="tel" placeholder="Phone">
+                        <input id="contactPhone" type="tel" placeholder="Phone">
                         <img src="../assets/icons/call.png" alt="Phone">
                     </div>
 
-                    <div id="color-picker" class="color-picker">
+                    <div id="colorPicker" class="color-picker">
                         <h4>Contact color</h4>
-                        <div id="color-options" class="color-options"></div>
+                        <div id="colorOptions" class="color-options"></div>
                     </div>
 
                     <div class="modal-buttons">
-                        <button type="button" id="cancel-contact-btn" class="cancel-btn">
-                            <span id="secondary-btn-text">Cancel</span>
-                            <img id="secondary-btn-icon" src="../assets/icons/close.png" alt="Cancel">
+                        <button type="button" id="cancelContactBtn" class="cancel-btn">
+                            <span id="secondaryBtnText">Cancel</span>
+                            <img id="secondaryBtnIcon" src="../assets/icons/close.png" alt="Cancel">
                         </button>
 
                         <button type="submit" class="create-btn">
-                            <span id="submit-btn-text">Create contact</span>
+                            <span id="submitBtnText">Create contact</span>
                             <img src="../assets/icons/check.png" alt="Check">
                         </button>
                     </div>

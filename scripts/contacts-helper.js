@@ -68,9 +68,9 @@ function setEditModalText() {
  * @param {Object} contact - The selected contact.
  */
 function fillContactForm(contact) {
-    document.getElementById("contact-name").value = contact.name;
-    document.getElementById("contact-email").value = contact.email;
-    document.getElementById("contact-phone").value = contact.phone || "";
+    document.getElementById("contactName").value = contact.name;
+    document.getElementById("contactEmail").value = contact.email;
+    document.getElementById("contactPhone").value = contact.phone || "";
 }
 
 
@@ -125,7 +125,7 @@ function getRandomContactColor() {
  * @param {Object} contact - The selected contact.
  */
 function renderContactDetails(contact) {
-    const contactDetails = document.getElementById("contact-details");
+    const contactDetails = document.getElementById("contactDetails");
     const contactColor = getContactAvatarColor(contact);
 
     contactDetails.innerHTML = getContactsHeaderTemplate() + getContactDetailTemplate(contact, contactColor);
@@ -136,7 +136,7 @@ function renderContactDetails(contact) {
  * Renders all contacts.
  */
 function renderContacts() {
-    const contactsList = document.getElementById("contacts-list");
+    const contactsList = document.getElementById("contactsList");
     contactsList.innerHTML = "";
 
     let currentLetter = "";
@@ -222,7 +222,7 @@ function getRenderedColorOption(color) {
  * Renders the empty contact detail view.
  */
 function renderEmptyContactDetails() {
-    const contactDetails = document.getElementById("contact-details");
+    const contactDetails = document.getElementById("contactDetails");
 
     contactDetails.innerHTML = getContactsHeaderTemplate();
 }
@@ -246,9 +246,9 @@ async function createContact() {
  */
 function getContactFormData() {
     return {
-        name: document.getElementById("contact-name").value.trim(),
-        email: document.getElementById("contact-email").value.trim(),
-        phone: document.getElementById("contact-phone").value.trim(),
+        name: document.getElementById("contactName").value.trim(),
+        email: document.getElementById("contactEmail").value.trim(),
+        phone: document.getElementById("contactPhone").value.trim(),
         color: selectedContactColor || getRandomContactColor()
     };
 }
@@ -289,9 +289,9 @@ async function saveContact() {
  */
 function getUpdatedContactData(contact) {
     return {
-        name: document.getElementById("contact-name").value.trim(),
-        email: document.getElementById("contact-email").value.trim(),
-        phone: document.getElementById("contact-phone").value.trim(),
+        name: document.getElementById("contactName").value.trim(),
+        email: document.getElementById("contactEmail").value.trim(),
+        phone: document.getElementById("contactPhone").value.trim(),
         color: selectedContactColor || contact.color || getRandomContactColor(),
         contactColor: null
     };

@@ -220,17 +220,22 @@ function getTaskCardTemplate(task, progressTemplate, usersTemplate) {
     return `
         <div class="task-card" id="task-${task.id}" data-task-id="${task.id}" tabindex="0" role="button"
             aria-label="Open task: ${task.title}">
-            <button
-                class="mobile-move-task-btn"
-                type="button"
-                data-task-id="${task.id}"
-                data-column="${task.column}"
-                aria-label="Move task"
-            >
-                <img src="../assets/icons/move-btn.png" alt="" aria-hidden="true">
-            </button>
+            <div class="task-card-top">
+                <span class="task-category ${task.categoryClass}">${task.category}</span>
 
-            <span class="task-category ${task.categoryClass}">${task.category}</span>
+                <button
+                    class="mobile-move-task-btn"
+                    type="button"
+                    data-task-id="${task.id}"
+                    data-column="${task.column}"
+                    aria-label="Move task"
+                    aria-haspopup="menu"
+                    aria-expanded="false"
+                >
+                    <img src="../assets/icons/swap-horiz.png" alt="" aria-hidden="true">
+                </button>
+            </div>
+
             <h3>${task.title}</h3>
             <p>${task.description}</p>
             ${progressTemplate}
