@@ -55,7 +55,7 @@ function getContactDetailAvatarTemplate(contact, contactColor) {
 function getContactDetailNameTemplate(contact) {
     return `
         <div class="contact-detail-name-box">
-            <h2>${contact.name}</h2>
+            <h2 tabindex="-1">${contact.name}</h2>
             ${getContactActionsTemplate()}
         </div>
     `;
@@ -93,7 +93,7 @@ function getContactInformationTemplate(contact) {
         <div class="contact-information">
             <h3>Contact Information</h3>
             <h4>Email</h4>
-            <p class="contact-email">${contact.email}</p>
+            <a href="mailto:${contact.email}" class="contact-email">${contact.email}</a>
             <h4>Phone</h4>
             <p>${contact.phone || ""}</p>
         </div>
@@ -125,10 +125,10 @@ function getContactGroupTemplate(letter) {
  */
 function getContactCardTemplate(contact, index, activeClass, contactColor) {
     return `
-        <div class="contact-card ${activeClass}" onclick="showContact(${index})">
+        <button class="contact-card ${activeClass}" onclick="showContact(${index})">
             ${getContactAvatarTemplate(contact, contactColor)}
             ${getContactInfoTemplate(contact)}
-        </div>
+        </button>
     `;
 }
 

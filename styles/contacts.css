@@ -46,6 +46,12 @@
     cursor: pointer;
 }
 
+.add-contact-btn:focus-visible {
+    outline: 2px solid var(--divider-color-blue);
+    outline-offset: 2px;
+
+}
+
 .add-contact-btn img {
     width: 32px;
     height: 32px;
@@ -61,7 +67,13 @@
 
 .contact-information .contact-email {
     color: var(--ui-light);
-    cursor: default;
+    cursor: pointer;
+}
+
+.contact-information .contact-email:focus-visible {
+    outline: 2px solid black;
+    outline-offset: 2px;
+    border-radius: 2px;
 }
 
 .contact-group h3 {
@@ -82,6 +94,11 @@
     border-radius: 10px;
     font-family: Inter, sans-serif;
     cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    color: inherit;
 }
 
 .contact-card:hover {
@@ -202,6 +219,7 @@
     font-family: Inter, sans-serif;
     font-size: 47px;
     font-weight: 500;
+    outline: none;
 }
 
 .contact-actions {
@@ -212,6 +230,7 @@
 
 .contact-actions button {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 8px;
     padding: 0;
@@ -222,6 +241,12 @@
     font-size: 16px;
     font-weight: 400;
     cursor: pointer;
+}
+
+.contact-actions button:focus-visible {
+    outline: 2px solid var(--divider-color-blue);
+    outline-offset: 6px;
+    border-radius: 4px;
 }
 
 .edit-contact-btn {
@@ -275,7 +300,7 @@
 }
 
 .contact-information a {
-    display: block;
+    display: inline-block;
     margin-bottom: 22px;
     color: var(--contact-link);
     font-family: Inter, sans-serif;
@@ -725,7 +750,7 @@
 
 /* small desktop / laptop */
 
-@media (width <= 1280px) {
+@media (width <=1280px) {
     .contacts-sidebar {
         width: 380px;
         padding: 20px;
@@ -832,7 +857,7 @@
 
 /* tight desktop before mobile layout */
 
-@media (width >= 1025px) and (width <= 1120px) {
+@media (width >=1025px) and (width <=1120px) {
     .add-contact-modal {
         width: min(1000px, calc(100vw - 40px));
     }
@@ -886,7 +911,7 @@
 
 /* tablet / mobile contact layout */
 
-@media (width <= 1024px) {
+@media (width <=1024px) {
     body {
         overflow: hidden;
         background: var(--assets-bg-color);
@@ -1489,7 +1514,7 @@
 
 /* very small phones */
 
-@media (width <= 420px) {
+@media (width <=420px) {
     .contacts-sidebar {
         padding: 20px 16px 100px;
     }
@@ -1585,7 +1610,7 @@
     }
 }
 
-@media (width <= 380px) {
+@media (width <=380px) {
     .add-contact-overlay {
         top: 80px;
         bottom: 80px;
