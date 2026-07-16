@@ -14,27 +14,26 @@
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../styles/contacts.css">
+
     <script src="../script.js" defer></script>
     <script src="../templates/bars-templates.js" defer></script>
     <script src="../scripts/bars.js" defer></script>
     <script src="../scripts/task-data-access.js" defer></script>
     <script src="../templates/contacts-templates.js" defer></script>
     <script src="../scripts/contacts-helper.js" defer></script>
+    <script src="../scripts/contacts-storage.js" defer></script>
     <script src="../scripts/contacts.js" defer></script>
 </head>
 
 <body data-page="contacts">
-
     <aside id="sidebar" class="sidebar"></aside>
 
     <section class="page-content" aria-label="Seiteninhalt">
         <header id="topbar" class="topbar"></header>
 
         <main class="contacts-page main-content">
-
             <aside class="contacts-sidebar">
-
-                <button id="addContactBtn" class="add-contact-btn">
+                <button id="addContactBtn" class="add-contact-btn" type="button">
                     <span class="btn-contact">Add new contact</span>
                     <img src="../assets/icons/person-add.png" alt="Add Contact">
                 </button>
@@ -53,17 +52,14 @@
                         </div>
                     </div>
                 </div>
-
             </aside>
 
             <section class="contact-details">
-
                 <button class="mobile-back-btn" type="button">
                     <img src="../assets/icons/back-arrow.png" alt="Back">
                 </button>
 
                 <div id="contactDetails">
-
                     <div class="contacts-header">
                         <h1>Contacts</h1>
                         <div class="header-divider"></div>
@@ -86,7 +82,6 @@
                             <p>+49 111 111 11 11</p>
                         </div>
                     </div>
-
                 </div>
 
                 <button class="mobile-more-btn" type="button">
@@ -104,23 +99,20 @@
                         <span>Delete</span>
                     </button>
                 </div>
+
                 <div id="contactToast" class="contact-toast">
                     Contact successfully created
                 </div>
-
             </section>
 
             <button id="mobileAddContactBtn" class="mobile-add-contact-btn" type="button">
                 <img src="../assets/icons/person-add.png" alt="Add contact">
             </button>
-
         </main>
     </section>
 
     <div id="addContactOverlay" class="add-contact-overlay">
-
-        <div class="add-contact-modal">
-
+        <div class="add-contact-modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
             <button type="button" id="closeContactModal" class="close-modal">
                 <img src="../assets/icons/close.png" alt="Close">
             </button>
@@ -134,16 +126,24 @@
                 <div class="blue-line"></div>
             </div>
 
-            <div id="contactPlaceholder" class="contact-placeholder">
-                <img id="contactPlaceholderIcon" src="../assets/icons/contacts-logo.png"
-                    alt="Profile Photo Placeholder">
-                <span id="contactAvatarInitials" class="contact-avatar-initials"></span>
+            <div class="contact-avatar-picker">
+                <button id="contactPlaceholder" class="contact-placeholder" type="button"
+                    aria-label="Select contact color">
+                    <img src="../assets/icons/contacts-logo.png" alt="Person">
+                    <span id="contactAvatarInitials" class="contact-avatar-initials"></span>
+
+                    <span class="avatar-edit-icon" aria-hidden="true">
+                        <img src="../assets/icons/edit.png" alt="">
+                    </span>
+                </button>
+
+                <div id="colorPicker" class="color-picker">
+                    <div id="colorOptions" class="color-options"></div>
+                </div>
             </div>
 
             <div class="modal-right">
-
                 <form id="addContactForm" novalidate>
-
                     <div class="input-field">
                         <input id="contactName" type="text" placeholder="Name" required>
                         <img src="../assets/icons/person.png" alt="Person">
@@ -161,11 +161,6 @@
                         <img src="../assets/icons/call.png" alt="Phone">
                     </div>
 
-                    <div id="colorPicker" class="color-picker">
-                        <h4>Contact color</h4>
-                        <div id="colorOptions" class="color-options"></div>
-                    </div>
-
                     <div class="modal-buttons">
                         <button type="button" id="cancelContactBtn" class="cancel-btn">
                             <span id="secondaryBtnText">Cancel</span>
@@ -177,18 +172,10 @@
                             <img src="../assets/icons/check.png" alt="Check">
                         </button>
                     </div>
-
                 </form>
-
             </div>
-
         </div>
-
     </div>
-
-</body>
-
-</html>
 </body>
 
 </html>

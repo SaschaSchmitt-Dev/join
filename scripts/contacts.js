@@ -2,8 +2,6 @@ let contacts = [];
 let currentContactIndex = null;
 let modalMode = "add";
 let selectedContactColor = "var(--profile-orange)";
-
-
 const overlay = document.getElementById("addContactOverlay");
 const modal = document.querySelector(".add-contact-modal");
 const addContactBtn = document.getElementById("addContactBtn");
@@ -21,6 +19,7 @@ const contactAvatarInitials = document.getElementById("contactAvatarInitials");
 const secondaryBtnText = document.getElementById("secondaryBtnText");
 const secondaryBtnIcon = document.getElementById("secondaryBtnIcon");
 const submitBtnText = document.getElementById("submitBtnText");
+const colorPicker = document.getElementById("colorPicker");
 const colorOptions = document.getElementById("colorOptions");
 const mobileOptionsMenu = document.getElementById("mobileOptionsMenu");
 const mobileEditContactBtn = document.getElementById("mobileEditContactBtn");
@@ -34,6 +33,7 @@ if (mobileBackBtn) mobileBackBtn.addEventListener("click", closeMobileContactVie
 if (closeContactModal) closeContactModal.addEventListener("click", closeAddContactOverlay);
 if (cancelContactBtn) cancelContactBtn.addEventListener("click", handleSecondaryButton);
 if (addContactForm) addContactForm.addEventListener("submit", handleContactSubmit);
+if (contactPlaceholder) contactPlaceholder.addEventListener("click", toggleColorDropdown);
 
 if (mobileEditContactBtn) {
     mobileEditContactBtn.addEventListener("click", function () {
@@ -59,11 +59,14 @@ if (overlay) {
 
 if (modal) {
     modal.addEventListener("click", function (event) {
+        closeColorDropdownOnOutsideClick(event);
         event.stopPropagation();
     });
 }
 
 document.addEventListener("click", function (event) {
+    closeColorDropdownOnOutsideClick(event);
+
     if (!mobileOptionsMenu || !mobileMoreBtn) return;
 
     const clickedInsideMenu = mobileOptionsMenu.contains(event.target);
@@ -81,6 +84,7 @@ document.addEventListener("click", function (event) {
 function openAddContactOverlay() {
     modalMode = "add";
     closeMobileOptionsMenu();
+    closeColorDropdown();
     setAddMode();
     addContactForm.reset();
     addContactForm.classList.remove("submitted");
@@ -99,6 +103,7 @@ function openEditContactOverlay() {
     if (!contact) return;
     modalMode = "edit";
     closeMobileOptionsMenu();
+    closeColorDropdown();
     setEditMode(contact);
     overlay.classList.add("active");
 }
@@ -109,29 +114,7 @@ function openEditContactOverlay() {
  */
 function closeAddContactOverlay() {
     overlay.classList.remove("active");
-}
-
-
-/**
- * Toggles the mobile options menu.
- * @param {Event} event - The click event.
- */
-function toggleMobileOptionsMenu(event) {
-    event.stopPropagation();
-
-    if (!mobileOptionsMenu) return;
-
-    mobileOptionsMenu.classList.toggle("active");
-}
-
-
-/**
- * Closes the mobile options menu.
- */
-function closeMobileOptionsMenu() {
-    if (!mobileOptionsMenu) return;
-
-    mobileOptionsMenu.classList.remove("active");
+    closeColorDropdown();
 }
 
 
@@ -153,6 +136,7 @@ async function loadContacts() {
  */
 async function getContactsData() {
     const response = await fetch(getContactsUrl());
+
     return await response.json();
 }
 
@@ -164,9 +148,11 @@ async function getContactsData() {
  */
 function getContactsUrl(contactId = "") {
     const path = contactId ? "/" + contactId : "";
+
     if (getCurrentUserId() === guestUserId) {
         return getUserDatabaseUrl(guestUserId, "contacts" + path);
     }
+
     return getDatabaseUrl("contacts" + path);
 }
 
@@ -178,6 +164,7 @@ function getContactsUrl(contactId = "") {
  */
 function createContactsArray(data) {
     if (!data) return [];
+
     return Object.entries(data).map(function ([id, contact]) {
         return { id: id, ...contact };
     });
@@ -210,7 +197,9 @@ function renderInitialContactDetails() {
  */
 function showContact(index) {
     const contact = contacts[index];
+
     if (!contact) return;
+
     currentContactIndex = index;
     renderContacts();
     renderContactDetails(contact);
@@ -235,6 +224,7 @@ function openMobileContactDetails() {
 function closeMobileContactView() {
     contactsPage.classList.remove("mobile-detail-open");
     closeMobileOptionsMenu();
+    closeColorDropdown();
 }
 
 
@@ -245,20 +235,26 @@ function closeMobileContactView() {
 function handleContactSubmit(event) {
     event.preventDefault();
     addContactForm.classList.add("submitted");
+
     if (!addContactForm.checkValidity()) return;
+
     if (modalMode === "edit") {
         saveContact();
         return;
     }
+
     createContact();
 }
+
 
 /**
  * Deletes the selected contact.
  */
 async function deleteContact() {
     const contact = contacts[currentContactIndex];
+
     if (!contact) return;
+
     await deleteContactFromFirebase(contact.id);
     await removeContactFromAssignedTasks(contact.id);
     currentContactIndex = null;
@@ -298,6 +294,7 @@ async function removeContactFromAssignedTasks(contactId) {
  */
 async function getContactTasks() {
     const tasks = await getTasksData();
+
     return Object.entries(tasks);
 }
 
@@ -365,6 +362,7 @@ function closeContactInterfaces() {
     closeMobileOptionsMenu();
     closeAddContactOverlay();
     closeMobileContactView();
+    closeColorDropdown();
 }
 
 
@@ -376,6 +374,9 @@ function handleSecondaryButton() {
         deleteContact();
         return;
     }
+
     closeAddContactOverlay();
 }
+
+
 loadContacts();
