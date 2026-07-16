@@ -102,7 +102,11 @@ async function handleSignup() {
 
         if (await isEmailTaken(email)) return showSignupError('An account with this email already exists.');
 
-        await createNewUser(getSignupFormData());
+        const newUser = createNewUser(getSignupFormData());
+        const newContact = createNewContact(getNewContact());
+
+        await Promise.all([newUser, newContact]);
+
         showSignupToast();
     } catch (error) {
         showSignupError('Signup is currently not available. Please try again.');
@@ -123,6 +127,20 @@ function getSignupFormData() {
         password: document.getElementById('password').value.trim(),
         userColor: getRandomProfileColor()
     };
+}
+
+
+/**
+ * Generates a new contact object from the signup form fields.
+ * @returns {Object} The new contact data.
+ */
+function getNewContact() {
+    return {
+        name: document.getElementById('username').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        color: getRandomProfileColor(),
+        phone: ""
+    }
 }
 
 
@@ -152,6 +170,20 @@ function createNewUser(user) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     });
+}
+
+
+/**
+ * Creates a new contact in the database.
+ * @param {Object} contact - The new contact data.
+ * @returns {Promise} The fetch promise.
+ */ 
+function createNewContact(contact) {
+    return fetch(getDatabaseUrl('contacts'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(contact)
+    })
 }
 
 
