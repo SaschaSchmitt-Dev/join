@@ -8,9 +8,11 @@ function togglePasswordIcon(inputId, iconId) {
     const icon = document.getElementById(iconId);
     const toggleButton = icon.closest('button');
     const visible = input.type === 'text';
+    const hasPassword = input.value.length > 0;
 
     toggleButton.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
-    if (input.value.length === 0) return icon.src = '../assets/icons/lock.png';
+    toggleButton.disabled = !hasPassword;
+    if (!hasPassword) return icon.src = '../assets/icons/lock.png';
     icon.src = visible ? '../assets/icons/visability.png' : '../assets/icons/visability-off.png';
 }
 

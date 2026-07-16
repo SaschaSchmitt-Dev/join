@@ -185,6 +185,10 @@ body {
     cursor: pointer;
 }
 
+.input-wrap .icon-toggle:disabled {
+    cursor: default;
+}
+
 .input-wrap .icon-toggle img {
     width: 100%;
     height: 100%;

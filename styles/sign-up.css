@@ -185,6 +185,11 @@ body {
     padding: 0;
     background: none;
     cursor: pointer;
+    pointer-events: auto;
+}
+
+.signup-input-field .password-toggle:disabled {
+    cursor: default;
 }
 
 .signup-input-field .password-toggle img {
