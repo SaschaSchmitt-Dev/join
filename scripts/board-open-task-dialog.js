@@ -89,11 +89,17 @@ function getOpenTaskDate(value) {
 function getOpenTaskContacts(assignments = []) {
     return assignments.map((assignment) => {
         const contact = boardContacts[assignment.id];
+
         if (!contact) return "";
+
         const color = getUserColor(contact.color);
+        const displayName = getContactDisplayName(contact);
+
         return getOpenTaskContactTemplate({
-            name: escapeBoardHtml(contact.name),
-            initials: escapeBoardHtml(getUserInitials(contact.name)), color, textColor: getUserTextColor(color)
+            name: escapeBoardHtml(displayName),
+            initials: escapeBoardHtml(getUserInitials(contact.name)),
+            color,
+            textColor: getUserTextColor(color)
         });
     }).join("");
 }

@@ -126,6 +126,70 @@ function getActiveUserId() {
 
 
 /**
+ * Normalizes a value for safe text comparisons.
+ *
+ * @param {string} value - The value to normalize.
+ * @returns {string} The normalized value.
+ */
+function normalizeText(value) {
+    return String(value || "").trim().toLowerCase();
+}
+
+
+/**
+ * Checks if a contact belongs to the currently logged in user.
+ *
+ * @param {Object} contact - The contact to check.
+ * @returns {boolean} True if the contact is the current user.
+ */
+function isCurrentUserContact(contact) {
+    const activeUser = getActiveUser();
+
+    if (!activeUser || !contact) return false;
+    if (!activeUser.email || !contact.email) return false;
+
+    return normalizeText(contact.email) === normalizeText(activeUser.email);
+}
+
+
+/**
+ * Gets the contact name and adds "(You)" for the current user.
+ *
+ * @param {Object} contact - The contact data.
+ * @returns {string} The contact display name.
+ */
+function getContactDisplayName(contact) {
+    if (!contact) return "";
+
+    if (isCurrentUserContact(contact)) {
+        return `${contact.name} (You)`;
+    }
+
+    return contact.name;
+}
+
+
+/**
+ * Updates the active user if their own contact was edited.
+ *
+ * @param {Object} oldContact - The contact before editing.
+ * @param {Object} updatedContact - The edited contact.
+ * @returns {Promise<void>}
+ */
+async function updateActiveUserAfterContactEdit(oldContact, updatedContact) {
+    const activeUser = getActiveUser();
+
+    if (!activeUser || !isCurrentUserContact(oldContact)) return;
+
+    const updatedUser = { ...activeUser, name: updatedContact.name || activeUser.name, email: updatedContact.email || activeUser.email, userColor: updatedContact.color || activeUser.userColor };
+    const userData = { name: updatedUser.name, email: updatedUser.email, userColor: updatedUser.userColor };
+
+    await fetch(getUserDatabaseUrl(activeUser.id), { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(userData) });
+    setActiveUser(activeUser.id, updatedUser);
+}
+
+
+/**
  * Gets the initials from a user name.
  * @param {string} name - The user name.
  * @returns {string} The initials.

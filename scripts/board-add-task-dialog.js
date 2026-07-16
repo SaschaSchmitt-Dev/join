@@ -114,10 +114,14 @@ function compareDialogContactsByName(firstEntry, secondEntry) {
  */
 function getDialogContactView(id, contact) {
     const color = getUserColor(contact.color);
+    const displayName = getContactDisplayName(contact);
+
     return {
-        id: escapeBoardHtml(id), name: escapeBoardHtml(contact.name),
+        id: escapeBoardHtml(id),
+        name: escapeBoardHtml(displayName),
         initials: escapeBoardHtml(getUserInitials(contact.name)),
-        color, textColor: getUserTextColor(color)
+        color,
+        textColor: getUserTextColor(color)
     };
 }
 

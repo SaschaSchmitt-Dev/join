@@ -274,7 +274,9 @@ function postNewContact(contact) {
 async function saveContact() {
     const contact = contacts[currentContactIndex];
     if (!contact) return;
-    await patchContact(contact.id, getUpdatedContactData(contact));
+    const updatedContact = getUpdatedContactData(contact);
+    await patchContact(contact.id, updatedContact);
+    await updateActiveUserAfterContactEdit(contact, updatedContact);
     await loadContacts();
     currentContactIndex = getContactIndexById(contact.id);
     renderSavedContact();

@@ -54,17 +54,17 @@ function setupDropdownToggle(input, onClose) {
  */
 function buildContactRow(key, contact) {
     const contactColor = getUserColor(contact.color);
+    const displayName = getContactDisplayName(contact);
     const row = document.createElement('label');
+
     row.innerHTML = `
         <div class="contactInfoWrapper">
             <div class="contactAvatar" style="background:${contactColor}; color:${getUserTextColor(contactColor)}">${getUserInitials(contact.name)}</div>
-            <span>${contact.name}</span>
+            <span>${displayName}</span>
         </div>
-        <span class="custom-checkbox-wrapper">
-            <input type="checkbox" class="contactCheckbox" data-id="${key}" data-name="${contact.name}" data-initials="${getUserInitials(contact.name)}" data-color="${contactColor}" data-text-color="${getUserTextColor(contactColor)}">
-            <span class="custom-checkbox" aria-hidden="true"></span>
-        </span>
+        <input type="checkbox" class="contactCheckbox" data-id="${key}" data-name="${contact.name}" data-initials="${getUserInitials(contact.name)}" data-color="${contactColor}" data-text-color="${getUserTextColor(contactColor)}">
     `;
+
     return row;
 }
 

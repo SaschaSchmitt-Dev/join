@@ -558,6 +558,11 @@
     font-weight: 400;
 }
 
+.input-field input:not(:focus):hover {
+    border-color: var(--board-input-border-hover);
+    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
+}
+
 .input-field input:focus {
     border-color: var(--form-input-border-focus);
     outline: none;
@@ -585,9 +590,10 @@
 
 #addContactForm.submitted .input-field input:invalid {
     border-color: var(--priority-urgent);
+    box-shadow: none;
 }
 
-#addContactForm.submitted .input-field input:invalid~.contact-input-error {
+#addContactForm.submitted .input-field input:invalid ~ .contact-input-error {
     display: block;
 }
 
