@@ -16,7 +16,7 @@
 .siteHeader {
     margin: 0 0 24px;
     padding: 0;
-    font-size: 61px;
+    font-size: 3.8125rem;
     font-weight: 700;
     line-height: 120%;
 }
@@ -35,7 +35,7 @@
     width: 440px;
     border: none;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .horizontalDivider {
@@ -48,16 +48,22 @@
 
 /*form basics*/
 
-.addTaskContent label {
+.addTaskContent label,
+.addTaskContent .fieldLabel {
     margin: 0;
     padding: 0;
     color: var(--text-primary);
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 400;
+}
+
+.requiredMarker {
+    color: var(--form-input-border-error);
 }
 
 .addTaskFieldsLeft>label,
 .addTaskFieldsRight>label,
+.addTaskFieldsRight>.fieldLabel,
 .dropdownList>label {
     display: block;
     margin-bottom: 8px;
@@ -70,7 +76,7 @@
     border: 1px solid var(--form-input-border);
     border-radius: 10px;
     background: var(--assets-bg-color);
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 120%;
     transition: border-color 125ms ease-in-out, box-shadow 125ms ease-in-out;
 }
@@ -105,15 +111,15 @@
 
 .inputField.inputError,
 .inputWrapper input.inputError {
-    border: 1px solid #ff001f;
+    border: 1px solid var(--form-input-border-error);
     outline: none;
 }
 
 .errorMessage {
     min-height: 0;
     margin: 0 0 24px;
-    color: #ff001f;
-    font-size: 18px;
+    color: var(--form-input-border-error);
+    font-size: 1.125rem;
     font-weight: 400;
     line-height: 120%;
 }
@@ -130,7 +136,7 @@
     border: 1px solid var(--form-input-border);
     border-radius: 10px;
     background: var(--assets-bg-color);
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 120%;
     transition: border-color 125ms ease-in-out, box-shadow 125ms ease-in-out;
 }
@@ -175,7 +181,7 @@
     border-radius: 10px;
     color: var(--text-primary);
     box-shadow: 0 0 4px rgb(0 0 0 / 20%);
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 400;
     cursor: pointer;
     white-space: nowrap;
@@ -365,7 +371,7 @@
     border: 1px solid var(--text-white);
     border-radius: 50%;
     color: var(--text-white);
-    font-size: 14px;
+    font-size: 1rem;
 }
 
 .dropdownContent .custom-checkbox-wrapper {
@@ -441,7 +447,7 @@
 .subtaskList li {
     padding: 8px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .subtaskList li:hover {
@@ -594,7 +600,7 @@
     background-color: var(--ui-dark);
     border-radius: 10px;
     color: var(--text-white);
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     transform: translate(-50%, 0);
     transition: top 0.4s ease, transform 0.4s ease;
@@ -627,7 +633,7 @@
         width: 100%;
         max-width: 900px;
         margin: 0 0 24px;
-        font-size: clamp(47px, 4vw, 61px);
+        font-size: clamp(2.9375rem, 4vw, 3.8125rem);
         line-height: 120%;
     }
 
@@ -694,7 +700,7 @@
         min-width: 0;
         height: 52px;
         padding: 0 12px;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .priorityGroup label img {
@@ -721,7 +727,7 @@
         max-width: 520px;
         margin: 0 0 24px;
         padding: 0;
-        font-size: 47px;
+        font-size: 2.9375rem;
         line-height: 120%;
     }
 
@@ -748,8 +754,9 @@
         padding-bottom: 0;
     }
 
-    .addTaskContent label {
-        font-size: 18px;
+    .addTaskContent label,
+    .addTaskContent .fieldLabel {
+        font-size: 1.125rem;
     }
 
     .addTaskContent footer {
@@ -786,7 +793,7 @@
         flex: 0 1 152px;
         max-width: 152px;
         height: 56px;
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 
     .priorityGroup label img {
@@ -819,7 +826,7 @@
         margin: 0 0 24px;
         padding: 0;
         background: transparent;
-        font-size: 47px;
+        font-size: 2.9375rem;
         line-height: 120%;
     }
 
@@ -887,7 +894,7 @@
         background: var(--main-bg-color);
         border: 1px solid var(--button-secondary-border);
         color: var(--button-secondary-text);
-        font-size: 21px;
+        font-size: 1.3125rem;
     }
 
     .createTask {
@@ -895,7 +902,7 @@
         height: 56px;
         background: var(--button-primary-bg);
         color: var(--text-white);
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 }
 
@@ -914,7 +921,7 @@
         position: static;
         margin: 0 0 24px;
         padding: 0;
-        font-size: 47px;
+        font-size: 2.9375rem;
     }
 
     .addTaskForm {
@@ -923,13 +930,15 @@
         overflow: visible;
     }
 
-    .addTaskContent label {
+    .addTaskContent label,
+    .addTaskContent .fieldLabel {
         padding: 0;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .addTaskFieldsLeft>label,
     .addTaskFieldsRight>label,
+    .addTaskFieldsRight>.fieldLabel,
     .dropdownList>label {
         margin-bottom: 8px;
     }
@@ -938,7 +947,7 @@
         width: 100%;
         height: 48px;
         padding: 12px 16px;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .inputWrapper input {
@@ -950,11 +959,11 @@
         height: 108px;
         margin-bottom: 24px;
         padding: 12px 16px;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .errorMessage {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .dropdownList:last-child {
@@ -995,7 +1004,7 @@
         position: static;
         margin-bottom: 20px;
         padding: 0;
-        font-size: 40px;
+        font-size: 2.5rem;
     }
 
     .addTaskForm {
@@ -1003,15 +1012,16 @@
         overflow: visible;
     }
 
-    .addTaskContent label {
+    .addTaskContent label,
+    .addTaskContent .fieldLabel {
         padding: 0;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .addTaskContent input {
         height: 46px;
         padding: 10px 16px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .inputWrapper input {
@@ -1021,11 +1031,11 @@
     .addTaskFieldsLeft textarea {
         height: 96px;
         padding: 10px 16px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .errorMessage {
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .priorityGroup {
@@ -1036,7 +1046,7 @@
         flex: 1;
         max-width: none;
         height: 48px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .priorityGroup label img {
@@ -1066,13 +1076,13 @@
     .clear {
         width: 100px;
         height: 56px;
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 
     .createTask {
         width: 160px;
         height: 56px;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 }
 
@@ -1092,7 +1102,7 @@
         position: static;
         margin-bottom: 16px;
         padding: 0;
-        font-size: 36px;
+        font-size: 2.25rem;
     }
 
     .addTaskForm {
@@ -1100,15 +1110,16 @@
         overflow: visible;
     }
 
-    .addTaskContent label {
+    .addTaskContent label,
+    .addTaskContent .fieldLabel {
         padding: 0;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .addTaskContent input {
         height: 42px;
         padding: 9px 12px;
-        font-size: 15px;
+        font-size: 1rem;
     }
 
     .inputWrapper input {
@@ -1118,11 +1129,11 @@
     .addTaskFieldsLeft textarea {
         height: 88px;
         padding: 9px 12px;
-        font-size: 15px;
+        font-size: 1rem;
     }
 
     .errorMessage {
-        font-size: 15px;
+        font-size: 1rem;
     }
 
     .priorityGroup {
@@ -1131,7 +1142,7 @@
 
     .priorityGroup label {
         height: 41px;
-        font-size: 15px;
+        font-size: 1rem;
     }
 
     .priorityGroup label img {
@@ -1161,13 +1172,13 @@
     .clear {
         width: 96px;
         height: 54px;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .createTask {
         width: 150px;
         height: 54px;
-        font-size: 17px;
+        font-size: 1.0625rem;
     }
 }
 
@@ -1180,7 +1191,7 @@
 
     .priorityGroup label {
         height: 41px;
-        font-size: 15px;
+        font-size: 1rem;
     }
 
     .priorityGroup label img {
@@ -1219,7 +1230,7 @@
     }
 
     .siteHeader {
-        font-size: 34px;
+        font-size: 2.125rem;
     }
 
     .priorityGroup {
@@ -1228,18 +1239,18 @@
 
     .priorityGroup label {
         height: 41px;
-        font-size: 14px;
+        font-size: 1rem;
     }
 
     .clear {
         width: 88px;
         min-width: 88px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .createTask {
         width: 140px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .footerButtons {
@@ -1276,12 +1287,13 @@
 /* Keep the page form typography aligned with the board dialog on phones. */
 @media (width <=440px) {
     .addTaskContent label,
+    .addTaskContent .fieldLabel,
     .addTaskContent input,
     .addTaskFieldsLeft textarea,
     .priorityGroup label,
     .errorMessage,
     .subtaskList li {
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .addTaskContent input {

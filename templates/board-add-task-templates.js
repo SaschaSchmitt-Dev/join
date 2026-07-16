@@ -89,7 +89,7 @@ function getAddTaskDialogRightFieldsTemplate() {
  */
 function getAddTaskPriorityTemplate() {
     return `
-        <div class="dialog-field-group"><label>Priority</label><div class="priority-group" role="radiogroup" aria-label="Priority">
+        <div class="dialog-field-group"><div class="field-label" id="dialogPriorityLabel">Priority</div><div class="priority-group" role="radiogroup" aria-labelledby="dialogPriorityLabel">
             <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1" aria-hidden="true"><label for="urgent" tabindex="0" role="radio">Urgent <img src="../assets/icons/urgent-priority.png" alt=""></label>
             <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true" checked><label for="medium" tabindex="0" role="radio">Medium <img src="../assets/icons/medium-priority.png" alt=""></label>
             <input type="radio" name="priority" id="low" value="low" tabindex="-1" aria-hidden="true"><label for="low" tabindex="0" role="radio">Low <img src="../assets/icons/low-priority.png" alt=""></label>
@@ -218,7 +218,7 @@ function getTaskAddedMessageTemplate() {
  */
 function getTaskCardTemplate(task, progressTemplate, usersTemplate) {
     return `
-        <div class="task-card" id="task-${task.id}" data-task-id="${task.id}" tabindex="0" role="button"
+        <div class="task-card" data-task-id="${task.id}" tabindex="0" role="button"
             aria-label="Open task: ${task.title}">
             <div class="task-card-top">
                 <span class="task-category ${task.categoryClass}">${task.category}</span>

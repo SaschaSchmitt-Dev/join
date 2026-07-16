@@ -92,7 +92,7 @@ body {
     margin: 0;
     padding-bottom: 15px;
     color: var(--text-primary);
-    font-size: 61px;
+    font-size: 3.8125rem;
     font-weight: 700;
     line-height: 120%;
 }
@@ -141,7 +141,7 @@ body {
     outline: none;
     color: var(--text-primary);
     font-family: Inter, sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     transition: border-color 125ms ease-in-out, box-shadow 125ms ease-in-out;
 }
@@ -165,7 +165,7 @@ body {
     min-height: 16px;
     margin: -14px 0 0;
     color: var(--form-input-border-error);
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
 }
 
@@ -217,14 +217,14 @@ body {
 
 label {
     color: var(--text-tertiary);
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
 }
 
 .textbox-checkbox a {
     margin-left: 5px;
     color: var(--text-link-hover-dark);
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     text-decoration: none;
 }
@@ -253,7 +253,7 @@ label {
     border-radius: 8px;
     color: var(--text-white);
     font-family: Inter, sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
     transition: background-color 125ms ease-in-out, box-shadow 125ms ease-in-out;
@@ -284,7 +284,7 @@ footer {
 
 footer a {
     color: var(--text-link);
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     text-decoration: none;
 }
@@ -306,7 +306,7 @@ footer a:hover {
     background-color: var(--ui-dark);
     border-radius: 10px;
     color: var(--text-white);
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     pointer-events: none;
     transition: top 0.4s ease, transform 0.4s ease;
@@ -373,7 +373,7 @@ footer a:hover {
 
     .textbox-signup h1 {
         padding-bottom: 12px;
-        font-size: 48px;
+        font-size: 3rem;
     }
 
     .textbox-inputfield {
@@ -383,7 +383,7 @@ footer a:hover {
 
     .signup-input-field input {
         height: 48px;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
 }
@@ -422,7 +422,7 @@ footer a:hover {
 
     .textbox-signup h1 {
         padding-bottom: 12px;
-        font-size: 36px;
+        font-size: 2.25rem;
         line-height: 100%;
     }
 
@@ -444,7 +444,7 @@ footer a:hover {
     .signup-input-field input {
         height: 44px;
         padding: 0 42px 0 16px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .signup-input-field > img,
@@ -460,7 +460,7 @@ footer a:hover {
 
     label,
     .textbox-checkbox a {
-        font-size: 14px;
+        font-size: 1rem;
     }
 
     .btn {
@@ -470,7 +470,7 @@ footer a:hover {
     .signup-btn {
         width: 104px;
         height: 44px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     footer {
@@ -479,7 +479,7 @@ footer a:hover {
     }
 
     footer a {
-        font-size: 14px;
+        font-size: 1rem;
     }
 }
 
@@ -513,7 +513,7 @@ footer a:hover {
     }
 
     .textbox-signup h1 {
-        font-size: 34px;
+        font-size: 2.125rem;
     }
 
     .textbox-inputfield-wrapper {
@@ -526,7 +526,7 @@ footer a:hover {
 
     .signup-input-field input {
         height: 42px;
-        font-size: 15px;
+        font-size: 1rem;
     }
 
     .btn {

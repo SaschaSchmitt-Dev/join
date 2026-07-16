@@ -34,7 +34,7 @@
             <form class="addTaskForm">
                 <div class="addTaskFieldsLeft">
                     <label class="label" for="title">
-                        Title<span style="color: #FF8190">*</span>
+                        Title<span class="requiredMarker">*</span>
                     </label>
                     <input class="inputField" id="title" type="text" placeholder="Enter a title">
                     <div class="errorMessage" id="titleError"></div>
@@ -43,7 +43,7 @@
                     <textarea class="textarea" id="description" placeholder="Enter a Description"></textarea>
 
                     <label class="label" for="dueDate">
-                        Due date<span style="color: #FF8190">*</span>
+                        Due date<span class="requiredMarker">*</span>
                     </label>
                     <input class="inputField" id="dueDate" type="text" placeholder="dd/mm/yyyy">
                     <div class="errorMessage" id="dueDateError"></div>
@@ -52,16 +52,17 @@
                 <div class="horizontalDivider"></div>
 
                 <div class="addTaskFieldsRight">
-                    <label for="priority">Priority</label>
+                    <div class="fieldLabel" id="priorityLabel">Priority</div>
 
-                    <div class="priorityGroup" role="radiogroup" aria-label="Priority">
+                    <div class="priorityGroup" role="radiogroup" aria-labelledby="priorityLabel">
                         <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1" aria-hidden="true">
                         <label for="urgent" tabindex="0" role="radio">
                             Urgent
                             <img src="../assets/icons/urgent-priority.png" alt="Urgent priority icon">
                         </label>
 
-                        <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true" checked>
+                        <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true"
+                            checked>
                         <label for="medium" class="medium" tabindex="0" role="radio">
                             Medium
                             <img src="../assets/icons/medium-priority.png" alt="Medium priority icon">
@@ -90,7 +91,7 @@
 
                     <div class="dropdownList">
                         <label for="category" class="category">
-                            Category<span style="color: #FF8190">*</span>
+                            Category<span class="requiredMarker">*</span>
                         </label>
 
                         <div class="inputWrapper">
@@ -126,7 +127,7 @@
 
             <footer>
                 <p class="requiredFieldsNotice">
-                    <span style="color: #FF8190;">*</span>This field is required
+                    <span class="requiredMarker">*</span>This field is required
                 </p>
 
                 <div class="footerButtons">
