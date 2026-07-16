@@ -10,6 +10,32 @@ let boardContacts = {};
 
 
 /**
+ * Starts the task search.
+ */
+function initializeTaskSearch() {
+    const searchInput = document.getElementById("taskSearch");
+
+    searchInput.addEventListener("input", filterTasks);
+}
+
+
+/**
+ * Filters tasks by title and description.
+ */
+function filterTasks() {
+    const searchText = document.getElementById("taskSearch").value.toLowerCase();
+    const filteredTasks = boardTasks.filter((task) => {
+        const title = (task.title || "").toLowerCase();
+        const description = (task.description || "").toLowerCase();
+
+        return title.includes(searchText) || description.includes(searchText);
+    });
+
+    renderBoardTasks(filteredTasks, boardContacts);
+}
+
+
+/**
  * Loads and renders all board data.
  */
 async function initializeBoard() {
@@ -377,4 +403,5 @@ function escapeBoardHtml(value) {
 
 
 setupMobileTaskMoveEvents();
+initializeTaskSearch();
 initializeBoard();
