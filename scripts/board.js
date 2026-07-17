@@ -7,7 +7,8 @@ const boardColumns = {
 
 let boardTasks = [];
 let boardContacts = {};
-
+let draggedTaskId = null
+let currentDropZone = null
 
 /**
  * Starts the task search.
@@ -222,6 +223,100 @@ function getTaskUser(contact) {
 
 
 /**
+ * Sets up the drag and drop events for the board.
+ */
+function setupBoardDragAndDrop() {
+    const boardColumnsElement = document.querySelector('.board-columns')
+
+    if (!boardColumnsElement) {
+        return;
+    }
+
+    boardColumnsElement.addEventListener("dragstart", handleDragStart)
+    boardColumnsElement.addEventListener("dragover", handleDragOver)
+    boardColumnsElement.addEventListener("drop", handleDrop)
+    boardColumnsElement.addEventListener("dragged", handleDragEnd)
+}
+
+
+/**
+ * Handles the drag start event for a task card.
+ * @param {DragEvent} event - The drag event.
+ */
+function handleDragStart(event) {
+    const taskCard = event.target.closest('.task-card');
+
+    if (taskCard) {
+        draggedTaskId = taskCard.dataset.taskId;
+        taskCard.classList.add('dragging');
+    }
+}
+
+
+/**
+ * Handles the drag end event for a task card.
+ * @param {DragEvent} event - The drag event.
+ */
+function handleDragEnd(event) {
+    const taskCard = event.target.closest(".task-card");
+
+    if (taskCard) {
+        taskCard.classList.remove("dragging");
+    }
+
+    if (currentDropZone) {
+        currentDropZone.classList.remove('drag-over');
+        currentDropZone = null;
+    }
+}
+
+
+function handleDragOver(event) {
+    event.preventDefault();
+
+    const taskList = event.target.closest('.task-list');
+
+    if (taskList === currentDropZone) {
+        return;
+    }
+
+    if (currentDropZone) {
+        currentDropZone.classList.remove('drag-over');
+    }
+
+    if (taskList) {
+        taskList.classList.add('drag-over');
+    }
+
+    currentDropZone = taskList;
+}
+
+
+function handleDrop(event) {
+    const taskList = event.target.closest('.task-list');
+
+    if (!taskList || !draggedTaskId) {
+        return;
+    }
+
+    const column = Object.keys(boardColumns).find(
+        (key) => boardColumns[key].elementId === taskList.id
+    )
+
+    if (column) {
+        moveTaskMobile(draggedTaskId, column);
+    }
+
+    if (currentDropZone) {
+        currentDropZone.classList.remove('drag-over');
+        draggedTaskId = null;
+    }
+
+    draggedTaskId = null;
+}
+
+
+/**
  * Sets up the mobile task move events.
  */
 function setupMobileTaskMoveEvents() {
@@ -405,3 +500,4 @@ function escapeBoardHtml(value) {
 setupMobileTaskMoveEvents();
 initializeTaskSearch();
 initializeBoard();
+setupBoardDragAndDrop();

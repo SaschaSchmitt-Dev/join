@@ -168,6 +168,15 @@
     scrollbar-gutter: stable;
 }
 
+.task-list.drag-over::after {
+    content: "";
+    display: block;
+    width: 250px;
+    height: 262px;
+    border-radius: 24px;
+    border: 1px dashed var(--board-input-border);
+}
+
 .column-header {
     display: flex;
     justify-content: space-between;
@@ -240,6 +249,10 @@
         inset 0 0 0 2px var(--ui-dark),
         0 0 10px rgb(0 0 0 / 8%);
     outline: none;
+}
+
+.task-card.dragging {
+    transform: rotate(5deg);
 }
 
 .task-card h3 {
@@ -332,7 +345,7 @@
     font-weight: 700;
 }
 
-@media (width <= 1240px) {
+@media (width <=1240px) {
     .board-columns {
         gap: 18px;
     }
@@ -396,7 +409,7 @@
     }
 }
 
-@media (width <= 900px) {
+@media (width <=900px) {
     .board-header {
         display: grid;
         gap: 24px 16px;
@@ -435,7 +448,7 @@
     }
 }
 
-@media (width <= 480px) {
+@media (width <=480px) {
     .board {
         gap: 18px;
     }
@@ -598,6 +611,7 @@
 }
 
 @media (width >900px) {
+
     .mobile-move-task-btn,
     .mobile-move-menu {
         display: none !important;

@@ -219,7 +219,7 @@ function getTaskAddedMessageTemplate() {
  */
 function getTaskCardTemplate(task, progressTemplate, usersTemplate) {
     return `
-        <div class="task-card" data-task-id="${task.id}" tabindex="0" role="button"
+        <div class="task-card" draggable="true" data-task-id="${task.id}" tabindex="0" role="button"
             aria-label="Open task: ${task.title}">
             <div class="task-card-top">
                 <span class="task-category ${task.categoryClass}">${task.category}</span>
