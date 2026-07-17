@@ -88,8 +88,8 @@ document.getElementById('confirmPassword').addEventListener('input', clearPasswo
 
 
 /**
- * Handles the signup form submission: validates the input, creates the
- * new user in the database and redirects to the login page.
+ * Handles the signup form submission.
+ * Creates a new user in Firebase Auth and the database.
  */
 async function handleSignup() {
     if (!checkPasswordsMatch()) return;
@@ -99,17 +99,19 @@ async function handleSignup() {
 
     try {
         const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
 
-        if (await isEmailTaken(email)) return showSignupError('An account with this email already exists.');
+        const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password);
+        const uid = userCredential.user.uid;
 
-        const newUser = createNewUser(getSignupFormData());
+        const newUser = createNewUser(uid, getSignupFormData());
         const newContact = createNewContact(getNewContact());
 
         await Promise.all([newUser, newContact]);
 
         showSignupToast();
     } catch (error) {
-        showSignupError('Signup is currently not available. Please try again.');
+        showSignupError(getSignupErrorMessage(error));
     } finally {
         signupBtn.disabled = !document.getElementById('termsCheckbox').checked;
     }
@@ -124,7 +126,6 @@ function getSignupFormData() {
     return {
         name: document.getElementById('username').value.trim(),
         email: document.getElementById('email').value.trim(),
-        password: document.getElementById('password').value.trim(),
         userColor: getRandomProfileColor()
     };
 }
@@ -145,28 +146,28 @@ function getNewContact() {
 
 
 /**
- * Checks whether a user with the given email already exists.
- * @param {string} email - The email to check.
- * @returns {boolean} True if the email is already taken.
+ * Translates a Firebase Auth error into a user-facing message.
+ * @param {Object} error - The Firebase Auth error.
+ * @returns {string} The message to display.
  */
-async function isEmailTaken(email) {
-    const response = await fetch(getDatabaseUrl('users'));
-    const users = await response.json();
+function getSignupErrorMessage(error) {
+    if (error.code === 'auth/email-already-in-use') {
+        return 'An account with this email already exists.';
+    }
 
-    if (!users) return false;
-
-    return Object.values(users).some((user) => user.email === email);
+    return 'Signup is currently not available. Please try again.';
 }
 
 
 /**
  * Creates a new user in the database.
+ * @param {string} uid - The Firebase Auth user id.
  * @param {Object} user - The new user data.
  * @returns {Promise} The fetch promise.
  */
-function createNewUser(user) {
-    return fetch(getDatabaseUrl('users'), {
-        method: 'POST',
+function createNewUser(uid, user) {
+    return fetch(getUserDatabaseUrl(uid), {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     });
@@ -177,7 +178,7 @@ function createNewUser(user) {
  * Creates a new contact in the database.
  * @param {Object} contact - The new contact data.
  * @returns {Promise} The fetch promise.
- */ 
+ */
 function createNewContact(contact) {
     return fetch(getDatabaseUrl('contacts'), {
         method: 'POST',

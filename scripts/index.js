@@ -32,47 +32,35 @@ function hasInvalidLoginInput(email, password) {
 
 
 /**
- * Gets a user by email and password.
- * @param {string} email - The email.
- * @param {string} password - The password.
- * @returns {Object} The user entry.
+ * Loads a user's profile data from the database.
+ * @param {string} uid - The Firebase Auth user id.
+ * @returns {Promise<Object>} The user entry with id and profile data.
  */
-async function getUserByLogin(email, password) {
-    const response = await fetch(getDatabaseUrl('users'));
-    const users = await response.json();
+async function getUserProfile(uid) {
+    const response = await fetch(getUserDatabaseUrl(uid));
+    const user = await response.json();
 
-    if (!users) return null;
-
-    const matchingUser = getMatchingUser(users, email, password);
-
-    return matchingUser ? getUserEntry(matchingUser) : null;
+    return { id: uid, user };
 }
 
 
 /**
- * Finds the matching user.
- * @param {Object} users - The users.
- * @param {string} email - The email.
- * @param {string} password - The password.
- * @returns {Array} The matching user.
+ * Checks the login data.
  */
-function getMatchingUser(users, email, password) {
-    return Object.entries(users).find(function ([, user]) {
-        return user.email === email && user.password === password;
-    });
-}
+async function checkLogin() {
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
 
+    if (hasInvalidLoginInput(email, password)) return showLoginError('Check your email and password. Please try again.');
 
-/**
- * Creates a user entry object.
- * @param {Array} userEntry - The user entry.
- * @returns {Object} The user entry object.
- */
-function getUserEntry(userEntry) {
-    return {
-        id: userEntry[0],
-        user: userEntry[1]
-    };
+    try {
+        const userCredential = await signInWithEmailAndPassword(firebaseAuth, email.value.trim(), password.value.trim());
+        const userEntry = await getUserProfile(userCredential.user.uid);
+
+        completeUserLogin(userEntry);
+    } catch (error) {
+        showLoginError('Check your email and password. Please try again.');
+    }
 }
 
 
