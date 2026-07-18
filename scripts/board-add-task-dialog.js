@@ -46,8 +46,7 @@ function prepareAddTaskDialog(dialog) {
  * @param {HTMLElement} dialog - The dialog element.
  */
 function initializeDialogDropdowns(dialog) {
-    dialog.querySelector("#assignedTo").addEventListener("click", toggleDialogDropdown);
-    dialog.querySelector("#category").addEventListener("click", toggleDialogDropdown);
+    initializeDialogDropdownAccessibility(dialog);
     dialog.querySelectorAll("[data-category]").forEach((option) => {
         option.addEventListener("click", selectDialogCategory);
     });
@@ -134,9 +133,13 @@ function getDialogContactView(id, contact) {
 function toggleDialogDropdown(event) {
     const dropdown = event.currentTarget.closest(".dropdown-list");
     document.querySelectorAll(".dropdown-list.open").forEach((openDropdown) => {
-        if (openDropdown !== dropdown) openDropdown.classList.remove("open");
+        if (openDropdown !== dropdown) {
+            openDropdown.classList.remove("open");
+            openDropdown.querySelector("input").setAttribute("aria-expanded", "false");
+        }
     });
     dropdown.classList.toggle("open");
+    event.currentTarget.setAttribute("aria-expanded", String(dropdown.classList.contains("open")));
 }
 
 
@@ -148,6 +151,7 @@ function closeDialogDropdownsOnOutsideClick(event) {
     if (event.target.closest(".dropdown-list")) return;
     document.querySelectorAll(".dropdown-list.open").forEach((dropdown) => {
         dropdown.classList.remove("open");
+        dropdown.querySelector("input").setAttribute("aria-expanded", "false");
     });
 }
 
@@ -161,6 +165,7 @@ function selectDialogCategory(event) {
     const input = document.getElementById("category");
     input.value = event.currentTarget.dataset.category;
     input.closest(".dropdown-list").classList.remove("open");
+    input.setAttribute("aria-expanded", "false");
     clearDialogFieldError(input, document.getElementById("categoryError"));
 }
 

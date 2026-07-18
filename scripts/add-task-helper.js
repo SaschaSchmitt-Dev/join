@@ -12,6 +12,7 @@ function dropdownToggle(element, onClose) {
     const isOpen = dropdown.style.display === 'block';
     dropdown.style.display = isOpen ? 'none' : 'block';
     element.classList.toggle('open', !isOpen);
+    element.querySelector('input').setAttribute('aria-expanded', String(!isOpen));
     if (isOpen && onClose) onClose();
 }
 
@@ -27,6 +28,7 @@ function closeDropdown(input, onClose) {
         if (!dropdownList.contains(event.target)) {
             dropdownList.querySelector('.dropdownContent').style.display = 'none';
             dropdownList.querySelector('.inputWrapper').classList.remove('open');
+            input.setAttribute('aria-expanded', 'false');
             if (onClose) onClose();
         }
     });
@@ -40,9 +42,27 @@ function closeDropdown(input, onClose) {
  */
 function setupDropdownToggle(input, onClose) {
     const wrapper = input.parentElement;
+    const dropdownList = input.closest('.dropdownList');
     const arrow = wrapper.querySelector('.inputIcon');
-    input.addEventListener('click', () => dropdownToggle(wrapper, onClose));
-    arrow.addEventListener('click', () => dropdownToggle(wrapper, onClose));
+    const toggle = () => dropdownToggle(wrapper, onClose);
+    const close = () => closeOneAddTaskDropdown(input, onClose);
+    initializeKeyboardDropdown(input, toggle, close);
+    initializeContactDropdownKeys(dropdownList, close);
+    input.addEventListener('click', toggle);
+    arrow.addEventListener('click', toggle);
+    dropdownList.addEventListener('focusout', () => closeDropdownAfterFocusLeaves(dropdownList, close));
+}
+
+
+/** Closes one dropdown on the standalone Add Task page. */
+function closeOneAddTaskDropdown(input, onClose) {
+    const dropdownList = input.closest('.dropdownList');
+    const dropdown = dropdownList.querySelector('.dropdownContent');
+    if (dropdown.style.display !== 'block') return;
+    dropdown.style.display = 'none';
+    dropdownList.querySelector('.inputWrapper').classList.remove('open');
+    input.setAttribute('aria-expanded', 'false');
+    if (onClose) onClose();
 }
 
 
@@ -56,15 +76,7 @@ function buildContactRow(key, contact) {
     const contactColor = getUserColor(contact.color);
     const displayName = getContactDisplayName(contact);
     const row = document.createElement('label');
-
-    row.innerHTML = `
-        <div class="contactInfoWrapper">
-            <div class="contactAvatar" style="background:${contactColor}; color:${getUserTextColor(contactColor)}">${getUserInitials(contact.name)}</div>
-            <span>${displayName}</span>
-        </div>
-        <input type="checkbox" class="contactCheckbox" data-id="${key}" data-name="${contact.name}" data-initials="${getUserInitials(contact.name)}" data-color="${contactColor}" data-text-color="${getUserTextColor(contactColor)}">
-    `;
-
+    row.innerHTML = getAddTaskContactRowTemplate(key, contact, contactColor, displayName);
     return row;
 }
 

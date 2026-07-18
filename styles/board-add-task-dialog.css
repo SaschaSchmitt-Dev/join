@@ -253,8 +253,24 @@
 }
 
 .dropdown-content a:hover,
-.contact-option:hover {
+.contact-option:hover,
+.dropdown-content a:focus-visible {
     background: var(--ui-light-hover);
+}
+
+.dropdown-content a:focus-visible {
+    box-shadow: none;
+    outline: none;
+}
+
+.contact-option .custom-checkbox-wrapper:has(input:focus-visible) {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.contact-option:has(.contact-checkbox:checked)
+    .custom-checkbox-wrapper:has(input:focus-visible) {
+    outline-color: var(--text-white);
 }
 
 .contact-option:has(.contact-checkbox:checked) {

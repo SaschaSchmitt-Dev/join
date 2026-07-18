@@ -309,8 +309,24 @@
 }
 
 .dropdownContent a:hover,
-.dropdownContent label:hover {
+.dropdownContent label:hover,
+.dropdownContent a:focus-visible {
     background-color: var(--ui-light-hover);
+}
+
+.dropdownContent a:focus-visible {
+    box-shadow: none;
+    outline: none;
+}
+
+.dropdownContent .custom-checkbox-wrapper:has(input:focus-visible) {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.dropdownContent label:has(.contactCheckbox:checked)
+    .custom-checkbox-wrapper:has(input:focus-visible) {
+    outline-color: var(--text-white);
 }
 
 .dropdownContent label:has(.contactCheckbox:checked) {
@@ -450,13 +466,16 @@
     filter: brightness(0);
 }
 
-.subtaskCancel:focus-visible,
-.subtaskCheck:focus-visible,
-.subtaskEdit:focus-visible,
-.subtaskDelete:focus-visible,
-.subtaskSaveEdit:focus-visible {
-    outline: 2px solid var(--board-input-border-active);
-    outline-offset: 2px;
+:root :is(
+    .subtaskCancel,
+    .subtaskCheck,
+    .subtaskEdit,
+    .subtaskDelete,
+    .subtaskSaveEdit
+):focus-visible {
+    border-radius: 4px;
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 1px;
 }
 
 .subtaskList {

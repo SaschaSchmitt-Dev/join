@@ -31,6 +31,7 @@
     --ui-light: rgb(41 171 226);
     --ui-light-hover: rgb(225 230 236);
     --ui-dark-active: rgb(9 25 49);
+    --focus-ring: rgb(41 171 226);
     --button-primary-bg: rgb(42 54 71);
     --button-primary-bg-hover: rgb(41 171 226);
     --button-primary-bg-active: rgb(9 25 49);
