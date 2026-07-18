@@ -148,6 +148,9 @@
 
 .open-task-subtasks {
     gap: 4px;
+    max-height: 104px;
+    padding-right: 4px;
+    overflow-y: auto;
 }
 
 .open-task-subtask {

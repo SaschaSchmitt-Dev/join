@@ -460,8 +460,11 @@
 }
 
 .subtaskList {
+    max-height: 96px;
     margin: 8px 0 0;
+    padding-right: 4px;
     padding-left: 0;
+    overflow-y: auto;
     list-style: none;
 }
 

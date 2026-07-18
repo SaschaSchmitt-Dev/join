@@ -233,6 +233,19 @@ function wireActiveSubtaskEdit(listItem, editIcon, editInput, currentText) {
 
 
 /**
+ * Restores focus close to the action whose subtask was removed.
+ * @param {number} itemIndex - The former position of the removed subtask.
+ * @param {string} selector - The action that should regain focus.
+ */
+function focusSubtaskAction(itemIndex, selector) {
+    const items = subtaskList.querySelectorAll("li");
+    if (!items.length) return subtaskInput.focus();
+    const targetIndex = Math.min(itemIndex, items.length - 1);
+    items[targetIndex].querySelector(selector)?.focus();
+}
+
+
+/**
  * Retrieves the list of assigned contacts from the checked checkboxes in the "Assigned To" dropdown.
  * @returns {Array<Object>} An array of assigned contact objects, each containing an id and type.
  */

@@ -156,8 +156,19 @@ function handleDialogSubtaskAction(event) {
  * @param {HTMLElement} item - The subtask list item.
  */
 function deleteDialogSubtask(item) {
-    dialogSubtasks.splice(Number(item.dataset.subtaskIndex), 1);
+    const itemIndex = Number(item.dataset.subtaskIndex);
+    dialogSubtasks.splice(itemIndex, 1);
     renderDialogSubtasks();
+    focusDialogSubtaskAction(itemIndex, ".delete-dialog-subtask");
+}
+
+
+/** Restores focus near the subtask action that triggered a list redraw. */
+function focusDialogSubtaskAction(itemIndex, selector) {
+    const items = document.querySelectorAll(".subtask-list li");
+    if (!items.length) return document.getElementById("subtasks").focus();
+    const targetIndex = Math.min(itemIndex, items.length - 1);
+    items[targetIndex].querySelector(selector)?.focus();
 }
 
 
@@ -225,8 +236,10 @@ function saveDialogSubtaskEdit(item) {
     const input = item.querySelector(".dialog-subtask-edit-input");
     const title = input && input.value.trim();
     if (!title) return;
-    dialogSubtasks[Number(item.dataset.subtaskIndex)] = title;
+    const itemIndex = Number(item.dataset.subtaskIndex);
+    dialogSubtasks[itemIndex] = title;
     renderDialogSubtasks();
+    focusDialogSubtaskAction(itemIndex, ".edit-dialog-subtask");
 }
 
 
@@ -242,6 +255,8 @@ function handleDialogSubtaskEditKeydown(event, item) {
     }
     if (event.key === "Escape") {
         event.stopPropagation();
+        const itemIndex = Number(item.dataset.subtaskIndex);
         renderDialogSubtasks();
+        focusDialogSubtaskAction(itemIndex, ".edit-dialog-subtask");
     }
 }

@@ -314,12 +314,15 @@ subtaskList.addEventListener("click", (event) => {
     }
 
     if (event.target.closest(".subtaskDelete")) {
+        const itemIndex = Array.from(subtaskList.children).indexOf(listItem);
         listItem.remove();
+        focusSubtaskAction(itemIndex, ".subtaskDelete");
         return;
     }
 
     if (event.target.closest(".subtaskSaveEdit")) {
         listItem._saveEdit();
+        listItem.querySelector(".subtaskEdit")?.focus();
     }
 });
 
