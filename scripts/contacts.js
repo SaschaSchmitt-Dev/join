@@ -25,6 +25,8 @@ const mobileOptionsMenu = document.getElementById("mobileOptionsMenu");
 const mobileEditContactBtn = document.getElementById("mobileEditContactBtn");
 const mobileDeleteContactBtn = document.getElementById("mobileDeleteContactBtn");
 const contactToast = document.getElementById("contactToast");
+const contactDetailsContainer = document.getElementById("contactDetails");
+const contactsListContainer = document.getElementById("contactsList");
 
 if (addContactBtn) addContactBtn.addEventListener("click", openAddContactOverlay);
 if (mobileAddContactBtn) mobileAddContactBtn.addEventListener("click", openAddContactOverlay);
@@ -34,6 +36,8 @@ if (closeContactModal) closeContactModal.addEventListener("click", closeAddConta
 if (cancelContactBtn) cancelContactBtn.addEventListener("click", handleSecondaryButton);
 if (addContactForm) addContactForm.addEventListener("submit", handleContactSubmit);
 if (contactPlaceholder) contactPlaceholder.addEventListener("click", toggleColorDropdown);
+if (contactDetailsContainer) contactDetailsContainer.addEventListener("keydown", handleContactDetailTab);
+if (contactsListContainer) contactsListContainer.addEventListener("keydown", handleActiveContactTab);
 
 if (mobileEditContactBtn) {
     mobileEditContactBtn.addEventListener("click", function () {
@@ -218,6 +222,51 @@ function showContact(index) {
     renderContactDetails(contact);
     document.querySelector(".contact-detail-name-box h2").focus();
     openMobileContactDetails();
+}
+
+
+/**
+ * Connects the selected contact with its desktop detail actions in tab order.
+ * @param {KeyboardEvent} event - The keyboard event inside the contact details.
+ */
+function handleContactDetailTab(event) {
+    if (event.key !== "Tab" || window.innerWidth <= 1024) return;
+
+    if (event.shiftKey && event.target.closest(".edit-contact-btn")) {
+        event.preventDefault();
+        focusContactCard(currentContactIndex);
+        return;
+    }
+
+    if (!event.shiftKey && event.target.closest(".contact-email")) {
+        focusNextContactCard(event);
+    }
+}
+
+
+/** Moves forward from the active contact card into its detail actions. */
+function handleActiveContactTab(event) {
+    if (event.key !== "Tab" || event.shiftKey || window.innerWidth <= 1024) return;
+    if (!event.target.matches(".contact-card.active")) return;
+    const editButton = contactDetailsContainer.querySelector(".edit-contact-btn");
+    if (!editButton) return;
+    event.preventDefault();
+    editButton.focus();
+}
+
+
+/** Focuses one rendered contact card. */
+function focusContactCard(index) {
+    document.querySelector(`.contact-card[data-contact-index="${index}"]`)?.focus();
+}
+
+
+/** Moves focus from the selected contact's last detail link to the next contact. */
+function focusNextContactCard(event) {
+    const nextCard = document.querySelector(`.contact-card[data-contact-index="${currentContactIndex + 1}"]`);
+    if (!nextCard) return;
+    event.preventDefault();
+    nextCard.focus();
 }
 
 

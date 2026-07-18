@@ -125,7 +125,7 @@ function getContactGroupTemplate(letter) {
  */
 function getContactCardTemplate(contact, index, activeClass, contactColor) {
     return `
-        <button class="contact-card ${activeClass}" onclick="showContact(${index})">
+        <button class="contact-card ${activeClass}" data-contact-index="${index}" onclick="showContact(${index})">
             ${getContactAvatarTemplate(contact, contactColor)}
             ${getContactInfoTemplate(contact)}
         </button>
