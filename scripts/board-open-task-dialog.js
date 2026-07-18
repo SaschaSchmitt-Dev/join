@@ -42,6 +42,7 @@ function openTaskDialog(task) {
     backdrop.querySelector(".open-task-subtasks").addEventListener("change", changeOpenTaskSubtaskStatus);
     backdrop.addEventListener("click", closeOpenTaskOnBackdrop);
     document.addEventListener("keydown", closeOpenTaskOnEscape);
+    activateModal(backdrop, backdrop.querySelector(".open-task-close"));
 }
 
 
@@ -122,7 +123,9 @@ function closeOpenTaskOnEscape(event) {
 }
 
 
-function closeOpenTaskDialog() {
+function closeOpenTaskDialog(restoreFocus = true) {
+    const dialog = document.getElementById("openTaskDialog");
+    deactivateModal(dialog, restoreFocus);
     removeBoardDialog("openTaskDialog");
     document.removeEventListener("keydown", closeOpenTaskOnEscape);
 }
@@ -138,9 +141,32 @@ async function deleteOpenTask() {
 
 
 function openEditTaskDialog(task) {
-    closeOpenTaskDialog();
+    closeOpenTaskDialog(false);
     document.body.insertAdjacentHTML
     ("beforeend", getEditTaskDialogTemplate(task));
+    const dialog = document.getElementById("editTaskDialog");
+    dialog.querySelector(".edit-task-close").addEventListener("click", closeEditTaskDialog);
+    dialog.addEventListener("click", closeEditTaskOnBackdrop);
+    document.addEventListener("keydown", closeEditTaskOnEscape);
+    activateModal(dialog, dialog.querySelector("#editTaskTitle"));
+}
+
+
+function closeEditTaskOnBackdrop(event) {
+    closeBoardDialogOnBackdrop(event, "editTaskDialog", closeEditTaskDialog);
+}
+
+
+function closeEditTaskOnEscape(event) {
+    closeBoardDialogOnEscape(event, closeEditTaskDialog);
+}
+
+
+function closeEditTaskDialog() {
+    const dialog = document.getElementById("editTaskDialog");
+    deactivateModal(dialog);
+    removeBoardDialog("editTaskDialog");
+    document.removeEventListener("keydown", closeEditTaskOnEscape);
 }
 
 initializeOpenTaskDialog();

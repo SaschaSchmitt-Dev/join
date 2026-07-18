@@ -133,3 +133,7 @@ a {
         visibility: hidden;
     }
 }
+
+body.no-scroll {
+    overflow: hidden;
+}

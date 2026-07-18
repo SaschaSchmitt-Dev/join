@@ -19,6 +19,7 @@
     <script src="../templates/bars-templates.js" defer></script>
     <script src="../scripts/bars.js" defer></script>
     <script src="../scripts/task-data-access.js" defer></script>
+    <script src="../scripts/dialog-manager.js" defer></script>
     <script src="../templates/contacts-templates.js" defer></script>
     <script src="../scripts/contacts-helper.js" defer></script>
     <script src="../scripts/contacts-storage.js" defer></script>
@@ -111,8 +112,11 @@
         </main>
     </section>
 
-    <div id="addContactOverlay" class="add-contact-overlay">
-        <div class="add-contact-modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+    <div id="addContactOverlay" class="add-contact-overlay" role="dialog" aria-modal="true"
+        aria-labelledby="contactModalTitle" tabindex="-1">
+
+        <div class="add-contact-modal">
+
             <button type="button" id="closeContactModal" class="close-modal">
                 <img src="../assets/icons/close.png" alt="Close">
             </button>

@@ -5,7 +5,7 @@
  */
 function getOpenTaskDialogTemplate(task) {
     return `
-        <div class="task-dialog-backdrop" id="openTaskDialog" role="dialog" aria-modal="true" aria-labelledby="openTaskTitle">
+        <div class="task-dialog-backdrop" id="openTaskDialog" role="dialog" aria-modal="true" aria-labelledby="openTaskTitle" tabindex="-1">
             <section class="dialog-creator" data-task-id="${task.id}">
                 <header class="open-task-header">
                     <span class="open-task-category ${task.categoryClass}">${task.category}</span>

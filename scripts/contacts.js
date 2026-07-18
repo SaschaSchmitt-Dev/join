@@ -89,6 +89,7 @@ function openAddContactOverlay() {
     addContactForm.reset();
     addContactForm.classList.remove("submitted");
     overlay.classList.add("active");
+    activateModal(overlay, document.getElementById("username"));
 }
 
 
@@ -106,6 +107,7 @@ function openEditContactOverlay() {
     closeColorDropdown();
     setEditMode(contact);
     overlay.classList.add("active");
+    activateModal(overlay, document.getElementById("username"));
 }
 
 
@@ -113,9 +115,20 @@ function openEditContactOverlay() {
  * Closes the contact overlay.
  */
 function closeAddContactOverlay() {
+    deactivateModal(overlay);
     overlay.classList.remove("active");
     closeColorDropdown();
 }
+
+
+function closeContactModalOnEscape(event) {
+    if (event.key === "Escape" && overlay.classList.contains("active")) {
+        closeAddContactOverlay();
+    }
+}
+
+
+document.addEventListener("keydown", closeContactModalOnEscape);
 
 
 /**

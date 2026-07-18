@@ -4,7 +4,7 @@
  */
 function getAddTaskDialogTemplate() {
     return `
-        <div class="add-task-dialog-backdrop" id="addTaskDialog" role="dialog" aria-modal="true" aria-labelledby="addTaskDialogTitle">
+        <div class="add-task-dialog-backdrop" id="addTaskDialog" role="dialog" aria-modal="true" aria-labelledby="addTaskDialogTitle" tabindex="-1">
             <section class="add-task-dialog">
                 ${getAddTaskDialogHeaderTemplate()}
                 <form class="add-task-form" id="addTaskDialogForm">${getAddTaskDialogLeftFieldsTemplate()}

@@ -37,7 +37,7 @@ function prepareAddTaskDialog(dialog) {
     initializeDialogActions(dialog);
     document.addEventListener("keydown", closeAddTaskDialogOnEscape);
     document.addEventListener("click", closeDialogDropdownsOnOutsideClick);
-    dialog.querySelector("#title").focus();
+    activateModal(dialog, dialog.querySelector("#title"));
 }
 
 
@@ -363,6 +363,8 @@ function closeAddTaskDialogOnEscape(event) {
  * Removes the add task dialog.
  */
 function closeAddTaskDialog() {
+    const dialog = document.getElementById("addTaskDialog");
+    deactivateModal(dialog);
     removeBoardDialog("addTaskDialog");
     document.removeEventListener("keydown", closeAddTaskDialogOnEscape);
     document.removeEventListener("click", closeDialogDropdownsOnOutsideClick);

@@ -55,7 +55,7 @@ function getContactDetailAvatarTemplate(contact, contactColor) {
 function getContactDetailNameTemplate(contact) {
     return `
         <div class="contact-detail-name-box">
-            <h2>${contact.name}</h2>
+            <h2 tabindex="-1"       >${contact.name}</h2>
             ${getContactActionsTemplate()}
         </div>
     `;
@@ -67,7 +67,7 @@ function getContactDetailNameTemplate(contact) {
  * @returns {string} The contact actions HTML.
  */
 function getContactActionsTemplate() {
-     return `
+    return `
         <div class="contact-actions">
             <button class="contact-action-btn edit-contact-btn" type="button" onclick="openEditContactOverlay()">
                 <img src="../assets/icons/edit.png" alt="Edit">
