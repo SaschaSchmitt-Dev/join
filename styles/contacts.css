@@ -1707,6 +1707,7 @@
     top: calc(100% + 12px);
     left: 50%;
     z-index: 200;
+    box-sizing: border-box;
     width: auto;
     margin: 0;
     padding: 12px;
@@ -1731,6 +1732,7 @@
     grid-template-columns: repeat(5, 28px);
     gap: 10px;
     width: max-content;
+    margin: 0 auto;
 }
 
 .contact-avatar-picker .color-option,
@@ -1844,19 +1846,27 @@
     .add-contact-modal.edit-mode .contact-avatar-picker .color-picker {
         top: calc(100% + 12px) !important;
         left: 50% !important;
+        min-width: 296px !important;
+        padding: 12px !important;
         transform: translateX(-50%) !important;
     }
 
     .contact-avatar-picker .color-options,
     .add-contact-modal.edit-mode .contact-avatar-picker .color-options {
-        grid-template-columns: repeat(5, 24px);
-        gap: 8px;
+        display: grid !important;
+        grid-template-columns: repeat(5, 48px) !important;
+        gap: 8px !important;
+        width: max-content !important;
+        margin: 0 auto !important;
+        place-items: center !important;
     }
 
     .contact-avatar-picker .color-option,
     .add-contact-modal.edit-mode .contact-avatar-picker .color-option {
-        width: 24px;
-        height: 24px;
+        width: 48px !important;
+        min-width: 48px !important;
+        height: 48px !important;
+        min-height: 48px !important;
     }
 }
 
@@ -1951,20 +1961,29 @@
     }
 
     .add-contact-modal.edit-mode .contact-avatar-picker .color-picker {
-        top: calc(100% + 8px) !important;
-        padding: 8px;
+        top: calc(100% - 12px) !important;
+        left: 50% !important;
+        min-width: 288px !important;
+        padding: 8px !important;
+        transform: translateX(-50%) !important;
     }
 
     .contact-avatar-picker .color-options,
     .add-contact-modal.edit-mode .contact-avatar-picker .color-options {
-        grid-template-columns: repeat(5, 17px);
-        gap: 4px;
+        display: grid !important;
+        grid-template-columns: repeat(5, 48px) !important;
+        gap: 8px !important;
+        width: max-content !important;
+        margin: 0 auto !important;
+        place-items: center !important;
     }
 
     .contact-avatar-picker .color-option,
     .add-contact-modal.edit-mode .contact-avatar-picker .color-option {
-        width: 17px;
-        height: 17px;
+        width: 48px !important;
+        min-width: 48px !important;
+        height: 48px !important;
+        min-height: 48px !important;
     }
 }
 
