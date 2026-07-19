@@ -30,33 +30,33 @@
     <section class="page-content" aria-label="Seiteninhalt">
         <header id="topbar" class="topbar"></header>
 
-        <main class="main-content addTaskContent">
-            <h1 class="siteHeader">Add Task</h1>
+        <main class="main-content add-task-content">
+            <h1 class="site-header">Add Task</h1>
 
-            <form class="addTaskForm">
-                <div class="addTaskFieldsLeft">
+            <form class="add-task-form">
+                <div class="add-task-fields-left">
                     <label class="label" for="title">
-                        Title<span class="requiredMarker">*</span>
+                        Title<span class="required-marker">*</span>
                     </label>
-                    <input class="inputField" id="title" type="text" placeholder="Enter a title">
-                    <div class="errorMessage" id="titleError"></div>
+                    <input class="input-field" id="title" type="text" placeholder="Enter a title">
+                    <div class="error-message" id="titleError"></div>
 
                     <label class="labelTextarea" for="description">Description</label>
                     <textarea class="textarea" id="description" placeholder="Enter a Description"></textarea>
 
                     <label class="label" for="dueDate">
-                        Due date<span class="requiredMarker">*</span>
+                        Due date<span class="required-marker">*</span>
                     </label>
-                    <input class="inputField" id="dueDate" type="text" placeholder="dd/mm/yyyy">
-                    <div class="errorMessage" id="dueDateError"></div>
+                    <input class="input-field" id="dueDate" type="text" placeholder="dd/mm/yyyy">
+                    <div class="error-message" id="dueDateError"></div>
                 </div>
 
-                <div class="horizontalDivider"></div>
+                <div class="horizontal-divider"></div>
 
-                <div class="addTaskFieldsRight">
-                    <div class="fieldLabel" id="priorityLabel">Priority</div>
+                <div class="add-task-fields-right">
+                    <div class="field-label" id="priorityLabel">Priority</div>
 
-                    <div class="priorityGroup" role="radiogroup" aria-labelledby="priorityLabel">
+                    <div class="priority-group" role="radiogroup" aria-labelledby="priorityLabel">
                         <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1" aria-hidden="true">
                         <label for="urgent" tabindex="0" role="radio">
                             Urgent
@@ -77,72 +77,72 @@
                         </label>
                     </div>
 
-                    <div class="dropdownList">
-                        <label for="assignetTo" class="assignetTo">Assigned to</label>
+                    <div class="dropdown-list">
+                        <label for="assignetTo" class="assignet-to">Assigned to</label>
 
-                        <div class="inputWrapper">
-                            <input type="text" class="assignetTo" id="assignetTo"
-                                placeholder="Select contacts to assign" readonly>
-                            <img class="inputIcon" src="../assets/icons/arrow-dropdown.png"
+                        <div class="input-wrapper">
+                            <input type="text" class="assignet-to" id="assignetTo"
+                                placeholder="Select contacts to assign">
+                            <img class="input-icon" src="../assets/icons/arrow-dropdown.png"
                                 alt="Toggle contacts dropdown">
-                            <div class="dropdownContent"></div>
+                            <div class="dropdown-content"></div>
                         </div>
 
-                        <div class="selectedContacts"></div>
+                        <div class="selected-contacts"></div>
                     </div>
 
-                    <div class="dropdownList">
+                    <div class="dropdown-list">
                         <label for="category" class="category">
-                            Category<span class="requiredMarker">*</span>
+                            Category<span class="required-marker">*</span>
                         </label>
 
-                        <div class="inputWrapper">
+                        <div class="input-wrapper">
                             <input type="text" class="category" id="category" placeholder="Select task category"
                                 readonly>
-                            <img class="inputIcon" src="../assets/icons/arrow-dropdown.png"
+                            <img class="input-icon" src="../assets/icons/arrow-dropdown.png"
                                 alt="Toggle category dropdown">
 
-                            <div class="dropdownContent">
+                            <div class="dropdown-content">
                                 <a href="">Technical Task</a>
                                 <a href="">User Story</a>
                             </div>
                         </div>
 
-                        <div class="errorMessage" id="categoryError"></div>
+                        <div class="error-message" id="categoryError"></div>
 
                         <label class="label" for="subtasks">Subtasks</label>
 
-                        <div class="subtaskInputWrapper">
-                            <input class="inputField" id="subtasks" type="text" placeholder="Add new subtasks">
+                        <div class="subtask-input-wrapper">
+                            <input class="input-field" id="subtasks" type="text" placeholder="Add new subtasks">
 
-                            <div class="subtaskActions">
-                                <button class="subtaskCancel" type="button" tabindex="0" aria-label="Discard subtask input" disabled>
+                            <div class="subtask-actions">
+                                <button class="subtask-cancel" type="button" tabindex="0" aria-label="Discard subtask input" disabled>
                                     <img src="../assets/icons/cancel.png" alt="">
                                 </button>
-                                <span class="subtaskDivider"></span>
-                                <button class="subtaskCheck" type="button" tabindex="0" aria-label="Add subtask" disabled>
+                                <span class="subtask-divider"></span>
+                                <button class="subtask-check" type="button" tabindex="0" aria-label="Add subtask" disabled>
                                     <img src="../assets/icons/check.png" alt="">
                                 </button>
                             </div>
                         </div>
 
-                        <ul class="subtaskList"></ul>
+                        <ul class="subtask-list"></ul>
                     </div>
                 </div>
             </form>
 
             <footer>
-                <p class="requiredFieldsNotice">
-                    <span class="requiredMarker">*</span>This field is required
+                <p class="required-fields-notice">
+                    <span class="required-marker">*</span>This field is required
                 </p>
 
-                <div class="footerButtons">
+                <div class="footer-buttons">
                     <button class="clear" type="button" onclick="clearForm()">
                         Clear
                         <img src="../assets/icons/cancel.png" alt="Cancel icon">
                     </button>
 
-                    <button class="createTask" type="button">
+                    <button class="create-task" type="button">
                         Create Task
                         <img src="../assets/icons/check.png" alt="Check icon">
                     </button>
@@ -151,7 +151,7 @@
         </main>
     </section>
 
-    <div class="taskAddedToast">
+    <div class="task-added-toast">
         <span>Task added to board</span>
         <img src="../assets/icons/board.png" alt="Board icon">
     </div>

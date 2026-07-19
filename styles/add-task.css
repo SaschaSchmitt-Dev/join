@@ -5,7 +5,7 @@
 
 /*layout*/
 
-.addTaskContent {
+.add-task-content {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -13,7 +13,7 @@
     background: var(--main-bg-color);
 }
 
-.siteHeader {
+.site-header {
     margin: 0 0 24px;
     padding: 0;
     font-size: 3.8125rem;
@@ -21,15 +21,15 @@
     line-height: 120%;
 }
 
-.addTaskForm {
+.add-task-form {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
     width: 960px;
 }
 
-.addTaskFieldsLeft,
-.addTaskFieldsRight {
+.add-task-fields-left,
+.add-task-fields-right {
     display: flex;
     flex-direction: column;
     width: 440px;
@@ -38,7 +38,7 @@
     font-size: 1rem;
 }
 
-.horizontalDivider {
+.horizontal-divider {
     width: 0;
     height: 424px;
     margin: 16px 32px;
@@ -48,8 +48,8 @@
 
 /*form basics*/
 
-.addTaskContent label,
-.addTaskContent .fieldLabel {
+.add-task-content label,
+.add-task-content .field-label {
     margin: 0;
     padding: 0;
     color: var(--text-primary);
@@ -57,19 +57,19 @@
     font-weight: 400;
 }
 
-.requiredMarker {
+.required-marker {
     color: var(--form-input-border-error);
 }
 
-.addTaskFieldsLeft>label,
-.addTaskFieldsRight>label,
-.addTaskFieldsRight>.fieldLabel,
-.dropdownList>label {
+.add-task-fields-left>label,
+.add-task-fields-right>label,
+.add-task-fields-right>.field-label,
+.dropdown-list>label {
     display: block;
     margin-bottom: 8px;
 }
 
-.addTaskContent input {
+.add-task-content input {
     width: 100%;
     height: 48px;
     padding: 12px 16px;
@@ -81,27 +81,27 @@
     transition: border-color 125ms ease-in-out, box-shadow 125ms ease-in-out;
 }
 
-.addTaskContent input::placeholder,
-.addTaskContent textarea::placeholder {
+.add-task-content input::placeholder,
+.add-task-content textarea::placeholder {
     opacity: 0.3;
     color: var(--text-primary);
     font-size: inherit;
 }
 
-.inputField {
+.input-field {
     width: 100%;
     margin: 0;
     padding: 12px 16px;
 }
 
-.addTaskForm input:not([type="radio"], [type="checkbox"], :focus):hover,
+.add-task-form input:not([type="radio"], [type="checkbox"], :focus):hover,
 .textarea:not(:focus):hover {
     border-color: var(--board-input-border-hover);
     box-shadow: 0 0 4px rgb(0 0 0 / 16%);
 }
 
-.addTaskForm input:not([type="radio"], [type="checkbox"]):focus,
-.addTaskFieldsLeft textarea:focus {
+.add-task-form input:not([type="radio"], [type="checkbox"]):focus,
+.add-task-fields-left textarea:focus {
     appearance: none;
     -webkit-appearance: none;
     outline: none;
@@ -109,13 +109,13 @@
     box-shadow: 0 0 4px rgb(0 0 0 / 16%);
 }
 
-.inputField.inputError,
-.inputWrapper input.inputError {
+.input-field.input-error,
+.input-wrapper input.input-error {
     border: 1px solid var(--form-input-border-error);
     outline: none;
 }
 
-.errorMessage {
+.error-message {
     min-height: 0;
     margin: 0 0 24px;
     color: var(--form-input-border-error);
@@ -124,11 +124,11 @@
     line-height: 120%;
 }
 
-.errorMessage:not(:empty) {
+.error-message:not(:empty) {
     margin: 8px 0 20px;
 }
 
-.addTaskFieldsLeft textarea {
+.add-task-fields-left textarea {
     width: 100%;
     height: 120px;
     margin: 0 0 24px;
@@ -144,7 +144,7 @@
 
 /*priority*/
 
-.priorityGroup {
+.priority-group {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -153,7 +153,7 @@
     margin-bottom: 24px;
 }
 
-.priorityGroup input[type="radio"] {
+.priority-group input[type="radio"] {
     opacity: 0;
     position: absolute;
     width: 1px;
@@ -161,12 +161,12 @@
     padding: 0;
 }
 
-.priorityGroup label:focus-visible {
+.priority-group label:focus-visible {
     outline: 2px solid var(--board-input-border-active);
     outline-offset: 2px;
 }
 
-.priorityGroup label {
+.priority-group label {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -188,11 +188,11 @@
     transition: background-color 125ms ease-in-out, box-shadow 125ms ease-in-out;
 }
 
-.priorityGroup label:hover {
+.priority-group label:hover {
     box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
 }
 
-.priorityGroup label img {
+.priority-group label img {
     width: 20px;
     height: 20px;
     margin-left: 0;
@@ -226,34 +226,33 @@
 
 /*dropdown*/
 
-.assignetTo::placeholder,
+.assignet-to::placeholder,
 .category::placeholder {
     opacity: 1;
     color: var(--text-primary);
 }
 
-.dropdownList {
+.dropdown-list {
     position: relative;
     margin-bottom: 24px;
 }
 
-.dropdownList:last-child {
+.dropdown-list:last-child {
     margin-bottom: 0;
 
 }
 
-.inputWrapper {
+.input-wrapper {
     position: relative;
     margin: 0;
 }
 
-.inputWrapper input {
+.input-wrapper input {
     width: 100%;
     padding: 12px 40px 12px 16px;
-    cursor: pointer;
 }
 
-.inputIcon {
+.input-icon {
     position: absolute;
     top: 50%;
     right: 16px;
@@ -263,20 +262,20 @@
     transition: transform 0.2s ease;
 }
 
-.inputWrapper.open .inputIcon {
+.input-wrapper.open .input-icon {
     transform: translateY(-50%) rotate(180deg);
 }
 
-.inputIcon:hover {
+.input-icon:hover {
     background-color: var(--main-bg-color);
     border-radius: 50%;
 }
 
-.dropdownContent {
+.dropdown-content {
     display: none;
 }
 
-.dropdownList .dropdownContent {
+.dropdown-list .dropdown-content {
     position: absolute;
     z-index: 10;
     width: 100%;
@@ -288,12 +287,12 @@
     box-shadow: 0 4px 6px rgb(0 0 0 / 14%);
 }
 
-.dropdownList label {
+.dropdown-list label {
     display: block;
 }
 
-.dropdownContent a,
-.dropdownContent label {
+.dropdown-content a,
+.dropdown-content label {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -308,56 +307,55 @@
     cursor: pointer;
 }
 
-.dropdownContent a:hover,
-.dropdownContent label:hover,
-.dropdownContent a:focus-visible {
+.dropdown-content a:hover,
+.dropdown-content label:hover,
+.dropdown-content a:focus-visible {
     background-color: var(--ui-light-hover);
 }
 
-.dropdownContent a:focus-visible {
+.dropdown-content a:focus-visible {
     box-shadow: none;
     outline: none;
 }
 
-.dropdownContent .custom-checkbox-wrapper:has(input:focus-visible) {
+.dropdown-content .custom-checkbox-wrapper:has(input:focus-visible) {
     outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
 }
 
-.dropdownContent label:has(.contactCheckbox:checked)
-    .custom-checkbox-wrapper:has(input:focus-visible) {
+.dropdown-content label:has(.contact-checkbox:checked) .custom-checkbox-wrapper:has(input:focus-visible) {
     outline-color: var(--text-white);
 }
 
-.dropdownContent label:has(.contactCheckbox:checked) {
+.dropdown-content label:has(.contact-checkbox:checked) {
     background-color: var(--ui-dark);
     color: var(--text-white);
 
     --checkbox-background: var(--ui-dark);
 }
 
-.dropdownContent label:has(.contactCheckbox) {
+.dropdown-content label:has(.contact-checkbox) {
     height: 54px;
 }
 
-.dropdownContent label:has(.contactCheckbox:checked):hover {
+.dropdown-content label:has(.contact-checkbox:checked):hover {
     background-color: var(--ui-dark);
 }
 
-.dropdownContent label:has(.contactCheckbox:checked) .custom-checkbox {
+.dropdown-content label:has(.contact-checkbox:checked) .custom-checkbox {
     border-color: var(--text-white);
 }
 
-.dropdownContent label:has(.contactCheckbox:checked) .custom-checkbox-wrapper {
+.dropdown-content label:has(.contact-checkbox:checked) .custom-checkbox-wrapper {
     --checkbox-background: var(--ui-dark);
 }
 
-.dropdownContent label:has(.contactCheckbox:checked) .custom-checkbox::before,
-.dropdownContent label:has(.contactCheckbox:checked) .custom-checkbox::after {
+.dropdown-content label:has(.contact-checkbox:checked) .custom-checkbox::before,
+.dropdown-content label:has(.contact-checkbox:checked) .custom-checkbox::after {
     background: var(--text-white);
 }
 
-.dropdownContent label:has(.contactCheckbox:checked) .custom-checkbox-wrapper:has(input:hover) {
+.dropdown-content label:has(.contact-checkbox:checked) .custom-checkbox-wrapper:has(input:hover) {
     background: transparent;
 
     --checkbox-background: var(--ui-dark);
@@ -365,18 +363,18 @@
 
 /*contacts*/
 
-.contactInfoWrapper {
+.contact-info-wrapper {
     display: flex;
     align-items: center;
     gap: 8px;
     min-width: 0;
 }
 
-.contactInfoWrapper span {
+.contact-info-wrapper span {
     overflow-wrap: anywhere;
 }
 
-.contactAvatar {
+.contact-avatar {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -390,12 +388,12 @@
     font-size: 1rem;
 }
 
-.dropdownContent .custom-checkbox-wrapper {
+.dropdown-content .custom-checkbox-wrapper {
     flex-shrink: 0;
     margin-left: auto;
 }
 
-.selectedContacts {
+.selected-contacts {
     display: flex;
     flex-wrap: nowrap;
     gap: 4px;
@@ -409,26 +407,26 @@
     user-select: none;
 }
 
-.selectedContacts.is-dragging {
+.selected-contacts.is-dragging {
     cursor: grabbing;
 }
 
-.selectedContacts:empty {
+.selected-contacts:empty {
     display: none;
 }
 
-.selectedContacts .contactAvatar {
+.selected-contacts .contact-avatar {
     flex: 0 0 42px;
 }
 
 /*subtasks*/
 
-.subtaskInputWrapper {
+.subtask-input-wrapper {
     position: relative;
     margin: 0;
 }
 
-.subtaskActions {
+.subtask-actions {
     position: absolute;
     top: 50%;
     right: 16px;
@@ -438,18 +436,18 @@
     transform: translateY(-50%);
 }
 
-.subtaskInputWrapper.isWriting .subtaskActions {
+.subtask-input-wrapper.is-writing .subtask-actions {
     display: flex;
 }
 
-.subtaskDivider {
+.subtask-divider {
     width: 1px;
     height: 24px;
     background-color: var(--form-input-border);
 }
 
-.subtaskCancel,
-.subtaskCheck {
+.subtask-cancel,
+.subtask-check {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -459,26 +457,24 @@
     cursor: pointer;
 }
 
-.subtaskCancel img,
-.subtaskCheck img {
+.subtask-cancel img,
+.subtask-check img {
     width: 24px;
     height: 24px;
     filter: brightness(0);
 }
 
-:root :is(
-    .subtaskCancel,
-    .subtaskCheck,
-    .subtaskEdit,
-    .subtaskDelete,
-    .subtaskSaveEdit
-):focus-visible {
+:root :is(.subtask-cancel,
+    .subtask-check,
+    .subtask-edit,
+    .subtask-delete,
+    .subtask-save-edit):focus-visible {
     border-radius: 4px;
     outline: 2px solid var(--focus-ring);
     outline-offset: 1px;
 }
 
-.subtaskList {
+.subtask-list {
     max-height: 96px;
     margin: 8px 0 0;
     padding-right: 4px;
@@ -487,26 +483,26 @@
     list-style: none;
 }
 
-.subtaskList li {
+.subtask-list li {
     min-height: 32px;
     padding: 8px;
     border-radius: 10px;
     font-size: 1rem;
 }
 
-.subtaskList li:hover {
+.subtask-list li:hover {
     background-color: var(--scrollbar-track-bg-color);
     border: none;
 }
 
-.subtaskRow {
+.subtask-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     min-height: 24px;
 }
 
-.subtaskTextGroup {
+.subtask-text-group {
     display: flex;
     align-items: center;
     flex: 1;
@@ -514,7 +510,7 @@
     margin-left: 8px;
 }
 
-.addTaskContent .subtaskEditInput {
+.add-task-content .subtask-edit-input {
     flex: 1;
     min-width: 0;
     height: 32px;
@@ -525,13 +521,13 @@
     font: inherit;
 }
 
-.addTaskForm .subtaskEditInput:focus {
+.add-task-form .subtask-edit-input:focus {
     outline: none;
     border: none;
     box-shadow: none;
 }
 
-.subtaskItemActions {
+.subtask-item-actions {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -539,7 +535,7 @@
     pointer-events: none;
 }
 
-.subtaskList li.isEditing {
+.subtask-list li.is-editing {
     position: relative;
     height: 32px;
     min-height: 32px;
@@ -548,7 +544,7 @@
     border-radius: 0;
 }
 
-.subtaskList li.isEditing::after {
+.subtask-list li.is-editing::after {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -560,25 +556,25 @@
     pointer-events: none;
 }
 
-.subtaskList li.isEditing .subtaskBullet {
+.subtask-list li.is-editing .subtask-bullet {
     display: none;
 }
 
-.subtaskList li.isEditing .subtaskTextGroup {
+.subtask-list li.is-editing .subtask-text-group {
     height: 32px;
     margin-left: 0;
 }
 
-.subtaskList li:hover .subtaskItemActions,
-.subtaskList li:focus-within .subtaskItemActions,
-.subtaskList li.isEditing .subtaskItemActions {
+.subtask-list li:hover .subtask-item-actions,
+.subtask-list li:focus-within .subtask-item-actions,
+.subtask-list li.is-editing .subtask-item-actions {
     opacity: 1;
     pointer-events: auto;
 }
 
-.subtaskEdit,
-.subtaskDelete,
-.subtaskSaveEdit {
+.subtask-edit,
+.subtask-delete,
+.subtask-save-edit {
     display: flex;
     padding: 0;
     background: transparent;
@@ -586,24 +582,24 @@
     cursor: pointer;
 }
 
-.subtaskEdit img,
-.subtaskDelete img,
-.subtaskSaveEdit img {
+.subtask-edit img,
+.subtask-delete img,
+.subtask-save-edit img {
     width: 24px;
     height: 24px;
     filter: brightness(0);
 }
 
-.subtaskDelete {
+.subtask-delete {
     order: 1;
 }
 
-.subtaskSaveEdit {
+.subtask-save-edit {
     position: relative;
     order: 2;
 }
 
-.subtaskSaveEdit::before {
+.subtask-save-edit::before {
     position: absolute;
     top: 2px;
     bottom: 2px;
@@ -616,7 +612,7 @@
 
 /*footer buttons*/
 
-.addTaskContent footer {
+.add-task-content footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -624,14 +620,14 @@
     margin-top: 24px;
 }
 
-.addTaskContent footer button {
+.add-task-content footer button {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
 }
 
-.footerButtons {
+.footer-buttons {
     display: flex;
     gap: 16px;
 }
@@ -665,7 +661,7 @@
     color: var(--login-button-primary-bg-active);
 }
 
-.createTask {
+.create-task {
     width: 184px;
     height: 56px;
     background-color: var(--ui-dark);
@@ -678,18 +674,18 @@
     transition: background-color 125ms ease-in-out, color 125ms ease-in-out, border-color 125ms ease-in-out, box-shadow 125ms ease-in-out;
 }
 
-.createTask:hover {
+.create-task:hover {
     background: var(--login-button-primary-bg-hover);
     box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
 }
 
-.createTask:active {
+.create-task:active {
     background: var(--login-button-primary-bg-active);
 }
 
 /*toast*/
 
-.taskAddedToast {
+.task-added-toast {
     position: fixed;
     top: 100%;
     left: 50%;
@@ -708,12 +704,12 @@
     pointer-events: none;
 }
 
-.taskAddedToast img {
+.task-added-toast img {
     width: 24px;
     height: 24px;
 }
 
-.taskAddedToast.show {
+.task-added-toast.show {
     top: 50%;
     transform: translate(-50%, -50%);
 }
@@ -722,7 +718,7 @@
 
 @media (width <=1280px) and (width >1180px) {
 
-    .addTaskContent {
+    .add-task-content {
         align-items: center;
         min-height: calc(100dvh - 96px);
         height: auto;
@@ -730,7 +726,7 @@
         overflow: visible;
     }
 
-    .siteHeader {
+    .site-header {
         width: 100%;
         max-width: 900px;
         margin: 0 0 24px;
@@ -738,7 +734,7 @@
         line-height: 120%;
     }
 
-    .addTaskForm {
+    .add-task-form {
         flex-grow: 0;
         justify-content: center;
         width: 100%;
@@ -747,15 +743,15 @@
         overflow: visible;
     }
 
-    .addTaskFieldsLeft,
-    .addTaskFieldsRight {
+    .add-task-fields-left,
+    .add-task-fields-right {
         flex: 1 1 0;
         width: auto;
         max-width: 400px;
         min-width: 0;
     }
 
-    .horizontalDivider {
+    .horizontal-divider {
         align-self: flex-start;
         width: 0;
         height: 358px;
@@ -764,21 +760,21 @@
         opacity: 0.5;
     }
 
-    .dropdownList:last-child {
+    .dropdown-list:last-child {
         padding-bottom: 0;
     }
 
-    .addTaskContent footer {
+    .add-task-content footer {
         width: 100%;
         max-width: 850px;
         margin: 450px auto 0;
     }
 
-    .requiredFieldsNotice {
+    .required-fields-notice {
         margin: 0;
     }
 
-    .footerButtons {
+    .footer-buttons {
         position: static;
         justify-content: flex-end;
         align-items: center;
@@ -790,12 +786,12 @@
         transform: none;
     }
 
-    .priorityGroup {
+    .priority-group {
         justify-content: center;
         gap: 12px;
     }
 
-    .priorityGroup label {
+    .priority-group label {
         flex: 1 1 0;
         max-width: none;
         min-width: 0;
@@ -804,7 +800,7 @@
         font-size: 1.125rem;
     }
 
-    .priorityGroup label img {
+    .priority-group label img {
         width: 20px;
         height: 20px;
     }
@@ -814,7 +810,7 @@
 
 @media (width <=1180px) and (width >1024px) {
 
-    .addTaskContent {
+    .add-task-content {
         align-items: center;
         min-height: calc(100dvh - 96px);
         height: auto;
@@ -822,7 +818,7 @@
         overflow: visible;
     }
 
-    .siteHeader {
+    .site-header {
         position: static;
         width: 100%;
         max-width: 520px;
@@ -832,7 +828,7 @@
         line-height: 120%;
     }
 
-    .addTaskForm {
+    .add-task-form {
         flex-grow: 0;
         flex-direction: column;
         width: 100%;
@@ -841,26 +837,26 @@
         overflow: visible;
     }
 
-    .addTaskFieldsLeft,
-    .addTaskFieldsRight {
+    .add-task-fields-left,
+    .add-task-fields-right {
         width: 100%;
         max-width: 100%;
     }
 
-    .horizontalDivider {
+    .horizontal-divider {
         display: none;
     }
 
-    .dropdownList:last-child {
+    .dropdown-list:last-child {
         padding-bottom: 0;
     }
 
-    .addTaskContent label,
-    .addTaskContent .fieldLabel {
+    .add-task-content label,
+    .add-task-content .field-label {
         font-size: 1.125rem;
     }
 
-    .addTaskContent footer {
+    .add-task-content footer {
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
@@ -869,11 +865,11 @@
         margin: 150px auto 0;
     }
 
-    .requiredFieldsNotice {
+    .required-fields-notice {
         margin: 0;
     }
 
-    .footerButtons {
+    .footer-buttons {
         position: static;
         justify-content: flex-end;
         align-items: center;
@@ -885,19 +881,19 @@
         transform: none;
     }
 
-    .priorityGroup {
+    .priority-group {
         justify-content: center;
         gap: 16px;
     }
 
-    .priorityGroup label {
+    .priority-group label {
         flex: 0 1 152px;
         max-width: 152px;
         height: 56px;
         font-size: 1.25rem;
     }
 
-    .priorityGroup label img {
+    .priority-group label img {
         width: 20px;
         height: 20px;
     }
@@ -907,7 +903,7 @@
 
 @media (width <=1024px) {
 
-    .addTaskContent {
+    .add-task-content {
         --mobile-nav-height: 75px;
         --footer-buttons-height: 70px;
         align-items: center;
@@ -918,7 +914,7 @@
         background: var(--main-bg-color);
     }
 
-    .siteHeader {
+    .site-header {
         position: static;
         z-index: auto;
         width: 100%;
@@ -931,7 +927,7 @@
         line-height: 120%;
     }
 
-    .addTaskForm {
+    .add-task-form {
         flex: initial;
         flex-direction: column;
         width: 100%;
@@ -942,21 +938,21 @@
         overflow: visible;
     }
 
-    .addTaskFieldsLeft,
-    .addTaskFieldsRight {
+    .add-task-fields-left,
+    .add-task-fields-right {
         width: 100%;
         max-width: 100%;
     }
 
-    .horizontalDivider {
+    .horizontal-divider {
         display: none;
     }
 
-    .dropdownList:last-child {
+    .dropdown-list:last-child {
         padding-bottom: 32px;
     }
 
-    .addTaskContent footer {
+    .add-task-content footer {
         display: block;
         width: 100%;
         max-width: 560px;
@@ -965,11 +961,11 @@
         padding-bottom: 0;
     }
 
-    .requiredFieldsNotice {
+    .required-fields-notice {
         margin: 0;
     }
 
-    .footerButtons {
+    .footer-buttons {
         position: fixed;
         right: 0;
         bottom: var(--mobile-nav-height);
@@ -998,7 +994,7 @@
         font-size: 1.3125rem;
     }
 
-    .createTask {
+    .create-task {
         width: 180px;
         height: 56px;
         background: var(--button-primary-bg);
@@ -1010,7 +1006,7 @@
 /*mobile*/
 
 @media (width <=768px) {
-    .addTaskContent {
+    .add-task-content {
         --mobile-nav-height: 80px;
         --footer-buttons-height: 72px;
         padding: 32px 20px calc(var(--mobile-nav-height) + var(--footer-buttons-height) + 16px);
@@ -1018,44 +1014,44 @@
         overflow-y: auto;
     }
 
-    .siteHeader {
+    .site-header {
         position: static;
         margin: 0 0 24px;
         padding: 0;
         font-size: 2.9375rem;
     }
 
-    .addTaskForm {
+    .add-task-form {
         max-width: 100%;
         padding-bottom: 0;
         overflow: visible;
     }
 
-    .addTaskContent label,
-    .addTaskContent .fieldLabel {
+    .add-task-content label,
+    .add-task-content .field-label {
         padding: 0;
         font-size: 1.125rem;
     }
 
-    .addTaskFieldsLeft>label,
-    .addTaskFieldsRight>label,
-    .addTaskFieldsRight>.fieldLabel,
-    .dropdownList>label {
+    .add-task-fields-left>label,
+    .add-task-fields-right>label,
+    .add-task-fields-right>.field-label,
+    .dropdown-list>label {
         margin-bottom: 8px;
     }
 
-    .addTaskContent input {
+    .add-task-content input {
         width: 100%;
         height: 48px;
         padding: 12px 16px;
         font-size: 1.125rem;
     }
 
-    .inputWrapper input {
+    .input-wrapper input {
         padding: 12px 40px 12px 16px;
     }
 
-    .addTaskFieldsLeft textarea {
+    .add-task-fields-left textarea {
         width: 100%;
         height: 108px;
         margin-bottom: 24px;
@@ -1063,15 +1059,15 @@
         font-size: 1.125rem;
     }
 
-    .errorMessage {
+    .error-message {
         font-size: 1.125rem;
     }
 
-    .dropdownList:last-child {
+    .dropdown-list:last-child {
         padding-bottom: 0;
     }
 
-    .addTaskContent footer {
+    .add-task-content footer {
         display: block;
         width: 100%;
         max-width: 100%;
@@ -1080,7 +1076,7 @@
         padding-bottom: 0;
     }
 
-    .footerButtons {
+    .footer-buttons {
         bottom: var(--mobile-nav-height);
         gap: 12px;
         height: var(--footer-buttons-height);
@@ -1093,7 +1089,7 @@
 
 @media (width <=475px) {
 
-    .addTaskContent {
+    .add-task-content {
         --mobile-nav-height: 80px;
         --footer-buttons-height: 72px;
         padding: 28px 16px calc(var(--mobile-nav-height) + var(--footer-buttons-height) + 16px);
@@ -1101,72 +1097,72 @@
         overflow-y: auto;
     }
 
-    .siteHeader {
+    .site-header {
         position: static;
         margin-bottom: 20px;
         padding: 0;
         font-size: 2.5rem;
     }
 
-    .addTaskForm {
+    .add-task-form {
         padding-bottom: 0;
         overflow: visible;
     }
 
-    .addTaskContent label,
-    .addTaskContent .fieldLabel {
+    .add-task-content label,
+    .add-task-content .field-label {
         padding: 0;
         font-size: 1.125rem;
     }
 
-    .addTaskContent input {
+    .add-task-content input {
         height: 46px;
         padding: 10px 16px;
         font-size: 1rem;
     }
 
-    .inputWrapper input {
+    .input-wrapper input {
         padding: 10px 40px 10px 16px;
     }
 
-    .addTaskFieldsLeft textarea {
+    .add-task-fields-left textarea {
         height: 96px;
         padding: 10px 16px;
         font-size: 1rem;
     }
 
-    .errorMessage {
+    .error-message {
         font-size: 1rem;
     }
 
-    .priorityGroup {
+    .priority-group {
         gap: 10px;
     }
 
-    .priorityGroup label {
+    .priority-group label {
         flex: 1;
         max-width: none;
         height: 48px;
         font-size: 1rem;
     }
 
-    .priorityGroup label img {
+    .priority-group label img {
         width: 18px;
         height: 18px;
     }
 
-    .dropdownList:last-child {
+    .dropdown-list:last-child {
         padding-bottom: 0;
     }
 
-    .addTaskContent footer {
+    .add-task-content footer {
         display: block;
         min-height: auto;
         margin: 16px auto 0;
         padding-bottom: 0;
     }
 
-    .footerButtons {
+    .footer-buttons {
         bottom: var(--mobile-nav-height);
         gap: 12px;
         height: var(--footer-buttons-height);
@@ -1180,7 +1176,7 @@
         font-size: 1.25rem;
     }
 
-    .createTask {
+    .create-task {
         width: 160px;
         height: 56px;
         font-size: 1.125rem;
@@ -1191,7 +1187,7 @@
 
 @media (width <=365px) {
 
-    .addTaskContent {
+    .add-task-content {
         --mobile-nav-height: 75px;
         --footer-buttons-height: 72px;
         padding: 24px 12px calc(var(--mobile-nav-height) + var(--footer-buttons-height) + 16px);
@@ -1199,70 +1195,70 @@
         overflow-y: auto;
     }
 
-    .siteHeader {
+    .site-header {
         position: static;
         margin-bottom: 16px;
         padding: 0;
         font-size: 2.25rem;
     }
 
-    .addTaskForm {
+    .add-task-form {
         padding-bottom: 0;
         overflow: visible;
     }
 
-    .addTaskContent label,
-    .addTaskContent .fieldLabel {
+    .add-task-content label,
+    .add-task-content .field-label {
         padding: 0;
         font-size: 1rem;
     }
 
-    .addTaskContent input {
+    .add-task-content input {
         height: 42px;
         padding: 9px 12px;
         font-size: 1rem;
     }
 
-    .inputWrapper input {
+    .input-wrapper input {
         padding: 9px 36px 9px 12px;
     }
 
-    .addTaskFieldsLeft textarea {
+    .add-task-fields-left textarea {
         height: 88px;
         padding: 9px 12px;
         font-size: 1rem;
     }
 
-    .errorMessage {
+    .error-message {
         font-size: 1rem;
     }
 
-    .priorityGroup {
+    .priority-group {
         gap: 8px;
     }
 
-    .priorityGroup label {
+    .priority-group label {
         height: 41px;
         font-size: 1rem;
     }
 
-    .priorityGroup label img {
+    .priority-group label img {
         width: 16px;
         height: 16px;
     }
 
-    .dropdownList:last-child {
+    .dropdown-list:last-child {
         padding-bottom: 0;
     }
 
-    .addTaskContent footer {
+    .add-task-content footer {
         display: block;
         min-height: auto;
         margin: 14px auto 0;
         padding-bottom: 0;
     }
 
-    .footerButtons {
+    .footer-buttons {
         bottom: var(--mobile-nav-height);
         gap: 8px;
         height: var(--footer-buttons-height);
@@ -1276,7 +1272,7 @@
         font-size: 1.125rem;
     }
 
-    .createTask {
+    .create-task {
         width: 150px;
         height: 54px;
         font-size: 1.0625rem;
@@ -1286,16 +1282,16 @@
 /*priority buttons from 400px*/
 
 @media (width <=400px) {
-    .priorityGroup {
+    .priority-group {
         gap: 8px;
     }
 
-    .priorityGroup label {
+    .priority-group label {
         height: 41px;
         font-size: 1rem;
     }
 
-    .priorityGroup label img {
+    .priority-group label img {
         width: 16px;
         height: 16px;
     }
@@ -1314,7 +1310,7 @@
     }
 
     .main-content,
-    .addTaskContent {
+    .add-task-content {
         height: calc(100dvh - 96px);
         min-height: 0;
         overflow-x: hidden;
@@ -1325,20 +1321,20 @@
 /*minimum supported mobile width*/
 
 @media (width <=320px) {
-    .addTaskContent {
+    .add-task-content {
         padding-right: 10px;
         padding-left: 10px;
     }
 
-    .siteHeader {
+    .site-header {
         font-size: 2.125rem;
     }
 
-    .priorityGroup {
+    .priority-group {
         gap: 6px;
     }
 
-    .priorityGroup label {
+    .priority-group label {
         height: 41px;
         font-size: 1rem;
     }
@@ -1349,12 +1345,12 @@
         font-size: 1rem;
     }
 
-    .createTask {
+    .create-task {
         width: 140px;
         font-size: 1rem;
     }
 
-    .footerButtons {
+    .footer-buttons {
         gap: 6px;
         padding-right: 10px;
         padding-left: 10px;
@@ -1375,7 +1371,7 @@
         flex-shrink: 0;
     }
 
-    .main-content.addTaskContent {
+    .main-content.add-task-content {
         flex: 1 1 auto;
         width: 100%;
         max-width: none;
@@ -1387,22 +1383,23 @@
 
 /* Keep the page form typography aligned with the board dialog on phones. */
 @media (width <=440px) {
-    .addTaskContent label,
-    .addTaskContent .fieldLabel,
-    .addTaskContent input,
-    .addTaskFieldsLeft textarea,
-    .priorityGroup label,
-    .errorMessage,
-    .subtaskList li {
+
+    .add-task-content label,
+    .add-task-content .field-label,
+    .add-task-content input,
+    .add-task-fields-left textarea,
+    .priority-group label,
+    .error-message,
+    .subtask-list li {
         font-size: 1rem;
     }
 
-    .addTaskContent input {
+    .add-task-content input {
         height: 48px;
         padding: 10px 16px;
     }
 
-    .inputWrapper input {
+    .input-wrapper input {
         padding-right: 40px;
     }
 }

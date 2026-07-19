@@ -4,16 +4,30 @@
 
 /**
  * Toggles the dropdown open/closed for the given wrapper element.
- * @param {HTMLElement} element - The dropdown's wrapper element (e.g. .inputWrapper).
+ * @param {HTMLElement} element - The dropdown's wrapper element (e.g. .input-wrapper).
  * @param {Function} [onClose] - Optional callback function to execute when the dropdown is closed.
  */
 function dropdownToggle(element, onClose) {
-    const dropdown = element.parentElement.querySelector('.dropdownContent');
+    const dropdown = element.parentElement.querySelector('.dropdown-content');
     const isOpen = dropdown.style.display === 'block';
     dropdown.style.display = isOpen ? 'none' : 'block';
     element.classList.toggle('open', !isOpen);
     element.querySelector('input').setAttribute('aria-expanded', String(!isOpen));
     if (isOpen && onClose) onClose();
+}
+
+
+/**
+ * Opens the dropdown for the given wrapper element without closing it if already open.
+ * Used for the input click so typing a filter query isn't interrupted by re-clicking the field.
+ * @param {HTMLElement} element - The dropdown's wrapper element (e.g. .input-wrapper).
+ */
+function dropdownOpen(element) {
+    const dropdown = element.parentElement.querySelector('.dropdown-content');
+    if (dropdown.style.display === 'block') return;
+    dropdown.style.display = 'block';
+    element.classList.add('open');
+    element.querySelector('input').setAttribute('aria-expanded', 'true');
 }
 
 
@@ -24,10 +38,10 @@ function dropdownToggle(element, onClose) {
  */
 function closeDropdown(input, onClose) {
     document.addEventListener('click', (event) => {
-        const dropdownList = input.closest('.dropdownList');
+        const dropdownList = input.closest('.dropdown-list');
         if (!dropdownList.contains(event.target)) {
-            dropdownList.querySelector('.dropdownContent').style.display = 'none';
-            dropdownList.querySelector('.inputWrapper').classList.remove('open');
+            dropdownList.querySelector('.dropdown-content').style.display = 'none';
+            dropdownList.querySelector('.input-wrapper').classList.remove('open');
             input.setAttribute('aria-expanded', 'false');
             if (onClose) onClose();
         }
@@ -42,13 +56,15 @@ function closeDropdown(input, onClose) {
  */
 function setupDropdownToggle(input, onClose) {
     const wrapper = input.parentElement;
-    const dropdownList = input.closest('.dropdownList');
-    const arrow = wrapper.querySelector('.inputIcon');
+    const dropdownList = input.closest('.dropdown-list');
+    const arrow = wrapper.querySelector('.input-icon');
+    const open = () => dropdownOpen(wrapper);
     const toggle = () => dropdownToggle(wrapper, onClose);
     const close = () => closeOneAddTaskDropdown(input, onClose);
+    trackDropdownPointerDown(dropdownList);
     initializeKeyboardDropdown(input, toggle, close);
     initializeContactDropdownKeys(dropdownList, close);
-    input.addEventListener('click', toggle);
+    input.addEventListener('click', open);
     arrow.addEventListener('click', toggle);
     dropdownList.addEventListener('focusout', () => closeDropdownAfterFocusLeaves(dropdownList, close));
 }
@@ -56,11 +72,11 @@ function setupDropdownToggle(input, onClose) {
 
 /** Closes one dropdown on the standalone Add Task page. */
 function closeOneAddTaskDropdown(input, onClose) {
-    const dropdownList = input.closest('.dropdownList');
-    const dropdown = dropdownList.querySelector('.dropdownContent');
+    const dropdownList = input.closest('.dropdown-list');
+    const dropdown = dropdownList.querySelector('.dropdown-content');
     if (dropdown.style.display !== 'block') return;
     dropdown.style.display = 'none';
-    dropdownList.querySelector('.inputWrapper').classList.remove('open');
+    dropdownList.querySelector('.input-wrapper').classList.remove('open');
     input.setAttribute('aria-expanded', 'false');
     if (onClose) onClose();
 }
@@ -88,9 +104,9 @@ function buildContactRow(key, contact) {
  */
 function buildSubtaskTextGroup(text) {
     const textGroup = document.createElement('div');
-    textGroup.className = 'subtaskTextGroup';
+    textGroup.className = 'subtask-text-group';
     const bullet = document.createElement('span');
-    bullet.className = 'subtaskBullet';
+    bullet.className = 'subtask-bullet';
     bullet.textContent = '•';
     const textSpan = document.createElement('span');
     textSpan.className = 'subtaskText';
@@ -106,12 +122,12 @@ function buildSubtaskTextGroup(text) {
  */
 function buildSubtaskActions() {
     const actions = document.createElement('div');
-    actions.className = 'subtaskItemActions';
+    actions.className = 'subtask-item-actions';
     actions.innerHTML = `
-        <button class="subtaskEdit" type="button" tabindex="0" aria-label="Edit subtask">
+        <button class="subtask-edit" type="button" tabindex="0" aria-label="Edit subtask">
             <img src="../assets/icons/edit.png" alt="">
         </button>
-        <button class="subtaskDelete" type="button" tabindex="0" aria-label="Delete subtask">
+        <button class="subtask-delete" type="button" tabindex="0" aria-label="Delete subtask">
             <img src="../assets/icons/delete.png" alt="">
         </button>
     `;
@@ -126,7 +142,7 @@ function buildSubtaskActions() {
 function enterSubtaskEditIcon(editIcon) {
     editIcon.querySelector('img').src = '../assets/icons/check.png';
     editIcon.setAttribute('aria-label', 'Save subtask');
-    editIcon.classList.replace('subtaskEdit', 'subtaskSaveEdit');
+    editIcon.classList.replace('subtask-edit', 'subtask-save-edit');
     editIcon.parentElement.append(editIcon);
 }
 
@@ -138,7 +154,7 @@ function enterSubtaskEditIcon(editIcon) {
 function exitSubtaskEditIcon(editIcon) {
     editIcon.querySelector('img').src = '../assets/icons/edit.png';
     editIcon.setAttribute('aria-label', 'Edit subtask');
-    editIcon.classList.replace('subtaskSaveEdit', 'subtaskEdit');
+    editIcon.classList.replace('subtask-save-edit', 'subtask-edit');
     editIcon.parentElement.prepend(editIcon);
 }
 
@@ -151,7 +167,7 @@ function exitSubtaskEditIcon(editIcon) {
 function createSubtaskEditInput(currentText) {
     const editInput = document.createElement('input');
     editInput.type = 'text';
-    editInput.className = 'subtaskEditInput';
+    editInput.className = 'subtask-edit-input';
     editInput.value = currentText;
     return editInput;
 }
@@ -170,7 +186,7 @@ function finishSubtaskEdit(listItem, editIcon, editInput, currentText, newText) 
     newSpan.className = 'subtaskText';
     newSpan.textContent = newText || currentText;
     editInput.replaceWith(newSpan);
-    listItem.classList.remove('isEditing');
+    listItem.classList.remove('is-editing');
     exitSubtaskEditIcon(editIcon);
 }
 
@@ -202,7 +218,7 @@ function editSubtask(listItem) {
     const textSpan = listItem.querySelector('.subtaskText');
     if (!textSpan) return;
     const currentText = textSpan.textContent;
-    const editIcon = listItem.querySelector('.subtaskEdit');
+    const editIcon = listItem.querySelector('.subtask-edit');
     const editInput = prepareSubtaskEdit(listItem, textSpan, editIcon, currentText);
     wireActiveSubtaskEdit(listItem, editIcon, editInput, currentText);
 }
@@ -218,7 +234,7 @@ function editSubtask(listItem) {
  */
 function prepareSubtaskEdit(listItem, textSpan, editIcon, currentText) {
     const editInput = createSubtaskEditInput(currentText);
-    listItem.classList.add('isEditing');
+    listItem.classList.add('is-editing');
     enterSubtaskEditIcon(editIcon);
     textSpan.replaceWith(editInput);
     editInput.focus();
@@ -262,7 +278,7 @@ function focusSubtaskAction(itemIndex, selector) {
  * @returns {Array<Object>} An array of assigned contact objects, each containing an id and type.
  */
 function getAssignedContacts() {
-    return Array.from(document.querySelectorAll('.contactCheckbox:checked')).map((checkbox) => ({
+    return Array.from(document.querySelectorAll('.contact-checkbox:checked')).map((checkbox) => ({
         id: checkbox.dataset.id,
         type: 'contact'
     }));
@@ -359,7 +375,7 @@ function clearTaskInputs() {
 /** Resets the subtask input and removes its actions from the tab order. */
 function resetSubtaskInput() {
     subtaskInput.value = "";
-    subtaskWrapper.classList.remove("isWriting");
+    subtaskWrapper.classList.remove("is-writing");
     subtaskCancel.disabled = true;
     subtaskCheck.disabled = true;
 }
@@ -379,10 +395,10 @@ function clearTaskErrors() {
  * Resets assigned contacts and the selected priority.
  */
 function resetTaskSelections() {
-    document.querySelectorAll(".contactCheckbox:checked").forEach((checkbox) => {
+    document.querySelectorAll(".contact-checkbox:checked").forEach((checkbox) => {
         checkbox.checked = false;
     });
     renderSelectedContacts();
     document.getElementById("medium").checked = true;
-    updatePriorityAriaState(document.querySelector(".priorityGroup"));
+    updatePriorityAriaState(document.querySelector(".priority-group"));
 }

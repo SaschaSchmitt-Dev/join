@@ -19,11 +19,28 @@ function handleKeyboardDropdown(event, input, toggleDropdown, closeDropdown) {
 }
 
 
-/** Runs a callback after focus leaves a complete dropdown component. */
+/**
+ * Runs a callback after focus leaves a complete dropdown component.
+ * Clicking a label (e.g. a contact row) can activate its checkbox without
+ * moving keyboard focus onto it (notably on macOS), which would otherwise
+ * blur the dropdown's input and incorrectly close it. Tracking the last
+ * mousedown target avoids that false close.
+ */
 function closeDropdownAfterFocusLeaves(dropdown, closeDropdown) {
     setTimeout(() => {
-        if (!dropdown.contains(document.activeElement)) closeDropdown();
+        const clickedInside = dropdown.dataset.pointerDownInside === "true";
+        delete dropdown.dataset.pointerDownInside;
+        if (clickedInside || dropdown.contains(document.activeElement)) return;
+        closeDropdown();
     }, 0);
+}
+
+
+/** Marks a dropdown as having just received a mousedown inside it, for closeDropdownAfterFocusLeaves. */
+function trackDropdownPointerDown(dropdown) {
+    dropdown.addEventListener("mousedown", () => {
+        dropdown.dataset.pointerDownInside = "true";
+    });
 }
 
 
@@ -32,6 +49,7 @@ function initializeDialogDropdownAccessibility(dialog) {
     [dialog.querySelector("#assignedTo"), dialog.querySelector("#category")]
         .forEach(connectDialogDropdownInput);
     dialog.querySelectorAll(".dropdown-list").forEach((dropdown) => {
+        trackDropdownPointerDown(dropdown);
         dropdown.addEventListener("focusout", () => closeDialogDropdownAfterFocus(dropdown));
         dropdown.addEventListener("keydown", (event) => closeDialogDropdownOnEscape(event, dropdown));
     });
@@ -73,11 +91,11 @@ function closeDialogDropdownOnEscape(event, dropdown) {
 /** Adds closing keys to a dropdown containing standalone contact checkboxes. */
 function initializeContactDropdownKeys(dropdown, closeDropdown) {
     dropdown.addEventListener("keydown", (event) => {
-        const confirmsContacts = event.key === "Enter" && event.target.matches(".contactCheckbox");
+        const confirmsContacts = event.key === "Enter" && event.target.matches(".contact-checkbox");
         if (event.key !== "Escape" && !confirmsContacts) return;
         event.preventDefault();
         event.stopPropagation();
         closeDropdown();
-        dropdown.querySelector(".inputWrapper input").focus();
+        dropdown.querySelector(".input-wrapper input").focus();
     });
 }

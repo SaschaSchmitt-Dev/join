@@ -13,15 +13,15 @@ const dueDateError = document.getElementById("dueDateError");
 const categoryError = document.getElementById("categoryError");
 const descriptionInput = document.getElementById("description");
 const subtaskInput = document.getElementById("subtasks");
-const subtaskWrapper = subtaskInput.closest(".subtaskInputWrapper");
-const subtaskCancel = subtaskWrapper.querySelector(".subtaskCancel");
-const subtaskCheck = subtaskWrapper.querySelector(".subtaskCheck");
-const subtaskList = subtaskWrapper.parentElement.querySelector(".subtaskList");
-const createTaskButton = document.querySelector(".createTask");
-const taskAddedToast = document.querySelector(".taskAddedToast");
+const subtaskWrapper = subtaskInput.closest(".subtask-input-wrapper");
+const subtaskCancel = subtaskWrapper.querySelector(".subtask-cancel");
+const subtaskCheck = subtaskWrapper.querySelector(".subtask-check");
+const subtaskList = subtaskWrapper.parentElement.querySelector(".subtask-list");
+const createTaskButton = document.querySelector(".create-task");
+const taskAddedToast = document.querySelector(".task-added-toast");
 
-initializeHorizontalDragScroll(document.querySelector(".selectedContacts"));
-initializePriorityKeyboard(document.querySelector(".priorityGroup"));
+initializeHorizontalDragScroll(document.querySelector(".selected-contacts"));
+initializePriorityKeyboard(document.querySelector(".priority-group"));
 
 /**
  * Resets the assigned-to dropdown input and shows all contacts again.
@@ -30,8 +30,8 @@ function resetAssignetToDropdown() {
     assignetToInput.value = "";
 
     assignetToInput
-        .closest(".dropdownList")
-        .querySelectorAll(".dropdownContent label")
+        .closest(".dropdown-list")
+        .querySelectorAll(".dropdown-content label")
         .forEach((label) => {
             label.style.display = "";
         });
@@ -50,8 +50,8 @@ closeDropdown(assignetToInput, resetAssignetToDropdown);
 assignetToInput.addEventListener("input", () => {
     const query = assignetToInput.value.toLowerCase();
     const dropdownContent = assignetToInput
-        .closest(".dropdownList")
-        .querySelector(".dropdownContent");
+        .closest(".dropdown-list")
+        .querySelector(".dropdown-content");
 
     dropdownContent.style.display = "block";
     assignetToInput.parentElement.classList.add("open");
@@ -67,8 +67,8 @@ setupDropdownToggle(categoryInput);
 closeDropdown(categoryInput);
 
 const categoryDropdownContent = categoryInput
-    .closest(".dropdownList")
-    .querySelector(".dropdownContent");
+    .closest(".dropdown-list")
+    .querySelector(".dropdown-content");
 
 categoryDropdownContent.querySelectorAll("a").forEach((option) => {
     option.addEventListener("click", (event) => {
@@ -87,12 +87,12 @@ categoryDropdownContent.querySelectorAll("a").forEach((option) => {
  * Renders the selected contact avatars below the assigned-to field.
  */
 function renderSelectedContacts() {
-    const selectedContacts = document.querySelector(".selectedContacts");
+    const selectedContacts = document.querySelector(".selected-contacts");
     selectedContacts.innerHTML = "";
-    const checkedBoxes = document.querySelectorAll(".contactCheckbox:checked");
+    const checkedBoxes = document.querySelectorAll(".contact-checkbox:checked");
     checkedBoxes.forEach((checkbox) => {
         const avatar = document.createElement("div");
-        avatar.className = "contactAvatar";
+        avatar.className = "contact-avatar";
         avatar.style.background = checkbox.dataset.color;
         avatar.style.color = checkbox.dataset.textColor;
         avatar.textContent = checkbox.dataset.initials;
@@ -109,8 +109,8 @@ function renderSelectedContacts() {
  */
 function renderAssignetToContacts(contacts) {
     const dropdownContent = assignetToInput
-        .closest(".dropdownList")
-        .querySelector(".dropdownContent");
+        .closest(".dropdown-list")
+        .querySelector(".dropdown-content");
     dropdownContent.innerHTML = "";
     for (let key in contacts) {
         dropdownContent.appendChild(buildContactRow(key, contacts[key]));
@@ -130,7 +130,7 @@ fetch(BASE_URL + "contacts.json")
  * @param {HTMLElement} errorEl - The error element that should show the message.
  */
 function showError(input, errorEl) {
-    input.classList.add("inputError");
+    input.classList.add("input-error");
     errorEl.textContent = "This field is required";
 }
 
@@ -142,7 +142,7 @@ function showError(input, errorEl) {
  * @param {HTMLElement} errorEl - The error element that should be cleared.
  */
 function clearError(input, errorEl) {
-    input.classList.remove("inputError");
+    input.classList.remove("input-error");
     errorEl.textContent = "";
 }
 
@@ -246,7 +246,7 @@ categoryInput.addEventListener("change", () => {
 
 subtaskInput.addEventListener("input", () => {
     const hasContent = subtaskInput.value.trim() !== "";
-    subtaskWrapper.classList.toggle("isWriting", hasContent);
+    subtaskWrapper.classList.toggle("is-writing", hasContent);
     subtaskCancel.disabled = !hasContent;
     subtaskCheck.disabled = !hasContent;
 });
@@ -268,7 +268,7 @@ function addSubtask() {
 
     const listItem = document.createElement("li");
     const row = document.createElement("div");
-    row.className = "subtaskRow";
+    row.className = "subtask-row";
     row.append(buildSubtaskTextGroup(subtaskText), buildSubtaskActions());
     listItem.append(row);
     subtaskList.appendChild(listItem);
@@ -287,7 +287,7 @@ subtaskInput.addEventListener("keydown", (event) => {
 
 
 subtaskList.addEventListener("dblclick", (event) => {
-    if (event.target.closest(".subtaskEditInput")) return;
+    if (event.target.closest(".subtask-edit-input")) return;
 
     const listItem = event.target.closest("li");
 
@@ -297,7 +297,7 @@ subtaskList.addEventListener("dblclick", (event) => {
 
 
 subtaskList.addEventListener("mousedown", (event) => {
-    if (event.target.closest(".subtaskItemActions")) {
+    if (event.target.closest(".subtask-item-actions")) {
         event.preventDefault();
     }
 });
@@ -308,21 +308,21 @@ subtaskList.addEventListener("click", (event) => {
 
     if (!listItem) return;
 
-    if (event.target.closest(".subtaskEdit")) {
+    if (event.target.closest(".subtask-edit")) {
         editSubtask(listItem);
         return;
     }
 
-    if (event.target.closest(".subtaskDelete")) {
+    if (event.target.closest(".subtask-delete")) {
         const itemIndex = Array.from(subtaskList.children).indexOf(listItem);
         listItem.remove();
-        focusSubtaskAction(itemIndex, ".subtaskDelete");
+        focusSubtaskAction(itemIndex, ".subtask-delete");
         return;
     }
 
-    if (event.target.closest(".subtaskSaveEdit")) {
+    if (event.target.closest(".subtask-save-edit")) {
         listItem._saveEdit();
-        listItem.querySelector(".subtaskEdit")?.focus();
+        listItem.querySelector(".subtask-edit")?.focus();
     }
 });
 
