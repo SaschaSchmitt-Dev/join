@@ -210,7 +210,7 @@ function prepareDialogSubtaskSaveButton(item) {
     const button = item.querySelector(".edit-dialog-subtask");
     button.className = "save-dialog-subtask";
     button.setAttribute("aria-label", "Save subtask");
-    button.querySelector("img").src = "../assets/icons/check.png";
+    button.querySelector("img").src = "../assets/icons/check.webp";
     button.parentElement.append(button);
     return button;
 }

@@ -192,11 +192,11 @@
 }
 
 .open-task-delete::before {
-    mask: url("../assets/icons/delete.png") center / contain no-repeat;
+    mask: url("../assets/icons/delete.webp") center / contain no-repeat;
 }
 
 .open-task-edit::before {
-    mask: url("../assets/icons/edit.png") center / contain no-repeat;
+    mask: url("../assets/icons/edit.webp") center / contain no-repeat;
 }
 
 .open-task-actions button:hover {

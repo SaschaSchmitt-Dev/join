@@ -139,7 +139,7 @@ function getTaskViewData(task) {
         category: escapeBoardHtml(task.category),
         categoryClass: getTaskCategoryClass(task.category),
         priority,
-        priorityIcon: `${priority}-priority.png`
+        priorityIcon: `${priority}-priority.webp`
     };
 }
 

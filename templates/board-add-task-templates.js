@@ -40,8 +40,8 @@ function getAddTaskDialogFooterTemplate() {
         <footer class="add-task-dialog-footer">
             <p><span class="required-marker">*</span>This field is required</p>
             <div class="footer-buttons">
-                <button class="cancel-task" type="button">Cancel <img src="../assets/icons/cancel.png" alt=""></button>
-                <button class="create-task" type="submit" form="addTaskDialogForm">Create Task <img src="../assets/icons/check.png" alt=""></button>
+                <button class="cancel-task" type="button">Cancel <img src="../assets/icons/cancel.webp" alt=""></button>
+                <button class="create-task" type="submit" form="addTaskDialogForm">Create Task <img src="../assets/icons/check.webp" alt=""></button>
             </div>
         </footer>
     `;
@@ -90,9 +90,9 @@ function getAddTaskDialogRightFieldsTemplate() {
 function getAddTaskPriorityTemplate() {
     return `
         <div class="dialog-field-group"><div class="field-label" id="dialogPriorityLabel">Priority</div><div class="priority-group" role="radiogroup" aria-labelledby="dialogPriorityLabel">
-            <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1" aria-hidden="true"><label for="urgent" tabindex="0" role="radio">Urgent <img src="../assets/icons/urgent-priority.png" alt=""></label>
-            <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true" checked><label for="medium" tabindex="0" role="radio">Medium <img src="../assets/icons/medium-priority.png" alt=""></label>
-            <input type="radio" name="priority" id="low" value="low" tabindex="-1" aria-hidden="true"><label for="low" tabindex="0" role="radio">Low <img src="../assets/icons/low-priority.png" alt=""></label>
+            <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1" aria-hidden="true"><label for="urgent" tabindex="0" role="radio">Urgent <img src="../assets/icons/urgent-priority.webp" alt=""></label>
+            <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true" checked><label for="medium" tabindex="0" role="radio">Medium <img src="../assets/icons/medium-priority.webp" alt=""></label>
+            <input type="radio" name="priority" id="low" value="low" tabindex="-1" aria-hidden="true"><label for="low" tabindex="0" role="radio">Low <img src="../assets/icons/low-priority.webp" alt=""></label>
         </div></div>
     `;
 }
@@ -106,7 +106,7 @@ function getAddTaskAssignedTemplate() {
     return `
         <div class="dropdown-list dialog-field-group"><label for="assignedTo" class="assigned-to">Assigned to</label>
             <div class="input-wrapper"><input class="assigned-to" id="assignedTo" placeholder="Select contacts to assign" readonly>
-                <img class="input-icon" src="../assets/icons/arrow-dropdown.png" alt="">
+                <img class="input-icon" src="../assets/icons/arrow-dropdown.webp" alt="">
                 <div class="dropdown-content"></div></div>
             <div class="selected-contacts"></div>
         </div>
@@ -122,7 +122,7 @@ function getAddTaskCategoryTemplate() {
     return `
         <div class="dropdown-list dialog-field-group"><label for="category">Category<span class="required-marker">*</span></label>
             <div class="input-wrapper"><input id="category" placeholder="Select task category" readonly>
-                <img class="input-icon" src="../assets/icons/arrow-dropdown.png" alt="">
+                <img class="input-icon" src="../assets/icons/arrow-dropdown.webp" alt="">
                 <div class="dropdown-content"><a href="#" data-category="Technical Task">Technical Task</a><a href="#" data-category="User Story">User Story</a></div>
             </div><div class="error-message" id="categoryError"></div>
         </div>
@@ -139,10 +139,10 @@ function getAddTaskSubtaskInputTemplate() {
         <div class="dialog-field-group"><label for="subtasks">Subtasks</label><div class="subtask-input-wrapper">
             <input id="subtasks" placeholder="Add new subtasks"><div class="subtask-actions">
                 <button class="subtask-cancel" type="button" tabindex="0" aria-label="Clear subtask" disabled>
-                    <img src="../assets/icons/cancel.png" alt="">
+                    <img src="../assets/icons/cancel.webp" alt="">
                 </button><span class="subtask-divider"></span>
                 <button class="subtask-check" type="button" tabindex="0" aria-label="Add subtask" disabled>
-                    <img src="../assets/icons/check.png" alt="">
+                    <img src="../assets/icons/check.webp" alt="">
                 </button>
             </div></div><ul class="subtask-list"></ul></div>
     `;
@@ -188,8 +188,8 @@ function getAddTaskSubtaskTemplate(subtask) {
         <li data-subtask-index="${subtask.index}">
             <span class="dialog-subtask-text">&bull; ${subtask.title}</span>
             <div class="dialog-subtask-item-actions">
-                <button class="edit-dialog-subtask" type="button" tabindex="0" aria-label="Edit subtask"><img src="../assets/icons/edit.png" alt=""></button>
-                <button class="delete-dialog-subtask" type="button" tabindex="0" aria-label="Delete subtask"><img src="../assets/icons/delete.png" alt=""></button>
+                <button class="edit-dialog-subtask" type="button" tabindex="0" aria-label="Edit subtask"><img src="../assets/icons/edit.webp" alt=""></button>
+                <button class="delete-dialog-subtask" type="button" tabindex="0" aria-label="Delete subtask"><img src="../assets/icons/delete.webp" alt=""></button>
             </div>
         </li>
     `;
@@ -204,7 +204,7 @@ function getTaskAddedMessageTemplate() {
     return `
         <div class="task-added-message" id="taskAddedMessage">
             <span>Task added to board</span>
-            <img src="../assets/icons/board.png" alt="">
+            <img src="../assets/icons/board.webp" alt="">
         </div>
     `;
 }
@@ -233,7 +233,7 @@ function getTaskCardTemplate(task, progressTemplate, usersTemplate) {
                     aria-haspopup="menu"
                     aria-expanded="false"
                 >
-                    <img src="../assets/icons/swap-horiz.png" alt="" aria-hidden="true">
+                    <img src="../assets/icons/swap-horiz.webp" alt="" aria-hidden="true">
                 </button>
             </div>
 

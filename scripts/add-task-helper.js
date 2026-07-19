@@ -125,10 +125,10 @@ function buildSubtaskActions() {
     actions.className = 'subtask-item-actions';
     actions.innerHTML = `
         <button class="subtask-edit" type="button" tabindex="0" aria-label="Edit subtask">
-            <img src="../assets/icons/edit.png" alt="">
+            <img src="../assets/icons/edit.webp" alt="">
         </button>
         <button class="subtask-delete" type="button" tabindex="0" aria-label="Delete subtask">
-            <img src="../assets/icons/delete.png" alt="">
+            <img src="../assets/icons/delete.webp" alt="">
         </button>
     `;
     return actions;
@@ -140,7 +140,7 @@ function buildSubtaskActions() {
  * @param {HTMLElement} editIcon - The edit icon element to change.
  */
 function enterSubtaskEditIcon(editIcon) {
-    editIcon.querySelector('img').src = '../assets/icons/check.png';
+    editIcon.querySelector('img').src = '../assets/icons/check.webp';
     editIcon.setAttribute('aria-label', 'Save subtask');
     editIcon.classList.replace('subtask-edit', 'subtask-save-edit');
     editIcon.parentElement.append(editIcon);
@@ -152,7 +152,7 @@ function enterSubtaskEditIcon(editIcon) {
  * @param {HTMLElement} editIcon - The edit icon element to change.
  */
 function exitSubtaskEditIcon(editIcon) {
-    editIcon.querySelector('img').src = '../assets/icons/edit.png';
+    editIcon.querySelector('img').src = '../assets/icons/edit.webp';
     editIcon.setAttribute('aria-label', 'Edit subtask');
     editIcon.classList.replace('subtask-save-edit', 'subtask-edit');
     editIcon.parentElement.prepend(editIcon);

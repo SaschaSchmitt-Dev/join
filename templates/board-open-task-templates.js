@@ -19,9 +19,9 @@ function getOpenTaskDialogTemplate(task) {
                 <div class="open-task-section"><span>Assigned To:</span><div class="open-task-contacts">${task.contacts}</div></div>
                 <div class="open-task-section"><span>Subtasks</span><div class="open-task-subtasks">${task.subtasks}</div></div>
                 <footer class="open-task-actions">
-                    <button class="open-task-delete" type="button"><img src="../assets/icons/delete.png" alt="">Delete</button>
+                    <button class="open-task-delete" type="button"><img src="../assets/icons/delete.webp" alt="">Delete</button>
                     <span class="open-task-action-divider"></span>
-                    <button class="open-task-edit" type="button"><img src="../assets/icons/edit.png" alt="">Edit</button>
+                    <button class="open-task-edit" type="button"><img src="../assets/icons/edit.webp" alt="">Edit</button>
                 </footer>
             </section>
         </div>`;

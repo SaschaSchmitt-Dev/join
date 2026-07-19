@@ -210,8 +210,8 @@ function togglePasswordIcon() {
 
     toggleButton.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
     toggleButton.disabled = !hasPassword;
-    if (!hasPassword) return icon.src = './assets/icons/lock.png';
-    icon.src = visible ? './assets/icons/visability.png' : './assets/icons/visability-off.png';
+    if (!hasPassword) return icon.src = './assets/icons/lock.webp';
+    icon.src = visible ? './assets/icons/visability.webp' : './assets/icons/visability-off.webp';
 }
 
 

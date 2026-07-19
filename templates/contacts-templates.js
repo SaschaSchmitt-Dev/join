@@ -70,12 +70,12 @@ function getContactActionsTemplate() {
     return `
         <div class="contact-actions">
             <button class="contact-action-btn edit-contact-btn" type="button" onclick="openEditContactOverlay()">
-                <img src="../assets/icons/edit.png" alt="Edit">
+                <img src="../assets/icons/edit.webp" alt="Edit">
                 <span>Edit</span>
             </button>
 
             <button class="contact-action-btn delete-contact-btn" type="button" onclick="deleteContact()">
-                <img src="../assets/icons/delete.png" alt="Delete">
+                <img src="../assets/icons/delete.webp" alt="Delete">
                 <span>Delete</span>
             </button>
         </div>

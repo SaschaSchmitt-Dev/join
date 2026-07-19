@@ -123,11 +123,11 @@
 }
 
 #cardToDo:hover img {
-    content: url("../assets/icons/to-do-icon-light.png");
+    content: url("../assets/icons/to-do-icon-light.webp");
 }
 
 #cardDone:hover img {
-    content: url("../assets/icons/done-icon-light.png");
+    content: url("../assets/icons/done-icon-light.webp");
 }
 
 .summary-content.center {

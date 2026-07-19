@@ -74,7 +74,7 @@ function getOpenTaskView(task) {
         description: escapeBoardHtml(task.description || ""),
         category: escapeBoardHtml(task.category), categoryClass: getTaskCategoryClass(task.category),
         dueDate: getOpenTaskDate(task.dueDate), priorityLabel: priority[0].toUpperCase() + priority.slice(1),
-        priorityIcon: `${priority}-priority.png`, contacts: getOpenTaskContacts(task.assignedTo),
+        priorityIcon: `${priority}-priority.webp`, contacts: getOpenTaskContacts(task.assignedTo),
         subtasks: getOpenTaskSubtasks(task.subtasks)
     };
 }
@@ -143,7 +143,7 @@ async function deleteOpenTask() {
 function openEditTaskDialog(task) {
     closeOpenTaskDialog(false);
     document.body.insertAdjacentHTML
-    ("beforeend", getEditTaskDialogTemplate(task));
+        ("beforeend", getEditTaskDialogTemplate(task));
     const dialog = document.getElementById("editTaskDialog");
     dialog.querySelector(".edit-task-close").addEventListener("click", closeEditTaskDialog);
     dialog.addEventListener("click", closeEditTaskOnBackdrop);
