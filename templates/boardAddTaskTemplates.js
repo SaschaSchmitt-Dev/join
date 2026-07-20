@@ -90,9 +90,9 @@ function getAddTaskDialogRightFieldsTemplate() {
 function getAddTaskPriorityTemplate() {
     return `
         <div class="dialog-field-group"><div class="field-label" id="dialogPriorityLabel">Priority</div><div class="priority-group" role="radiogroup" aria-labelledby="dialogPriorityLabel">
-            <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1" aria-hidden="true"><label for="urgent" tabindex="0" role="radio">Urgent <img src="../assets/icons/urgent-priority.webp" alt=""></label>
-            <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true" checked><label for="medium" tabindex="0" role="radio">Medium <img src="../assets/icons/medium-priority.webp" alt=""></label>
-            <input type="radio" name="priority" id="low" value="low" tabindex="-1" aria-hidden="true"><label for="low" tabindex="0" role="radio">Low <img src="../assets/icons/low-priority.webp" alt=""></label>
+            <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1" aria-hidden="true"><label for="urgent" tabindex="0" role="radio">Urgent <img src="../assets/icons/urgentPriority.webp" alt=""></label>
+            <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true" checked><label for="medium" tabindex="0" role="radio">Medium <img src="../assets/icons/mediumPriority.webp" alt=""></label>
+            <input type="radio" name="priority" id="low" value="low" tabindex="-1" aria-hidden="true"><label for="low" tabindex="0" role="radio">Low <img src="../assets/icons/lowPriority.webp" alt=""></label>
         </div></div>
     `;
 }
@@ -106,7 +106,7 @@ function getAddTaskAssignedTemplate() {
     return `
         <div class="dropdown-list dialog-field-group"><label for="assignedTo" class="assigned-to">Assigned to</label>
             <div class="input-wrapper"><input class="assigned-to" id="assignedTo" type="text" placeholder="Select contacts to assign">
-                <img class="input-icon" src="../assets/icons/arrow-dropdown.webp" alt="">
+                <img class="input-icon" src="../assets/icons/arrowDropdown.webp" alt="">
                 <div class="dropdown-content"></div></div>
             <div class="selected-contacts"></div>
         </div>
@@ -122,7 +122,7 @@ function getAddTaskCategoryTemplate() {
     return `
         <div class="dropdown-list dialog-field-group"><label for="category">Category<span class="required-marker">*</span></label>
             <div class="input-wrapper"><input id="category" placeholder="Select task category" readonly>
-                <img class="input-icon" src="../assets/icons/arrow-dropdown.webp" alt="">
+                <img class="input-icon" src="../assets/icons/arrowDropdown.webp" alt="">
                 <div class="dropdown-content"><a href="#" data-category="Technical Task">Technical Task</a><a href="#" data-category="User Story">User Story</a></div>
             </div><div class="error-message" id="categoryError"></div>
         </div>
@@ -233,7 +233,7 @@ function getTaskCardTemplate(task, progressTemplate, usersTemplate) {
                     aria-haspopup="menu"
                     aria-expanded="false"
                 >
-                    <img src="../assets/icons/swap-horiz.webp" alt="" aria-hidden="true">
+                    <img src="../assets/icons/swapHoriz.webp" alt="" aria-hidden="true">
                 </button>
             </div>
 

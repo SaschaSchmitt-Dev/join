@@ -85,7 +85,7 @@ function getEditPriorityOptionTemplate(priority) {
         <input type="radio" name="editPriority" id="${priority.id}" value="${priority.value}" tabindex="-1" aria-hidden="true"${priority.checked}>
         <label for="${priority.id}" tabindex="0" role="radio">
             ${priority.label}
-            <img src="../assets/icons/${priority.value}-priority.webp" alt="">
+            <img src="../assets/icons/${priority.value}Priority.webp" alt="">
         </label>
     `;
 }
@@ -101,7 +101,7 @@ function getEditTaskAssignedTemplate() {
             <label for="editAssignedTo">Assigned to</label>
             <div class="input-wrapper">
                 <input id="editAssignedTo" type="text" placeholder="Select contacts to assign">
-                <img class="input-icon" src="../assets/icons/arrow-dropdown.webp" alt="">
+                <img class="input-icon" src="../assets/icons/arrowDropdown.webp" alt="">
                 <div class="dropdown-content"></div>
             </div>
             <div class="selected-contacts"></div>

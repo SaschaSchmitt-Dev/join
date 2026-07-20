@@ -1,4 +1,4 @@
-/*contacts layout*/
+/* contacts layout */
 
 .main-content {
     padding: 0;
@@ -13,7 +13,7 @@
     background: var(--main-bg-color);
 }
 
-/*contacts sidebar*/
+/* contacts sidebar */
 
 .contacts-sidebar {
     z-index: 2;
@@ -71,9 +71,9 @@
 }
 
 .contact-information .contact-email:focus-visible {
+    border-radius: 2px;
     outline: 2px solid black;
     outline-offset: 2px;
-    border-radius: 2px;
 }
 
 .contact-group h3 {
@@ -89,16 +89,16 @@
     display: flex;
     align-items: center;
     gap: 24px;
+    width: 100%;
     margin-bottom: 8px;
     padding: 16px 24px;
-    border-radius: 10px;
-    font-family: Inter, sans-serif;
-    cursor: pointer;
-    border: none;
     background: none;
-    width: 100%;
-    text-align: left;
+    border: none;
+    border-radius: 10px;
     color: inherit;
+    font-family: Inter, sans-serif;
+    text-align: left;
+    cursor: pointer;
 }
 
 .contact-card:hover {
@@ -146,7 +146,7 @@
     text-decoration: none;
 }
 
-/*contact detail desktop*/
+/* contact detail desktop */
 
 .contact-details {
     position: relative;
@@ -215,11 +215,11 @@
 
 .contact-detail-name-box h2 {
     margin: 0 0 12px;
+    outline: none;
     color: var(--text-primary);
     font-family: Inter, sans-serif;
     font-size: 47px;
     font-weight: 500;
-    outline: none;
 }
 
 .contact-actions {
@@ -244,9 +244,9 @@
 }
 
 .contact-actions button:focus-visible {
+    border-radius: 4px;
     outline: 2px solid var(--divider-color-blue);
     outline-offset: 6px;
-    border-radius: 4px;
 }
 
 .edit-contact-btn {
@@ -316,7 +316,7 @@
     font-weight: 400;
 }
 
-/*mobile elements hidden on desktop*/
+/* mobile elements hidden on desktop */
 
 .mobile-add-contact-btn,
 .mobile-back-btn,
@@ -326,7 +326,7 @@
     display: none;
 }
 
-/*overlay*/
+/* overlay */
 
 .add-contact-overlay {
     display: flex;
@@ -396,7 +396,7 @@
     padding-top: 24px;
 }
 
-/*modal left desktop*/
+/* modal left desktop */
 
 .modal-left {
     display: flex;
@@ -436,7 +436,7 @@
     background: var(--ui-light);
 }
 
-/*close button*/
+/* close button */
 
 .close-modal {
     display: flex;
@@ -467,7 +467,7 @@
     transform: scale(1.1);
 }
 
-/*modal right desktop*/
+/* modal right desktop */
 
 .modal-right {
     display: flex;
@@ -620,7 +620,7 @@
     background: var(--login-button-primary-bg-active);
 }
 
-/*edit mode desktop*/
+/* edit mode desktop */
 
 .add-contact-modal.edit-mode .modal-left p {
     display: none;
@@ -657,9 +657,9 @@
     transform: translateX(-50%) translateY(0);
 }
 
-/*RESPONSIVE*/
+/* RESPONSIVE */
 
-/*small desktop laptop*/
+/* small desktop laptop */
 
 @media (width <=1280px) {
     .contacts-sidebar {
@@ -757,7 +757,7 @@
     }
 }
 
-/*tight desktop before mobile layout*/
+/* tight desktop before mobile layout */
 
 @media (width >=1025px) and (width <=1120px) {
     .add-contact-modal {
@@ -804,7 +804,7 @@
     }
 }
 
-/*tablet mobile contact layout*/
+/* tablet mobile contact layout */
 
 @media (width <=1024px) {
     body {
@@ -1353,7 +1353,7 @@
     }
 }
 
-/*very small phones*/
+/* very small phones */
 
 @media (width <=420px) {
     .contacts-sidebar {
@@ -1606,7 +1606,7 @@
     }
 }
 
-/*avatar color picker*/
+/* avatar color picker */
 
 .contact-avatar-picker {
     position: relative;
@@ -1729,8 +1729,8 @@
 .contact-avatar-picker .color-options,
 .add-contact-modal.edit-mode .contact-avatar-picker .color-options {
     display: grid;
-    grid-template-columns: repeat(5, 28px);
     gap: 10px;
+    grid-template-columns: repeat(5, 28px);
     width: max-content;
     margin: 0 auto;
 }
@@ -1754,7 +1754,7 @@
     box-shadow: 0 0 0 2px var(--text-white), 0 0 0 4px var(--sidebar-bg-color);
 }
 
-/*desktop*/
+/* desktop */
 
 @media (width <=1280px) {
     .contact-avatar-picker {
@@ -1802,7 +1802,7 @@
     }
 }
 
-/*mobile*/
+/* mobile */
 
 @media (width <=1024px) {
     .add-contact-modal {
@@ -1854,11 +1854,11 @@
     .contact-avatar-picker .color-options,
     .add-contact-modal.edit-mode .contact-avatar-picker .color-options {
         display: grid !important;
-        grid-template-columns: repeat(5, 48px) !important;
+        place-items: center !important;
         gap: 8px !important;
+        grid-template-columns: repeat(5, 48px) !important;
         width: max-content !important;
         margin: 0 auto !important;
-        place-items: center !important;
     }
 
     .contact-avatar-picker .color-option,
@@ -1870,7 +1870,7 @@
     }
 }
 
-/*small mobile*/
+/* small mobile */
 
 @media (width <=420px) {
     .add-contact-modal .contact-avatar-picker {
@@ -1902,7 +1902,7 @@
     }
 }
 
-/*very small mobile*/
+/* very small mobile */
 
 @media (width <=380px) {
     .add-contact-modal .contact-avatar-picker {
@@ -1971,11 +1971,11 @@
     .contact-avatar-picker .color-options,
     .add-contact-modal.edit-mode .contact-avatar-picker .color-options {
         display: grid !important;
-        grid-template-columns: repeat(5, 48px) !important;
+        place-items: center !important;
         gap: 8px !important;
+        grid-template-columns: repeat(5, 48px) !important;
         width: max-content !important;
         margin: 0 auto !important;
-        place-items: center !important;
     }
 
     .contact-avatar-picker .color-option,
@@ -1987,7 +1987,7 @@
     }
 }
 
-/*very small contact list*/
+/* very small contact list */
 
 @media (width <=360px) {
     .contacts-sidebar {
@@ -2022,10 +2022,11 @@
         color: var(--text-primary);
         font-size: 16px;
         line-height: 120%;
-        overflow-wrap: anywhere;
         word-break: normal;
-        -webkit-line-clamp: 2;
+        overflow-wrap: anywhere;
         -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
     }
 
     .contact-info a,
@@ -2037,7 +2038,6 @@
         line-height: 120%;
         white-space: normal;
         overflow-wrap: anywhere;
-        word-break: break-word;
     }
 
     .contact-group h3 {

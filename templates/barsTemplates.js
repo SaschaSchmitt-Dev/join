@@ -6,7 +6,7 @@
 function getSidebarTemplate(activePage) {
     return `
         <div class="logo">
-            <img src="../assets/icons/join-logo-light.webp" alt="Join Logo">
+            <img src="../assets/icons/joinLogoLight.webp" alt="Join Logo">
         </div>
 
         <nav class="menu">
@@ -14,8 +14,8 @@ function getSidebarTemplate(activePage) {
                 <img class="icons-sidebar" src="../assets/icons/summary.webp" alt="Summary Icon">
                 <span>Summary</span>
             </a>
-            <a class="${activePage.addTask}" href="./add-task.html">
-                <img class="icons-sidebar" src="../assets/icons/add-task.webp" alt="Add Task Icon">
+            <a class="${activePage.addTask}" href="./addTask.html">
+                <img class="icons-sidebar" src="../assets/icons/addTask.webp" alt="Add Task Icon">
                 <span>Add Task</span>
             </a>
             <a class="${activePage.board}" href="./board.html">
@@ -29,8 +29,8 @@ function getSidebarTemplate(activePage) {
         </nav>
 
         <div class="legal-links">
-            <a class="${activePage.privacyPolicy}" href="./privacy-policy.html">Privacy Policy</a>
-            <a class="${activePage.legalNotice}" href="./legal-notice.html">Legal Notice</a>
+            <a class="${activePage.privacyPolicy}" href="./privacyPolicy.html">Privacy Policy</a>
+            <a class="${activePage.legalNotice}" href="./legalNotice.html">Legal Notice</a>
         </div>
     `;
 }
@@ -44,7 +44,7 @@ function getSidebarTemplate(activePage) {
 function getNotLoggedInLegalSidebarTemplate(activePage) {
     return `
         <div class="logo">
-            <img src="../assets/icons/join-logo-light.webp" alt="Join Logo">
+            <img src="../assets/icons/joinLogoLight.webp" alt="Join Logo">
         </div>
 
         <nav class="menu not-logged-in-menu">
@@ -55,8 +55,8 @@ function getNotLoggedInLegalSidebarTemplate(activePage) {
         </nav>
 
         <div class="legal-links">
-            <a class="${activePage.privacyPolicy}" href="./privacy-policy.html">Privacy Policy</a>
-            <a class="${activePage.legalNotice}" href="./legal-notice.html">Legal Notice</a>
+            <a class="${activePage.privacyPolicy}" href="./privacyPolicy.html">Privacy Policy</a>
+            <a class="${activePage.legalNotice}" href="./legalNotice.html">Legal Notice</a>
         </div>
     `;
 }
@@ -73,8 +73,8 @@ function getMobileNavTemplate(activePage) {
             <img src="../assets/icons/summary.webp" alt="">
             <span>Summary</span>
         </a>
-        <a class="${activePage.addTask}" href="./add-task.html" aria-label="Add Task">
-            <img src="../assets/icons/add-task.webp" alt="">
+        <a class="${activePage.addTask}" href="./addTask.html" aria-label="Add Task">
+            <img src="../assets/icons/addTask.webp" alt="">
             <span>Add Task</span>
         </a>
         <a class="${activePage.board}" href="./board.html" aria-label="Board">
@@ -100,10 +100,10 @@ function getNotLoggedInLegalMobileNavTemplate(activePage) {
             <img src="../assets/icons/login.webp" alt="">
             <span>Log In</span>
         </a>
-        <a class="${activePage.privacyPolicy}" href="./privacy-policy.html" aria-label="Privacy Policy">
+        <a class="${activePage.privacyPolicy}" href="./privacyPolicy.html" aria-label="Privacy Policy">
             <span>Privacy Policy</span>
         </a>
-        <a class="${activePage.legalNotice}" href="./legal-notice.html" aria-label="Legal Notice">
+        <a class="${activePage.legalNotice}" href="./legalNotice.html" aria-label="Legal Notice">
             <span>Legal Notice</span>
         </a>
     `;
@@ -133,7 +133,7 @@ function getTopbarTemplate(helpLink, accountAvatar) {
     return `
         <div class="topbar-left">
             <p class="mobile-hide">Kanban Project Management Tool</p>
-            <img class="topbar-logo desktop-hide" src="../assets/icons/join-logo-dark.webp" alt="Join Logo">
+            <img class="topbar-logo desktop-hide" src="../assets/icons/joinLogoDark.webp" alt="Join Logo">
         </div>
         <div class="topbar-right">
             ${helpLink}
@@ -143,8 +143,8 @@ function getTopbarTemplate(helpLink, accountAvatar) {
                 </button>
                 <nav id="accountMenu" class="account-menu" aria-label="Account menu">
                     <a class="account-menu-help desktop-hide" href="./help.html">Help</a>
-                    <a href="./legal-notice.html">Legal Notice</a>
-                    <a href="./privacy-policy.html">Privacy Policy</a>
+                    <a href="./legalNotice.html">Legal Notice</a>
+                    <a href="./privacyPolicy.html">Privacy Policy</a>
                     <a id="logoutLink" href="../index.html">Log out</a>
                 </nav>
             </div>
@@ -161,7 +161,7 @@ function getNotLoggedInLegalTopbarTemplate() {
     return `
         <div class="topbar-left">
             <p class="mobile-hide">Kanban Project Management Tool</p>
-            <img class="topbar-logo desktop-hide" src="../assets/icons/join-logo-dark.webp" alt="Join Logo">
+            <img class="topbar-logo desktop-hide" src="../assets/icons/joinLogoDark.webp" alt="Join Logo">
         </div>
     `;
 }

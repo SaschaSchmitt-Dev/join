@@ -2,7 +2,7 @@
 export default {
     extends: ["stylelint-config-standard"],
     plugins: ["stylelint-order"],
-    ignoreFiles: ["node_modules/**", "out/**", "styles/add-task.css"],
+    ignoreFiles: ["node_modules/**", "out/**"],
     rules: {
         "no-descending-specificity": null,
         "selector-class-pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
@@ -154,6 +154,8 @@ export default {
                         "white-space",
                         "word-break",
                         "overflow-wrap",
+                        "box-orient",
+                        "line-clamp",
                         "content",
                         "list-style",
                         "list-style-position",
@@ -173,7 +175,8 @@ export default {
                     properties: [
                         "cursor",
                         "pointer-events",
-                        "user-select"
+                        "user-select",
+                        "appearance"
                     ]
                 },
                 {
@@ -191,7 +194,7 @@ export default {
             ],
             {
                 unspecified: "bottomAlphabetical",
-                emptyLineBeforeUnspecified: "always",
+                emptyLineBeforeUnspecified: "never",
                 emptyLineMinimumPropertyThreshold: 8
             }
         ]

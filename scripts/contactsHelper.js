@@ -259,7 +259,7 @@ function showContactToast(message) {
 
 
 /**
- * Toggles theüge genau denselben Block **ganz unten** in `contacts-helper.js` ein:
+ * Toggles theüge genau denselben Block **ganz unten** in `contactsHelper.js` ein:
 
 ```js
 /**

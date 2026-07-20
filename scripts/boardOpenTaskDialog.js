@@ -118,7 +118,7 @@ function getOpenTaskView(task) {
         description: escapeBoardHtml(task.description || ""),
         category: escapeBoardHtml(task.category), categoryClass: getTaskCategoryClass(task.category),
         dueDate: getOpenTaskDate(task.dueDate), priorityLabel: priority[0].toUpperCase() + priority.slice(1),
-        priorityIcon: `${priority}-priority.webp`, contacts: getOpenTaskContacts(task.assignedTo),
+        priorityIcon: `${priority}Priority.webp`, contacts: getOpenTaskContacts(task.assignedTo),
         subtasks: getOpenTaskSubtasks(task.subtasks)
     };
 }

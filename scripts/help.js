@@ -1,6 +1,6 @@
 const allowedPreviousPages = [
     "summary.html",
-    "add-task.html",
+    "addTask.html",
     "board.html",
     "contacts.html"
 ];

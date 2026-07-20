@@ -13,15 +13,15 @@
     <link rel="stylesheet" href="../styles/sidebar.css">
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../styles/add-task.css">
+    <link rel="stylesheet" href="../styles/addTask.css">
 
     <script src="../script.js" defer></script>
-    <script src="../templates/bars-templates.js" defer></script>
-    <script src="../templates/add-task-templates.js" defer></script>
+    <script src="../templates/barsTemplates.js" defer></script>
+    <script src="../templates/addTaskTemplates.js" defer></script>
     <script src="../scripts/bars.js" defer></script>
-    <script src="../scripts/task-dropdown-helper.js" defer></script>
-    <script src="../scripts/add-task-helper.js" defer></script>
-    <script src="../scripts/add-task.js" defer></script>
+    <script src="../scripts/taskDropdownHelper.js" defer></script>
+    <script src="../scripts/addTaskHelper.js" defer></script>
+    <script src="../scripts/addTask.js" defer></script>
 </head>
 
 <body data-page="add-task">
@@ -60,20 +60,20 @@
                         <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1" aria-hidden="true">
                         <label for="urgent" tabindex="0" role="radio">
                             Urgent
-                            <img src="../assets/icons/urgent-priority.webp" alt="Urgent priority icon">
+                            <img src="../assets/icons/urgentPriority.webp" alt="Urgent priority icon">
                         </label>
 
                         <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true"
                             checked>
                         <label for="medium" class="medium" tabindex="0" role="radio">
                             Medium
-                            <img src="../assets/icons/medium-priority.webp" alt="Medium priority icon">
+                            <img src="../assets/icons/mediumPriority.webp" alt="Medium priority icon">
                         </label>
 
                         <input type="radio" name="priority" id="low" value="low" tabindex="-1" aria-hidden="true">
                         <label for="low" tabindex="0" role="radio">
                             Low
-                            <img src="../assets/icons/low-priority.webp" alt="Low priority icon">
+                            <img src="../assets/icons/lowPriority.webp" alt="Low priority icon">
                         </label>
                     </div>
 
@@ -83,7 +83,7 @@
                         <div class="input-wrapper">
                             <input type="text" class="assignet-to" id="assignetTo"
                                 placeholder="Select contacts to assign">
-                            <img class="input-icon" src="../assets/icons/arrow-dropdown.webp"
+                            <img class="input-icon" src="../assets/icons/arrowDropdown.webp"
                                 alt="Toggle contacts dropdown">
                             <div class="dropdown-content"></div>
                         </div>
@@ -99,7 +99,7 @@
                         <div class="input-wrapper">
                             <input type="text" class="category" id="category" placeholder="Select task category"
                                 readonly>
-                            <img class="input-icon" src="../assets/icons/arrow-dropdown.webp"
+                            <img class="input-icon" src="../assets/icons/arrowDropdown.webp"
                                 alt="Toggle category dropdown">
 
                             <div class="dropdown-content">
