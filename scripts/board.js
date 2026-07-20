@@ -9,6 +9,7 @@ let boardTasks = [];
 let boardContacts = {};
 let draggedTaskId = null
 let currentDropZone = null
+let dropIndicatorElement = null
 
 /**
  * Starts the task search.
@@ -85,7 +86,9 @@ async function getBoardContacts() {
 function renderBoardTasks(tasks, contacts) {
     Object.entries(boardColumns).forEach(([name, column]) => {
         const element = document.getElementById(column.elementId);
-        const columnTasks = tasks.filter((task) => task.column === name);
+        const columnTasks = tasks
+            .filter((task) => task.column === name)
+            .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
         element.innerHTML = getBoardColumnContent(columnTasks, contacts, column.label);
     });
@@ -235,7 +238,7 @@ function setupBoardDragAndDrop() {
     boardColumnsElement.addEventListener("dragstart", handleDragStart)
     boardColumnsElement.addEventListener("dragover", handleDragOver)
     boardColumnsElement.addEventListener("drop", handleDrop)
-    boardColumnsElement.addEventListener("dragged", handleDragEnd)
+    boardColumnsElement.addEventListener("dragend", handleDragEnd)
 }
 
 
@@ -268,6 +271,78 @@ function handleDragEnd(event) {
         currentDropZone.classList.remove('drag-over');
         currentDropZone = null;
     }
+
+    removeDropIndicator();
+    draggedTaskId = null;
+}
+
+
+/**
+ * Gets all task cards in a list, excluding the one currently being dragged.
+ * @param {HTMLElement} taskList - The task list element.
+ * @returns {Array<HTMLElement>} The task cards.
+ */
+function getCardsInList(taskList) {
+    return [...taskList.querySelectorAll('.task-card:not(.dragging)')];
+}
+
+
+/**
+ * Finds the card the dragged task should be inserted before.
+ * Task lists lay out as a column (>=1440px) or a horizontally scrolling row (<1440px),
+ * so the cursor is compared against the axis that is actually stacking the cards.
+ * @param {HTMLElement} taskList - The task list element.
+ * @param {number} clientX - The horizontal cursor position.
+ * @param {number} clientY - The vertical cursor position.
+ * @returns {HTMLElement|null} The card to insert before, or null to insert at the end.
+ */
+function getDropTargetCard(taskList, clientX, clientY) {
+    const isRow = getComputedStyle(taskList).flexDirection === 'row';
+
+    return getCardsInList(taskList).find((card) => {
+        const rect = card.getBoundingClientRect();
+
+        return isRow
+            ? clientX < rect.left + rect.width / 2
+            : clientY < rect.top + rect.height / 2;
+    }) || null;
+}
+
+
+/**
+ * Gets the index of a card within a task list's cards, excluding the dragged one.
+ * @param {HTMLElement} taskList - The task list element.
+ * @param {HTMLElement|null} targetCard - The card to find, or null for the end.
+ * @returns {number} The insertion index.
+ */
+function getDropIndex(taskList, targetCard) {
+    const cards = getCardsInList(taskList);
+
+    return targetCard ? cards.indexOf(targetCard) : cards.length;
+}
+
+
+/**
+ * Gets the reusable drop-indicator placeholder element.
+ * @returns {HTMLElement} The drop-indicator element.
+ */
+function getOrCreateDropIndicator() {
+    if (!dropIndicatorElement) {
+        dropIndicatorElement = document.createElement("div");
+        dropIndicatorElement.className = "drop-indicator";
+    }
+
+    return dropIndicatorElement;
+}
+
+
+/**
+ * Removes the drop-indicator placeholder from the DOM.
+ */
+function removeDropIndicator() {
+    if (dropIndicatorElement && dropIndicatorElement.parentElement) {
+        dropIndicatorElement.remove();
+    }
 }
 
 
@@ -276,19 +351,27 @@ function handleDragOver(event) {
 
     const taskList = event.target.closest('.task-list');
 
-    if (taskList === currentDropZone) {
+    if (taskList !== currentDropZone) {
+        if (currentDropZone) {
+            currentDropZone.classList.remove('drag-over');
+        }
+
+        if (taskList) {
+            taskList.classList.add('drag-over');
+        }
+
+        currentDropZone = taskList;
+    }
+
+    if (!taskList) {
+        removeDropIndicator();
         return;
     }
 
-    if (currentDropZone) {
-        currentDropZone.classList.remove('drag-over');
-    }
+    const targetCard = getDropTargetCard(taskList, event.clientX, event.clientY);
+    const indicator = getOrCreateDropIndicator();
 
-    if (taskList) {
-        taskList.classList.add('drag-over');
-    }
-
-    currentDropZone = taskList;
+    taskList.insertBefore(indicator, targetCard);
 }
 
 
@@ -304,14 +387,18 @@ function handleDrop(event) {
     )
 
     if (column) {
-        moveTaskMobile(draggedTaskId, column);
+        const targetCard = getDropTargetCard(taskList, event.clientX, event.clientY);
+        const targetIndex = getDropIndex(taskList, targetCard);
+
+        moveTaskToPosition(draggedTaskId, column, targetIndex);
     }
 
     if (currentDropZone) {
         currentDropZone.classList.remove('drag-over');
-        draggedTaskId = null;
+        currentDropZone = null;
     }
 
+    removeDropIndicator();
     draggedTaskId = null;
 }
 
@@ -408,7 +495,7 @@ function createMobileMoveMenu(taskId, currentColumn) {
 
 
 /**
- * Moves a task to another column on mobile.
+ * Moves a task to another column and appends it to the end (used by the mobile move menu).
  * @param {string} taskId - The task id.
  * @param {string} column - The new column.
  */
@@ -417,38 +504,69 @@ async function moveTaskMobile(taskId, column) {
         return;
     }
 
-    await updateTaskColumn(taskId, column);
-    updateLocalTaskColumn(taskId, column);
-    renderBoardTasks(boardTasks, boardContacts);
-    showBoardStatusMessage(`Task moved to ${boardColumns[column].label}.`);
+    const endIndex = getSortedColumnTasks(column).filter((task) => task.id !== taskId).length;
+
+    await moveTaskToPosition(taskId, column, endIndex);
 }
 
 
 /**
- * Updates the task column in the database.
+ * Moves a task to a specific position within a column, shifting the other tasks.
  * @param {string} taskId - The task id.
- * @param {string} column - The new column.
+ * @param {string} targetColumn - The target column.
+ * @param {number} targetIndex - The insertion index within the target column.
  */
-async function updateTaskColumn(taskId, column) {
-    await fetch(getTasksUrl(`${taskId}/column`), {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(column)
-    });
-}
+async function moveTaskToPosition(taskId, targetColumn, targetIndex) {
+    if (!boardColumns[targetColumn]) {
+        return;
+    }
 
-
-/**
- * Updates the task column locally.
- * @param {string} taskId - The task id.
- * @param {string} column - The new column.
- */
-function updateLocalTaskColumn(taskId, column) {
     const task = boardTasks.find((task) => task.id === taskId);
 
-    if (task) {
-        task.column = column;
+    if (!task) {
+        return;
     }
+
+    task.column = targetColumn;
+    const targetTasks = getSortedColumnTasks(targetColumn).filter((task) => task.id !== taskId);
+    targetTasks.splice(targetIndex, 0, task);
+    targetTasks.forEach((task, index) => { task.order = index; });
+
+    await persistColumnOrder(targetColumn, targetTasks, taskId);
+    renderBoardTasks(boardTasks, boardContacts);
+    showBoardStatusMessage(`Task moved to ${boardColumns[targetColumn].label}.`);
+}
+
+
+/**
+ * Gets the tasks of one column, sorted by their order.
+ * @param {string} column - The column.
+ * @returns {Array} The sorted column tasks.
+ */
+function getSortedColumnTasks(column) {
+    return boardTasks
+        .filter((task) => task.column === column)
+        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+}
+
+
+/**
+ * Persists the order of a column's tasks and the moved task's column in one request.
+ * @param {string} column - The target column.
+ * @param {Array} tasks - The target column tasks in their new order.
+ * @param {string} movedTaskId - The id of the moved task.
+ */
+async function persistColumnOrder(column, tasks, movedTaskId) {
+    const updates = {};
+
+    tasks.forEach((task) => { updates[`${task.id}/order`] = task.order; });
+    updates[`${movedTaskId}/column`] = column;
+
+    await fetch(getTasksUrl(), {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updates)
+    });
 }
 
 

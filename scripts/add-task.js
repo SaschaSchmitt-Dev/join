@@ -353,7 +353,8 @@ function getTaskFormData() {
         priority: document.querySelector('input[name="priority"]:checked').value,
         category: categoryInput.value.trim(),
         assignedTo: getAssignedContacts(),
-        column: "todo"
+        column: "todo",
+        order: Date.now()
     };
     const subtasks = getSubtasksData();
     if (Object.keys(subtasks).length) task.subtasks = subtasks;

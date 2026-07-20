@@ -267,6 +267,7 @@ function initializeHorizontalDragScroll(container) {
  */
 function startHorizontalDrag(event, element) {
     if (event.pointerType !== "mouse" || event.button !== 0) return;
+    if (event.target.closest(".task-card")) return;
     const state = element.dragScrollState;
     state.startX = event.clientX;
     state.startScrollLeft = element.scrollLeft;

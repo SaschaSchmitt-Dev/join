@@ -282,6 +282,7 @@ function getBoardTaskDialogData() {
     const task = getBasicDialogTaskData(dialog);
     task.assignedTo = getDialogAssignments(dialog);
     task.column = dialog.dataset.taskColumn;
+    task.order = Date.now();
     if (dialogSubtasks.length) task.subtasks = getDialogSubtasksData();
     return task;
 }

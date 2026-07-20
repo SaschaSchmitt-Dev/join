@@ -174,9 +174,8 @@
     scrollbar-gutter: stable;
 }
 
-.task-list.drag-over::after {
-    content: "";
-    display: block;
+.drop-indicator {
+    flex: 0 0 auto;
     width: 250px;
     height: 262px;
     border-radius: 24px;
