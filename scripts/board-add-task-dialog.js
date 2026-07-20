@@ -46,12 +46,10 @@ function prepareAddTaskDialog(dialog) {
  * @param {HTMLElement} dialog - The dialog element.
  */
 function initializeDialogDropdowns(dialog) {
-    initializeDialogDropdownAccessibility(dialog);
+    initializeDialogDropdownAccessibility(dialog, ["#category"]);
+    initializeTaskContactDropdown(dialog, "#assignedTo", renderSelectedDialogContacts);
     dialog.querySelectorAll("[data-category]").forEach((option) => {
         option.addEventListener("click", selectDialogCategory);
-    });
-    dialog.querySelectorAll(".contact-checkbox").forEach((checkbox) => {
-        checkbox.addEventListener("change", renderSelectedDialogContacts);
     });
 }
 
@@ -121,7 +119,8 @@ function getDialogContactView(id, contact) {
         name: escapeBoardHtml(displayName),
         initials: escapeBoardHtml(getUserInitials(contact.name)),
         color,
-        textColor: getUserTextColor(color)
+        textColor: getUserTextColor(color),
+        checked: ""
     };
 }
 

@@ -16,8 +16,8 @@ function getTasksUrl(taskId = "") {
 
 
 /**
- * Loads the raw task data.
- * @returns {Promise<Object>} Tasks indexed by Firebase id.
+ * Loads the task data.
+ * @returns {Promise<Object>} The loaded tasks.
  */
 async function getTasksData() {
     const response = await fetch(getTasksUrl());
@@ -57,6 +57,7 @@ async function createTask(task) {
  * @param {string} taskId - The Firebase task id.
  * @param {string} subtaskId - The subtask id.
  * @param {boolean} completed - The new completion state.
+ * @returns {Promise<void>} Resolves after the completion state was saved.
  */
 async function updateSubtaskCompletion(taskId, subtaskId, completed) {
     const url = getTasksUrl(`${taskId}/subtasks/${subtaskId}/completed`);
@@ -66,4 +67,19 @@ async function updateSubtaskCompletion(taskId, subtaskId, completed) {
     });
 
     if (!response.ok) throw new Error("Subtask status could not be updated.");
+}
+
+
+/**
+ * Updates the editable fields of one task.
+ * @param {string} taskId - The Firebase task id.
+ * @param {Object} task - The task fields to update.
+ * @returns {Promise<void>} Resolves after the update was saved.
+ */
+async function updateTask(taskId, task) {
+    const response = await fetch(getTasksUrl(taskId), {
+        method: "PATCH",
+        body: JSON.stringify(task)
+    });
+    if (!response.ok) throw new Error("Task could not be updated.");
 }

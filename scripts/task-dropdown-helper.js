@@ -1,4 +1,9 @@
-/** Initializes keyboard behavior shared by Add Task dropdown fields. */
+/**
+ * Adds keyboard controls to a task dropdown.
+ * @param {HTMLInputElement} input - The dropdown input.
+ * @param {Function} toggleDropdown - Function for toggling the dropdown.
+ * @param {Function} closeDropdown - Function for closing the dropdown.
+ */
 function initializeKeyboardDropdown(input, toggleDropdown, closeDropdown) {
     input.setAttribute("aria-haspopup", "listbox");
     input.setAttribute("aria-expanded", "false");
@@ -8,7 +13,13 @@ function initializeKeyboardDropdown(input, toggleDropdown, closeDropdown) {
 }
 
 
-/** Handles Enter, Space and Escape on a dropdown input. */
+/**
+ * Handles Enter, Space and Escape on a dropdown input.
+ * @param {KeyboardEvent} event - The keyboard event.
+ * @param {HTMLInputElement} input - The dropdown input.
+ * @param {Function} toggleDropdown - Function for toggling the dropdown.
+ * @param {Function} closeDropdown - Function for closing the dropdown.
+ */
 function handleKeyboardDropdown(event, input, toggleDropdown, closeDropdown) {
     const canToggle = event.key === "Enter" || event.key === " " && input.readOnly;
     const canClose = event.key === "Escape" && input.getAttribute("aria-expanded") === "true";
@@ -20,11 +31,9 @@ function handleKeyboardDropdown(event, input, toggleDropdown, closeDropdown) {
 
 
 /**
- * Runs a callback after focus leaves a complete dropdown component.
- * Clicking a label (e.g. a contact row) can activate its checkbox without
- * moving keyboard focus onto it (notably on macOS), which would otherwise
- * blur the dropdown's input and incorrectly close it. Tracking the last
- * mousedown target avoids that false close.
+ * Closes a dropdown after focus has moved outside of it.
+ * @param {HTMLElement} dropdown - The dropdown element.
+ * @param {Function} closeDropdown - Function for closing the dropdown.
  */
 function closeDropdownAfterFocusLeaves(dropdown, closeDropdown) {
     setTimeout(() => {
@@ -36,7 +45,10 @@ function closeDropdownAfterFocusLeaves(dropdown, closeDropdown) {
 }
 
 
-/** Marks a dropdown as having just received a mousedown inside it, for closeDropdownAfterFocusLeaves. */
+/**
+ * Tracks pointer use inside a dropdown.
+ * @param {HTMLElement} dropdown - The dropdown element.
+ */
 function trackDropdownPointerDown(dropdown) {
     dropdown.addEventListener("mousedown", () => {
         dropdown.dataset.pointerDownInside = "true";
@@ -44,11 +56,15 @@ function trackDropdownPointerDown(dropdown) {
 }
 
 
-/** Wires the keyboard behavior for dropdown fields in the board dialog. */
-function initializeDialogDropdownAccessibility(dialog) {
-    [dialog.querySelector("#assignedTo"), dialog.querySelector("#category")]
-        .forEach(connectDialogDropdownInput);
-    dialog.querySelectorAll(".dropdown-list").forEach((dropdown) => {
+/**
+ * Wires keyboard behavior for selected board-dialog dropdown fields.
+ * @param {HTMLElement} dialog - The board dialog.
+ * @param {Array<string>} inputSelectors - Selectors of dropdown inputs to connect.
+ */
+function initializeDialogDropdownAccessibility(dialog, inputSelectors) {
+    inputSelectors.forEach((selector) => connectDialogDropdownInput(dialog.querySelector(selector)));
+    inputSelectors.forEach((selector) => {
+        const dropdown = dialog.querySelector(selector).closest(".dropdown-list");
         trackDropdownPointerDown(dropdown);
         dropdown.addEventListener("focusout", () => closeDialogDropdownAfterFocus(dropdown));
         dropdown.addEventListener("keydown", (event) => closeDialogDropdownOnEscape(event, dropdown));
@@ -56,7 +72,10 @@ function initializeDialogDropdownAccessibility(dialog) {
 }
 
 
-/** Connects one board-dialog dropdown input. */
+/**
+ * Connects one dropdown input.
+ * @param {HTMLInputElement} input - The dropdown input.
+ */
 function connectDialogDropdownInput(input) {
     const toggleDropdown = () => toggleDialogDropdown({ currentTarget: input });
     const closeDropdown = () => closeOneDialogDropdown(input.closest(".dropdown-list"));
@@ -65,20 +84,30 @@ function connectDialogDropdownInput(input) {
 }
 
 
-/** Closes one board-dialog dropdown. */
+/**
+ * Closes one dropdown.
+ * @param {HTMLElement} dropdown - The dropdown element.
+ */
 function closeOneDialogDropdown(dropdown) {
     dropdown.classList.remove("open");
     dropdown.querySelector("input").setAttribute("aria-expanded", "false");
 }
 
 
-/** Closes a board-dialog dropdown when keyboard focus leaves it. */
+/**
+ * Closes a dropdown when focus leaves it.
+ * @param {HTMLElement} dropdown - The dropdown element.
+ */
 function closeDialogDropdownAfterFocus(dropdown) {
     closeDropdownAfterFocusLeaves(dropdown, () => closeOneDialogDropdown(dropdown));
 }
 
 
-/** Stops Escape from closing the dialog while a dropdown is open. */
+/**
+ * Closes an open dropdown with Escape.
+ * @param {KeyboardEvent} event - The keyboard event.
+ * @param {HTMLElement} dropdown - The dropdown element.
+ */
 function closeDialogDropdownOnEscape(event, dropdown) {
     if (event.key !== "Escape" || !dropdown.classList.contains("open")) return;
     event.preventDefault();
@@ -88,7 +117,11 @@ function closeDialogDropdownOnEscape(event, dropdown) {
 }
 
 
-/** Adds closing keys to a dropdown containing standalone contact checkboxes. */
+/**
+ * Adds closing keys to a contact dropdown.
+ * @param {HTMLElement} dropdown - The contact dropdown.
+ * @param {Function} closeDropdown - Function for closing the dropdown.
+ */
 function initializeContactDropdownKeys(dropdown, closeDropdown) {
     dropdown.addEventListener("keydown", (event) => {
         const confirmsContacts = event.key === "Enter" && event.target.matches(".contact-checkbox");

@@ -105,7 +105,7 @@ function getAddTaskPriorityTemplate() {
 function getAddTaskAssignedTemplate() {
     return `
         <div class="dropdown-list dialog-field-group"><label for="assignedTo" class="assigned-to">Assigned to</label>
-            <div class="input-wrapper"><input class="assigned-to" id="assignedTo" placeholder="Select contacts to assign" readonly>
+            <div class="input-wrapper"><input class="assigned-to" id="assignedTo" type="text" placeholder="Select contacts to assign">
                 <img class="input-icon" src="../assets/icons/arrow-dropdown.webp" alt="">
                 <div class="dropdown-content"></div></div>
             <div class="selected-contacts"></div>
@@ -160,7 +160,7 @@ function getAddTaskContactOptionTemplate(contact) {
             <span class="dialog-contact-avatar" style="background:${contact.color};color:${contact.textColor}">${contact.initials}</span>
             <span>${contact.name}</span>
             <span class="custom-checkbox-wrapper">
-                <input class="contact-checkbox" type="checkbox" value="${contact.id}">
+                <input class="contact-checkbox" type="checkbox" value="${contact.id}"${contact.checked}>
                 <span class="custom-checkbox" aria-hidden="true"></span>
             </span>
         </label>
