@@ -300,26 +300,6 @@ function getSubtasksData() {
 
 
 /**
- * Validates the required fields in the task form and displays error messages for any empty fields.
- * @returns {HTMLElement|null} The first invalid input element, or null if all required fields are valid.
- */
-function validateRequiredFields() {
-    const fields = [
-        { input: titleInput, error: titleError, isEmpty: () => !titleInput.value.trim() },
-        { input: dueDateInput, error: dueDateError, isEmpty: () => !dueDateInput.value },
-        { input: categoryInput, error: categoryError, isEmpty: () => !categoryInput.value.trim() },
-    ];
-    fields.forEach(({ input, error, isEmpty }) => {
-        if (isEmpty()) {
-            if (input === dueDateInput) input.type = 'text';
-            showError(input, error);
-        }
-    });
-    return fields.find(({ isEmpty }) => isEmpty())?.input || null;
-}
-
-
-/**
  * Saves a new task in the database.
  *
  * @param {Object} task - The task data to save.
