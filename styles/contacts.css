@@ -204,12 +204,10 @@
 
 @keyframes contact-detail-slide-in {
     from {
-        opacity: 1;
         transform: translateX(100%);
     }
 
     to {
-        opacity: 1;
         transform: translateX(0);
     }
 }
