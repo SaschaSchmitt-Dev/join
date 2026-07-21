@@ -1,15 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign up</title>
-    <link rel="shortcut icon" href="../assets/icons/favicon.webp" type="image/x-icon">
-    <link rel="stylesheet" href="../styles/assets.css">
-    <link rel="stylesheet" href="../styles/variables.css">
-    <link rel="stylesheet" href="../styles/fonts.css">
-    <link rel="stylesheet" href="../styles/signUp.css">
+
+    <link rel="shortcut icon" href="../assets/icons/favicon.webp" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../styles/assets.css" />
+    <link rel="stylesheet" href="../styles/variables.css" />
+    <link rel="stylesheet" href="../styles/fonts.css" />
+    <link rel="stylesheet" href="../styles/signUp.css" />
 
     <script src="../scripts/firebaseConfig.js" defer></script>
     <script type="module" src="../scripts/firebaseInit.js"></script>
@@ -20,15 +22,14 @@
 <body class="sign-up-page">
     <div class="sign-up-content">
         <header class="sign-up-header">
-            <img class="sign-up-logo" src="../assets/icons/joinLogoDark.webp" alt="Join logo">
+            <img class="sign-up-logo" src="../assets/icons/joinLogoDark.webp" alt="Join logo" />
         </header>
 
         <main class="signup-main">
             <div class="textbox">
                 <div class="text-box">
-
                     <a class="back-to-login back-arrow-button" href="../index.html" aria-label="Back to login">
-                        <img src="../assets/icons/backArrowDarkBlue.webp" alt="" aria-hidden="true">
+                        <img src="../assets/icons/backArrowDarkBlue.webp" alt="" aria-hidden="true" />
                     </a>
 
                     <div class="textbox-signup">
@@ -37,38 +38,37 @@
 
                     <div class="textbox-inputfield-wrapper">
                         <form id="signupForm" class="textbox-inputfield">
-
                             <div class="signup-input-field">
                                 <label class="visually-hidden" for="username">Name</label>
                                 <input type="text" placeholder="Name" id="username" name="name" autocomplete="name"
-                                    required>
-                                <img src="../assets/icons/person.webp" alt="" aria-hidden="true">
+                                    required />
+                                <img src="../assets/icons/person.webp" alt="" aria-hidden="true" />
                             </div>
 
                             <div class="signup-input-field">
                                 <label class="visually-hidden" for="email">Email</label>
                                 <input type="email" placeholder="Email" id="email" name="email" autocomplete="email"
-                                    required>
-                                <img src="../assets/icons/mail.webp" alt="" aria-hidden="true">
+                                    required />
+                                <img src="../assets/icons/mail.webp" alt="" aria-hidden="true" />
                             </div>
 
                             <div class="signup-input-field">
                                 <label class="visually-hidden" for="password">Password</label>
                                 <input type="password" placeholder="Password" id="password" name="password"
-                                    autocomplete="new-password" required>
+                                    autocomplete="new-password" required />
                                 <button id="passwordToggle" class="password-toggle" type="button"
                                     aria-label="Show password" disabled>
-                                    <img src="../assets/icons/lock.webp" alt="" id="passwordIcon">
+                                    <img src="../assets/icons/lock.webp" alt="" id="passwordIcon" />
                                 </button>
                             </div>
 
                             <div class="signup-input-field">
                                 <label class="visually-hidden" for="confirmPassword">Confirm password</label>
                                 <input type="password" placeholder="Confirm Password" id="confirmPassword"
-                                    name="confirmPassword" autocomplete="new-password" required>
+                                    name="confirmPassword" autocomplete="new-password" required />
                                 <button id="confirmPasswordToggle" class="password-toggle" type="button"
                                     aria-label="Show confirm password" disabled>
-                                    <img src="../assets/icons/lock.webp" alt="" id="confirmPasswordIcon">
+                                    <img src="../assets/icons/lock.webp" alt="" id="confirmPasswordIcon" />
                                 </button>
                             </div>
 
@@ -76,7 +76,7 @@
 
                             <div class="textbox-checkbox">
                                 <span class="custom-checkbox-wrapper">
-                                    <input type="checkbox" id="termsCheckbox" name="termsAccepted">
+                                    <input type="checkbox" id="termsCheckbox" name="termsAccepted" />
                                     <span class="custom-checkbox" aria-hidden="true"></span>
                                 </span>
                                 <label for="termsCheckbox">I accept the</label>
@@ -88,7 +88,6 @@
                                     Sign up
                                 </button>
                             </div>
-
                         </form>
                     </div>
                 </div>

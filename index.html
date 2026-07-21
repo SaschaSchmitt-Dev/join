@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join-Login</title>
-    <link rel="stylesheet" href="../styles/pageTransitions.css">
-    <link rel="shortcut icon" href="./assets/icons/favicon.webp" type="image/x-icon">
-    <link rel="stylesheet" href="./styles/variables.css">
-    <link rel="stylesheet" href="./styles/fonts.css">
-    <link rel="stylesheet" href="./styles/assets.css">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./styles/index.css">
+
+    <link rel="shortcut icon" href="./assets/icons/favicon.webp" type="image/x-icon" />
+
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/fonts.css" />
+    <link rel="stylesheet" href="./styles/assets.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles/index.css" />
 
     <script src="./scripts/firebaseConfig.js" defer></script>
     <script type="module" src="./scripts/firebaseInit.js"></script>
@@ -22,14 +23,14 @@
 <body class="login-page intro-running">
     <div class="intro-layer" aria-hidden="true">
         <picture>
-            <source media="(width <= 768px)" srcset="./assets/icons/joinLogoLight.webp">
-            <img class="intro-logo" src="./assets/icons/joinLogoDark.webp" alt="">
+            <source media="(width <= 768px)" srcset="./assets/icons/joinLogoLight.webp" />
+            <img class="intro-logo" src="./assets/icons/joinLogoDark.webp" alt="" />
         </picture>
     </div>
 
     <div class="login-content">
         <header class="login-header">
-            <img id="loginLogo" class="login-logo" src="./assets/icons/joinLogoDark.webp" alt="Join Logo">
+            <img id="loginLogo" class="login-logo" src="./assets/icons/joinLogoDark.webp" alt="Join Logo" />
         </header>
 
         <main class="login-main">
@@ -37,16 +38,16 @@
                 <h1>Log in</h1>
                 <div class="input-wrap margin-bottom">
                     <label class="visually-hidden" for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Email" autocomplete="email">
-                    <img src="./assets/icons/mail.webp" class="icon" alt="">
+                    <input type="email" id="email" name="email" placeholder="Email" autocomplete="email" />
+                    <img src="./assets/icons/mail.webp" class="icon" alt="" />
                 </div>
                 <div class="input-wrap">
                     <label class="visually-hidden" for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Password"
-                        autocomplete="current-password">
+                        autocomplete="current-password" />
                     <button id="togglePasswordButton" class="icon-toggle" type="button" aria-label="Show password"
                         disabled>
-                        <img src="./assets/icons/lock.webp" alt="" id="toggleIcon">
+                        <img src="./assets/icons/lock.webp" alt="" id="toggleIcon" />
                     </button>
                 </div>
                 <p id="errorMessage" class="error-msg" aria-live="polite"></p>

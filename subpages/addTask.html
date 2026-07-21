@@ -1,19 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Task</title>
 
-    <link rel="shortcut icon" href="../assets/icons/favicon.webp" type="image/x-icon">
-    <link rel="stylesheet" href="../styles/variables.css">
-    <link rel="stylesheet" href="../styles/assets.css">
-    <link rel="stylesheet" href="../styles/fonts.css">
-    <link rel="stylesheet" href="../styles/sidebar.css">
-    <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../styles/addTask.css">
+    <link rel="shortcut icon" href="../assets/icons/favicon.webp" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../styles/variables.css" />
+    <link rel="stylesheet" href="../styles/assets.css" />
+    <link rel="stylesheet" href="../styles/fonts.css" />
+    <link rel="stylesheet" href="../styles/sidebar.css" />
+    <link rel="stylesheet" href="../styles/header.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../styles/addTask.css" />
 
     <script src="../script.js" defer></script>
     <script src="../templates/barsTemplates.js" defer></script>
@@ -38,7 +39,7 @@
                     <label class="label" for="title">
                         Title<span class="required-marker">*</span>
                     </label>
-                    <input class="input-field" id="title" type="text" placeholder="Enter a title">
+                    <input class="input-field" id="title" type="text" placeholder="Enter a title" />
                     <div class="error-message" id="titleError"></div>
 
                     <label class="labelTextarea" for="description">Description</label>
@@ -47,7 +48,7 @@
                     <label class="label" for="dueDate">
                         Due date<span class="required-marker">*</span>
                     </label>
-                    <input class="input-field" id="dueDate" type="text" placeholder="dd/mm/yyyy">
+                    <input class="input-field" id="dueDate" type="text" placeholder="dd/mm/yyyy" />
                     <div class="error-message" id="dueDateError"></div>
                 </div>
 
@@ -57,23 +58,24 @@
                     <div class="field-label" id="priorityLabel">Priority</div>
 
                     <div class="priority-group" role="radiogroup" aria-labelledby="priorityLabel">
-                        <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1" aria-hidden="true">
+                        <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1"
+                            aria-hidden="true" />
                         <label for="urgent" tabindex="0" role="radio">
                             Urgent
-                            <img src="../assets/icons/urgentPriority.webp" alt="Urgent priority icon">
+                            <img src="../assets/icons/urgentPriority.webp" alt="Urgent priority icon" />
                         </label>
 
                         <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true"
-                            checked>
+                            checked />
                         <label for="medium" class="medium" tabindex="0" role="radio">
                             Medium
-                            <img src="../assets/icons/mediumPriority.webp" alt="Medium priority icon">
+                            <img src="../assets/icons/mediumPriority.webp" alt="Medium priority icon" />
                         </label>
 
-                        <input type="radio" name="priority" id="low" value="low" tabindex="-1" aria-hidden="true">
+                        <input type="radio" name="priority" id="low" value="low" tabindex="-1" aria-hidden="true" />
                         <label for="low" tabindex="0" role="radio">
                             Low
-                            <img src="../assets/icons/lowPriority.webp" alt="Low priority icon">
+                            <img src="../assets/icons/lowPriority.webp" alt="Low priority icon" />
                         </label>
                     </div>
 
@@ -82,9 +84,9 @@
 
                         <div class="input-wrapper">
                             <input type="text" class="assignet-to" id="assignetTo"
-                                placeholder="Select contacts to assign">
+                                placeholder="Select contacts to assign" />
                             <img class="input-icon" src="../assets/icons/arrowDropdown.webp"
-                                alt="Toggle contacts dropdown">
+                                alt="Toggle contacts dropdown" />
                             <div class="dropdown-content"></div>
                         </div>
 
@@ -98,9 +100,9 @@
 
                         <div class="input-wrapper">
                             <input type="text" class="category" id="category" placeholder="Select task category"
-                                readonly>
+                                readonly />
                             <img class="input-icon" src="../assets/icons/arrowDropdown.webp"
-                                alt="Toggle category dropdown">
+                                alt="Toggle category dropdown" />
 
                             <div class="dropdown-content">
                                 <a href="">Technical Task</a>
@@ -113,15 +115,17 @@
                         <label class="label" for="subtasks">Subtasks</label>
 
                         <div class="subtask-input-wrapper">
-                            <input class="input-field" id="subtasks" type="text" placeholder="Add new subtasks">
+                            <input class="input-field" id="subtasks" type="text" placeholder="Add new subtasks" />
 
                             <div class="subtask-actions">
-                                <button class="subtask-cancel" type="button" tabindex="0" aria-label="Discard subtask input" disabled>
-                                    <img src="../assets/icons/cancel.webp" alt="">
+                                <button class="subtask-cancel" type="button" tabindex="0"
+                                    aria-label="Discard subtask input" disabled>
+                                    <img src="../assets/icons/cancel.webp" alt="" />
                                 </button>
                                 <span class="subtask-divider"></span>
-                                <button class="subtask-check" type="button" tabindex="0" aria-label="Add subtask" disabled>
-                                    <img src="../assets/icons/check.webp" alt="">
+                                <button class="subtask-check" type="button" tabindex="0" aria-label="Add subtask"
+                                    disabled>
+                                    <img src="../assets/icons/check.webp" alt="" />
                                 </button>
                             </div>
                         </div>
@@ -139,12 +143,12 @@
                 <div class="footer-buttons">
                     <button class="clear" type="button" onclick="clearForm()">
                         Clear
-                        <img src="../assets/icons/cancel.webp" alt="Cancel icon">
+                        <img src="../assets/icons/cancel.webp" alt="Cancel icon" />
                     </button>
 
                     <button class="create-task" type="button">
                         Create Task
-                        <img src="../assets/icons/check.webp" alt="Check icon">
+                        <img src="../assets/icons/check.webp" alt="Check icon" />
                     </button>
                 </div>
             </footer>
@@ -153,7 +157,7 @@
 
     <div class="task-added-toast">
         <span>Task added to board</span>
-        <img src="../assets/icons/board.webp" alt="Board icon">
+        <img src="../assets/icons/board.webp" alt="Board icon" />
     </div>
 </body>
 
