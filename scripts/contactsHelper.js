@@ -322,42 +322,67 @@ function closeMobileOptionsMenu() {
 
 
 /**
- * Initializes phone input validation.
+ * Initializes custom contact input validation.
  */
-function initPhoneInputValidation() {
-    const phoneInput = document.getElementById("contactPhone");
+function initContactInputValidation() {
+    const inputs = document.querySelectorAll("#addContactForm input");
 
-    if (!phoneInput) return;
-
-    phoneInput.addEventListener("input", handlePhoneInput);
+    inputs.forEach((input) => input.addEventListener("input", handleContactInput));
 }
 
 
 /**
- * Handles the phone input value.
+ * Sanitizes phone input and refreshes visible validation errors.
  * @param {Event} event - The input event.
  */
-function handlePhoneInput(event) {
-    const phoneInput = event.target;
+function handleContactInput(event) {
+    if (event.target.id === "contactPhone") sanitizePhoneInput(event.target);
+    if (addContactForm.classList.contains("submitted")) validateContactForm();
+}
 
+
+/** Removes unsupported characters from a phone input. */
+function sanitizePhoneInput(phoneInput) {
     phoneInput.value = phoneInput.value.replace(/[^0-9+\s() -]/g, "");
     phoneInput.value = phoneInput.value.replace(/(?!^)\+/g, "");
-    validatePhoneNumber(phoneInput);
 }
 
 
 /**
- * Validates the phone input.
- * @param {HTMLInputElement} phoneInput - The phone input field.
+ * Validates all contact fields without browser validation.
+ * @returns {boolean} True when every contact field is valid.
  */
-function validatePhoneNumber(phoneInput) {
-    const phonePattern = /^\+?[0-9\s() -]{6,20}$/;
+function validateContactForm() {
+    const nameValid = document.getElementById("contactName").value.trim().length > 0;
+    const emailValid = validateContactEmail(document.getElementById("contactEmail").value);
+    const phoneValid = validateContactPhone(document.getElementById("contactPhone").value);
 
-    phoneInput.setCustomValidity(phonePattern.test(phoneInput.value)
-        ? ""
-        : "Please enter a valid phone number.");
+    setContactFieldValidity("contactName", nameValid);
+    setContactFieldValidity("contactEmail", emailValid);
+    setContactFieldValidity("contactPhone", phoneValid);
+    return nameValid && emailValid && phoneValid;
 }
 
 
-initPhoneInputValidation();
+/** Returns whether an email has a valid basic format. */
+function validateContactEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+}
+
+
+/** Returns whether a phone number has the accepted format. */
+function validateContactPhone(phone) {
+    const phonePattern = /^\+?[0-9\s() -]{6,20}$/;
+
+    return phonePattern.test(phone.trim());
+}
+
+
+/** Adds or removes the custom error state of one contact field. */
+function setContactFieldValidity(inputId, isValid) {
+    document.getElementById(inputId).classList.toggle("input-error", !isValid);
+}
+
+
+initContactInputValidation();
 

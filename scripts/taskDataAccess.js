@@ -5,7 +5,7 @@
  */
 function getTasksUrl(taskId = "") {
     const taskPath = taskId ? `tasks/${taskId}` : "tasks";
-    return getDatabaseUrl(taskPath);
+    return getScopedDatabaseUrl(taskPath);
 }
 
 

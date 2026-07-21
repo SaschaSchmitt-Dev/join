@@ -72,6 +72,20 @@ function getCurrentUserId() {
 
 
 /**
+ * Gets a shared data URL or the isolated guest sandbox URL.
+ * @param {string} path - The tasks or contacts path.
+ * @returns {string} The scoped database URL.
+ */
+function getScopedDatabaseUrl(path) {
+    if (getCurrentUserId() === guestUserId) {
+        return getUserDatabaseUrl(guestUserId, path);
+    }
+
+    return getDatabaseUrl(path);
+}
+
+
+/**
  * Saves the active user in local storage.
  * @param {string} userId - The user id.
  * @param {Object} user - The user data.

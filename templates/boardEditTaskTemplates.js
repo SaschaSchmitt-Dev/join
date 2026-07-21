@@ -12,7 +12,7 @@ function getEditTaskDialogTemplate(task) {
                     <button class="edit-task-close" type="button" aria-label="Close dialog">&times;</button>
                 </header>
                 <div class="edit-task-content">
-                    <form class="add-task-form edit-task-form" id="editTaskForm">
+                    <form class="add-task-form edit-task-form" id="editTaskForm" novalidate>
                         ${getEditTaskFieldsTemplate(task)}
                     </form>
                 </div>
@@ -37,7 +37,7 @@ function getEditTaskFieldsTemplate(task) {
     return `
         <div class="dialog-field-group">
             <label for="editTaskTitle">Title</label>
-            <input id="editTaskTitle" type="text" value="${task.title}" required>
+            <input id="editTaskTitle" type="text" value="${task.title}">
             <div class="error-message" id="editTaskTitleError"></div>
         </div>
         <div class="dialog-field-group">
@@ -46,7 +46,7 @@ function getEditTaskFieldsTemplate(task) {
         </div>
         <div class="dialog-field-group">
             <label for="editTaskDueDate">Due date</label>
-            <input id="editTaskDueDate" type="date" value="${task.dueDate}" required>
+            <input id="editTaskDueDate" type="date" value="${task.dueDate}">
             <div class="error-message" id="editTaskDueDateError"></div>
         </div>
         ${getEditTaskPriorityTemplate(task.priorities)}

@@ -1,4 +1,4 @@
-/*contacts layout*/
+/* contacts layout */
 
 .main-content {
     padding: 0;
@@ -14,7 +14,7 @@
     background: var(--main-bg-color);
 }
 
-/*contacts sidebar*/
+/* contacts sidebar */
 
 .contacts-sidebar {
     z-index: 2;
@@ -147,7 +147,7 @@
     text-decoration: none;
 }
 
-/*contact detail desktop*/
+/* contact detail desktop */
 
 .contact-details {
     position: relative;
@@ -339,7 +339,7 @@
     font-weight: 400;
 }
 
-/*mobile elements hidden on desktop*/
+/* mobile elements hidden on desktop */
 
 .mobile-add-contact-btn,
 .mobile-back-btn,
@@ -349,7 +349,7 @@
     display: none;
 }
 
-/*overlay*/
+/* overlay */
 
 .add-contact-overlay {
     display: flex;
@@ -419,7 +419,7 @@
     padding-top: 24px;
 }
 
-/*modal left desktop*/
+/* modal left desktop */
 
 .modal-left {
     display: flex;
@@ -459,7 +459,7 @@
     background: var(--ui-light);
 }
 
-/*close button*/
+/* close button */
 
 .close-modal {
     display: flex;
@@ -490,7 +490,7 @@
     transform: scale(1.1);
 }
 
-/*modal right desktop*/
+/* modal right desktop */
 
 .modal-right {
     display: flex;
@@ -558,12 +558,12 @@
     font-weight: 600;
 }
 
-#addContactForm.submitted .input-field input:invalid {
+#addContactForm.submitted .input-field input.input-error {
     border-color: var(--priority-urgent);
     box-shadow: none;
 }
 
-#addContactForm.submitted .input-field input:invalid ~ .contact-input-error {
+#addContactForm.submitted .input-field input.input-error ~ .contact-input-error {
     display: block;
 }
 
@@ -643,7 +643,7 @@
     background: var(--login-button-primary-bg-active);
 }
 
-/*edit mode desktop*/
+/* edit mode desktop */
 
 .add-contact-modal.edit-mode .modal-left p {
     display: none;
@@ -680,9 +680,9 @@
     transform: translateX(-50%) translateY(0);
 }
 
-/*RESPONSIVE*/
+/* RESPONSIVE */
 
-/*small desktop laptop*/
+/* small desktop laptop */
 
 @media (width <=1280px) {
     .contacts-sidebar {
@@ -780,7 +780,7 @@
     }
 }
 
-/*tight desktop before mobile layout*/
+/* tight desktop before mobile layout */
 
 @media (width >=1025px) and (width <=1120px) {
     .add-contact-modal {
@@ -827,7 +827,7 @@
     }
 }
 
-/*tablet mobile contact layout*/
+/* tablet mobile contact layout */
 
 @media (width <=1024px) {
     body {
@@ -1376,7 +1376,7 @@
     }
 }
 
-/*very small phones*/
+/* very small phones */
 
 @media (width <=420px) {
     .contacts-sidebar {
@@ -1629,7 +1629,7 @@
     }
 }
 
-/*avatar color picker*/
+/* avatar color picker */
 
 .contact-avatar-picker {
     position: relative;
@@ -1777,7 +1777,7 @@
     box-shadow: 0 0 0 2px var(--text-white), 0 0 0 4px var(--sidebar-bg-color);
 }
 
-/*desktop*/
+/* desktop */
 
 @media (width <=1280px) {
     .contact-avatar-picker {
@@ -1825,7 +1825,7 @@
     }
 }
 
-/*mobile*/
+/* mobile */
 
 @media (width <=1024px) {
     .add-contact-modal {
@@ -1893,7 +1893,7 @@
     }
 }
 
-/*small mobile*/
+/* small mobile */
 
 @media (width <=420px) {
     .add-contact-modal .contact-avatar-picker {
@@ -1925,7 +1925,7 @@
     }
 }
 
-/*very small mobile*/
+/* very small mobile */
 
 @media (width <=380px) {
     .add-contact-modal .contact-avatar-picker {
@@ -1960,7 +1960,7 @@
         height: 14px !important;
     }
 
-    /*edit contact same spacing as add contact*/
+    /* edit contact same spacing as add contact */
 
     .add-contact-modal.edit-mode .modal-left {
         height: 170px !important;
@@ -2077,7 +2077,7 @@
     }
 }
 
-/*very small contact list*/
+/* very small contact list */
 
 @media (width <=360px) {
     .contacts-sidebar {

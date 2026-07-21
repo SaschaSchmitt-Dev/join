@@ -333,7 +333,7 @@ subtaskList.addEventListener("click", (event) => {
  * @returns {string} The task database URL.
  */
 function getAddTaskUrl() {
-    return getDatabaseUrl("tasks");
+    return getScopedDatabaseUrl("tasks");
 }
 
 

@@ -165,7 +165,7 @@ async function getContactsData() {
  */
 function getContactsUrl(contactId = "") {
     const path = contactId ? "/" + contactId : "";
-    return getDatabaseUrl("contacts" + path);
+    return getScopedDatabaseUrl("contacts" + path);
 }
 
 
@@ -293,7 +293,7 @@ function handleContactSubmit(event) {
     event.preventDefault();
     addContactForm.classList.add("submitted");
 
-    if (!addContactForm.checkValidity()) return;
+    if (!validateContactForm()) return;
 
     if (modalMode === "edit") {
         saveContact();

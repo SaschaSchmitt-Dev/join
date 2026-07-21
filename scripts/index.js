@@ -106,11 +106,24 @@ function setGuestButtonDisabled(isDisabled) {
  * Finishes the guest login.
  */
 async function completeGuestLogin() {
-    const guestUser = await getGuestUser();
+    const guestUser = await resetGuestSandbox();
 
     setActiveUser(guestUserId, guestUser);
     sessionStorage.setItem('joinShowMobileGreeting', 'true');
     window.location.href = './subpages/summary.html';
+}
+
+
+/**
+ * Rebuilds the guest sandbox from the shared example data.
+ * @returns {Object} The refreshed guest profile and sandbox data.
+ */
+async function resetGuestSandbox() {
+    const guestUser = await getGuestUser();
+    guestUser.contacts = await getGlobalData("contacts");
+    guestUser.tasks = await getGlobalData("tasks");
+    await saveGuestSandbox(guestUser);
+    return guestUser;
 }
 
 
@@ -137,6 +150,26 @@ function getDefaultGuestUser() {
         password: 'guest123!',
         userColor: 'var(--profile-blue)'
     };
+}
+
+
+/** Loads unmodified example data from a global database path. */
+async function getGlobalData(path) {
+    const response = await fetch(getDatabaseUrl(path));
+    const data = await response.json();
+
+    return data || {};
+}
+
+
+/** Saves the refreshed profile and data in the guest sandbox. */
+async function saveGuestSandbox(guestUser) {
+    const response = await fetch(getUserDatabaseUrl(guestUserId), {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(guestUser)
+    });
+    if (!response.ok) throw new Error("Guest sandbox could not be prepared.");
 }
 
 

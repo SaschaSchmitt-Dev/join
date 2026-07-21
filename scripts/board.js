@@ -64,7 +64,7 @@ function initializeBoardCardDragScroll() {
  * @returns {Promise<Object>} The contacts.
  */
 async function getBoardContacts() {
-    const response = await fetch(getDatabaseUrl("contacts"));
+    const response = await fetch(getScopedDatabaseUrl("contacts"));
 
     return await response.json() || {};
 }
