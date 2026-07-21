@@ -255,7 +255,7 @@ async function saveBoardTask(button) {
         closeAddTaskDialog();
         showTaskAddedMessage();
     } catch (error) {
-        console.error(error);
+        showBoardMessage("Task could not be saved. Please try again.", false);
         button.disabled = false;
     }
 }
@@ -332,7 +332,18 @@ function getDialogSubtasksData() {
  * Shows the task added message.
  */
 function showTaskAddedMessage() {
-    document.body.insertAdjacentHTML("beforeend", getTaskAddedMessageTemplate());
+    showBoardMessage("Task added to board");
+}
+
+
+/**
+ * Shows a temporary status message on the board.
+ * @param {string} message - The message text.
+ * @param {boolean} showIcon - Whether the board icon is shown.
+ */
+function showBoardMessage(message, showIcon = true) {
+    removeTaskAddedMessage();
+    document.body.insertAdjacentHTML("beforeend", getTaskAddedMessageTemplate(message, showIcon));
     setTimeout(removeTaskAddedMessage, 2500);
 }
 

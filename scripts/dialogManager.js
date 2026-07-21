@@ -65,6 +65,7 @@ function activateModal(modal, initialFocusElement) {
     if (activeModal) restoreModalBackground();
 
     activeModal = modal;
+    document.documentElement.classList.add("no-scroll");
     document.body.classList.add("no-scroll");
     setModalBackgroundInert(modal);
     document.addEventListener("keydown", trapModalFocus);
@@ -83,6 +84,7 @@ function deactivateModal(modal, restoreFocus = true) {
     activeModal = null;
 
     if (!restoreFocus) return;
+    document.documentElement.classList.remove("no-scroll");
     document.body.classList.remove("no-scroll");
     if (modalTrigger?.isConnected) modalTrigger.focus();
     modalTrigger = null;

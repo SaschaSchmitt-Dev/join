@@ -64,12 +64,7 @@ function initializeBoardCardDragScroll() {
  * @returns {Promise<Object>} The contacts.
  */
 async function getBoardContacts() {
-    const isGuest = getCurrentUserId() === guestUserId;
-    const url = isGuest
-        ? getUserDatabaseUrl(guestUserId, "contacts")
-        : getDatabaseUrl("contacts");
-
-    const response = await fetch(url);
+    const response = await fetch(getDatabaseUrl("contacts"));
 
     return await response.json() || {};
 }

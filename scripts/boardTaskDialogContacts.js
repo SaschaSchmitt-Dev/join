@@ -9,10 +9,24 @@ function initializeTaskContactDropdown(dialog, inputSelector, renderSelected) {
     const dropdown = input.closest(".dropdown-list");
     const toggle = () => toggleDialogDropdown({ currentTarget: input });
     const close = () => closeTaskContactDropdown(dropdown);
+    const arrow = input.parentElement.querySelector(".input-icon");
     initializeKeyboardDropdown(input, toggle, close);
-    input.addEventListener("click", () => openTaskContactDropdown(dropdown));
-    input.addEventListener("input", filterTaskContacts);
+    connectTaskContactDropdown(input, arrow, dropdown, toggle);
     initializeTaskContactDropdownKeys(dropdown, close);
+    connectTaskContactCheckboxes(dropdown, renderSelected);
+}
+
+
+/** Connects pointer and filter events of a task contact dropdown. */
+function connectTaskContactDropdown(input, arrow, dropdown, toggle) {
+    input.addEventListener("click", () => openTaskContactDropdown(dropdown));
+    arrow?.addEventListener("click", toggle);
+    input.addEventListener("input", filterTaskContacts);
+}
+
+
+/** Connects all contact checkboxes with the selected-contact renderer. */
+function connectTaskContactCheckboxes(dropdown, renderSelected) {
     dropdown.querySelectorAll(".contact-checkbox").forEach((box) => {
         box.addEventListener("change", renderSelected);
     });

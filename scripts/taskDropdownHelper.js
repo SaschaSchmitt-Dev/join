@@ -79,8 +79,10 @@ function initializeDialogDropdownAccessibility(dialog, inputSelectors) {
 function connectDialogDropdownInput(input) {
     const toggleDropdown = () => toggleDialogDropdown({ currentTarget: input });
     const closeDropdown = () => closeOneDialogDropdown(input.closest(".dropdown-list"));
+    const arrow = input.parentElement.querySelector(".input-icon");
     initializeKeyboardDropdown(input, toggleDropdown, closeDropdown);
     input.addEventListener("click", toggleDropdown);
+    arrow?.addEventListener("click", toggleDropdown);
 }
 
 

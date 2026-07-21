@@ -239,14 +239,30 @@ function closeMenuOnEscape(event) {
  */
 function addLogoutEvent() {
     const logoutLink = document.getElementById("logoutLink");
-
     if (!logoutLink) return;
+    logoutLink.addEventListener("click", handleLogout);
+}
 
-    logoutLink.addEventListener("click", function (event) {
-        event.preventDefault();
+
+/**
+ * Signs the active user out and returns to the login page.
+ * @param {Event} event - The logout click event.
+ */
+async function handleLogout(event) {
+    event.preventDefault();
+    try {
+        await signOutFirebaseUser();
+    } finally {
         clearActiveUser();
         window.location.replace("../index.html");
-    });
+    }
+}
+
+
+/** Signs out the Firebase user if Firebase Auth is available. */
+async function signOutFirebaseUser() {
+    if (!window.firebaseAuth || !window.signOut) return;
+    await window.signOut(window.firebaseAuth);
 }
 
 

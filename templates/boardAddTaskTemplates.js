@@ -197,14 +197,17 @@ function getAddTaskSubtaskTemplate(subtask) {
 
 
 /**
- * Returns the task added message.
+ * Returns a board status message.
+ * @param {string} message - The message text.
+ * @param {boolean} showIcon - Whether the board icon is shown.
  * @returns {string} The message HTML.
  */
-function getTaskAddedMessageTemplate() {
+function getTaskAddedMessageTemplate(message, showIcon = true) {
+    const icon = showIcon ? '<img src="../assets/icons/board.webp" alt="">' : '';
     return `
         <div class="task-added-message" id="taskAddedMessage">
-            <span>Task added to board</span>
-            <img src="../assets/icons/board.webp" alt="">
+            <span>${message}</span>
+            ${icon}
         </div>
     `;
 }

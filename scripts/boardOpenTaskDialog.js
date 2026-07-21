@@ -72,11 +72,20 @@ async function changeOpenTaskSubtaskStatus(event) {
     try {
         await saveOpenSubtaskStatus(task, checkbox);
     } catch (error) {
-        checkbox.checked = !checkbox.checked;
-        console.error(error);
+        handleSubtaskSaveError(checkbox);
     } finally {
         checkbox.disabled = false;
     }
+}
+
+
+/**
+ * Restores a checkbox and shows a save error.
+ * @param {HTMLInputElement} checkbox - The changed checkbox.
+ */
+function handleSubtaskSaveError(checkbox) {
+    checkbox.checked = !checkbox.checked;
+    showBoardMessage("Subtask could not be saved. Please try again.", false);
 }
 
 

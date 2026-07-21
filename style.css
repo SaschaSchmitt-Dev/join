@@ -134,6 +134,8 @@ a {
     }
 }
 
+html.no-scroll,
 body.no-scroll {
     overflow: hidden;
+    overscroll-behavior: none;
 }

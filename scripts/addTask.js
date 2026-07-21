@@ -333,9 +333,6 @@ subtaskList.addEventListener("click", (event) => {
  * @returns {string} The task database URL.
  */
 function getAddTaskUrl() {
-    if (getCurrentUserId() === guestUserId) {
-        return getUserDatabaseUrl(guestUserId, 'tasks');
-    }
     return getDatabaseUrl("tasks");
 }
 
@@ -363,20 +360,41 @@ function getTaskFormData() {
 
 
 updateCreateTaskButtonState();
-createTaskButton.addEventListener("click", async (event) => {
+createTaskButton.addEventListener("click", handleCreateTask);
+
+
+/**
+ * Validates and creates a new task.
+ * @param {MouseEvent} event - The create button click event.
+ */
+async function handleCreateTask(event) {
     event.preventDefault();
     const firstInvalidInput = validateRequiredFields();
     if (firstInvalidInput) {
         firstInvalidInput.focus();
         return;
     }
+    await saveNewTask();
+}
+
+
+/** Saves a new task and updates the page state. */
+async function saveNewTask() {
     createTaskButton.disabled = true;
     try {
         await postNewTask(getTaskFormData());
         clearForm();
         showTaskAddedToast();
     } catch (error) {
-        console.error("Task could not be created:", error);
+        showTaskSaveError();
         createTaskButton.disabled = false;
     }
-});
+}
+
+
+/** Shows a user-facing message if a task could not be saved. */
+function showTaskSaveError() {
+    taskAddedToast.textContent = "Task could not be saved. Please try again.";
+    taskAddedToast.classList.add("show");
+    setTimeout(() => taskAddedToast.classList.remove("show"), 2500);
+}

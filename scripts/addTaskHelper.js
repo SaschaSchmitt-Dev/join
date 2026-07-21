@@ -9,7 +9,7 @@
  */
 function dropdownToggle(element, onClose) {
     const dropdown = element.parentElement.querySelector('.dropdown-content');
-    const isOpen = dropdown.style.display === 'block';
+    const isOpen = element.classList.contains('open') || dropdown.style.display === 'block';
     dropdown.style.display = isOpen ? 'none' : 'block';
     element.classList.toggle('open', !isOpen);
     element.querySelector('input').setAttribute('aria-expanded', String(!isOpen));
@@ -65,8 +65,17 @@ function setupDropdownToggle(input, onClose) {
     initializeKeyboardDropdown(input, toggle, close);
     initializeContactDropdownKeys(dropdownList, close);
     input.addEventListener('click', open);
-    arrow.addEventListener('click', toggle);
+    connectAddTaskDropdownArrow(arrow, toggle);
     dropdownList.addEventListener('focusout', () => closeDropdownAfterFocusLeaves(dropdownList, close));
+}
+
+
+/** Connects the standalone dropdown arrow with its toggle. */
+function connectAddTaskDropdownArrow(arrow, toggle) {
+    arrow.addEventListener('click', (event) => {
+        event.stopPropagation();
+        toggle();
+    });
 }
 
 

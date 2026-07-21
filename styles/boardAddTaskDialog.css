@@ -18,7 +18,7 @@
     height: 870px;
     max-height: calc(100% - 48px);
     padding: 64px clamp(32px, 6vw, 72px) 56px;
-    overflow: auto;
+    overflow: hidden;
     background: var(--assets-bg-color);
     border: 1px solid var(--divider-color-grey);
     border-radius: 30px;
@@ -70,8 +70,12 @@
 
 .add-task-form {
     display: grid;
+    flex: 1 1 auto;
     gap: clamp(24px, 4vw, 44px);
     grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+    min-height: 0;
+    padding: 0 4px 12px 0;
+    overflow-y: auto;
 }
 
 .add-task-fields-left,
@@ -535,6 +539,7 @@
 
 .add-task-dialog-footer {
     display: flex;
+    flex: 0 0 auto;
     justify-content: space-between;
     align-items: flex-end;
     width: 100%;
@@ -652,7 +657,10 @@
 
 @media (width <= 900px) {
     .add-task-dialog {
-        padding: 40px 32px;
+        max-width: 525px;
+        height: 100%;
+        max-height: 100%;
+        padding: 40px 32px 0;
     }
 
     .add-task-form {
@@ -671,21 +679,25 @@
     }
 
     .add-task-dialog-footer {
-        margin-top: auto;
+        align-items: center;
+        width: calc(100% + 64px);
+        height: 80px;
+        margin: auto -32px 0;
+        padding: 0 32px;
+        background: var(--assets-bg-color);
+        box-shadow: 0 -2px 8px rgb(0 0 0 / 8%);
     }
 }
 
-@media (width <= 560px) {
+@media (width <= 572px) {
     .add-task-dialog-backdrop {
-        padding: 0;
+        padding: 16px;
     }
 
     .add-task-dialog {
         width: 100%;
-        height: 100%;
-        max-height: none;
-        padding: 32px 20px 104px;
-        border-radius: 0;
+        max-width: 396px;
+        padding: 32px 20px 0;
     }
 
     .add-task-dialog-close {
@@ -702,17 +714,9 @@
     }
 
     .add-task-dialog-footer {
-        position: fixed;
-        right: 0;
-        bottom: 80px;
-        left: 0;
-        z-index: 20;
-        align-items: center;
-        height: 80px;
-        margin: 0;
+        width: calc(100% + 40px);
+        margin: 0 -20px;
         padding: 0 20px;
-        background: var(--assets-bg-color);
-        box-shadow: 0 -2px 8px rgb(0 0 0 / 8%);
     }
 
     .add-task-dialog-footer > p {
@@ -727,6 +731,26 @@
     .footer-buttons {
         margin-left: auto;
     }
+
+}
+
+@media (width <= 427px) {
+    .add-task-dialog-backdrop {
+        padding: 8px;
+    }
+}
+
+@media (width <= 411px) {
+    .add-task-dialog-backdrop {
+        padding: 0;
+    }
+
+    .add-task-dialog {
+        max-width: none;
+        max-height: none;
+        border-radius: 0;
+    }
+
 }
 
 @media (width <= 440px) {
@@ -751,7 +775,10 @@
     }
 
     .add-task-dialog-footer {
+        width: calc(100% + 20px);
         height: 72px;
+        margin-right: -10px;
+        margin-left: -10px;
         padding: 0 10px;
     }
 
@@ -770,10 +797,6 @@
         bottom: 76px;
     }
 
-    .add-task-dialog-footer {
-        bottom: 76px;
-    }
-
     .priority-group label {
         gap: 4px;
         height: 41px;
@@ -784,9 +807,9 @@
     }
 }
 
-@media (700px <= width <= 1024px) and (height < 1251px) {
+@media (900px < width <= 1024px) and (height < 1251px) {
     .add-task-dialog {
-        padding: 32px clamp(24px, 4vw, 40px) 28px;
+        padding: 32px 32px 0;
     }
 
     .add-task-dialog h1 {

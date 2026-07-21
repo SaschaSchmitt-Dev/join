@@ -38,43 +38,125 @@ document.getElementById('confirmPassword').addEventListener('input', () => toggl
 document.getElementById('confirmPasswordToggle').addEventListener('click', () => togglePasswordVisibility('confirmPassword', 'confirmPasswordIcon'));
 
 
-/**
- * Enables or disables the signup button based on the terms checkbox state.
- */
+/** Enables the signup button only when every required field is filled. */
 function updateSignupButtonState() {
+    const requiredFields = ['username', 'email', 'password', 'confirmPassword'];
     const termsCheckbox = document.getElementById('termsCheckbox');
     const signupBtn = document.getElementById('signupBtn');
-    signupBtn.disabled = !termsCheckbox.checked;
+    const allFieldsFilled = requiredFields.every((id) => {
+        return document.getElementById(id).value.trim() !== '';
+    });
+
+    signupBtn.disabled = !allFieldsFilled || !termsCheckbox.checked;
 }
 
 
+['username', 'email', 'password', 'confirmPassword'].forEach((id) => {
+    document.getElementById(id).addEventListener('input', updateSignupButtonState);
+});
 document.getElementById('termsCheckbox').addEventListener('change', updateSignupButtonState);
 updateSignupButtonState();
 
 
 /**
- * Checks whether the password and confirm password fields match.
- * Marks the confirm password field and shows an error message if they do not.
- * @returns {boolean} True if the passwords match.
+ * Shows a validation error on one signup field.
+ * @param {HTMLInputElement} input - The invalid input.
+ * @param {string} message - The user-facing error message.
+ * @returns {boolean} Always false.
  */
-function checkPasswordsMatch() {
-    const password = document.getElementById('password');
-    const confirmPassword = document.getElementById('confirmPassword');
-    const matches = password.value === confirmPassword.value;
+function showValidationError(input, message) {
+    input.classList.add('error');
+    document.getElementById('errorMessage').textContent = message;
+    input.focus();
+    return false;
+}
 
-    confirmPassword.classList.toggle('error', !matches);
-    document.getElementById('errorMessage').textContent = matches ? '' : 'Your passwords don\'t match. Please try again.';
 
-    return matches;
+/** Clears all signup validation errors. */
+function clearSignupErrors() {
+    document.querySelectorAll('.signup-input-field input').forEach((input) => {
+        input.classList.remove('error');
+    });
+    document.getElementById('errorMessage').textContent = '';
 }
 
 
 /**
- * Clears the signup password error state.
+ * Gets all fields used by the signup validation.
+ * @returns {Object} The signup fields.
  */
-function clearPasswordError() {
-    document.getElementById('confirmPassword').classList.remove('error');
-    document.getElementById('errorMessage').textContent = '';
+function getSignupFields() {
+    return {
+        name: document.getElementById('username'),
+        email: document.getElementById('email'),
+        password: document.getElementById('password'),
+        confirmPassword: document.getElementById('confirmPassword'),
+        terms: document.getElementById('termsCheckbox')
+    };
+}
+
+
+/**
+ * Validates all required signup data without browser validation.
+ * @returns {boolean} True when the form data is valid.
+ */
+function validateSignupForm() {
+    const fields = getSignupFields();
+    clearSignupErrors();
+    return validateRequiredSignupFields(fields)
+        && validateSignupEmail(fields.email)
+        && validateSignupPasswords(fields)
+        && validateSignupTerms(fields.terms);
+}
+
+
+/**
+ * Validates that every signup field contains a value.
+ * @param {Object} fields - The signup fields.
+ * @returns {boolean} True when all fields contain a value.
+ */
+function validateRequiredSignupFields(fields) {
+    if (!fields.name.value.trim()) return showValidationError(fields.name, 'Please enter your name.');
+    if (!fields.email.value.trim()) return showValidationError(fields.email, 'Please enter your email address.');
+    if (!fields.password.value.trim()) return showValidationError(fields.password, 'Please enter a password.');
+    if (!fields.confirmPassword.value.trim()) return showValidationError(fields.confirmPassword, 'Please confirm your password.');
+    return true;
+}
+
+
+/**
+ * Validates the signup email address.
+ * @param {HTMLInputElement} email - The email input.
+ * @returns {boolean} True when the email format is valid.
+ */
+function validateSignupEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailPattern.test(email.value.trim())) return true;
+    return showValidationError(email, 'Please enter a valid email address.');
+}
+
+
+/**
+ * Validates password length and confirmation.
+ * @param {Object} fields - The signup fields.
+ * @returns {boolean} True when both passwords are valid.
+ */
+function validateSignupPasswords(fields) {
+    const password = fields.password.value;
+    if (password.trim().length < 6) return showValidationError(fields.password, 'Your password needs at least 6 characters.');
+    if (password === fields.confirmPassword.value) return true;
+    return showValidationError(fields.confirmPassword, 'Your passwords do not match.');
+}
+
+
+/**
+ * Validates the privacy policy checkbox.
+ * @param {HTMLInputElement} terms - The privacy policy checkbox.
+ * @returns {boolean} True when the checkbox is selected.
+ */
+function validateSignupTerms(terms) {
+    if (terms.checked) return true;
+    return showValidationError(terms, 'Please accept the privacy policy.');
 }
 
 
@@ -83,8 +165,9 @@ document.getElementById('signupForm').addEventListener('submit', (event) => {
     handleSignup();
 });
 
-document.getElementById('password').addEventListener('input', clearPasswordError);
-document.getElementById('confirmPassword').addEventListener('input', clearPasswordError);
+document.querySelectorAll('.signup-input-field input').forEach((input) => {
+    input.addEventListener('input', clearSignupErrors);
+});
 
 
 /**
@@ -92,29 +175,50 @@ document.getElementById('confirmPassword').addEventListener('input', clearPasswo
  * Creates a new user in Firebase Auth and the database.
  */
 async function handleSignup() {
-    if (!checkPasswordsMatch()) return;
-
+    if (!validateSignupForm()) return;
     const signupBtn = document.getElementById('signupBtn');
     signupBtn.disabled = true;
+    await createSignupAccount(signupBtn);
+}
 
+
+/**
+ * Creates the Firebase account and handles its UI state.
+ * @param {HTMLButtonElement} signupBtn - The signup button.
+ */
+async function createSignupAccount(signupBtn) {
     try {
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value.trim();
-
-        const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password);
-        const uid = userCredential.user.uid;
-
-        const newUser = createNewUser(uid, getSignupFormData());
-        const newContact = createNewContact(getNewContact());
-
-        await Promise.all([newUser, newContact]);
-
+        const userCredential = await registerFirebaseUser();
+        await saveSignupData(userCredential.user.uid);
         showSignupToast();
     } catch (error) {
         showSignupError(getSignupErrorMessage(error));
     } finally {
-        signupBtn.disabled = !document.getElementById('termsCheckbox').checked;
+        updateSignupButtonState();
     }
+}
+
+
+/**
+ * Creates the Firebase authentication user.
+ * @returns {Promise<Object>} The Firebase user credential.
+ */
+function registerFirebaseUser() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    return createUserWithEmailAndPassword(firebaseAuth, email, password);
+}
+
+
+/**
+ * Saves the new user and matching contact.
+ * @param {string} uid - The Firebase user id.
+ * @returns {Promise<Array>} The save requests.
+ */
+function saveSignupData(uid) {
+    const newUser = createNewUser(uid, getSignupFormData());
+    const newContact = createNewContact(getNewContact());
+    return Promise.all([newUser, newContact]);
 }
 
 

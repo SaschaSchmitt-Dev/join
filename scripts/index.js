@@ -106,26 +106,11 @@ function setGuestButtonDisabled(isDisabled) {
  * Finishes the guest login.
  */
 async function completeGuestLogin() {
-    const guestUser = await resetGuestUser();
+    const guestUser = await getGuestUser();
 
     setActiveUser(guestUserId, guestUser);
     sessionStorage.setItem('joinShowMobileGreeting', 'true');
     window.location.href = './subpages/summary.html';
-}
-
-
-/**
- * Resets the guest user.
- * @returns {Object} The guest user.
- */
-async function resetGuestUser() {
-    const guestUser = await getGuestUser();
-    guestUser.contacts = await getGlobalData('contacts');
-    guestUser.tasks = await getGlobalData('tasks');
-
-    await putGuestUser(guestUser);
-
-    return guestUser;
 }
 
 
@@ -152,34 +137,6 @@ function getDefaultGuestUser() {
         password: 'guest123!',
         userColor: 'var(--profile-blue)'
     };
-}
-
-
-/**
- * Gets global data from the database.
- * @param {string} path - The database path.
- * @returns {Object} The data.
- */
-async function getGlobalData(path) {
-    const response = await fetch(getDatabaseUrl(path));
-    const data = await response.json();
-
-    return data || {};
-}
-
-
-/**
- * Saves the guest user in the database.
- * @param {Object} guestUser - The guest user.
- */
-async function putGuestUser(guestUser) {
-    await fetch(getUserDatabaseUrl(guestUserId), {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(guestUser)
-    });
 }
 
 

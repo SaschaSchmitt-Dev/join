@@ -3,4 +3,4 @@ Thumbs.db
 .vscode/
 out/
 node_modules/
-firebaseConfig.js
+/scripts/firebaseConfig.js

@@ -1,16 +1,10 @@
 /**
  * Returns the database URL for all tasks or one task.
- * Guest users work with their separate sandbox data.
  * @param {string} taskId - The optional Firebase task id.
  * @returns {string} The task database URL.
  */
 function getTasksUrl(taskId = "") {
     const taskPath = taskId ? `tasks/${taskId}` : "tasks";
-
-    if (getCurrentUserId() === guestUserId) {
-        return getUserDatabaseUrl(guestUserId, taskPath);
-    }
-
     return getDatabaseUrl(taskPath);
 }
 

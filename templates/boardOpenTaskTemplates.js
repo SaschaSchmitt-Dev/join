@@ -11,13 +11,15 @@ function getOpenTaskDialogTemplate(task) {
                     <span class="open-task-category ${task.categoryClass}">${task.category}</span>
                     <button class="open-task-close" type="button" aria-label="Close dialog">&times;</button>
                 </header>
-                <h1 id="openTaskTitle">${task.title}</h1>
-                <p class="open-task-description">${task.description}</p>
-                <div class="open-task-row open-task-due-date"><span>Due date:</span><span>${task.dueDate}</span></div>
-                <div class="open-task-row"><span>Priority:</span><span class="open-task-priority">${task.priorityLabel}
-                    <img src="../assets/icons/${task.priorityIcon}" alt=""></span></div>
-                <div class="open-task-section"><span>Assigned To:</span><div class="open-task-contacts">${task.contacts}</div></div>
-                <div class="open-task-section"><span>Subtasks</span><div class="open-task-subtasks">${task.subtasks}</div></div>
+                <div class="open-task-content">
+                    <h1 id="openTaskTitle">${task.title}</h1>
+                    <p class="open-task-description">${task.description}</p>
+                    <div class="open-task-row open-task-due-date"><span>Due date:</span><span>${task.dueDate}</span></div>
+                    <div class="open-task-row"><span>Priority:</span><span class="open-task-priority">${task.priorityLabel}
+                        <img src="../assets/icons/${task.priorityIcon}" alt=""></span></div>
+                    <div class="open-task-section"><span>Assigned To:</span><div class="open-task-contacts">${task.contacts}</div></div>
+                    <div class="open-task-section"><span>Subtasks</span><div class="open-task-subtasks">${task.subtasks}</div></div>
+                </div>
                 <footer class="open-task-actions">
                     <button class="open-task-delete" type="button"><img src="../assets/icons/delete.webp" alt="">Delete</button>
                     <span class="open-task-action-divider"></span>

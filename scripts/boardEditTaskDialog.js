@@ -183,12 +183,19 @@ function handleEditSubtaskListClick(event) {
     const item = event.target.closest("li");
     if (!item) return;
     const index = Number(item.dataset.subtaskIndex);
-    if (event.target.closest(".delete-dialog-subtask")) {
-        editTaskSubtasks.splice(index, 1);
-        renderEditTaskSubtasks();
-    }
-    if (event.target.closest(".edit-dialog-subtask")) startEditSubtask(item, index);
+    if (event.target.closest(".delete-dialog-subtask")) return deleteEditSubtask(index);
+    if (event.target.closest(".edit-dialog-subtask")) return startEditSubtask(item, index);
     if (event.target.closest(".save-edit-subtask")) saveEditSubtask(item, index);
+}
+
+
+/**
+ * Deletes one subtask from the edit dialog.
+ * @param {number} index - The subtask index.
+ */
+function deleteEditSubtask(index) {
+    editTaskSubtasks.splice(index, 1);
+    renderEditTaskSubtasks();
 }
 
 
@@ -264,7 +271,7 @@ async function submitEditTask(event) {
     try {
         await saveEditedTask(dialog);
     } catch (error) {
-        console.error(error);
+        showBoardMessage("Task could not be saved. Please try again.", false);
         button.disabled = false;
     }
 }

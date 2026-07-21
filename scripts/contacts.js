@@ -165,11 +165,6 @@ async function getContactsData() {
  */
 function getContactsUrl(contactId = "") {
     const path = contactId ? "/" + contactId : "";
-
-    if (getCurrentUserId() === guestUserId) {
-        return getUserDatabaseUrl(guestUserId, "contacts" + path);
-    }
-
     return getDatabaseUrl("contacts" + path);
 }
 
