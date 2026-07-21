@@ -220,7 +220,7 @@ function showContact(index) {
     currentContactIndex = index;
     renderContacts();
     renderContactDetails(contact);
-    document.querySelector(".contact-detail-name-box h2").focus();
+    document.querySelector(".contact-detail-name-box h2").focus({ preventScroll: true });
     openMobileContactDetails();
 }
 

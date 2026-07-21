@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
+    max-width: none;
     height: calc(100vh - 90px);
     overflow: hidden;
     background: var(--main-bg-color);
@@ -153,7 +154,7 @@
     flex: 1;
     height: 100%;
     padding: 80px 56px;
-    overflow-y: auto;
+    overflow: hidden auto;
     background: var(--main-bg-color);
 }
 
@@ -187,6 +188,30 @@
 
 .contact-detail-content {
     margin-top: 32px;
+}
+
+@media (width >= 1025px) {
+    .contact-detail-content {
+        animation: contact-detail-slide-in 250ms ease-out both;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-detail-content {
+        animation: none;
+    }
+}
+
+@keyframes contact-detail-slide-in {
+    from {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .contact-detail-top {
