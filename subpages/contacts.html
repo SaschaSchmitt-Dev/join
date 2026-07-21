@@ -160,8 +160,10 @@
                     </div>
 
                     <div class="input-field">
-                        <input id="contactPhone" type="tel" placeholder="Phone" />
+                        <input id="contactPhone" type="tel" inputmode="tel" pattern="^\+?[0-9\s() -]{6,20}$"
+                            placeholder="Phone" />
                         <img src="../assets/icons/call.webp" alt="Phone" />
+                        <p class="contact-input-error">Please enter a valid phone number.</p>
                     </div>
 
                     <div class="modal-buttons">

@@ -320,3 +320,44 @@ function closeMobileOptionsMenu() {
     mobileOptionsMenu.classList.remove("active");
 }
 
+
+/**
+ * Initializes phone input validation.
+ */
+function initPhoneInputValidation() {
+    const phoneInput = document.getElementById("contactPhone");
+
+    if (!phoneInput) return;
+
+    phoneInput.addEventListener("input", handlePhoneInput);
+}
+
+
+/**
+ * Handles the phone input value.
+ * @param {Event} event - The input event.
+ */
+function handlePhoneInput(event) {
+    const phoneInput = event.target;
+
+    phoneInput.value = phoneInput.value.replace(/[^0-9+\s() -]/g, "");
+    phoneInput.value = phoneInput.value.replace(/(?!^)\+/g, "");
+    validatePhoneNumber(phoneInput);
+}
+
+
+/**
+ * Validates the phone input.
+ * @param {HTMLInputElement} phoneInput - The phone input field.
+ */
+function validatePhoneNumber(phoneInput) {
+    const phonePattern = /^\+?[0-9\s() -]{6,20}$/;
+
+    phoneInput.setCustomValidity(phonePattern.test(phoneInput.value)
+        ? ""
+        : "Please enter a valid phone number.");
+}
+
+
+initPhoneInputValidation();
+

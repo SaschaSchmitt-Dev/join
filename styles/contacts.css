@@ -1,4 +1,4 @@
-/* contacts layout */
+/*contacts layout*/
 
 .main-content {
     padding: 0;
@@ -14,7 +14,7 @@
     background: var(--main-bg-color);
 }
 
-/* contacts sidebar */
+/*contacts sidebar*/
 
 .contacts-sidebar {
     z-index: 2;
@@ -147,7 +147,7 @@
     text-decoration: none;
 }
 
-/* contact detail desktop */
+/*contact detail desktop*/
 
 .contact-details {
     position: relative;
@@ -339,7 +339,7 @@
     font-weight: 400;
 }
 
-/* mobile elements hidden on desktop */
+/*mobile elements hidden on desktop*/
 
 .mobile-add-contact-btn,
 .mobile-back-btn,
@@ -349,7 +349,7 @@
     display: none;
 }
 
-/* overlay */
+/*overlay*/
 
 .add-contact-overlay {
     display: flex;
@@ -419,7 +419,7 @@
     padding-top: 24px;
 }
 
-/* modal left desktop */
+/*modal left desktop*/
 
 .modal-left {
     display: flex;
@@ -459,7 +459,7 @@
     background: var(--ui-light);
 }
 
-/* close button */
+/*close button*/
 
 .close-modal {
     display: flex;
@@ -490,7 +490,7 @@
     transform: scale(1.1);
 }
 
-/* modal right desktop */
+/*modal right desktop*/
 
 .modal-right {
     display: flex;
@@ -643,7 +643,7 @@
     background: var(--login-button-primary-bg-active);
 }
 
-/* edit mode desktop */
+/*edit mode desktop*/
 
 .add-contact-modal.edit-mode .modal-left p {
     display: none;
@@ -680,9 +680,9 @@
     transform: translateX(-50%) translateY(0);
 }
 
-/* RESPONSIVE */
+/*RESPONSIVE*/
 
-/* small desktop laptop */
+/*small desktop laptop*/
 
 @media (width <=1280px) {
     .contacts-sidebar {
@@ -780,7 +780,7 @@
     }
 }
 
-/* tight desktop before mobile layout */
+/*tight desktop before mobile layout*/
 
 @media (width >=1025px) and (width <=1120px) {
     .add-contact-modal {
@@ -827,7 +827,7 @@
     }
 }
 
-/* tablet mobile contact layout */
+/*tablet mobile contact layout*/
 
 @media (width <=1024px) {
     body {
@@ -1376,7 +1376,7 @@
     }
 }
 
-/* very small phones */
+/*very small phones*/
 
 @media (width <=420px) {
     .contacts-sidebar {
@@ -1473,7 +1473,7 @@
 
     .add-contact-modal {
         width: calc(100vw - 16px);
-        max-height: calc(100dvh - 176px);
+        max-height: calc(100dvh - 160px);
         overflow: hidden;
         border-radius: 24px;
     }
@@ -1629,7 +1629,7 @@
     }
 }
 
-/* avatar color picker */
+/*avatar color picker*/
 
 .contact-avatar-picker {
     position: relative;
@@ -1777,7 +1777,7 @@
     box-shadow: 0 0 0 2px var(--text-white), 0 0 0 4px var(--sidebar-bg-color);
 }
 
-/* desktop */
+/*desktop*/
 
 @media (width <=1280px) {
     .contact-avatar-picker {
@@ -1825,7 +1825,7 @@
     }
 }
 
-/* mobile */
+/*mobile*/
 
 @media (width <=1024px) {
     .add-contact-modal {
@@ -1893,7 +1893,7 @@
     }
 }
 
-/* small mobile */
+/*small mobile*/
 
 @media (width <=420px) {
     .add-contact-modal .contact-avatar-picker {
@@ -1925,7 +1925,7 @@
     }
 }
 
-/* very small mobile */
+/*very small mobile*/
 
 @media (width <=380px) {
     .add-contact-modal .contact-avatar-picker {
@@ -1936,14 +1936,6 @@
         min-height: 60px !important;
     }
 
-    .add-contact-modal.edit-mode .contact-avatar-picker {
-        top: 135px !important;
-        width: 68px !important;
-        min-width: 68px !important;
-        height: 68px !important;
-        min-height: 68px !important;
-    }
-
     .add-contact-modal .contact-avatar-picker .contact-placeholder {
         width: 60px !important;
         min-width: 60px !important;
@@ -1951,24 +1943,9 @@
         min-height: 60px !important;
     }
 
-    .add-contact-modal.edit-mode .contact-avatar-picker .contact-placeholder {
-        width: 68px !important;
-        min-width: 68px !important;
-        height: 68px !important;
-        min-height: 68px !important;
-    }
-
     .add-contact-modal:not(.edit-mode) .contact-avatar-picker .contact-placeholder img {
         width: 60px;
         height: 60px;
-    }
-
-    .add-contact-modal.edit-mode .contact-avatar-picker .contact-avatar-initials {
-        font-size: 28px;
-    }
-
-    .add-contact-modal.edit-mode .modal-right {
-        padding-top: 36px !important;
     }
 
     .avatar-edit-icon {
@@ -1981,6 +1958,96 @@
     .avatar-edit-icon img {
         width: 14px !important;
         height: 14px !important;
+    }
+
+    /*edit contact same spacing as add contact*/
+
+    .add-contact-modal.edit-mode .modal-left {
+        height: 170px !important;
+        min-height: 170px !important;
+        padding: 50px 20px 18px !important;
+    }
+
+    .add-contact-modal.edit-mode .modal-left h2 {
+        margin-bottom: 8px !important;
+        font-size: 34px !important;
+        line-height: 1 !important;
+    }
+
+    .add-contact-modal.edit-mode .blue-line {
+        width: 80px !important;
+        height: 3px !important;
+        margin-top: 12px !important;
+    }
+
+    .add-contact-modal.edit-mode .contact-avatar-picker {
+        top: 170px !important;
+        width: 60px !important;
+        min-width: 60px !important;
+        height: 60px !important;
+        min-height: 60px !important;
+    }
+
+    .add-contact-modal.edit-mode .contact-avatar-picker .contact-placeholder {
+        width: 60px !important;
+        min-width: 60px !important;
+        height: 60px !important;
+        min-height: 60px !important;
+    }
+
+    .add-contact-modal.edit-mode .contact-avatar-picker .contact-avatar-initials {
+        font-size: 26px !important;
+    }
+
+    .add-contact-modal.edit-mode .modal-right {
+        padding: 48px 12px 14px !important;
+        overflow: hidden !important;
+    }
+
+    .add-contact-modal.edit-mode .input-field {
+        margin-bottom: 8px !important;
+    }
+
+    .add-contact-modal.edit-mode .input-field input {
+        height: 40px !important;
+        padding: 0 38px 0 14px !important;
+        font-size: 16px !important;
+    }
+
+    .add-contact-modal.edit-mode .input-field img {
+        top: 20px !important;
+        right: 14px !important;
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .add-contact-modal.edit-mode .modal-buttons {
+        justify-content: center !important;
+        gap: 10px !important;
+        width: 100% !important;
+        padding-top: 8px !important;
+        padding-bottom: 0 !important;
+    }
+
+    .add-contact-modal.edit-mode .cancel-btn {
+        display: flex !important;
+        width: 100px !important;
+        min-width: 100px !important;
+        height: 44px !important;
+        font-size: 16px !important;
+    }
+
+    .add-contact-modal.edit-mode .create-btn {
+        flex: none !important;
+        width: 100px !important;
+        min-width: 100px !important;
+        height: 44px !important;
+        font-size: 16px !important;
+    }
+
+    .add-contact-modal.edit-mode .create-btn img {
+        width: 16px !important;
+        height: 16px !important;
     }
 
     .add-contact-modal.edit-mode .contact-avatar-picker .color-picker {
@@ -2010,7 +2077,7 @@
     }
 }
 
-/* very small contact list */
+/*very small contact list*/
 
 @media (width <=360px) {
     .contacts-sidebar {
