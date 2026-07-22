@@ -42,7 +42,7 @@
     box-shadow: 0 4px 8px rgb(0 0 0 / 12%);
     color: var(--text-white);
     font-family: Inter, sans-serif;
-    font-size: 21px;
+    font-size: 1.3125rem;
     font-weight: 700;
     cursor: pointer;
 }
@@ -82,7 +82,7 @@
     padding: 16px 0 16px 24px;
     border-bottom: 1px solid var(--divider-color-grey);
     font-family: Inter, sans-serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 400;
 }
 
@@ -129,13 +129,13 @@
     background: var(--profile-orange);
     border-radius: 50%;
     color: var(--text-white);
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .contact-info h4 {
     margin: 0 0 4px;
     color: var(--text-primary);
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 400;
 }
 
@@ -143,7 +143,7 @@
 .contact-info p {
     margin: 0;
     color: var(--contact-link);
-    font-size: 16px;
+    font-size: 1rem;
     text-decoration: none;
 }
 
@@ -182,7 +182,7 @@
 .contacts-header span {
     color: var(--text-primary);
     font-family: Inter, sans-serif;
-    font-size: 27px;
+    font-size: 1.6875rem;
     font-weight: 400;
 }
 
@@ -232,7 +232,7 @@
     box-shadow: 0 0 5px rgb(0 0 0 / 40%);
     color: var(--text-white);
     font-family: Inter, sans-serif;
-    font-size: 47px;
+    font-size: 2.9375rem;
     font-weight: 500;
 }
 
@@ -241,7 +241,7 @@
     outline: none;
     color: var(--text-primary);
     font-family: Inter, sans-serif;
-    font-size: 47px;
+    font-size: 2.9375rem;
     font-weight: 500;
 }
 
@@ -261,7 +261,7 @@
     border: none;
     color: var(--text-primary);
     font-family: Inter, sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     cursor: pointer;
 }
@@ -310,7 +310,7 @@
     margin: 0 0 50px;
     color: var(--text-primary);
     font-family: Inter, sans-serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 400;
 }
 
@@ -318,7 +318,7 @@
     margin: 0 0 15px;
     color: var(--text-primary);
     font-family: Inter, sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 700;
 }
 
@@ -327,7 +327,7 @@
     margin-bottom: 22px;
     color: var(--contact-link);
     font-family: Inter, sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     text-decoration: none;
 }
 
@@ -335,7 +335,7 @@
     margin: 0 0 22px;
     color: var(--text-primary);
     font-family: Inter, sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
 }
 
@@ -392,14 +392,14 @@
     width: 126px;
     min-width: 126px;
     height: 56px;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .add-contact-modal.edit-mode .create-btn {
     width: 111px;
     min-width: 111px;
     height: 57px;
-    font-size: 21px;
+    font-size: 1.3125rem;
     white-space: nowrap;
 }
 
@@ -442,13 +442,13 @@
 .modal-left h2 {
     margin-bottom: 8px;
     font-family: Inter, sans-serif;
-    font-size: 61px;
+    font-size: 3.8125rem;
     font-weight: 700;
 }
 
 .modal-left p {
     font-family: Inter, sans-serif;
-    font-size: 27px;
+    font-size: 1.6875rem;
     font-weight: 400;
 }
 
@@ -523,7 +523,7 @@
     border-radius: 10px;
     color: var(--text-primary);
     font-family: Inter, sans-serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
 }
@@ -554,7 +554,7 @@
     margin: 6px 0 0;
     color: var(--priority-urgent);
     font-family: Inter, sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
 }
 
@@ -585,7 +585,7 @@
     border-radius: 10px;
     color: var(--login-button-secondary-text);
     font-family: Inter, sans-serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 400;
     cursor: pointer;
 }
@@ -621,7 +621,7 @@
     border-radius: 10px;
     color: var(--text-white);
     font-family: Inter, sans-serif;
-    font-size: 21px;
+    font-size: 1.3125rem;
     font-weight: 700;
     white-space: nowrap;
     cursor: pointer;
@@ -667,7 +667,7 @@
     box-shadow: 0 4px 8px rgb(0 0 0 / 25%);
     color: var(--text-white);
     font-family: Inter, sans-serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 400;
     pointer-events: none;
     transition: opacity 250ms ease, transform 250ms ease, visibility 250ms ease;
@@ -699,7 +699,7 @@
     }
 
     .contacts-header span {
-        font-size: 22px;
+        font-size: 1.375rem;
     }
 
     .header-divider {
@@ -712,11 +712,11 @@
     }
 
     .contact-info h4 {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .contact-info a {
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .contact-detail-top {
@@ -726,12 +726,12 @@
     .contact-detail-avatar {
         width: 96px;
         height: 96px;
-        font-size: 36px;
+        font-size: 2.25rem;
     }
 
     .contact-detail-name-box h2 {
         font-family: Inter, sans-serif;
-        font-size: 38px;
+        font-size: 2.375rem;
         font-weight: 700;
     }
 
@@ -747,11 +747,11 @@
     }
 
     .modal-left h2 {
-        font-size: 50px;
+        font-size: 3.125rem;
     }
 
     .modal-left p {
-        font-size: 23px;
+        font-size: 1.4375rem;
     }
 
     .modal-right {
@@ -793,11 +793,11 @@
     }
 
     .modal-left h2 {
-        font-size: 42px;
+        font-size: 2.625rem;
     }
 
     .modal-left p {
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 
     
@@ -813,7 +813,7 @@
 
     .input-field input {
         height: 50px;
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 
     .modal-buttons {
@@ -944,7 +944,7 @@
         border-radius: 12px;
         color: var(--text-white);
         font-family: Inter, sans-serif;
-        font-size: 16px;
+        font-size: 1rem;
         text-decoration: none;
     }
 
@@ -1002,14 +1002,14 @@
     .modal-left h2 {
         margin-bottom: 12px;
         font-family: Inter, sans-serif;
-        font-size: 47px;
+        font-size: 2.9375rem;
         font-weight: 700;
         line-height: 1;
     }
 
     .modal-left p {
         font-family: Inter, sans-serif;
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 400;
     }
 
@@ -1080,7 +1080,7 @@
         border-radius: 10px;
         color: var(--text-primary);
         font-family: Inter, sans-serif;
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 
     .input-field input:focus {
@@ -1134,7 +1134,7 @@
         min-width: 111px;
         height: 48px;
         background: var(--assets-bg-color);
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .add-contact-modal.edit-mode .cancel-btn img {
@@ -1145,7 +1145,7 @@
         width: 111px;
         min-width: 111px;
         height: 48px;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .add-contact-modal.edit-mode .create-btn img {
@@ -1205,7 +1205,7 @@
 
     .contacts-page.mobile-detail-open .contacts-header span {
         color: var(--text-primary);
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 
     .contacts-page.mobile-detail-open .header-divider {
@@ -1262,14 +1262,14 @@
         width: 80px;
         height: 80px;
         border: 3px solid var(--text-white);
-        font-size: 27px;
+        font-size: 1.6875rem;
     }
 
     .selected-contact h2 {
         margin: 0;
         color: var(--text-primary);
         font-family: Inter, sans-serif;
-        font-size: 36px;
+        font-size: 2.25rem;
         font-weight: 700;
     }
 
@@ -1277,7 +1277,7 @@
         margin-bottom: 24px;
         color: var(--text-primary);
         font-family: Inter, sans-serif;
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 400;
     }
 
@@ -1285,20 +1285,20 @@
         margin: 16px 0 8px;
         color: var(--text-primary);
         font-family: Inter, sans-serif;
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 700;
     }
 
     .contact-information a {
         color: var(--contact-link);
-        font-size: 16px;
+        font-size: 1rem;
         text-decoration: none;
     }
 
     .contact-information p {
         margin: 0;
         color: var(--text-primary);
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .contacts-page.mobile-detail-open .mobile-more-btn {
@@ -1357,7 +1357,7 @@
         border: none;
         color: var(--text-primary);
         font-family: Inter, sans-serif;
-        font-size: 16px;
+        font-size: 1rem;
         cursor: pointer;
     }
 
@@ -1372,7 +1372,7 @@
         min-width: 280px;
         max-width: calc(100% - 48px);
         height: 48px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 }
 
@@ -1389,7 +1389,7 @@
     }
 
     .contact-info h4 {
-        font-size: 17px;
+        font-size: 1.0625rem;
     }
 
     .add-contact-overlay {
@@ -1409,11 +1409,11 @@
     }
 
     .modal-left h2 {
-        font-size: 40px;
+        font-size: 2.5rem;
     }
 
     .modal-left p {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .modal-right {
@@ -1427,7 +1427,7 @@
     .input-field input {
         height: 48px;
         padding: 0 44px 0 16px;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .input-field img {
@@ -1440,7 +1440,7 @@
         width: 198px;
         min-width: 198px;
         height: 50px;
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 
     .add-contact-modal.edit-mode .modal-left {
@@ -1454,11 +1454,11 @@
         width: 100px;
         min-width: 100px;
         height: 44px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .selected-contact h2 {
-        font-size: 32px;
+        font-size: 2rem;
     }
 }
 
@@ -1487,13 +1487,13 @@
 
     .modal-left h2 {
         margin-bottom: 8px;
-        font-size: 34px;
+        font-size: 2.125rem;
         line-height: 1;
     }
 
     .modal-left p {
         margin: 0;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .blue-line {
@@ -1519,7 +1519,7 @@
     .input-field input {
         height: 40px;
         padding: 0 38px 0 14px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .input-field img {
@@ -1531,7 +1531,7 @@
 
     .contact-input-error {
         margin-top: 3px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .modal-buttons {
@@ -1549,7 +1549,7 @@
         width: 100%;
         min-width: 0;
         height: 44px;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .close-modal {
@@ -1565,7 +1565,7 @@
 
     .add-contact-modal.edit-mode .modal-left h2 {
         margin-bottom: 6px;
-        font-size: 30px;
+        font-size: 1.875rem;
         line-height: 1;
     }
 
@@ -1586,7 +1586,7 @@
     .add-contact-modal.edit-mode .input-field input {
         height: 34px;
         padding: 0 34px 0 12px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .add-contact-modal.edit-mode .input-field img {
@@ -1612,7 +1612,7 @@
         width: 90px;
         min-width: 90px;
         height: 36px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .add-contact-modal.edit-mode .create-btn {
@@ -1620,7 +1620,7 @@
         width: 96px;
         min-width: 96px;
         height: 36px;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .add-contact-modal.edit-mode .create-btn img {
@@ -1686,7 +1686,7 @@
     display: none;
     color: var(--text-white);
     font-family: Inter, sans-serif;
-    font-size: 47px;
+    font-size: 2.9375rem;
     font-weight: 500;
 }
 
@@ -1970,7 +1970,7 @@
 
     .add-contact-modal.edit-mode .modal-left h2 {
         margin-bottom: 8px !important;
-        font-size: 34px !important;
+        font-size: 2.125rem !important;
         line-height: 1 !important;
     }
 
@@ -1996,7 +1996,7 @@
     }
 
     .add-contact-modal.edit-mode .contact-avatar-picker .contact-avatar-initials {
-        font-size: 26px !important;
+        font-size: 1.625rem !important;
     }
 
     .add-contact-modal.edit-mode .modal-right {
@@ -2011,7 +2011,7 @@
     .add-contact-modal.edit-mode .input-field input {
         height: 40px !important;
         padding: 0 38px 0 14px !important;
-        font-size: 16px !important;
+        font-size: 1rem !important;
     }
 
     .add-contact-modal.edit-mode .input-field img {
@@ -2034,7 +2034,7 @@
         width: 100px !important;
         min-width: 100px !important;
         height: 44px !important;
-        font-size: 16px !important;
+        font-size: 1rem !important;
     }
 
     .add-contact-modal.edit-mode .create-btn {
@@ -2042,7 +2042,7 @@
         width: 100px !important;
         min-width: 100px !important;
         height: 44px !important;
-        font-size: 16px !important;
+        font-size: 1rem !important;
     }
 
     .add-contact-modal.edit-mode .create-btn img {
@@ -2096,7 +2096,7 @@
         width: 40px;
         min-width: 40px;
         height: 40px;
-        font-size: 15px;
+        font-size: 1rem;
     }
 
     .contact-info {
@@ -2110,7 +2110,7 @@
         max-width: 100%;
         overflow: hidden;
         color: var(--text-primary);
-        font-size: 16px;
+        font-size: 1rem;
         line-height: 120%;
         word-break: normal;
         overflow-wrap: anywhere;
@@ -2124,7 +2124,7 @@
         display: block;
         max-width: 100%;
         color: var(--contact-link);
-        font-size: 14px;
+        font-size: 1rem;
         line-height: 120%;
         white-space: normal;
         overflow-wrap: anywhere;

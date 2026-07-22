@@ -32,7 +32,7 @@
     border: 0;
     border-radius: 50%;
     color: var(--ui-dark);
-    font-size: 28px;
+    font-size: 1.75rem;
     line-height: 1;
     cursor: pointer;
 }
@@ -112,7 +112,7 @@
     min-width: 36px;
     height: 36px;
     min-height: 36px;
-    font-size: 0.875rem;
+    font-size: 1rem;
 }
 
 .edit-task-form .dropdown-content {

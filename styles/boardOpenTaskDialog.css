@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     padding: 24px;
-    background: rgb(0 0 0 / 25%);
+    background: var(--contact-overlay-bg);
 }
 
 .dialog-creator {
@@ -21,7 +21,7 @@
     border-radius: 30px;
     box-shadow: 0 0 4px rgb(0 0 0 / 16%);
     font-family: Inter, sans-serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 400;
     line-height: 120%;
 }
@@ -75,7 +75,7 @@
     padding: 4px 16px;
     border-radius: 8px;
     color: var(--text-white);
-    font-size: 23px;
+    font-size: 1.4375rem;
     font-weight: 400;
 }
 
@@ -86,7 +86,7 @@
     background: transparent;
     border: 0;
     border-radius: 50%;
-    font-size: 28px;
+    font-size: 1.75rem;
     line-height: 100%;
     cursor: pointer;
 }
@@ -96,7 +96,7 @@
 }
 
 .open-task-description {
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .open-task-row {
@@ -141,7 +141,7 @@
     gap: 16px;
     min-height: 40px;
     padding: 0 8px;
-    font-size: 19px;
+    font-size: 1.1875rem;
 }
 
 .open-task-contact .dialog-contact-avatar {
@@ -173,7 +173,7 @@
     gap: 8px;
     min-height: 32px;
     padding: 4px 8px;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
 }
 
@@ -197,7 +197,7 @@
     border: 0;
     color: var(--ui-dark);
     font-family: Inter, sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 120%;
     cursor: pointer;
