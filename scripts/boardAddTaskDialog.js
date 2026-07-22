@@ -118,8 +118,8 @@ function getDialogContactView(id, contact) {
         id: escapeBoardHtml(id),
         name: escapeBoardHtml(displayName),
         initials: escapeBoardHtml(getUserInitials(contact.name)),
-        color,
-        textColor: getUserTextColor(color),
+        color: escapeBoardHtml(color),
+        textColor: escapeBoardHtml(getUserTextColor(color)),
         checked: ""
     };
 }
@@ -343,7 +343,8 @@ function showTaskAddedMessage() {
  */
 function showBoardMessage(message, showIcon = true) {
     removeTaskAddedMessage();
-    document.body.insertAdjacentHTML("beforeend", getTaskAddedMessageTemplate(message, showIcon));
+    const icon = showIcon ? '<img src="../assets/icons/board.webp" alt="">' : "";
+    document.body.insertAdjacentHTML("beforeend", getTaskAddedMessageTemplate(escapeHtml(message), icon));
     setTimeout(removeTaskAddedMessage, 2500);
 }
 

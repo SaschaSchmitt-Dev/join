@@ -33,28 +33,52 @@ function restoreModalBackground() {
 }
 
 
-/** Keeps Tab and Shift+Tab inside the active modal. */
+/**
+ * Keeps Tab and Shift+Tab inside the active modal.
+ * @param {KeyboardEvent} event - The modal keyboard event.
+ */
 function trapModalFocus(event) {
     if (event.key !== "Tab" || !activeModal) return;
     const focusableElements = getModalFocusableElements(activeModal);
-
-    if (!focusableElements.length) {
-        event.preventDefault();
-        activeModal.focus();
-        return;
-    }
-
+    if (!focusableElements.length) return focusModalElement(event, activeModal);
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
-    const focusOutsideModal = !activeModal.contains(document.activeElement);
+    if (shouldFocusModalStart(event, firstElement, lastElement)) return focusModalElement(event, firstElement);
+    if (shouldFocusModalEnd(event, firstElement)) focusModalElement(event, lastElement);
+}
 
-    if (focusOutsideModal || event.shiftKey && document.activeElement === firstElement) {
-        event.preventDefault();
-        (event.shiftKey ? lastElement : firstElement).focus();
-    } else if (!event.shiftKey && document.activeElement === lastElement) {
-        event.preventDefault();
-        firstElement.focus();
-    }
+
+/**
+ * Checks whether focus should wrap to the first modal element.
+ * @param {KeyboardEvent} event - The keyboard event.
+ * @param {HTMLElement} firstElement - The first focusable element.
+ * @param {HTMLElement} lastElement - The last focusable element.
+ * @returns {boolean} True when focus should move to the start.
+ */
+function shouldFocusModalStart(event, firstElement, lastElement) {
+    return !event.shiftKey && (!activeModal.contains(document.activeElement) || document.activeElement === lastElement);
+}
+
+
+/**
+ * Checks whether focus should wrap to the last modal element.
+ * @param {KeyboardEvent} event - The keyboard event.
+ * @param {HTMLElement} firstElement - The first focusable element.
+ * @returns {boolean} True when focus should move to the end.
+ */
+function shouldFocusModalEnd(event, firstElement) {
+    return event.shiftKey && (!activeModal.contains(document.activeElement) || document.activeElement === firstElement);
+}
+
+
+/**
+ * Prevents the default Tab action and focuses a modal element.
+ * @param {KeyboardEvent} event - The keyboard event.
+ * @param {HTMLElement} element - The element to focus.
+ */
+function focusModalElement(event, element) {
+    event.preventDefault();
+    element.focus();
 }
 
 

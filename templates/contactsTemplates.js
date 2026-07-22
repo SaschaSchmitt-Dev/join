@@ -15,15 +15,14 @@ function getContactsHeaderTemplate() {
 
 /**
  * Returns the contact detail template.
- * @param {Object} contact - The selected contact.
- * @param {string} contactColor - The contact avatar color.
+ * @param {Object} contact - Prepared and escaped contact view data.
  * @returns {string} The contact detail HTML.
  */
-function getContactDetailTemplate(contact, contactColor) {
+function getContactDetailTemplate(contact) {
     return `
         <div class="contact-detail-content">
             <div class="contact-detail-top">
-                ${getContactDetailAvatarTemplate(contact, contactColor)}
+                ${getContactDetailAvatarTemplate(contact)}
                 ${getContactDetailNameTemplate(contact)}
             </div>
             ${getContactInformationTemplate(contact)}
@@ -34,14 +33,13 @@ function getContactDetailTemplate(contact, contactColor) {
 
 /**
  * Returns the avatar template for the contact detail view.
- * @param {Object} contact - The selected contact.
- * @param {string} contactColor - The contact avatar color.
+ * @param {Object} contact - Prepared and escaped contact view data.
  * @returns {string} The contact detail avatar HTML.
  */
-function getContactDetailAvatarTemplate(contact, contactColor) {
+function getContactDetailAvatarTemplate(contact) {
     return `
-        <div class="contact-detail-avatar" style="background:${contactColor}; color:${getUserTextColor(contactColor)}">
-            ${getUserInitials(contact.name)}
+        <div class="contact-detail-avatar" style="background:${contact.color}; color:${contact.textColor}">
+            ${contact.initials}
         </div>
     `;
 }
@@ -55,7 +53,7 @@ function getContactDetailAvatarTemplate(contact, contactColor) {
 function getContactDetailNameTemplate(contact) {
     return `
         <div class="contact-detail-name-box">
-            <h2 tabindex="-1"       >${contact.name}</h2>
+            <h2 tabindex="-1">${contact.name}</h2>
             ${getContactActionsTemplate()}
         </div>
     `;
@@ -95,7 +93,7 @@ function getContactInformationTemplate(contact) {
             <h4>Email</h4>
             <a href="mailto:${contact.email}" class="contact-email">${contact.email}</a>
             <h4>Phone</h4>
-            <p>${contact.phone || ""}</p>
+            <p>${contact.phone}</p>
         </div>
     `;
 }
@@ -117,16 +115,15 @@ function getContactGroupTemplate(letter) {
 
 /**
  * Returns one contact card template.
- * @param {Object} contact - The contact data.
+ * @param {Object} contact - Prepared and escaped contact view data.
  * @param {number} index - The contact index.
  * @param {string} activeClass - The active contact class.
- * @param {string} contactColor - The contact avatar color.
  * @returns {string} The contact card HTML.
  */
-function getContactCardTemplate(contact, index, activeClass, contactColor) {
+function getContactCardTemplate(contact, index, activeClass) {
     return `
         <button class="contact-card ${activeClass}" data-contact-index="${index}" onclick="showContact(${index})">
-            ${getContactAvatarTemplate(contact, contactColor)}
+            ${getContactAvatarTemplate(contact)}
             ${getContactInfoTemplate(contact)}
         </button>
     `;
@@ -135,14 +132,13 @@ function getContactCardTemplate(contact, index, activeClass, contactColor) {
 
 /**
  * Returns the contact avatar template.
- * @param {Object} contact - The contact data.
- * @param {string} contactColor - The contact avatar color.
+ * @param {Object} contact - Prepared and escaped contact view data.
  * @returns {string} The contact avatar HTML.
  */
-function getContactAvatarTemplate(contact, contactColor) {
+function getContactAvatarTemplate(contact) {
     return `
-        <div class="contact-avatar" style="background:${contactColor}; color:${getUserTextColor(contactColor)}">
-            ${getUserInitials(contact.name)}
+        <div class="contact-avatar" style="background:${contact.color}; color:${contact.textColor}">
+            ${contact.initials}
         </div>
     `;
 }
@@ -156,7 +152,7 @@ function getContactAvatarTemplate(contact, contactColor) {
 function getContactInfoTemplate(contact) {
     return `
         <div class="contact-info">
-            <h4>${getContactDisplayName(contact)}</h4>
+            <h4>${contact.displayName}</h4>
             <p class="contact-email-detail">${contact.email}</p>
         </div>
     `;

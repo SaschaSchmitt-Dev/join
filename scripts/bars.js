@@ -284,9 +284,7 @@ function getSidebarTemplateByLayout(activePage, isNotLoggedInLegalLayout) {
  */
 function renderBars() {
     const currentPage = getCurrentPage();
-
     if (redirectLoggedOutUser(currentPage)) return;
-
     const sidebar = document.getElementById("sidebar");
     const topbar = document.getElementById("topbar");
     const isNotLoggedInLegalLayout = shouldShowNotLoggedInLegalLayout(currentPage);

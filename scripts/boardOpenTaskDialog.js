@@ -167,8 +167,8 @@ function getOpenTaskContact(assignment) {
     return getOpenTaskContactTemplate({
         name: escapeBoardHtml(getContactDisplayName(contact)),
         initials: escapeBoardHtml(getUserInitials(contact.name)),
-        color,
-        textColor: getUserTextColor(color)
+        color: escapeBoardHtml(color),
+        textColor: escapeBoardHtml(getUserTextColor(color))
     });
 }
 
@@ -221,7 +221,8 @@ function closeOpenTaskDialog(restoreFocus = true) {
  */
 async function deleteOpenTask() {
     const id = document.querySelector(".dialog-creator").dataset.taskId;
-    await fetch(getTasksUrl(id), { method: "DELETE" });
+    const response = await fetch(getTasksUrl(id), { method: "DELETE" });
+    ensureSuccessfulResponse(response, "Task could not be deleted.");
     boardTasks = boardTasks.filter((task) => String(task.id) !== id);
     renderBoardTasks(boardTasks, boardContacts);
     closeOpenTaskDialog();

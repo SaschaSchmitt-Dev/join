@@ -90,9 +90,9 @@ function getAddTaskDialogRightFieldsTemplate() {
 function getAddTaskPriorityTemplate() {
     return `
         <div class="dialog-field-group"><div class="field-label" id="dialogPriorityLabel">Priority</div><div class="priority-group" role="radiogroup" aria-labelledby="dialogPriorityLabel">
-            <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1" aria-hidden="true"><label for="urgent" tabindex="0" role="radio">Urgent <img src="../assets/icons/urgentPriority.webp" alt=""></label>
-            <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true" checked><label for="medium" tabindex="0" role="radio">Medium <img src="../assets/icons/mediumPriority.webp" alt=""></label>
-            <input type="radio" name="priority" id="low" value="low" tabindex="-1" aria-hidden="true"><label for="low" tabindex="0" role="radio">Low <img src="../assets/icons/lowPriority.webp" alt=""></label>
+            <input type="radio" name="priority" id="urgent" value="urgent"><label for="urgent" tabindex="0" role="radio">Urgent <img src="../assets/icons/urgentPriority.webp" alt=""></label>
+            <input type="radio" name="priority" id="medium" value="medium" checked><label for="medium" tabindex="0" role="radio">Medium <img src="../assets/icons/mediumPriority.webp" alt=""></label>
+            <input type="radio" name="priority" id="low" value="low"><label for="low" tabindex="0" role="radio">Low <img src="../assets/icons/lowPriority.webp" alt=""></label>
         </div></div>
     `;
 }
@@ -199,11 +199,10 @@ function getAddTaskSubtaskTemplate(subtask) {
 /**
  * Returns a board status message.
  * @param {string} message - The message text.
- * @param {boolean} showIcon - Whether the board icon is shown.
+ * @param {string} icon - The optional board icon HTML.
  * @returns {string} The message HTML.
  */
-function getTaskAddedMessageTemplate(message, showIcon = true) {
-    const icon = showIcon ? '<img src="../assets/icons/board.webp" alt="">' : '';
+function getTaskAddedMessageTemplate(message, icon) {
     return `
         <div class="task-added-message" id="taskAddedMessage">
             <span>${message}</span>
@@ -254,17 +253,13 @@ function getTaskCardTemplate(task, progressTemplate, usersTemplate) {
 
 /**
  * Returns the mobile move menu template.
- * @param {string} taskId - The task id.
- * @param {string} currentColumn - The current task column.
+ * @param {string} options - The prepared move option HTML.
  * @returns {string} The menu HTML.
  */
-function getMobileMoveMenuTemplate(taskId, currentColumn) {
+function getMobileMoveMenuTemplate(options) {
     return `
         <div class="mobile-move-title">Move to</div>
-        ${Object.entries(boardColumns)
-            .filter(([column]) => column !== currentColumn)
-            .map(([column, data]) => getMobileMoveOptionTemplate(taskId, column, data.label))
-            .join("")}
+        ${options}
     `;
 }
 

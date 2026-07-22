@@ -150,10 +150,7 @@
 }
 
 .priority-group input {
-    opacity: 0;
-    position: absolute;
-    width: 1px;
-    height: 1px;
+    display: none;
 }
 
 .priority-group label:focus-visible {

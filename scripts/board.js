@@ -65,6 +65,7 @@ function initializeBoardCardDragScroll() {
  */
 async function getBoardContacts() {
     const response = await fetch(getScopedDatabaseUrl("contacts"));
+    ensureSuccessfulResponse(response, "Contacts could not be loaded.");
 
     return await response.json() || {};
 }
@@ -208,8 +209,8 @@ function getTaskUser(contact) {
 
     const color = getUserColor(contact.color);
     const contactView = {
-        color,
-        textColor: getUserTextColor(color),
+        color: escapeBoardHtml(color),
+        textColor: escapeBoardHtml(getUserTextColor(color)),
         initials: escapeBoardHtml(getUserInitials(contact.name))
     };
 
@@ -242,11 +243,7 @@ function showBoardStatusMessage(message) {
  * @returns {string} The escaped value.
  */
 function escapeBoardHtml(value) {
-    const element = document.createElement("div");
-
-    element.textContent = value == null ? "" : String(value);
-
-    return element.innerHTML;
+    return escapeHtml(value);
 }
 
 

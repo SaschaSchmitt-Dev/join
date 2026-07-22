@@ -128,8 +128,28 @@ function getRandomContactColor() {
 function renderContactDetails(contact) {
     const contactDetails = document.getElementById("contactDetails");
     const contactColor = getContactAvatarColor(contact);
+    const contactView = getContactTemplateView(contact, contactColor);
 
-    contactDetails.innerHTML = getContactsHeaderTemplate() + getContactDetailTemplate(contact, contactColor);
+    contactDetails.innerHTML = getContactsHeaderTemplate() + getContactDetailTemplate(contactView);
+}
+
+
+/**
+ * Prepares and escapes a contact for HTML templates.
+ * @param {Object} contact - The contact data.
+ * @param {string} contactColor - The contact avatar color.
+ * @returns {Object} The safe contact view data.
+ */
+function getContactTemplateView(contact, contactColor) {
+    return {
+        name: escapeHtml(contact.name),
+        displayName: escapeHtml(getContactDisplayName(contact)),
+        email: escapeHtml(contact.email),
+        phone: escapeHtml(contact.phone),
+        initials: escapeHtml(getUserInitials(contact.name)),
+        color: escapeHtml(contactColor),
+        textColor: escapeHtml(getUserTextColor(contactColor))
+    };
 }
 
 
@@ -160,7 +180,7 @@ function renderContactEntry(contactsList, contact, index, currentLetter) {
     const firstLetter = contact.name.charAt(0).toUpperCase();
 
     if (firstLetter !== currentLetter) {
-        contactsList.innerHTML += getContactGroupTemplate(firstLetter);
+        contactsList.innerHTML += getContactGroupTemplate(escapeHtml(firstLetter));
         currentLetter = firstLetter;
     }
 
@@ -178,8 +198,9 @@ function renderContactEntry(contactsList, contact, index, currentLetter) {
 function getRenderedContactCard(contact, index) {
     const activeClass = index === currentContactIndex ? "active" : "";
     const contactColor = getContactAvatarColor(contact);
+    const contactView = getContactTemplateView(contact, contactColor);
 
-    return getContactCardTemplate(contact, index, activeClass, contactColor);
+    return getContactCardTemplate(contactView, index, activeClass);
 }
 
 
@@ -319,70 +340,4 @@ function closeMobileOptionsMenu() {
 
     mobileOptionsMenu.classList.remove("active");
 }
-
-
-/**
- * Initializes custom contact input validation.
- */
-function initContactInputValidation() {
-    const inputs = document.querySelectorAll("#addContactForm input");
-
-    inputs.forEach((input) => input.addEventListener("input", handleContactInput));
-}
-
-
-/**
- * Sanitizes phone input and refreshes visible validation errors.
- * @param {Event} event - The input event.
- */
-function handleContactInput(event) {
-    if (event.target.id === "contactPhone") sanitizePhoneInput(event.target);
-    if (addContactForm.classList.contains("submitted")) validateContactForm();
-}
-
-
-/** Removes unsupported characters from a phone input. */
-function sanitizePhoneInput(phoneInput) {
-    phoneInput.value = phoneInput.value.replace(/[^0-9+\s() -]/g, "");
-    phoneInput.value = phoneInput.value.replace(/(?!^)\+/g, "");
-}
-
-
-/**
- * Validates all contact fields without browser validation.
- * @returns {boolean} True when every contact field is valid.
- */
-function validateContactForm() {
-    const nameValid = document.getElementById("contactName").value.trim().length > 0;
-    const emailValid = validateContactEmail(document.getElementById("contactEmail").value);
-    const phoneValid = validateContactPhone(document.getElementById("contactPhone").value);
-
-    setContactFieldValidity("contactName", nameValid);
-    setContactFieldValidity("contactEmail", emailValid);
-    setContactFieldValidity("contactPhone", phoneValid);
-    return nameValid && emailValid && phoneValid;
-}
-
-
-/** Returns whether an email has a valid basic format. */
-function validateContactEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-}
-
-
-/** Returns whether a phone number has the accepted format. */
-function validateContactPhone(phone) {
-    const phonePattern = /^\+?[0-9\s() -]{6,20}$/;
-
-    return phonePattern.test(phone.trim());
-}
-
-
-/** Adds or removes the custom error state of one contact field. */
-function setContactFieldValidity(inputId, isValid) {
-    document.getElementById(inputId).classList.toggle("input-error", !isValid);
-}
-
-
-initContactInputValidation();
 

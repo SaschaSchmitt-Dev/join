@@ -157,6 +157,7 @@ async function loadContacts() {
  */
 async function getContactsData() {
     const response = await fetch(getContactsUrl());
+    ensureSuccessfulResponse(response, "Contacts could not be loaded.");
 
     return await response.json();
 }

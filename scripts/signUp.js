@@ -269,12 +269,13 @@ function getSignupErrorMessage(error) {
  * @param {Object} user - The new user data.
  * @returns {Promise} The fetch promise.
  */
-function createNewUser(uid, user) {
-    return fetch(getUserDatabaseUrl(uid), {
+async function createNewUser(uid, user) {
+    const response = await fetch(getUserDatabaseUrl(uid), {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     });
+    return ensureSuccessfulResponse(response, 'User profile could not be created.');
 }
 
 
@@ -283,12 +284,13 @@ function createNewUser(uid, user) {
  * @param {Object} contact - The new contact data.
  * @returns {Promise} The fetch promise.
  */
-function createNewContact(contact) {
-    return fetch(getDatabaseUrl('contacts'), {
+async function createNewContact(contact) {
+    const response = await fetch(getDatabaseUrl('contacts'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(contact)
-    })
+    });
+    return ensureSuccessfulResponse(response, 'Contact could not be created.');
 }
 
 

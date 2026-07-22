@@ -31,12 +31,13 @@ function getContactFormData() {
  * @param {Object} contact - The new contact data.
  * @returns {Promise<Response>} The post request.
  */
-function postNewContact(contact) {
-    return fetch(getContactsUrl(), {
+async function postNewContact(contact) {
+    const response = await fetch(getContactsUrl(), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(contact)
     });
+    return ensureSuccessfulResponse(response, "Contact could not be created.");
 }
 
 
@@ -45,15 +46,11 @@ function postNewContact(contact) {
  */
 async function saveContact() {
     const contact = contacts[currentContactIndex];
-
     if (!contact) return;
-
     const updatedContact = getUpdatedContactData(contact);
-
     await patchContact(contact.id, updatedContact);
     await updateActiveUserAfterContactEdit(contact, updatedContact);
     await loadContacts();
-
     currentContactIndex = getContactIndexById(contact.id);
     renderSavedContact();
     closeAddContactOverlay();
@@ -82,12 +79,13 @@ function getUpdatedContactData(contact) {
  * @param {Object} updatedContact - The updated contact data.
  * @returns {Promise<Response>} The patch request.
  */
-function patchContact(contactId, updatedContact) {
-    return fetch(getContactsUrl(contactId), {
+async function patchContact(contactId, updatedContact) {
+    const response = await fetch(getContactsUrl(contactId), {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedContact)
     });
+    return ensureSuccessfulResponse(response, "Contact could not be updated.");
 }
 
 
@@ -136,10 +134,11 @@ async function deleteContact() {
  * @param {string} contactId - The contact id.
  * @returns {Promise<Response>} The delete request.
  */
-function deleteContactFromFirebase(contactId) {
-    return fetch(getContactsUrl(contactId), {
+async function deleteContactFromFirebase(contactId) {
+    const response = await fetch(getContactsUrl(contactId), {
         method: "DELETE"
     });
+    return ensureSuccessfulResponse(response, "Contact could not be deleted.");
 }
 
 
@@ -213,10 +212,11 @@ function getAssignmentsWithoutContact(task, contactId) {
  * @param {Object} update - The task update data.
  * @returns {Promise<Response>} The update request.
  */
-function updateTaskAssignments(update) {
-    return fetch(getTasksUrl(update.taskId), {
+async function updateTaskAssignments(update) {
+    const response = await fetch(getTasksUrl(update.taskId), {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ assignedTo: update.assignedTo })
     });
+    return ensureSuccessfulResponse(response, "Task assignments could not be updated.");
 }

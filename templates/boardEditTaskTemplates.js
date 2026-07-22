@@ -82,7 +82,7 @@ function getEditTaskPriorityTemplate(priorities) {
  */
 function getEditPriorityOptionTemplate(priority) {
     return `
-        <input type="radio" name="editPriority" id="${priority.id}" value="${priority.value}" tabindex="-1" aria-hidden="true"${priority.checked}>
+        <input type="radio" name="editPriority" id="${priority.id}" value="${priority.value}"${priority.checked}>
         <label for="${priority.id}" tabindex="0" role="radio">
             ${priority.label}
             <img src="../assets/icons/${priority.value}Priority.webp" alt="">

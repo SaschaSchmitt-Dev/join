@@ -17,11 +17,13 @@
     <link rel="stylesheet" href="../styles/addTask.css" />
 
     <script src="../script.js" defer></script>
+    <script src="../scripts/taskInteractionHelper.js" defer></script>
     <script src="../templates/barsTemplates.js" defer></script>
     <script src="../templates/addTaskTemplates.js" defer></script>
     <script src="../scripts/bars.js" defer></script>
     <script src="../scripts/taskDropdownHelper.js" defer></script>
     <script src="../scripts/addTaskHelper.js" defer></script>
+    <script src="../scripts/addTaskData.js" defer></script>
     <script src="../scripts/addTask.js" defer></script>
 </head>
 
@@ -58,21 +60,19 @@
                     <div class="field-label" id="priorityLabel">Priority</div>
 
                     <div class="priority-group" role="radiogroup" aria-labelledby="priorityLabel">
-                        <input type="radio" name="priority" id="urgent" value="urgent" tabindex="-1"
-                            aria-hidden="true" />
+                        <input type="radio" name="priority" id="urgent" value="urgent" />
                         <label for="urgent" tabindex="0" role="radio">
                             Urgent
                             <img src="../assets/icons/urgentPriority.webp" alt="Urgent priority icon" />
                         </label>
 
-                        <input type="radio" name="priority" id="medium" value="medium" tabindex="-1" aria-hidden="true"
-                            checked />
+                        <input type="radio" name="priority" id="medium" value="medium" checked />
                         <label for="medium" class="medium" tabindex="0" role="radio">
                             Medium
                             <img src="../assets/icons/mediumPriority.webp" alt="Medium priority icon" />
                         </label>
 
-                        <input type="radio" name="priority" id="low" value="low" tabindex="-1" aria-hidden="true" />
+                        <input type="radio" name="priority" id="low" value="low" />
                         <label for="low" tabindex="0" role="radio">
                             Low
                             <img src="../assets/icons/lowPriority.webp" alt="Low priority icon" />
@@ -80,10 +80,10 @@
                     </div>
 
                     <div class="dropdown-list">
-                        <label for="assignetTo" class="assignet-to">Assigned to</label>
+                    <label for="assignedTo" class="assigned-to">Assigned to</label>
 
                         <div class="input-wrapper">
-                            <input type="text" class="assignet-to" id="assignetTo"
+                            <input type="text" class="assigned-to" id="assignedTo"
                                 placeholder="Select contacts to assign" />
                             <img class="input-icon" src="../assets/icons/arrowDropdown.webp"
                                 alt="Toggle contacts dropdown" />

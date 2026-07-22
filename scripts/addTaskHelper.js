@@ -99,9 +99,16 @@ function closeOneAddTaskDropdown(input, onClose) {
  */
 function buildContactRow(key, contact) {
     const contactColor = getUserColor(contact.color);
-    const displayName = getContactDisplayName(contact);
+    const contactView = {
+        key: escapeHtml(key),
+        name: escapeHtml(contact.name),
+        displayName: escapeHtml(getContactDisplayName(contact)),
+        initials: escapeHtml(getUserInitials(contact.name)),
+        color: escapeHtml(contactColor),
+        textColor: escapeHtml(getUserTextColor(contactColor))
+    };
     const row = document.createElement('label');
-    row.innerHTML = getAddTaskContactRowTemplate(key, contact, contactColor, displayName);
+    row.innerHTML = getAddTaskContactRowTemplate(contactView);
     return row;
 }
 
@@ -283,47 +290,6 @@ function focusSubtaskAction(itemIndex, selector) {
 
 
 /**
- * Retrieves the list of assigned contacts from the checked checkboxes in the "Assigned To" dropdown.
- * @returns {Array<Object>} An array of assigned contact objects, each containing an id and type.
- */
-function getAssignedContacts() {
-    return Array.from(document.querySelectorAll('.contact-checkbox:checked')).map((checkbox) => ({
-        id: checkbox.dataset.id,
-        type: 'contact'
-    }));
-}
-
-
-/**
- * Retrieves the data for all subtasks currently in the subtask list.
- * @returns {Object} An object containing subtask data, with keys as subtask IDs and values as subtask details.
- */
-function getSubtasksData() {
-    const subtasks = {};
-    subtaskList.querySelectorAll('.subtaskText').forEach((textSpan, index) => {
-        const subtaskId = 's' + String(index + 1).padStart(3, '0');
-        subtasks[subtaskId] = { title: textSpan.textContent, completed: false };
-    });
-    return subtasks;
-}
-
-
-/**
- * Saves a new task in the database.
- *
- * @param {Object} task - The task data to save.
- * @returns {Promise<Response>} The fetch response.
- */
-function postNewTask(task) {
-    return fetch(getAddTaskUrl(), {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(task)
-    });
-}
-
-
-/**
  * Shows the success toast and redirects to the board.
  */
 function showTaskAddedToast() {
@@ -355,7 +321,7 @@ function clearTaskInputs() {
     descriptionInput.value = "";
     dueDateInput.value = "";
     dueDateInput.type = "text";
-    assignetToInput.value = "";
+    assignedToInput.value = "";
     categoryInput.value = "";
     resetSubtaskInput();
 }

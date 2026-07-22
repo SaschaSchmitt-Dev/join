@@ -40,18 +40,24 @@ function handleDragStart(event) {
  */
 function handleDragEnd(event) {
     const taskCard = event.target.closest(".task-card");
+    if (taskCard) taskCard.classList.remove("dragging");
+    finishTaskDrag();
+}
 
-    if (taskCard) {
-        taskCard.classList.remove("dragging");
-    }
 
-    if (currentDropZone) {
-        currentDropZone.classList.remove('drag-over');
-        currentDropZone = null;
-    }
-
+/** Clears all temporary state created while dragging a task. */
+function finishTaskDrag() {
+    clearCurrentDropZone();
     removeDropIndicator();
     draggedTaskId = null;
+}
+
+
+/** Removes the visual state from the current task drop zone. */
+function clearCurrentDropZone() {
+    if (!currentDropZone) return;
+    currentDropZone.classList.remove("drag-over");
+    currentDropZone = null;
 }
 
 
@@ -124,60 +130,69 @@ function removeDropIndicator() {
 }
 
 
+/**
+ * Updates the drop position while a task is being dragged.
+ * @param {DragEvent} event - The dragover event.
+ */
 function handleDragOver(event) {
     event.preventDefault();
-
     const taskList = event.target.closest('.task-list');
-
-    if (taskList !== currentDropZone) {
-        if (currentDropZone) {
-            currentDropZone.classList.remove('drag-over');
-        }
-
-        if (taskList) {
-            taskList.classList.add('drag-over');
-        }
-
-        currentDropZone = taskList;
-    }
-
+    updateCurrentDropZone(taskList);
     if (!taskList) {
         removeDropIndicator();
         return;
     }
-
-    const targetCard = getDropTargetCard(taskList, event.clientX, event.clientY);
-    const indicator = getOrCreateDropIndicator();
-
-    taskList.insertBefore(indicator, targetCard);
+    positionDropIndicator(taskList, event.clientX, event.clientY);
 }
 
 
+/**
+ * Updates the highlighted task drop zone.
+ * @param {HTMLElement|null} taskList - The task list below the pointer.
+ */
+function updateCurrentDropZone(taskList) {
+    if (taskList === currentDropZone) return;
+    clearCurrentDropZone();
+    if (taskList) taskList.classList.add("drag-over");
+    currentDropZone = taskList;
+}
+
+
+/**
+ * Positions the drop indicator at the current pointer location.
+ * @param {HTMLElement} taskList - The active task list.
+ * @param {number} clientX - The horizontal pointer position.
+ * @param {number} clientY - The vertical pointer position.
+ */
+function positionDropIndicator(taskList, clientX, clientY) {
+    const targetCard = getDropTargetCard(taskList, clientX, clientY);
+    taskList.insertBefore(getOrCreateDropIndicator(), targetCard);
+}
+
+
+/**
+ * Moves a dragged task to its selected drop location.
+ * @param {DragEvent} event - The drop event.
+ */
 function handleDrop(event) {
     const taskList = event.target.closest('.task-list');
+    if (!taskList || !draggedTaskId) return;
+    moveDroppedTask(taskList, event.clientX, event.clientY);
+    finishTaskDrag();
+}
 
-    if (!taskList || !draggedTaskId) {
-        return;
-    }
 
-    const column = Object.keys(boardColumns).find(
-        (key) => boardColumns[key].elementId === taskList.id
-    )
-
-    if (column) {
-        const targetCard = getDropTargetCard(taskList, event.clientX, event.clientY);
-        const targetIndex = getDropIndex(taskList, targetCard);
-
-        moveTaskToPosition(draggedTaskId, column, targetIndex);
-    }
-
-    if (currentDropZone) {
-        currentDropZone.classList.remove('drag-over');
-        currentDropZone = null;
-    }
-
-    removeDropIndicator();
-    draggedTaskId = null;
+/**
+ * Moves the dragged task to its drop position.
+ * @param {HTMLElement} taskList - The target task list.
+ * @param {number} clientX - The horizontal drop position.
+ * @param {number} clientY - The vertical drop position.
+ */
+function moveDroppedTask(taskList, clientX, clientY) {
+    const column = Object.keys(boardColumns).find((key) => boardColumns[key].elementId === taskList.id);
+    if (!column) return;
+    const targetCard = getDropTargetCard(taskList, clientX, clientY);
+    moveTaskToPosition(draggedTaskId, column, getDropIndex(taskList, targetCard));
 }
 
 
@@ -264,9 +279,13 @@ function toggleMobileMoveMenu(moveButton) {
  */
 function createMobileMoveMenu(taskId, currentColumn) {
     const menu = document.createElement("div");
+    const options = Object.entries(boardColumns)
+        .filter(([column]) => column !== currentColumn)
+        .map(([column, data]) => getMobileMoveOptionTemplate(taskId, column, data.label))
+        .join("");
 
     menu.className = "mobile-move-menu";
-    menu.innerHTML = getMobileMoveMenuTemplate(taskId, currentColumn);
+    menu.innerHTML = getMobileMoveMenuTemplate(options);
 
     return menu;
 }
@@ -295,24 +314,29 @@ async function moveTaskMobile(taskId, column) {
  * @param {number} targetIndex - The insertion index within the target column.
  */
 async function moveTaskToPosition(taskId, targetColumn, targetIndex) {
-    if (!boardColumns[targetColumn]) {
-        return;
-    }
-
+    if (!boardColumns[targetColumn]) return;
     const task = boardTasks.find((task) => task.id === taskId);
-
-    if (!task) {
-        return;
-    }
-
+    if (!task) return;
     task.column = targetColumn;
-    const targetTasks = getSortedColumnTasks(targetColumn).filter((task) => task.id !== taskId);
-    targetTasks.splice(targetIndex, 0, task);
-    targetTasks.forEach((task, index) => { task.order = index; });
-
+    const targetTasks = getReorderedColumnTasks(task, targetColumn, targetIndex);
     await persistColumnOrder(targetColumn, targetTasks, taskId);
     renderBoardTasks(boardTasks, boardContacts);
     showBoardStatusMessage(`Task moved to ${boardColumns[targetColumn].label}.`);
+}
+
+
+/**
+ * Inserts a task at its new position and refreshes all order values.
+ * @param {Object} task - The moved task.
+ * @param {string} column - The target column.
+ * @param {number} targetIndex - The target position.
+ * @returns {Array<Object>} The reordered column tasks.
+ */
+function getReorderedColumnTasks(task, column, targetIndex) {
+    const tasks = getSortedColumnTasks(column).filter((entry) => entry.id !== task.id);
+    tasks.splice(targetIndex, 0, task);
+    tasks.forEach((entry, index) => { entry.order = index; });
+    return tasks;
 }
 
 
@@ -340,11 +364,12 @@ async function persistColumnOrder(column, tasks, movedTaskId) {
     tasks.forEach((task) => { updates[`${task.id}/order`] = task.order; });
     updates[`${movedTaskId}/column`] = column;
 
-    await fetch(getTasksUrl(), {
+    const response = await fetch(getTasksUrl(), {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updates)
     });
+    ensureSuccessfulResponse(response, "Task position could not be saved.");
 }
 
 

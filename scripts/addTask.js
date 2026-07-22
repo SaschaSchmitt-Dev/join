@@ -4,7 +4,7 @@
  * posting a new task and showing the success toast.
  */
 
-const assignetToInput = document.getElementById("assignetTo");
+const assignedToInput = document.getElementById("assignedTo");
 const categoryInput = document.getElementById("category");
 const titleInput = document.getElementById("title");
 const titleError = document.getElementById("titleError");
@@ -26,10 +26,10 @@ initializePriorityKeyboard(document.querySelector(".priority-group"));
 /**
  * Resets the assigned-to dropdown input and shows all contacts again.
  */
-function resetAssignetToDropdown() {
-    assignetToInput.value = "";
+function resetAssignedToDropdown() {
+    assignedToInput.value = "";
 
-    assignetToInput
+    assignedToInput
         .closest(".dropdown-list")
         .querySelectorAll(".dropdown-content label")
         .forEach((label) => {
@@ -40,21 +40,21 @@ function resetAssignetToDropdown() {
 }
 
 
-setupDropdownToggle(assignetToInput, resetAssignetToDropdown);
-closeDropdown(assignetToInput, resetAssignetToDropdown);
+setupDropdownToggle(assignedToInput, resetAssignedToDropdown);
+closeDropdown(assignedToInput, resetAssignedToDropdown);
 
 
 /**
  * Filters contacts inside the assigned-to dropdown.
  */
-assignetToInput.addEventListener("input", () => {
-    const query = assignetToInput.value.toLowerCase();
-    const dropdownContent = assignetToInput
+assignedToInput.addEventListener("input", () => {
+    const query = assignedToInput.value.toLowerCase();
+    const dropdownContent = assignedToInput
         .closest(".dropdown-list")
         .querySelector(".dropdown-content");
 
     dropdownContent.style.display = "block";
-    assignetToInput.parentElement.classList.add("open");
+    assignedToInput.parentElement.classList.add("open");
 
     dropdownContent.querySelectorAll("label").forEach((label) => {
         const name = label.querySelector("span").textContent.toLowerCase();
@@ -107,8 +107,8 @@ function renderSelectedContacts() {
  *
  * @param {Object} contacts - The contact data from the database.
  */
-function renderAssignetToContacts(contacts) {
-    const dropdownContent = assignetToInput
+function renderAssignedToContacts(contacts) {
+    const dropdownContent = assignedToInput
         .closest(".dropdown-list")
         .querySelector(".dropdown-content");
     dropdownContent.innerHTML = "";
@@ -118,9 +118,12 @@ function renderAssignetToContacts(contacts) {
 }
 
 
-fetch(BASE_URL + "contacts.json")
-    .then((response) => response.json())
-    .then((contacts) => renderAssignetToContacts(contacts));
+fetch(getScopedDatabaseUrl("contacts"))
+    .then((response) => {
+        ensureSuccessfulResponse(response, "Contacts could not be loaded.");
+        return response.json();
+    })
+    .then((contacts) => renderAssignedToContacts(contacts));
 
 
 /**
@@ -179,21 +182,10 @@ function validateRequiredField(input, errorEl) {
  * @returns {HTMLInputElement|null} The first invalid input or null.
  */
 function validateRequiredFields() {
-    let firstInvalidInput = null;
-
-    if (!validateRequiredField(titleInput, titleError)) {
-        firstInvalidInput = titleInput;
-    }
-
-    if (!validateRequiredField(dueDateInput, dueDateError) && !firstInvalidInput) {
-        firstInvalidInput = dueDateInput;
-    }
-
-    if (!validateRequiredField(categoryInput, categoryError) && !firstInvalidInput) {
-        firstInvalidInput = categoryInput;
-    }
-
-    return firstInvalidInput;
+    const fields = [[titleInput, titleError], [dueDateInput, dueDateError], [categoryInput, categoryError]];
+    const results = fields.map(([input, error]) => validateRequiredField(input, error));
+    const invalidIndex = results.findIndex((isValid) => !isValid);
+    return invalidIndex === -1 ? null : fields[invalidIndex][0];
 }
 
 
@@ -303,59 +295,40 @@ subtaskList.addEventListener("mousedown", (event) => {
 });
 
 
-subtaskList.addEventListener("click", (event) => {
-    const listItem = event.target.closest("li");
-
-    if (!listItem) return;
-
-    if (event.target.closest(".subtask-edit")) {
-        editSubtask(listItem);
-        return;
-    }
-
-    if (event.target.closest(".subtask-delete")) {
-        const itemIndex = Array.from(subtaskList.children).indexOf(listItem);
-        listItem.remove();
-        focusSubtaskAction(itemIndex, ".subtask-delete");
-        return;
-    }
-
-    if (event.target.closest(".subtask-save-edit")) {
-        listItem._saveEdit();
-        listItem.querySelector(".subtask-edit")?.focus();
-    }
-});
+subtaskList.addEventListener("click", handleSubtaskListClick);
 
 
 /**
- * Returns the database URL for new tasks.
- *
- * @returns {string} The task database URL.
+ * Runs the selected action for a subtask list item.
+ * @param {MouseEvent} event - The delegated click event.
  */
-function getAddTaskUrl() {
-    return getScopedDatabaseUrl("tasks");
+function handleSubtaskListClick(event) {
+    const listItem = event.target.closest("li");
+    if (!listItem) return;
+    if (event.target.closest(".subtask-edit")) return editSubtask(listItem);
+    if (event.target.closest(".subtask-delete")) return deleteSubtaskListItem(listItem);
+    if (event.target.closest(".subtask-save-edit")) saveSubtaskListItem(listItem);
 }
 
 
 /**
- * Collects all data for the new task.
- *
- * @returns {Object} The task data.
+ * Removes one subtask and restores a nearby action focus.
+ * @param {HTMLElement} listItem - The subtask list item to remove.
  */
-function getTaskFormData() {
-    const task = {
-        title: titleInput.value.trim(),
-        description: descriptionInput.value.trim(),
-        dueDate: dueDateInput.value,
-        priority: document.querySelector('input[name="priority"]:checked').value,
-        category: categoryInput.value.trim(),
-        assignedTo: getAssignedContacts(),
-        column: "todo",
-        order: Date.now()
-    };
-    const subtasks = getSubtasksData();
-    if (Object.keys(subtasks).length) task.subtasks = subtasks;
-    return task;
+function deleteSubtaskListItem(listItem) {
+    const itemIndex = Array.from(subtaskList.children).indexOf(listItem);
+    listItem.remove();
+    focusSubtaskAction(itemIndex, ".subtask-delete");
+}
+
+
+/**
+ * Saves one edited subtask and restores its edit action focus.
+ * @param {HTMLElement} listItem - The edited subtask list item.
+ */
+function saveSubtaskListItem(listItem) {
+    listItem._saveEdit();
+    listItem.querySelector(".subtask-edit")?.focus();
 }
 
 

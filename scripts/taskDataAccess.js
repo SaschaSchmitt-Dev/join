@@ -15,6 +15,7 @@ function getTasksUrl(taskId = "") {
  */
 async function getTasksData() {
     const response = await fetch(getTasksUrl());
+    ensureSuccessfulResponse(response, "Tasks could not be loaded.");
     return await response.json() || {};
 }
 
@@ -40,6 +41,7 @@ async function createTask(task) {
         method: "POST",
         body: JSON.stringify(task)
     });
+    ensureSuccessfulResponse(response, "Task could not be created.");
     const result = await response.json();
     task.id = result.name;
     return task;
@@ -60,7 +62,7 @@ async function updateSubtaskCompletion(taskId, subtaskId, completed) {
         body: JSON.stringify(completed)
     });
 
-    if (!response.ok) throw new Error("Subtask status could not be updated.");
+    ensureSuccessfulResponse(response, "Subtask status could not be updated.");
 }
 
 
@@ -75,5 +77,5 @@ async function updateTask(taskId, task) {
         method: "PATCH",
         body: JSON.stringify(task)
     });
-    if (!response.ok) throw new Error("Task could not be updated.");
+    ensureSuccessfulResponse(response, "Task could not be updated.");
 }

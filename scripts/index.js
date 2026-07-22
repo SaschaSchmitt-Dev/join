@@ -1,21 +1,4 @@
 /**
- * Checks the login data.
- */
-async function checkLogin() {
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-
-    if (hasInvalidLoginInput(email, password)) return showLoginError('Check your email and password. Please try again.');
-
-    const userEntry = await getUserByLogin(email.value.trim(), password.value.trim());
-
-    if (!userEntry) return showLoginError('Check your email and password. Please try again.');
-
-    completeUserLogin(userEntry);
-}
-
-
-/**
  * Checks if the login inputs are empty.
  * @param {Object} email - The email input.
  * @param {Object} password - The password input.
@@ -38,6 +21,7 @@ function hasInvalidLoginInput(email, password) {
  */
 async function getUserProfile(uid) {
     const response = await fetch(getUserDatabaseUrl(uid));
+    ensureSuccessfulResponse(response, "User profile could not be loaded.");
     const user = await response.json();
 
     return { id: uid, user };
@@ -50,17 +34,24 @@ async function getUserProfile(uid) {
 async function checkLogin() {
     const email = document.getElementById('email');
     const password = document.getElementById('password');
-
     if (hasInvalidLoginInput(email, password)) return showLoginError('Check your email and password. Please try again.');
-
     try {
-        const userCredential = await signInWithEmailAndPassword(firebaseAuth, email.value.trim(), password.value.trim());
-        const userEntry = await getUserProfile(userCredential.user.uid);
-
-        completeUserLogin(userEntry);
+        completeUserLogin(await authenticateUser(email.value.trim(), password.value.trim()));
     } catch (error) {
         showLoginError('Check your email and password. Please try again.');
     }
+}
+
+
+/**
+ * Authenticates a user and loads their profile.
+ * @param {string} email - The login email.
+ * @param {string} password - The login password.
+ * @returns {Promise<Object>} The authenticated user profile.
+ */
+async function authenticateUser(email, password) {
+    const credential = await signInWithEmailAndPassword(firebaseAuth, email, password);
+    return getUserProfile(credential.user.uid);
 }
 
 
@@ -133,6 +124,7 @@ async function resetGuestSandbox() {
  */
 async function getGuestUser() {
     const response = await fetch(getUserDatabaseUrl(guestUserId));
+    ensureSuccessfulResponse(response, "Guest profile could not be loaded.");
     const guestUser = await response.json();
 
     return guestUser || getDefaultGuestUser();
@@ -156,6 +148,7 @@ function getDefaultGuestUser() {
 /** Loads unmodified example data from a global database path. */
 async function getGlobalData(path) {
     const response = await fetch(getDatabaseUrl(path));
+    ensureSuccessfulResponse(response, "Example data could not be loaded.");
     const data = await response.json();
 
     return data || {};
@@ -169,7 +162,7 @@ async function saveGuestSandbox(guestUser) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(guestUser)
     });
-    if (!response.ok) throw new Error("Guest sandbox could not be prepared.");
+    ensureSuccessfulResponse(response, "Guest sandbox could not be prepared.");
 }
 
 
