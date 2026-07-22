@@ -125,6 +125,10 @@ function closeAddContactOverlay() {
 }
 
 
+/**
+ * Closes the active contact modal when Escape is pressed.
+ * @param {KeyboardEvent} event - The document keydown event.
+ */
 function closeContactModalOnEscape(event) {
     if (event.key === "Escape" && overlay.classList.contains("active")) {
         closeAddContactOverlay();

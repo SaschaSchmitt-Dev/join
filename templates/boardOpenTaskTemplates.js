@@ -30,11 +30,21 @@ function getOpenTaskDialogTemplate(task) {
 }
 
 
+/**
+ * Returns the assigned-contact entry for the task detail dialog.
+ * @param {Object} contact - Prepared contact view data.
+ * @returns {string} The assigned-contact HTML.
+ */
 function getOpenTaskContactTemplate(contact) {
     return `<div class="open-task-contact"><span class="dialog-contact-avatar" style="background:${contact.color};color:${contact.textColor}">${contact.initials}</span><span>${contact.name}</span></div>`;
 }
 
 
+/**
+ * Returns one selectable subtask entry for the task detail dialog.
+ * @param {Object} subtask - The subtask data.
+ * @returns {string} The subtask HTML.
+ */
 function getOpenTaskSubtaskTemplate(subtask) {
     return `<label class="open-task-subtask"><span class="custom-checkbox-wrapper">
         <input type="checkbox" data-subtask-id="${subtask.id}" ${subtask.completed ? "checked" : ""}>
