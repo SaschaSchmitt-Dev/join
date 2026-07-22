@@ -110,6 +110,9 @@ npm run lint:css
 
 Registered users authenticate through Firebase Authentication. Tasks and contacts are stored in Firebase Realtime Database. Guest login prepares a separate guest sandbox so the application can be explored without creating an account.
 
+> [!IMPORTANT]
+> Firebase Authentication is not available when testing the application through the GitHub-hosted project. Please use **Guest Log in** to explore and test the application in the isolated guest sandbox.
+
 ## Legal Pages
 
 The application includes dedicated privacy policy and legal notice pages, accessible from the login screen and the main navigation.
