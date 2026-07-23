@@ -26,6 +26,7 @@ function openAddTaskDialog(column) {
 
 /**
  * Prepares the open dialog.
+ *
  * @param {HTMLElement} dialog - The dialog element.
  */
 function prepareAddTaskDialog(dialog) {
@@ -35,6 +36,7 @@ function prepareAddTaskDialog(dialog) {
     initializeDialogDropdowns(dialog);
     initializeDialogSubtasks(dialog);
     initializeDialogActions(dialog);
+    initializeDialogDueDateValidation(dialog);
     document.addEventListener("keydown", closeAddTaskDialogOnEscape);
     document.addEventListener("click", closeDialogDropdownsOnOutsideClick);
     activateModal(dialog, dialog.querySelector("#title"));

@@ -22,6 +22,7 @@ const taskAddedToast = document.querySelector(".task-added-toast");
 
 initializeHorizontalDragScroll(document.querySelector(".selected-contacts"));
 initializePriorityKeyboard(document.querySelector(".priority-group"));
+initializeAddTaskDueDateValidation();
 
 /**
  * Resets the assigned-to dropdown input and shows all contacts again.
@@ -182,10 +183,21 @@ function validateRequiredField(input, errorEl) {
  * @returns {HTMLInputElement|null} The first invalid input or null.
  */
 function validateRequiredFields() {
-    const fields = [[titleInput, titleError], [dueDateInput, dueDateError], [categoryInput, categoryError]];
-    const results = fields.map(([input, error]) => validateRequiredField(input, error));
-    const invalidIndex = results.findIndex((isValid) => !isValid);
-    return invalidIndex === -1 ? null : fields[invalidIndex][0];
+    let firstInvalidInput = null;
+
+    if (!validateRequiredField(titleInput, titleError)) {
+        firstInvalidInput = titleInput;
+    }
+
+    if (!validateDueDateField() && !firstInvalidInput) {
+        firstInvalidInput = dueDateInput;
+    }
+
+    if (!validateRequiredField(categoryInput, categoryError) && !firstInvalidInput) {
+        firstInvalidInput = categoryInput;
+    }
+
+    return firstInvalidInput;
 }
 
 
@@ -217,11 +229,6 @@ dueDateInput.addEventListener("blur", () => {
         dueDateInput.type = "text";
     }
 
-    clearErrorWhenFilled(dueDateInput, dueDateError);
-});
-
-
-dueDateInput.addEventListener("change", () => {
     clearErrorWhenFilled(dueDateInput, dueDateError);
 });
 
