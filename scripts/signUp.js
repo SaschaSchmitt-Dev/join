@@ -59,15 +59,17 @@ updateSignupButtonState();
 
 
 /**
- * Shows a validation error on one signup field.
+ * Shows a validation error on one signup field, in its own message element.
  * @param {HTMLInputElement} input - The invalid input.
  * @param {string} message - The user-facing error message.
+ * @param {boolean} [focusInput=true] - Whether to move focus to the input.
  * @returns {boolean} Always false.
  */
-function showValidationError(input, message) {
+function showValidationError(input, message, focusInput = true) {
     input.classList.add('error');
-    document.getElementById('errorMessage').textContent = message;
-    input.focus();
+    const messageField = document.getElementById(`${input.id}Error`) || document.getElementById('errorMessage');
+    messageField.textContent = message;
+    if (focusInput) input.focus();
     return false;
 }
 
@@ -78,6 +80,17 @@ function clearSignupErrors() {
         input.classList.remove('error');
     });
     document.getElementById('errorMessage').textContent = '';
+}
+
+
+/**
+ * Clears the validation error of one signup field.
+ * @param {HTMLInputElement} input - The field to clear.
+ */
+function clearFieldError(input) {
+    input.classList.remove('error');
+    const messageField = document.getElementById(`${input.id}Error`);
+    if (messageField) messageField.textContent = '';
 }
 
 
@@ -104,8 +117,10 @@ function validateSignupForm() {
     const fields = getSignupFields();
     clearSignupErrors();
     return validateRequiredSignupFields(fields)
+        && validateSignupName(fields.name)
         && validateSignupEmail(fields.email)
-        && validateSignupPasswords(fields)
+        && validateSignupPasswordLength(fields.password)
+        && validateSignupPasswordsMatch(fields)
         && validateSignupTerms(fields.terms);
 }
 
@@ -125,27 +140,51 @@ function validateRequiredSignupFields(fields) {
 
 
 /**
- * Validates the signup email address.
- * @param {HTMLInputElement} email - The email input.
- * @returns {boolean} True when the email format is valid.
+ * Validates the signup name length.
+ * @param {HTMLInputElement} name - The name input.
+ * @param {boolean} [focusInput=true] - Whether to move focus to the input on error.
+ * @returns {boolean} True when the name has at least 3 characters.
  */
-function validateSignupEmail(email) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (emailPattern.test(email.value.trim())) return true;
-    return showValidationError(email, 'Please enter a valid email address.');
+function validateSignupName(name, focusInput = true) {
+    if (name.value.trim().length >= 3) return true;
+    return showValidationError(name, 'Your name needs at least 3 characters.', focusInput);
 }
 
 
 /**
- * Validates password length and confirmation.
- * @param {Object} fields - The signup fields.
- * @returns {boolean} True when both passwords are valid.
+ * Validates the signup email address.
+ * @param {HTMLInputElement} email - The email input.
+ * @param {boolean} [focusInput=true] - Whether to move focus to the input on error.
+ * @returns {boolean} True when the email format is valid.
  */
-function validateSignupPasswords(fields) {
-    const password = fields.password.value;
-    if (password.trim().length < 6) return showValidationError(fields.password, 'Your password needs at least 6 characters.');
-    if (password === fields.confirmPassword.value) return true;
-    return showValidationError(fields.confirmPassword, 'Your passwords do not match.');
+function validateSignupEmail(email, focusInput = true) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailPattern.test(email.value.trim())) return true;
+    return showValidationError(email, 'Please enter a valid email address.', focusInput);
+}
+
+
+/**
+ * Validates the signup password length.
+ * @param {HTMLInputElement} password - The password input.
+ * @param {boolean} [focusInput=true] - Whether to move focus to the input on error.
+ * @returns {boolean} True when the password has at least 6 characters.
+ */
+function validateSignupPasswordLength(password, focusInput = true) {
+    if (password.value.trim().length >= 6) return true;
+    return showValidationError(password, 'Your password needs at least 6 characters.', focusInput);
+}
+
+
+/**
+ * Validates that the password confirmation matches the password.
+ * @param {Object} fields - The signup fields.
+ * @param {boolean} [focusInput=true] - Whether to move focus to the input on error.
+ * @returns {boolean} True when both passwords match.
+ */
+function validateSignupPasswordsMatch(fields, focusInput = true) {
+    if (fields.password.value === fields.confirmPassword.value) return true;
+    return showValidationError(fields.confirmPassword, 'Your passwords do not match.', focusInput);
 }
 
 
@@ -160,13 +199,43 @@ function validateSignupTerms(terms) {
 }
 
 
+/**
+ * Validates one signup field on blur, without stealing focus.
+ * @param {string} fieldId - The id of the field to validate.
+ * @param {(input: HTMLInputElement) => boolean} validateFn - The validation function for the field.
+ */
+function validateFieldOnBlur(fieldId, validateFn) {
+    const input = document.getElementById(fieldId);
+    if (!input.value.trim()) return;
+    validateFn(input);
+}
+
+
+document.getElementById('username').addEventListener('blur', () => {
+    validateFieldOnBlur('username', (input) => validateSignupName(input, false));
+});
+
+document.getElementById('email').addEventListener('blur', () => {
+    validateFieldOnBlur('email', (input) => validateSignupEmail(input, false));
+});
+
+document.getElementById('password').addEventListener('blur', () => {
+    validateFieldOnBlur('password', (input) => validateSignupPasswordLength(input, false));
+});
+
+document.getElementById('confirmPassword').addEventListener('blur', () => {
+    validateFieldOnBlur('confirmPassword', () => validateSignupPasswordsMatch(getSignupFields(), false));
+});
+
+
 document.getElementById('signupForm').addEventListener('submit', (event) => {
     event.preventDefault();
     handleSignup();
 });
 
+
 document.querySelectorAll('.signup-input-field input').forEach((input) => {
-    input.addEventListener('input', clearSignupErrors);
+    input.addEventListener('input', () => clearFieldError(input));
 });
 
 

@@ -43,12 +43,16 @@
                 <input type="text" placeholder="Name" id="username" name="name" autocomplete="name" />
                 <img src="../assets/icons/person.webp" alt="" aria-hidden="true" />
               </div>
+              <p id="usernameError" class="error-msg" aria-live="polite"></p>
+
 
               <div class="signup-input-field">
                 <label class="visually-hidden" for="email">Email</label>
                 <input type="email" placeholder="Email" id="email" name="email" autocomplete="email" />
                 <img src="../assets/icons/mail.webp" alt="" aria-hidden="true" />
               </div>
+              <p id="emailError" class="error-msg" aria-live="polite"></p>
+
 
               <div class="signup-input-field">
                 <label class="visually-hidden" for="password">Password</label>
@@ -58,6 +62,8 @@
                   <img src="../assets/icons/lock.webp" alt="" id="passwordIcon" />
                 </button>
               </div>
+              <p id="passwordError" class="error-msg" aria-live="polite"></p>
+
 
               <div class="signup-input-field">
                 <label class="visually-hidden" for="confirmPassword">Confirm password</label>
@@ -68,7 +74,7 @@
                   <img src="../assets/icons/lock.webp" alt="" id="confirmPasswordIcon" />
                 </button>
               </div>
-
+              <p id="confirmPasswordError" class="error-msg" aria-live="polite"></p>
               <p id="errorMessage" class="error-msg" aria-live="polite"></p>
 
               <div class="textbox-checkbox">
