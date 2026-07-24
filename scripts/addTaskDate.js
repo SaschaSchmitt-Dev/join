@@ -4,8 +4,6 @@
 function initializeAddTaskDueDateValidation() {
     const input = document.getElementById("dueDate");
 
-    activateAddTaskDueDateInput(input);
-
     input.addEventListener("focus", () => activateAddTaskDueDateInput(input));
     input.addEventListener("click", () => activateAddTaskDueDateInput(input));
     input.addEventListener("input", validateDueDateField);
