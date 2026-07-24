@@ -243,11 +243,22 @@ input {
 }
 
 *::-webkit-scrollbar-corner {
-    background: transparent;
+    background: var(--transparent);
 }
 
 *::-webkit-scrollbar-button {
     display: none;
     width: 0;
     height: 0;
+}
+
+@media (width <=480px) {
+    * {
+        scrollbar-width: thin;
+    }
+
+    *::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
 }

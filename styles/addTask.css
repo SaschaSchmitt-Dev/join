@@ -1126,6 +1126,17 @@
 /* small mobile */
 
 @media (width <=475px) {
+    .dropdown-content,
+    .subtask-list {
+        scrollbar-width: thin;
+    }
+
+    .dropdown-content::-webkit-scrollbar,
+    .subtask-list::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
     .add-task-content {
         --mobile-nav-height: 80px;
         --footer-buttons-height: 72px;

@@ -516,6 +516,12 @@
 
     .task-list {
         gap: 12px;
+        scrollbar-width: thin;
+    }
+
+    .task-list::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
     }
 
     .task-card {

@@ -17,55 +17,82 @@
 /* contacts sidebar */
 
 .contacts-sidebar {
+    display: flex;
     z-index: 2;
     flex-shrink: 0;
+    flex-direction: column;
     width: 456px;
     height: 100%;
-    padding: 24px;
-    overflow-y: auto;
+    overflow: hidden;
     background: var(--assets-bg-color);
     box-shadow: 4px 0 6px var(--shadow-black-08);
 }
 
+.contacts-toolbar {
+    flex: 0 0 auto;
+    padding: 24px 24px 0;
+    background: var(--assets-bg-color);
+}
+
+#contactsList {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 0 24px 24px;
+    overflow-y: auto;
+}
+
 /* scrollbars */
 
-.contacts-sidebar,
+#contactsList,
 .contact-details {
     scrollbar-width: auto;
     scrollbar-color: var(--scrollbar-dialog-thumb-color) var(--scrollbar-dialog-track-color);
     scrollbar-gutter: stable;
 }
 
-.contacts-sidebar::-webkit-scrollbar,
+#contactsList::-webkit-scrollbar,
 .contact-details::-webkit-scrollbar {
     width: 12px;
     height: 12px;
 }
 
-.contacts-sidebar::-webkit-scrollbar-track,
+#contactsList::-webkit-scrollbar-track,
 .contact-details::-webkit-scrollbar-track {
     background: var(--scrollbar-dialog-track-color);
     border-radius: 10px;
     margin-block: 24px;
 }
 
-.contacts-sidebar::-webkit-scrollbar-thumb,
+#contactsList::-webkit-scrollbar-thumb,
 .contact-details::-webkit-scrollbar-thumb {
     min-width: 48px;
     min-height: 48px;
-    background: var(--scrollbar-dialog-thumb-color);
-    border: 2px solid var(--scrollbar-dialog-track-color);
+    background-color: var(--scrollbar-dialog-thumb-color);
+    border: 0;
     border-radius: 10px;
 }
 
-.contacts-sidebar::-webkit-scrollbar-thumb:hover,
+#contactsList::-webkit-scrollbar-thumb:hover,
 .contact-details::-webkit-scrollbar-thumb:hover {
     background: var(--scrollbar-dialog-thumb-hover-color);
 }
 
-.contacts-sidebar::-webkit-scrollbar-corner,
+#contactsList::-webkit-scrollbar-corner,
 .contact-details::-webkit-scrollbar-corner {
-    background: transparent;
+    background: var(--transparent);
+}
+
+@media (width <=480px) {
+    #contactsList,
+    .contact-details {
+        scrollbar-width: thin;
+    }
+
+    #contactsList::-webkit-scrollbar,
+    .contact-details::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
 }
 
 .add-contact-btn {
@@ -728,7 +755,14 @@
 @media (width <=1280px) {
     .contacts-sidebar {
         width: 380px;
-        padding: 20px;
+    }
+
+    .contacts-toolbar {
+        padding: 20px 20px 0;
+    }
+
+    #contactsList {
+        padding: 0 20px 20px;
     }
 
     .contact-details {
@@ -900,13 +934,20 @@
     }
 
     .contacts-sidebar {
-        display: block !important;
+        display: flex !important;
         width: 100%;
         height: calc(100vh - 160px);
-        padding: 24px 24px 100px;
-        overflow-y: scroll;
+        overflow: hidden;
         background: var(--assets-bg-color);
         box-shadow: none;
+    }
+
+    .contacts-toolbar {
+        display: none;
+    }
+
+    #contactsList {
+        padding: 24px 24px 100px;
     }
 
     .contact-card.active {
@@ -1420,7 +1461,7 @@
 /* very small phones */
 
 @media (width <=420px) {
-    .contacts-sidebar {
+    #contactsList {
         padding: 20px 16px 100px;
     }
 
@@ -2121,7 +2162,7 @@
 /* very small contact list */
 
 @media (width <=360px) {
-    .contacts-sidebar {
+    #contactsList {
         padding: 16px 8px 100px;
         overflow-x: hidden;
     }
