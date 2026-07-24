@@ -24,7 +24,7 @@
     padding: 24px;
     overflow-y: auto;
     background: var(--assets-bg-color);
-    box-shadow: 4px 0 6px rgb(0 0 0 / 8%);
+    box-shadow: 4px 0 6px var(--shadow-black-08);
 }
 
 /* scrollbars */
@@ -32,7 +32,7 @@
 .contacts-sidebar,
 .contact-details {
     scrollbar-width: auto;
-    scrollbar-color: #747474 #eeeeee;
+    scrollbar-color: var(--scrollbar-dialog-thumb-color) var(--scrollbar-dialog-track-color);
     scrollbar-gutter: stable;
 }
 
@@ -44,23 +44,23 @@
 
 .contacts-sidebar::-webkit-scrollbar-track,
 .contact-details::-webkit-scrollbar-track {
-    margin-block: 24px;
-    background: #eeeeee;
+    background: var(--scrollbar-dialog-track-color);
     border-radius: 10px;
+    margin-block: 24px;
 }
 
 .contacts-sidebar::-webkit-scrollbar-thumb,
 .contact-details::-webkit-scrollbar-thumb {
     min-width: 48px;
     min-height: 48px;
-    background: #747474;
-    border: 2px solid #eeeeee;
+    background: var(--scrollbar-dialog-thumb-color);
+    border: 2px solid var(--scrollbar-dialog-track-color);
     border-radius: 10px;
 }
 
 .contacts-sidebar::-webkit-scrollbar-thumb:hover,
 .contact-details::-webkit-scrollbar-thumb:hover {
-    background: #4f4f4f;
+    background: var(--scrollbar-dialog-thumb-hover-color);
 }
 
 .contacts-sidebar::-webkit-scrollbar-corner,
@@ -80,7 +80,7 @@
     background: var(--sidebar-bg-color);
     border: none;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 12%);
+    box-shadow: 0 4px 8px var(--shadow-black-12);
     color: var(--text-white);
     font-family: Inter, sans-serif;
     font-size: 1.3125rem;
@@ -114,7 +114,7 @@
 
 .contact-information .contact-email:focus-visible {
     border-radius: 2px;
-    outline: 2px solid black;
+    outline: 2px solid var(--text-primary);
     outline-offset: 2px;
 }
 
@@ -270,7 +270,7 @@
     height: 120px;
     border: 3px solid var(--text-white);
     border-radius: 50%;
-    box-shadow: 0 0 5px rgb(0 0 0 / 40%);
+    box-shadow: 0 0 5px var(--shadow-black-40);
     color: var(--text-white);
     font-family: Inter, sans-serif;
     font-size: 2.9375rem;
@@ -571,7 +571,7 @@
 
 .input-field input:not(:focus):hover {
     border-color: var(--board-input-border-hover);
-    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
+    box-shadow: 0 0 4px var(--shadow-black-16);
 }
 
 .input-field input:focus {
@@ -640,7 +640,7 @@
 
 .cancel-btn:hover {
     border-color: var(--login-button-secondary-hover);
-    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    box-shadow: 0 4px 4px var(--shadow-black-25);
     color: var(--login-button-secondary-hover);
 }
 
@@ -677,7 +677,7 @@
 
 .create-btn:hover {
     background: var(--login-button-primary-bg-hover);
-    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    box-shadow: 0 4px 4px var(--shadow-black-25);
 }
 
 .create-btn:active {
@@ -705,7 +705,7 @@
     padding: 0 24px;
     background: var(--sidebar-bg-color);
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 25%);
+    box-shadow: 0 4px 8px var(--shadow-black-25);
     color: var(--text-white);
     font-family: Inter, sans-serif;
     font-size: 1.25rem;
@@ -1356,7 +1356,7 @@
         background: var(--sidebar-bg-color);
         border: none;
         border-radius: 50%;
-        box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+        box-shadow: 0 4px 4px var(--shadow-black-25);
         cursor: pointer;
         transition: background-color 125ms ease-in-out,
             box-shadow 125ms ease-in-out;
@@ -1379,7 +1379,7 @@
         padding: 12px 0;
         background: var(--assets-bg-color);
         border-radius: 20px 20px 0;
-        box-shadow: 0 4px 8px rgb(0 0 0 / 25%);
+        box-shadow: 0 4px 8px var(--shadow-black-25);
     }
 
     .mobile-options-menu.active {
@@ -1700,7 +1700,7 @@
     background: var(--divider-color-grey);
     border: 3px solid var(--text-white);
     border-radius: 50%;
-    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
+    box-shadow: 0 0 4px var(--shadow-black-16);
     cursor: pointer;
     transform: none;
 }
@@ -1748,7 +1748,7 @@
     background: var(--sidebar-bg-color);
     border: 2px solid var(--text-white);
     border-radius: 50%;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+    box-shadow: 0 2px 4px var(--shadow-black-20);
 }
 
 .add-contact-modal.edit-mode .avatar-edit-icon {
@@ -1778,7 +1778,7 @@
     background: var(--assets-bg-color);
     border: 1px solid var(--form-input-border);
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 16%);
+    box-shadow: 0 4px 8px var(--shadow-black-16);
     transform: translateX(-50%);
 }
 

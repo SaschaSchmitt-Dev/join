@@ -228,8 +228,6 @@ dueDateInput.addEventListener("blur", () => {
     if (!dueDateInput.value) {
         dueDateInput.type = "text";
     }
-
-    clearErrorWhenFilled(dueDateInput, dueDateError);
 });
 
 

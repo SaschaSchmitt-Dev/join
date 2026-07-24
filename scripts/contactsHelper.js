@@ -14,7 +14,7 @@ function resetAddModalText() {
  */
 function resetAddAvatar() {
     contactPlaceholder.classList.remove("edit-mode");
-    contactPlaceholder.style.background = "#D1D1D1";
+    contactPlaceholder.style.background = "var(--form-input-border)";
     contactAvatarInitials.style.color = "";
     contactAvatarInitials.textContent = "";
 }

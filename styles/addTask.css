@@ -97,13 +97,13 @@
 .add-task-form input:not([type="radio"], [type="checkbox"], :focus):hover,
 .textarea:not(:focus):hover {
     border-color: var(--board-input-border-hover);
-    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
+    box-shadow: 0 0 4px var(--shadow-black-16);
 }
 
 .add-task-form input:not([type="radio"], [type="checkbox"]):focus,
 .add-task-fields-left textarea:focus {
     border-color: var(--board-input-border-active);
-    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
+    box-shadow: 0 0 4px var(--shadow-black-16);
     outline: none;
     appearance: none;
 }
@@ -174,7 +174,7 @@
     background: var(--assets-bg-color);
     border: none;
     border-radius: 10px;
-    box-shadow: 0 0 4px rgb(0 0 0 / 20%);
+    box-shadow: 0 0 4px var(--shadow-black-20);
     color: var(--text-primary);
     font-size: 1.25rem;
     font-weight: 400;
@@ -184,7 +184,7 @@
 }
 
 .priority-group label:hover {
-    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    box-shadow: 0 4px 4px var(--shadow-black-25);
 }
 
 .priority-group label img {
@@ -276,12 +276,11 @@
     z-index: 10;
     width: 100%;
     max-height: 270px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: var(--assets-bg-color);
+    overflow: hidden auto;
     scrollbar-gutter: stable;
+    background-color: var(--assets-bg-color);
     border-radius: 0 0 10px 10px;
-    box-shadow: 0 4px 6px rgb(0 0 0 / 14%);
+    box-shadow: 0 4px 6px var(--shadow-black-14);
 }
 
 .dropdown-list label {
@@ -477,11 +476,10 @@
     max-height: 272px;
     margin: 8px 0 0;
     padding: 0 8px 0 24px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    list-style: none;
+    overflow: hidden auto;
     scrollbar-gutter: stable;
+    list-style: none;
+    overscroll-behavior: contain;
 }
 
 .subtask-list li {
@@ -618,7 +616,7 @@
 .dropdown-content,
 .subtask-list {
     scrollbar-width: auto;
-    scrollbar-color: #747474 #eeeeee;
+    scrollbar-color: var(--scrollbar-dialog-thumb-color) var(--scrollbar-dialog-track-color);
 }
 
 .dropdown-content::-webkit-scrollbar,
@@ -628,21 +626,21 @@
 
 .dropdown-content::-webkit-scrollbar-track,
 .subtask-list::-webkit-scrollbar-track {
-    background: #eeeeee;
+    background: var(--scrollbar-dialog-track-color);
     border-radius: 10px;
 }
 
 .dropdown-content::-webkit-scrollbar-thumb,
 .subtask-list::-webkit-scrollbar-thumb {
     min-height: 48px;
-    background: #747474;
-    border: 2px solid #eeeeee;
+    background: var(--scrollbar-dialog-thumb-color);
+    border: 2px solid var(--scrollbar-dialog-track-color);
     border-radius: 10px;
 }
 
 .dropdown-content::-webkit-scrollbar-thumb:hover,
 .subtask-list::-webkit-scrollbar-thumb:hover {
-    background: #4f4f4f;
+    background: var(--scrollbar-dialog-thumb-hover-color);
 }
 
 /* footer buttons */
@@ -687,7 +685,7 @@
 
 .clear:hover {
     border-color: var(--login-button-secondary-hover);
-    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    box-shadow: 0 4px 4px var(--shadow-black-25);
     color: var(--login-button-secondary-hover);
 }
 
@@ -711,7 +709,7 @@
 
 .create-task:hover {
     background: var(--login-button-primary-bg-hover);
-    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    box-shadow: 0 4px 4px var(--shadow-black-25);
 }
 
 .create-task:active {
@@ -1412,7 +1410,6 @@
 
 /* Keep the page form typography aligned with the board dialog on phones */
 @media (width <=440px) {
-
     .add-task-content label,
     .add-task-content .field-label,
     .add-task-content input,

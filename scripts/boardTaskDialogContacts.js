@@ -20,7 +20,10 @@ function initializeTaskContactDropdown(dialog, inputSelector, renderSelected) {
 /** Connects pointer and filter events of a task contact dropdown. */
 function connectTaskContactDropdown(input, arrow, dropdown, toggle) {
     input.addEventListener("click", () => openTaskContactDropdown(dropdown));
-    arrow?.addEventListener("click", toggle);
+    arrow?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        toggle();
+    });
     input.addEventListener("input", filterTaskContacts);
 }
 

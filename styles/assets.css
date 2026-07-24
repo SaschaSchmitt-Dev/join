@@ -155,9 +155,8 @@ input {
 
 /** Preserve the original focus treatment of board cards and column controls. */
 :root .task-card:focus-visible {
-    box-shadow:
-        inset 0 0 0 2px var(--ui-dark),
-        0 0 10px rgb(0 0 0 / 8%);
+    border-color: var(--ui-dark);
+    box-shadow: 0 0 10px var(--shadow-black-08);
     outline: none;
 }
 
@@ -170,7 +169,7 @@ input {
 /** Navigation items use their existing full-width background highlight. */
 :root :is(.sidebar, .mobile-nav) a:focus-visible {
     background: var(--ui-dark-hover);
-    box-shadow: inset 0 0 0 2px rgb(246 247 248 / 70%);
+    box-shadow: inset 0 0 0 2px var(--focus-surface-translucent);
     outline: none;
 }
 

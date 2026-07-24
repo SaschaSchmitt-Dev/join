@@ -9,7 +9,7 @@
     height: 96px;
     padding: 20px 40px 20px 96px;
     background: var(--header-bg-color);
-    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+    box-shadow: 0 4px 6px var(--shadow-black-10);
     font-family: Inter, sans-serif;
     font-weight: 400;
 }
@@ -104,7 +104,7 @@
     padding: 10px 0;
     background: var(--ui-dark);
     border-radius: 20px 0 20px 20px;
-    box-shadow: 0 8px 18px rgb(0 0 0 / 16%);
+    box-shadow: 0 8px 18px var(--shadow-black-16);
     pointer-events: none;
     transition: opacity 120ms ease, transform 160ms ease, visibility 120ms ease;
     transform: translateX(24px);

@@ -133,6 +133,7 @@ function getDialogContactView(id, contact) {
  */
 function toggleDialogDropdown(event) {
     const dropdown = event.currentTarget.closest(".dropdown-list");
+    const input = dropdown.querySelector(".input-wrapper input");
     document.querySelectorAll(".dropdown-list.open").forEach((openDropdown) => {
         if (openDropdown !== dropdown) {
             openDropdown.classList.remove("open");
@@ -140,7 +141,7 @@ function toggleDialogDropdown(event) {
         }
     });
     dropdown.classList.toggle("open");
-    event.currentTarget.setAttribute("aria-expanded", String(dropdown.classList.contains("open")));
+    input.setAttribute("aria-expanded", String(dropdown.classList.contains("open")));
 }
 
 

@@ -1,8 +1,8 @@
 .add-task-dialog-backdrop {
     display: flex;
     position: fixed;
-    inset: 96px 0 0 232px;
-    z-index: 10;
+    inset: 0;
+    z-index: 1000;
     justify-content: center;
     align-items: center;
     padding: 24px;
@@ -22,7 +22,7 @@
     background: var(--assets-bg-color);
     border: 1px solid var(--divider-color-grey);
     border-radius: 30px;
-    box-shadow: 0 0 8px rgb(0 0 0 / 16%);
+    box-shadow: 0 0 8px var(--shadow-black-16);
     font-family: Inter, sans-serif;
     font-size: 1.25rem;
     line-height: 120%;
@@ -122,7 +122,7 @@
 .add-task-form input:not([type="radio"], [type="checkbox"], :focus):hover,
 .add-task-form textarea:not(:focus):hover {
     border-color: var(--board-input-border-hover);
-    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
+    box-shadow: 0 0 4px var(--shadow-black-16);
 }
 
 .add-task-form input::placeholder,
@@ -168,14 +168,14 @@
     margin: 0;
     background: var(--assets-bg-color);
     border-radius: 10px;
-    box-shadow: 0 0 4px rgb(0 0 0 / 20%);
+    box-shadow: 0 0 4px var(--shadow-black-20);
     cursor: pointer;
     transition: background-color 125ms ease-in-out,
         box-shadow 125ms ease-in-out;
 }
 
 .priority-group label:hover {
-    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    box-shadow: 0 4px 4px var(--shadow-black-25);
 }
 
 .priority-group input:checked + label {
@@ -211,7 +211,13 @@
 
 .input-icon {
     width: 24px;
-    pointer-events: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 100ms ease, transform 200ms ease;
+}
+
+.input-icon:hover {
+    background: var(--main-bg-color);
 }
 
 .dropdown-list.open .input-icon {
@@ -228,7 +234,7 @@
     overflow: auto;
     background: var(--assets-bg-color);
     border-radius: 0 0 10px 10px;
-    box-shadow: 0 4px 6px rgb(0 0 0 / 14%);
+    box-shadow: 0 4px 6px var(--shadow-black-14);
 }
 
 .dropdown-list.open .dropdown-content {
@@ -323,7 +329,7 @@
 .add-task-form input:focus,
 .add-task-form textarea:focus {
     border-color: var(--board-input-border-active);
-    box-shadow: 0 0 4px rgb(0 0 0 / 16%);
+    box-shadow: 0 0 4px var(--shadow-black-16);
 }
 
 .selected-contacts {
@@ -573,7 +579,7 @@
 
 .cancel-task:hover {
     border-color: var(--login-button-secondary-hover);
-    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    box-shadow: 0 4px 4px var(--shadow-black-25);
     color: var(--login-button-secondary-hover);
 }
 
@@ -591,7 +597,7 @@
 
 .create-task:hover {
     background: var(--login-button-primary-bg-hover);
-    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    box-shadow: 0 4px 4px var(--shadow-black-25);
 }
 
 .create-task:active {
@@ -621,15 +627,6 @@
     font-size: 1.25rem;
     line-height: 120%;
     transform: translate(-50%, -50%);
-}
-
-@media (width <= 1024px) {
-    .add-task-dialog-backdrop {
-        top: 80px;
-        bottom: 80px;
-        left: 0;
-        z-index: 10;
-    }
 }
 
 @media (1024px < width <= 1200px) {
@@ -682,7 +679,7 @@
         margin: auto -32px 0;
         padding: 0 32px;
         background: var(--assets-bg-color);
-        box-shadow: 0 -2px 8px rgb(0 0 0 / 8%);
+        box-shadow: 0 -2px 8px var(--shadow-black-08);
     }
 }
 
@@ -790,10 +787,6 @@
 }
 
 @media (width <= 360px) {
-    .add-task-dialog-backdrop {
-        bottom: 76px;
-    }
-
     .priority-group label {
         gap: 4px;
         height: 41px;

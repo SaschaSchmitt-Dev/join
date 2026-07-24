@@ -162,7 +162,7 @@
 
 .edit-task-submit:hover {
     background: var(--login-button-primary-bg-hover);
-    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    box-shadow: 0 4px 4px var(--shadow-black-25);
 }
 
 .edit-task-submit:active {
