@@ -473,7 +473,7 @@
 .subtask-list {
     display: grid;
     gap: 8px;
-    max-height: 272px;
+    max-height: clamp(96px, calc(100dvh - 600px), 272px);
     margin: 8px 0 0;
     padding: 0 8px 0 24px;
     overflow: hidden auto;
@@ -1032,9 +1032,6 @@
         font-size: 1.25rem;
     }
 
-    .subtask-list {
-        max-height: 224px;
-    }
 }
 
 /* mobile */
@@ -1118,9 +1115,6 @@
         padding-left: 20px;
     }
 
-    .subtask-list {
-        max-height: 176px;
-    }
 }
 
 /* small mobile */
@@ -1230,9 +1224,6 @@
         font-size: 1.125rem;
     }
 
-    .subtask-list {
-        max-height: 128px;
-    }
 }
 
 /* very small mobile */
@@ -1329,9 +1320,6 @@
         font-size: 1.0625rem;
     }
 
-    .subtask-list {
-        max-height: 88px;
-    }
 }
 
 /* priority buttons from 400px */
