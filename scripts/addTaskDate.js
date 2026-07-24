@@ -53,7 +53,7 @@ function validateDueDateField() {
     }
 
     if (input.value < getTodayDateString()) {
-        return showDueDateError("Bitte gib ein aktuelles oder zukünftiges Datum ein");
+        return showDueDateError("Please enter a current or future date");
     }
 
     clearDueDateError();

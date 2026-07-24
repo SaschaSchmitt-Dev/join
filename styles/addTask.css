@@ -276,8 +276,10 @@
     z-index: 10;
     width: 100%;
     max-height: 270px;
+    overflow-x: hidden;
     overflow-y: auto;
     background-color: var(--assets-bg-color);
+    scrollbar-gutter: stable;
     border-radius: 0 0 10px 10px;
     box-shadow: 0 4px 6px rgb(0 0 0 / 14%);
 }
@@ -470,12 +472,16 @@
 }
 
 .subtask-list {
-    max-height: 96px;
+    display: grid;
+    gap: 8px;
+    max-height: 272px;
     margin: 8px 0 0;
-    padding-right: 4px;
-    padding-left: 0;
+    padding: 0 8px 0 24px;
+    overflow-x: hidden;
     overflow-y: auto;
+    overscroll-behavior: contain;
     list-style: none;
+    scrollbar-gutter: stable;
 }
 
 .subtask-list li {
@@ -483,6 +489,8 @@
     padding: 8px;
     border-radius: 10px;
     font-size: 1rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
 }
 
 .subtask-list li:hover {
@@ -603,6 +611,38 @@
     background: var(--form-input-border);
     content: "";
     pointer-events: none;
+}
+
+/* scrollbars */
+
+.dropdown-content,
+.subtask-list {
+    scrollbar-width: auto;
+    scrollbar-color: #747474 #eeeeee;
+}
+
+.dropdown-content::-webkit-scrollbar,
+.subtask-list::-webkit-scrollbar {
+    width: 12px;
+}
+
+.dropdown-content::-webkit-scrollbar-track,
+.subtask-list::-webkit-scrollbar-track {
+    background: #eeeeee;
+    border-radius: 10px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb,
+.subtask-list::-webkit-scrollbar-thumb {
+    min-height: 48px;
+    background: #747474;
+    border: 2px solid #eeeeee;
+    border-radius: 10px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb:hover,
+.subtask-list::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
 }
 
 /* footer buttons */
@@ -993,6 +1033,10 @@
         color: var(--text-white);
         font-size: 1.25rem;
     }
+
+    .subtask-list {
+        max-height: 224px;
+    }
 }
 
 /* mobile */
@@ -1074,6 +1118,10 @@
         height: var(--footer-buttons-height);
         padding-right: 20px;
         padding-left: 20px;
+    }
+
+    .subtask-list {
+        max-height: 176px;
     }
 }
 
@@ -1172,6 +1220,10 @@
         height: 56px;
         font-size: 1.125rem;
     }
+
+    .subtask-list {
+        max-height: 128px;
+    }
 }
 
 /* very small mobile */
@@ -1267,6 +1319,10 @@
         height: 54px;
         font-size: 1.0625rem;
     }
+
+    .subtask-list {
+        max-height: 88px;
+    }
 }
 
 /* priority buttons from 400px */
@@ -1291,6 +1347,8 @@
 
 @media (width >1024px) {
     .page-content {
+        display: flex;
+        flex-direction: column;
         height: 100dvh;
         overflow: hidden;
     }
@@ -1304,6 +1362,12 @@
         height: calc(100dvh - 96px);
         min-height: 0;
         overflow: hidden auto;
+    }
+
+    .main-content.add-task-content {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: none;
     }
 }
 
@@ -1346,31 +1410,9 @@
     }
 }
 
-/* scrollbar under header */
-
-@media (width >1024px) {
-    .page-content {
-        display: flex;
-        flex-direction: column;
-        height: 100dvh;
-        overflow: hidden;
-    }
-
-    .topbar {
-        flex-shrink: 0;
-    }
-
-    .main-content.add-task-content {
-        flex: 1 1 auto;
-        width: 100%;
-        max-width: none;
-        min-height: 0;
-        overflow: hidden auto;
-    }
-}
-
-/* Keep the page form typography aligned with the board dialog on phones. */
+/* Keep the page form typography aligned with the board dialog on phones */
 @media (width <=440px) {
+
     .add-task-content label,
     .add-task-content .field-label,
     .add-task-content input,

@@ -171,12 +171,40 @@
     min-height: 0;
     padding: 4px 4px 16px;
     overflow: hidden auto;
+    scrollbar-width: auto;
+    scrollbar-color: #747474 #eeeeee;
     scrollbar-gutter: stable;
+}
+
+/* scrollbars */
+
+.task-list::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
 }
 
 .task-list::-webkit-scrollbar-track {
     margin-block: 24px;
+    background: #eeeeee;
+    border-radius: 10px;
 }
+
+.task-list::-webkit-scrollbar-thumb {
+    min-width: 48px;
+    min-height: 48px;
+    background: #747474;
+    border: 2px solid #eeeeee;
+    border-radius: 10px;
+}
+
+.task-list::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+}
+
+.task-list::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
 
 .drop-indicator {
     flex: 0 0 auto;
@@ -401,10 +429,14 @@
         width: 100%;
         padding: 4px 0 10px;
         overflow: auto hidden;
-        scrollbar-width: none;
         scroll-snap-type: x proximity;
         cursor: grab;
         user-select: none;
+    }
+
+    .task-list::-webkit-scrollbar-track {
+        margin-block: 0;
+        margin-inline: 20px;
     }
 
     .task-list.is-dragging {

@@ -27,6 +27,47 @@
     box-shadow: 4px 0 6px rgb(0 0 0 / 8%);
 }
 
+/* scrollbars */
+
+.contacts-sidebar,
+.contact-details {
+    scrollbar-width: auto;
+    scrollbar-color: #747474 #eeeeee;
+    scrollbar-gutter: stable;
+}
+
+.contacts-sidebar::-webkit-scrollbar,
+.contact-details::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.contacts-sidebar::-webkit-scrollbar-track,
+.contact-details::-webkit-scrollbar-track {
+    margin-block: 24px;
+    background: #eeeeee;
+    border-radius: 10px;
+}
+
+.contacts-sidebar::-webkit-scrollbar-thumb,
+.contact-details::-webkit-scrollbar-thumb {
+    min-width: 48px;
+    min-height: 48px;
+    background: #747474;
+    border: 2px solid #eeeeee;
+    border-radius: 10px;
+}
+
+.contacts-sidebar::-webkit-scrollbar-thumb:hover,
+.contact-details::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+}
+
+.contacts-sidebar::-webkit-scrollbar-corner,
+.contact-details::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
 .add-contact-btn {
     display: flex;
     flex-shrink: 0;
