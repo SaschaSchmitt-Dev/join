@@ -61,6 +61,7 @@ async function authenticateUser(email, password) {
  */
 function completeUserLogin(userEntry) {
     setActiveUser(userEntry.id, userEntry.user);
+    startActiveSession(userEntry.id, "user");
     sessionStorage.setItem('joinShowMobileGreeting', 'true');
     window.location.href = './subpages/summary.html';
 }
@@ -100,6 +101,7 @@ async function completeGuestLogin() {
     const guestUser = await resetGuestSandbox();
 
     setActiveUser(guestUserId, guestUser);
+    startActiveSession(guestUserId, "guest");
     sessionStorage.setItem('joinShowMobileGreeting', 'true');
     window.location.href = './subpages/summary.html';
 }

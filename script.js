@@ -1,5 +1,6 @@
 const BASE_URL = "https://join-94aa0-default-rtdb.europe-west1.firebasedatabase.app/";
 const activeUserStorageKey = "joinActiveUser";
+const activeSessionStorageKey = "joinActiveSession";
 const guestUserId = "guest";
 const profileColors = [
     "var(--profile-orange)",
@@ -67,7 +68,7 @@ function getUserDatabaseUrl(userId, path = "") {
  * @returns {string} The current user id.
  */
 function getCurrentUserId() {
-    return getActiveUserId() || guestUserId;
+    return getActiveUserId();
 }
 
 
@@ -77,7 +78,13 @@ function getCurrentUserId() {
  * @returns {string} The scoped database URL.
  */
 function getScopedDatabaseUrl(path) {
-    if (getCurrentUserId() === guestUserId) {
+    const currentUserId = getCurrentUserId();
+
+    if (!currentUserId) {
+        throw new Error("Authentication is required.");
+    }
+
+    if (currentUserId === guestUserId) {
         return getUserDatabaseUrl(guestUserId, path);
     }
 
@@ -103,6 +110,45 @@ function setActiveUser(userId, user) {
 
 
 /**
+ * Starts the browser session after a successful login.
+ * @param {string} userId - The authenticated user id.
+ * @param {string} loginType - The regular or guest login type.
+ */
+function startActiveSession(userId, loginType) {
+    const activeSession = {
+        userId,
+        loginType
+    };
+
+    sessionStorage.setItem(activeSessionStorageKey, JSON.stringify(activeSession));
+}
+
+
+/**
+ * Checks whether the stored user belongs to a login from this browser session.
+ * @param {Object} activeUser - The stored active user.
+ * @returns {boolean} True if the user has an active login session.
+ */
+function hasValidActiveSession(activeUser) {
+    const storedSession = sessionStorage.getItem(activeSessionStorageKey);
+
+    if (!activeUser || !storedSession) return false;
+
+    try {
+        const activeSession = JSON.parse(storedSession);
+        const hasValidLoginType = activeSession.loginType === "user" || activeSession.loginType === "guest";
+        const hasMatchingUser = activeSession.userId === activeUser.id;
+        const hasMatchingGuestType = (activeUser.id === guestUserId) === (activeSession.loginType === "guest");
+
+        return hasValidLoginType && hasMatchingUser && hasMatchingGuestType;
+    } catch (error) {
+        sessionStorage.removeItem(activeSessionStorageKey);
+        return false;
+    }
+}
+
+
+/**
  * Gets the active user from local storage.
  * @returns {Object} The active user.
  */
@@ -112,7 +158,9 @@ function getActiveUser() {
     if (!activeUser) return null;
 
     try {
-        return JSON.parse(activeUser);
+        const parsedUser = JSON.parse(activeUser);
+
+        return hasValidActiveSession(parsedUser) ? parsedUser : null;
     } catch (error) {
         clearActiveUser();
         return null;
@@ -125,6 +173,7 @@ function getActiveUser() {
  */
 function clearActiveUser() {
     localStorage.removeItem(activeUserStorageKey);
+    sessionStorage.removeItem(activeSessionStorageKey);
 }
 
 
