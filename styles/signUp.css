@@ -286,6 +286,7 @@ footer {
     display: flex;
     justify-content: center;
     gap: 32px;
+    margin-top: auto;
     padding: 16px 0 0;
 }
 
