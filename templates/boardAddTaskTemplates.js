@@ -158,7 +158,7 @@ function getAddTaskContactOptionTemplate(contact) {
     return `
         <label class="contact-option">
             <span class="dialog-contact-avatar" style="background:${contact.color};color:${contact.textColor}">${contact.initials}</span>
-            <span>${contact.name}</span>
+            <span title="${contact.name}">${contact.name}</span>
             <span class="custom-checkbox-wrapper">
                 <input class="contact-checkbox" type="checkbox" value="${contact.id}"${contact.checked}>
                 <span class="custom-checkbox" aria-hidden="true"></span>

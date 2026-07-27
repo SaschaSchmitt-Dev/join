@@ -332,6 +332,7 @@
 
 .dropdown-content label:has(.contact-checkbox) {
     height: 54px;
+    padding: 6px 12px;
 }
 
 .dropdown-content label:has(.contact-checkbox:checked):hover {
@@ -361,13 +362,18 @@
 
 .contact-info-wrapper {
     display: flex;
+    flex: 1 1 auto;
     align-items: center;
     gap: 8px;
     min-width: 0;
+    overflow: hidden;
 }
 
 .contact-info-wrapper span {
-    overflow-wrap: anywhere;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .contact-avatar {
