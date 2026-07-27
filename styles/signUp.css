@@ -122,19 +122,13 @@ body {
 .textbox-inputfield {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 4px;
     width: 422px;
 }
 
 .signup-input-field {
     position: relative;
     width: 100%;
-}
-
-.signup-field-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
 }
 
 .signup-input-field input {
@@ -168,13 +162,16 @@ body {
 }
 
 .error-msg {
-    margin: 0;
+    min-height: 16px;
+    margin: 0 0 6px;
+    overflow: hidden;
     color: var(--form-input-border-error);
     font-size: 1rem;
     font-weight: 400;
+    line-height: 16px;
 }
 
-.signup-input-field > img,
+.signup-input-field>img,
 .signup-input-field .password-toggle {
     position: absolute;
     top: 50%;
@@ -332,7 +329,7 @@ footer a:hover {
 
 /* tablet */
 
-@media (width <= 900px) {
+@media (width <=900px) {
     .sign-up-content {
         padding: 37px 32px 32px;
     }
@@ -352,7 +349,7 @@ footer a:hover {
 
 /* mobile */
 
-@media (width <= 768px) {
+@media (width <=768px) {
     .sign-up-content {
         padding: 24px 16px 18px;
     }
@@ -387,7 +384,7 @@ footer a:hover {
     }
 
     .textbox-inputfield {
-        gap: 20px;
+        gap: 4px;
         width: calc(100% - 80px);
     }
 
@@ -398,9 +395,17 @@ footer a:hover {
 
 }
 
+/* error message wraps to two lines below ~390px; reserve the extra height so it doesn't shift layout */
+
+@media (width <=400px) {
+    .error-msg {
+        min-height: 32px;
+    }
+}
+
 /* small mobile */
 
-@media (width <= 480px) {
+@media (width <=480px) {
     body {
         min-height: 100dvh;
     }
@@ -447,7 +452,7 @@ footer a:hover {
     }
 
     .textbox-inputfield {
-        gap: 12px;
+        gap: 4px;
         width: calc(100% - 32px);
     }
 
@@ -457,7 +462,7 @@ footer a:hover {
         font-size: 1rem;
     }
 
-    .signup-input-field > img,
+    .signup-input-field>img,
     .signup-input-field .password-toggle {
         right: 16px;
         width: 20px;
@@ -495,7 +500,7 @@ footer a:hover {
 
 /* very small mobile */
 
-@media (width <= 360px) {
+@media (width <=360px) {
     .sign-up-content {
         padding-inline: 14px;
     }
@@ -531,7 +536,7 @@ footer a:hover {
     }
 
     .textbox-inputfield {
-        gap: 10px;
+        gap: 3px;
     }
 
     .signup-input-field input {
