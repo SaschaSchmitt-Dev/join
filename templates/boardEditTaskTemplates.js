@@ -37,7 +37,7 @@ function getEditTaskFieldsTemplate(task) {
     return `
         <div class="dialog-field-group">
             <label for="editTaskTitle">Title</label>
-            <input id="editTaskTitle" type="text" value="${task.title}">
+            <input id="editTaskTitle" type="text" value="${task.title}" aria-describedby="editTaskTitleError">
             <div class="error-message" id="editTaskTitleError"></div>
         </div>
         <div class="dialog-field-group">
@@ -46,7 +46,7 @@ function getEditTaskFieldsTemplate(task) {
         </div>
         <div class="dialog-field-group">
             <label for="editTaskDueDate">Due date</label>
-            <input id="editTaskDueDate" type="date" value="${task.dueDate}">
+            <input id="editTaskDueDate" type="date" value="${task.dueDate}" min="${getTodayDateValue()}" aria-describedby="editTaskDueDateError">
             <div class="error-message" id="editTaskDueDateError"></div>
         </div>
         ${getEditTaskPriorityTemplate(task.priorities)}

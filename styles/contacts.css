@@ -651,12 +651,15 @@
 }
 
 .contact-input-error {
-    display: none;
-    margin: 6px 0 0;
+    display: block;
+    min-height: 16px;
+    margin: 4px 0 0;
     color: var(--priority-urgent);
     font-family: Inter, sans-serif;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 400;
+    line-height: 16px;
+    visibility: hidden;
 }
 
 #addContactForm.submitted .input-field input.input-error {
@@ -665,7 +668,7 @@
 }
 
 #addContactForm.submitted .input-field input.input-error ~ .contact-input-error {
-    display: block;
+    visibility: visible;
 }
 
 .modal-buttons {

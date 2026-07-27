@@ -94,12 +94,26 @@ function initializeEditTaskDialog(dialog) {
     initializePriorityKeyboard(dialog.querySelector(".priority-group"));
     initializeTaskContactDropdown(dialog, "#editAssignedTo", renderSelectedEditContacts);
     initializeHorizontalDragScroll(dialog.querySelector(".selected-contacts"));
+    initializeEditDueDateValidation(dialog);
     dialog.querySelector(".edit-task-close").addEventListener("click", closeEditTaskDialog);
     dialog.querySelector("#editTaskForm").addEventListener("submit", submitEditTask);
     initializeEditSubtaskControls(dialog);
     dialog.addEventListener("pointerup", closeEditTaskOnBackdrop);
     document.addEventListener("keydown", closeEditTaskOnEscape);
     document.addEventListener("click", closeEditDropdownOnOutsideClick);
+}
+
+
+/**
+ * Initializes the edit due date validation.
+ * @param {HTMLElement} dialog - The edit dialog backdrop.
+ */
+function initializeEditDueDateValidation(dialog) {
+    const input = dialog.querySelector("#editTaskDueDate");
+
+    input.min = getTodayDateValue();
+    input.addEventListener("input", () => validateEditTaskDialog(dialog));
+    input.addEventListener("change", () => validateEditTaskDialog(dialog));
 }
 
 
@@ -299,16 +313,29 @@ async function saveEditedTask(dialog) {
  * @returns {boolean} True when every required field is valid.
  */
 function validateEditTaskDialog(dialog) {
-    const fields = [
-        [dialog.querySelector("#editTaskTitle"), dialog.querySelector("#editTaskTitleError")],
-        [dialog.querySelector("#editTaskDueDate"), dialog.querySelector("#editTaskDueDateError")]
-    ];
-    fields.forEach(([input, error]) => {
-        const valid = Boolean(input.value.trim());
-        input.classList.toggle("input-error", !valid);
-        error.textContent = valid ? "" : "This field is required";
-    });
-    return fields.every(([input]) => input.value.trim());
+    const titleInput = dialog.querySelector("#editTaskTitle");
+    const dateInput = dialog.querySelector("#editTaskDueDate");
+    const titleError = dialog.querySelector("#editTaskTitleError");
+    const dateError = dialog.querySelector("#editTaskDueDateError");
+    const titleMessage = titleInput.value.trim() ? "" : "This field is required";
+    const dateMessage = getEditDueDateErrorMessage(dateInput);
+    titleInput.classList.toggle("input-error", Boolean(titleMessage));
+    dateInput.classList.toggle("input-error", Boolean(dateMessage));
+    titleError.textContent = titleMessage;
+    dateError.textContent = dateMessage;
+    return !titleMessage && !dateMessage;
+}
+
+
+/**
+ * Returns the edit due date error message.
+ * @param {HTMLInputElement} input - The due date input.
+ * @returns {string} The error message.
+ */
+function getEditDueDateErrorMessage(input) {
+    if (!input.value.trim()) return "This field is required";
+
+    return input.value < input.min ? "Please enter a current or future date" : "";
 }
 
 
@@ -356,4 +383,17 @@ function closeEditTaskDialog() {
     removeBoardDialog("editTaskDialog");
     document.removeEventListener("keydown", closeEditTaskOnEscape);
     document.removeEventListener("click", closeEditDropdownOnOutsideClick);
+}
+
+
+/**
+ * Returns today's date as an input date value.
+ * @returns {string} Today's date in yyyy-mm-dd format.
+ */
+function getTodayDateValue() {
+    const today = new Date();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+
+    return `${today.getFullYear()}-${month}-${day}`;
 }
