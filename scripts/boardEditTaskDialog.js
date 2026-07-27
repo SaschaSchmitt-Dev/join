@@ -97,7 +97,7 @@ function initializeEditTaskDialog(dialog) {
     dialog.querySelector(".edit-task-close").addEventListener("click", closeEditTaskDialog);
     dialog.querySelector("#editTaskForm").addEventListener("submit", submitEditTask);
     initializeEditSubtaskControls(dialog);
-    dialog.addEventListener("click", closeEditTaskOnBackdrop);
+    dialog.addEventListener("pointerup", closeEditTaskOnBackdrop);
     document.addEventListener("keydown", closeEditTaskOnEscape);
     document.addEventListener("click", closeEditDropdownOnOutsideClick);
 }
@@ -336,7 +336,7 @@ function getEditTaskData(dialog) {
  * @param {MouseEvent} event - The click event.
  */
 function closeEditTaskOnBackdrop(event) {
-    closeBoardDialogOnBackdrop(event, "editTaskDialog", closeEditTaskDialog);
+    closeBoardDialogOnBackdrop(event, closeEditTaskDialog);
 }
 
 

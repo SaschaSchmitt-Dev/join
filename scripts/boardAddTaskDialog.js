@@ -77,7 +77,7 @@ function initializeDialogActions(dialog) {
     dialog.querySelector(".add-task-dialog-close").addEventListener("click", closeAddTaskDialog);
     dialog.querySelector(".cancel-task").addEventListener("click", closeAddTaskDialog);
     dialog.querySelector("#addTaskDialogForm").addEventListener("submit", submitBoardTask);
-    dialog.addEventListener("click", closeAddTaskDialogOnBackdrop);
+    dialog.addEventListener("pointerup", closeAddTaskDialogOnBackdrop);
     initializeDialogDateInput(dialog);
 }
 
@@ -366,7 +366,7 @@ function removeTaskAddedMessage() {
  * @param {MouseEvent} event - The click event.
  */
 function closeAddTaskDialogOnBackdrop(event) {
-    closeBoardDialogOnBackdrop(event, "addTaskDialog", closeAddTaskDialog);
+    closeBoardDialogOnBackdrop(event, closeAddTaskDialog);
 }
 
 

@@ -54,7 +54,7 @@ if (mobileDeleteContactBtn) {
 }
 
 if (overlay) {
-    overlay.addEventListener("click", function (event) {
+    overlay.addEventListener("pointerup", function (event) {
         if (event.target === overlay) {
             closeAddContactOverlay();
         }

@@ -1,6 +1,6 @@
 /** Runs a close callback when the backdrop itself was selected. */
-function closeBoardDialogOnBackdrop(event, dialogId, closeCallback) {
-    if (event.target.id === dialogId) closeCallback();
+function closeBoardDialogOnBackdrop(event, closeCallback) {
+    if (event.target === event.currentTarget) closeCallback();
 }
 
 

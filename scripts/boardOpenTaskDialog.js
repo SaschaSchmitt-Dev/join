@@ -53,7 +53,7 @@ function openTaskDialog(task) {
     backdrop.querySelector(".open-task-delete").addEventListener("click", deleteOpenTask);
     backdrop.querySelector(".open-task-edit").addEventListener("click", () => openEditTaskDialog(task));
     backdrop.querySelector(".open-task-subtasks").addEventListener("change", changeOpenTaskSubtaskStatus);
-    backdrop.addEventListener("click", closeOpenTaskOnBackdrop);
+    backdrop.addEventListener("pointerup", closeOpenTaskOnBackdrop);
     document.addEventListener("keydown", closeOpenTaskOnEscape);
     activateModal(backdrop, backdrop.querySelector(".open-task-close"));
 }
@@ -190,7 +190,7 @@ function getOpenTaskSubtasks(subtasks = {}) {
  * @param {MouseEvent} event - The click event.
  */
 function closeOpenTaskOnBackdrop(event) {
-    closeBoardDialogOnBackdrop(event, "openTaskDialog", closeOpenTaskDialog);
+    closeBoardDialogOnBackdrop(event, closeOpenTaskDialog);
 }
 
 
