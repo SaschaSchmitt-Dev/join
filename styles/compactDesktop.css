@@ -271,12 +271,6 @@
         overflow: hidden auto;
     }
 
-    .contact-detail-name-box,
-    .contact-information {
-        min-width: 0;
-        max-width: 100%;
-    }
-
     /* Help and legals */
     .help-section,
     .legal-section {
