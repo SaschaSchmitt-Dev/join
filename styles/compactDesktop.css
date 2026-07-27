@@ -5,15 +5,20 @@
         padding: 20px 40px;
     }
 
-    .login-header {
-        min-height: 64px;
-    }
-
+    .login-header,
     .sign-up-header {
+        position: relative;
+        flex: 0 0 72px;
         min-height: 72px;
+        overflow: visible;
     }
 
-    .login-page .card,
+    .login-page .card {
+        min-height: auto;
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
     .sign-up-page .text-box {
         min-height: auto;
         padding-top: 24px;
@@ -29,8 +34,11 @@
         align-items: center;
     }
 
-    .login-page .login-logo {
-        width: 64px;
+    .login-page .login-logo,
+    .sign-up-page .sign-up-logo {
+        flex-shrink: 0;
+        width: 56px;
+        height: auto;
     }
 
     .login-page .signup-area {
