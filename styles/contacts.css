@@ -326,21 +326,18 @@
 }
 
 .contact-detail-name-box h2 {
-    display: -webkit-box;
+    display: block;
     max-width: 100%;
     margin: 0 0 12px;
-    overflow: hidden;
+    overflow: visible;
     outline: none;
     color: var(--text-primary);
     font-family: Inter, sans-serif;
     font-size: 2.9375rem;
     font-weight: 500;
     line-height: 120%;
-    text-overflow: ellipsis;
     white-space: normal;
     overflow-wrap: anywhere;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
 }
 
 .contact-actions {
@@ -1360,16 +1357,13 @@
     }
 
     .contacts-page.mobile-detail-open .contact-detail-name-box h2 {
-        display: -webkit-box;
+        display: block;
         max-width: 100%;
-        overflow: hidden;
+        overflow: visible;
         line-height: 120%;
-        text-overflow: ellipsis;
         white-space: normal;
         word-break: normal;
         overflow-wrap: anywhere;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
     }
 
     .selected-contact {
@@ -2201,6 +2195,11 @@
 /* very small contact list */
 
 @media (width <=360px) {
+    .contacts-page.mobile-detail-open .contact-detail-name-box h2 {
+        font-size: clamp(1.5rem, 8vw, 1.75rem);
+        line-height: 115%;
+    }
+
     #contactsList {
         padding: 16px 8px 100px;
         overflow-x: hidden;
