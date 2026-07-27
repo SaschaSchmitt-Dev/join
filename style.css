@@ -87,7 +87,7 @@ a {
     width: 100%;
     min-width: 0;
     max-width: 1208px;
-    padding: 72px 20px 72px 96px;
+    padding: 72px 20px 72px 72px;
     overflow: hidden auto;
 }
 

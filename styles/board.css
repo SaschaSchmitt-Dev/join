@@ -147,7 +147,7 @@
 .board-columns {
     display: grid;
     flex: 1;
-    gap: 8px;
+    gap: 24px;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
     min-height: 0;
 }
@@ -383,7 +383,7 @@
 
 @media (width <=1240px) {
     .board-columns {
-        gap: 18px;
+        gap: 24px;
     }
 
     .board-actions {
