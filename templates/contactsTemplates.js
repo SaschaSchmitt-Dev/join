@@ -53,7 +53,7 @@ function getContactDetailAvatarTemplate(contact) {
 function getContactDetailNameTemplate(contact) {
     return `
         <div class="contact-detail-name-box">
-            <h2 tabindex="-1">${contact.name}</h2>
+            <h2 tabindex="-1" title="${contact.name}">${contact.name}</h2>
             ${getContactActionsTemplate()}
         </div>
     `;

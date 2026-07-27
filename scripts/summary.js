@@ -1,4 +1,6 @@
-const mobileSummaryMediaQuery = window.matchMedia("(max-width: 1024px)");
+const mobileSummaryMediaQuery = window.matchMedia(
+    "(max-width: 1024px) and (hover: none) and (pointer: coarse)"
+);
 const mobileGreetingStorageKey = "joinShowMobileGreeting";
 
 

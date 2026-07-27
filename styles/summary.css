@@ -225,7 +225,7 @@
     }
 }
 
-@media (width <= 1024px) {
+@media (width <= 1024px) and (hover: none) and (pointer: coarse) {
     .main-content.summary-section {
         align-items: center;
         padding: 48px 20px 120px;

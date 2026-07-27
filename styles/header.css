@@ -135,7 +135,7 @@
     color: var(--text-white);
 }
 
-@media (width <= 1024px) {
+@media (width <= 1024px) and (hover: none) and (pointer: coarse) {
     .topbar {
         height: 80px;
         padding: 20px 16px;

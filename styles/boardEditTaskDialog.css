@@ -181,7 +181,7 @@
     filter: brightness(0) invert(1);
 }
 
-@media (width <= 1024px) {
+@media (width <= 1024px) and (hover: none) and (pointer: coarse) {
     .edit-task-dialog {
         height: auto;
         max-height: 100%;

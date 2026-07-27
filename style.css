@@ -91,7 +91,7 @@ a {
     overflow: hidden auto;
 }
 
-@media (width <= 1024px) {
+@media (width <= 1024px) and (hover: none) and (pointer: coarse) {
     .desktop-hide {
         display: flex;
     }

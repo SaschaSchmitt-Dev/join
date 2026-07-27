@@ -200,6 +200,10 @@
     font-size: 1rem;
 }
 
+.contact-info {
+    min-width: 0;
+}
+
 .contact-info h4 {
     margin: 0 0 4px;
     color: var(--text-primary);
@@ -213,6 +217,16 @@
     color: var(--contact-link);
     font-size: 1rem;
     text-decoration: none;
+}
+
+.contact-info h4,
+.contact-info a,
+.contact-info p {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* contact detail desktop */
@@ -305,12 +319,21 @@
 }
 
 .contact-detail-name-box h2 {
+    display: -webkit-box;
+    max-width: 100%;
     margin: 0 0 12px;
+    overflow: hidden;
     outline: none;
     color: var(--text-primary);
     font-family: Inter, sans-serif;
     font-size: 2.9375rem;
     font-weight: 500;
+    line-height: 120%;
+    text-overflow: ellipsis;
+    white-space: normal;
+    overflow-wrap: break-word;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 .contact-actions {
@@ -397,6 +420,7 @@
     font-family: Inter, sans-serif;
     font-size: 1rem;
     text-decoration: none;
+    overflow-wrap: anywhere;
 }
 
 .contact-information p {
@@ -904,7 +928,7 @@
 
 /* tablet mobile contact layout */
 
-@media (width <=1024px) {
+@media (width <=1024px) and (hover: none) and (pointer: coarse) {
     body {
         overflow: hidden;
         background: var(--assets-bg-color);
@@ -1324,13 +1348,16 @@
     }
 
     .contacts-page.mobile-detail-open .contact-detail-name-box h2 {
+        display: -webkit-box;
         max-width: 100%;
-        overflow: visible;
+        overflow: hidden;
         line-height: 120%;
-        text-overflow: unset;
+        text-overflow: ellipsis;
         white-space: normal;
         word-break: normal;
         overflow-wrap: break-word;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
     }
 
     .selected-contact {
@@ -1909,7 +1936,7 @@
 
 /* mobile */
 
-@media (width <=1024px) {
+@media (width <=1024px) and (hover: none) and (pointer: coarse) {
     .add-contact-modal {
         position: relative;
     }

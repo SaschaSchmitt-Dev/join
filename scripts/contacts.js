@@ -230,7 +230,7 @@ function showContact(index) {
  * @param {KeyboardEvent} event - The keyboard event inside the contact details.
  */
 function handleContactDetailTab(event) {
-    if (event.key !== "Tab" || window.innerWidth <= 1024) return;
+    if (event.key !== "Tab" || isTouchNavigationLayout()) return;
 
     if (event.shiftKey && event.target.closest(".edit-contact-btn")) {
         event.preventDefault();
@@ -246,7 +246,7 @@ function handleContactDetailTab(event) {
 
 /** Moves forward from the active contact card into its detail actions. */
 function handleActiveContactTab(event) {
-    if (event.key !== "Tab" || event.shiftKey || window.innerWidth <= 1024) return;
+    if (event.key !== "Tab" || event.shiftKey || isTouchNavigationLayout()) return;
     if (!event.target.matches(".contact-card.active")) return;
     const editButton = contactDetailsContainer.querySelector(".edit-contact-btn");
     if (!editButton) return;
@@ -274,9 +274,21 @@ function focusNextContactCard(event) {
  * Opens the mobile contact detail view.
  */
 function openMobileContactDetails() {
-    if (window.innerWidth <= 1024) {
+    if (isTouchNavigationLayout()) {
         contactsPage.classList.add("mobile-detail-open");
     }
+}
+
+
+/**
+ * Checks whether the touch/tablet navigation layout is active.
+ * A 1024 px laptop with a mouse therefore keeps the desktop layout.
+ * @returns {boolean} True for the coarse-pointer layout.
+ */
+function isTouchNavigationLayout() {
+    return window.matchMedia(
+        "(max-width: 1024px) and (hover: none) and (pointer: coarse)"
+    ).matches;
 }
 
 

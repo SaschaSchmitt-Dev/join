@@ -243,7 +243,7 @@
     background: var(--profile-turquoise);
 }
 
-@media (width <= 1024px) {
+@media (width <= 1024px) and (hover: none) and (pointer: coarse) {
     .task-dialog-backdrop {
         inset: 0;
         padding: 24px;
@@ -271,7 +271,7 @@
     }
 }
 
-@media (572px < width <= 1024px) {
+@media (572px < width <= 1024px) and (hover: none) and (pointer: coarse) {
     .dialog-creator {
         padding-top: 24px;
     }

@@ -932,7 +932,7 @@
 
 /* tablet mobile nav starts */
 
-@media (width <=1024px) {
+@media (width <=1024px) and (hover: none) and (pointer: coarse) {
     .add-task-content {
         --mobile-nav-height: 75px;
         --footer-buttons-height: 70px;
